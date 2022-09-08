@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>8. Fourier Transformation &#8212; A First Step to Computational Physics with Python.</title>
+    <title>7. Fourier Transformation &#8212; Computational Methods for Physics with Python.</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -53,8 +53,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script async="async" src="../_static/sphinx-thebe.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Partial Differential Equations" href="../pde/intro.html" />
-    <link rel="prev" title="7. Linear Algebrea" href="../matrix/intro.html" />
+    <link rel="next" title="8. Partial Differential Equations" href="../pde/intro.html" />
+    <link rel="prev" title="6. Linear Algebrea" href="../matrix/intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -98,7 +98,7 @@ const thebe_selector_output = ".output, .cell_output"
       <img src="../_static/me-tiny.png" class="logo" alt="logo">
       
       
-      <h1 class="site-logo" id="site-title">A First Step to Computational Physics with Python.</h1>
+      <h1 class="site-logo" id="site-title">Computational Methods for Physics with Python.</h1>
       
     </a>
 </div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
@@ -125,6 +125,38 @@ const thebe_selector_output = ".output, .cell_output"
    Preface
   </a>
  </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../preparation/intro.html">
+   Preparation
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preparation/thisbook.html">
+     About This Book
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preparation/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preparation/jupyter.html">
+     JupyterLab
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../preparation/cloud.html">
+     Google Colab
+    </a>
+   </li>
+  </ul>
+ </li>
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
@@ -132,44 +164,56 @@ const thebe_selector_output = ".output, .cell_output"
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
+ <li class="toctree-l1 has-children">
   <a class="reference internal" href="../numbers/intro.html">
-   1. Numbers
+   1. Numbers and Quantization Errors
   </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numbers/bits.html">
+     1.1. Bits
+    </a>
+   </li>
+  </ul>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../derivative/intro.html">
-   3. Defferentiation
+   2. Defferentiation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../integral/intro.html">
-   4. Integralation
+   3. Integralation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../root-finding/intro.html">
-   5. Root Finding
+   4. Root Finding
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../ode/intro.html">
-   6. Ordinary Differential Equations
+   5. Ordinary Differential Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../matrix/intro.html">
-   7. Linear Algebrea
+   6. Linear Algebrea
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   8. Fourier Transformation
+   7. Fourier Transformation
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../pde/intro.html">
-   9. Partial Differential Equations
+   8. Partial Differential Equations
   </a>
  </li>
 </ul>
@@ -181,27 +225,27 @@ const thebe_selector_output = ".output, .cell_output"
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../random-number/intro.html">
-   1. Random Number Generators
+   9. Random Number Generators
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../random-walk/intro.html">
-   2. Random Walks
+   10. Random Walks
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../metropolis/intro.html">
-   3. Metropolis Methods
+   11. Metropolis Methods
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../langevin/intro.html">
-   4. Langevin Equations
+   12. Langevin Equations
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../optimization/intro.html">
-   5. Optimization
+   13. Optimization
   </a>
  </li>
 </ul>
@@ -391,7 +435,7 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="fourier-transformation">
-<h1><span class="section-number">8. </span>Fourier Transformation<a class="headerlink" href="#fourier-transformation" title="Permalink to this heading">#</a></h1>
+<h1><span class="section-number">7. </span>Fourier Transformation<a class="headerlink" href="#fourier-transformation" title="Permalink to this heading">#</a></h1>
 <p><strong>To be written</strong></p>
 </section>
 
@@ -426,13 +470,13 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">7. </span>Linear Algebrea</p>
+            <p class="prev-next-title"><span class="section-number">6. </span>Linear Algebrea</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="../pde/intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Partial Differential Equations</p>
+        <p class="prev-next-title"><span class="section-number">8. </span>Partial Differential Equations</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

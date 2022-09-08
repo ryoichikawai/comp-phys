@@ -9,12 +9,20 @@ parts:
    chapters:
    -  file: aboutme
    -  file: preface
+   -  file: preparation/intro
+      sections:
+      -  file: preparation/thisbook
+      -  file: preparation/python
+      -  file: preparation/jupyter
+      -  file: preparation/cloud
 -  caption: Numerical Analysis
-   numbered: 3
+   numbered: true
    chapters:
    -  file: numbers/intro
       sections:
       -  file: numbers/bits
+      -  file: numbers/ascii
+      -  file: numbers/integers
    -  file: derivative/intro
    -  file: integral/intro
    -  file: root-finding/intro
@@ -23,7 +31,7 @@ parts:
    -  file: fft/intro
    -  file: pde/intro
 -  caption: Monte Carlo simulation
-   numbered: 3
+   numbered: true
    chapters:
    -  file: random-number/intro
    -  file: random-walk/intro
@@ -34,5 +42,3 @@ parts:
    numbered: false
    chapters:
    -  file: references/references
-
-

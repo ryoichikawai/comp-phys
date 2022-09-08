@@ -1,1 +1,1 @@
-![](bookcover.png)
+![](cover/bookcover.png)
