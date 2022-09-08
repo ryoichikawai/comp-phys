@@ -13,6 +13,8 @@ parts:
    numbered: 3
    chapters:
    -  file: numbers/intro
+      sections:
+      -  file: numbers/bits
    -  file: derivative/intro
    -  file: integral/intro
    -  file: root-finding/intro
