@@ -6,7 +6,7 @@
 # 
 
 # Digital computers express everything as bit strings, which are discrete.  Hence, it is not possible to express continuous numbers.
-# Integers are discrete and their exact enumeration is possible.  In principle, huge integer can be implemented as long as there is enough memory.   Since version 3, python does not have a limit of integer and it dynamically changes the size of integer  as needed.  However, this feature is rather unique to python and most of common computer languages such as C++ impose a hard limit. If you want to write a transportable code, you need to know the upper limit used in other languages, which we discuss here briefly.
+# Integers are discrete and their exact enumeration is possible.  In principle, huge integer can be implemented as long as there is enough memory.   Since version 3, the python platform  does not have a limit of integer and it dynamically changes the size of integer  as needed.  However, this feature is rather unique to python and most of common computer languages such as C++ allow several fized length of integers, known as `int8`, `int16`, `int32`, and `int64` where the numbers indicate the size of bit strings. Commonly used python numerical packages such as `numpy` use C++ in backend. If we want to write a transportable code, we need to use  standard sizes used by common programming languages.  We will disucss them in  section of numpy.
 # 
 # Encoding integers are relatively simple. First, we express them in binary form $I = \sum_{k=0}^{N-1} 2^k b_k$.
 # Then the corresponding binary string $b_{N-1} \cdots b_2 b_1 b_0$ is uniquely express the integer.
@@ -25,7 +25,6 @@
 # |64|-9223372036854775808|+9223372036854775807|
 # 
 # ```
-# 
 
 # 
 # > **Example** {numref}`%s <sec-integers>`.1  Huge intgers.  Python can handle even $2 \times 10^{100}$.

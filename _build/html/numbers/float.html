@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>1.1. Bits &#8212; Computational Methods for Physics with Python.</title>
+    <title>1.4. Floating Point Numbers &#8212; Computational Methods for Physics with Python.</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -55,8 +55,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="1.2. Characters" href="ascii.html" />
-    <link rel="prev" title="1. Numbers and Quantization Errors" href="intro.html" />
+    <link rel="next" title="2. Defferentiation" href="../derivative/intro.html" />
+    <link rel="prev" title="1.3. Integers" href="integers.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="en">
     
@@ -176,8 +176,8 @@ const thebe_selector_output = ".output, .cell_output"
    </i>
   </label>
   <ul class="current">
-   <li class="toctree-l2 current active">
-    <a class="current reference internal" href="#">
+   <li class="toctree-l2">
+    <a class="reference internal" href="bits.html">
      1.1. Bits
     </a>
    </li>
@@ -191,8 +191,8 @@ const thebe_selector_output = ".output, .cell_output"
      1.3. Integers
     </a>
    </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="float.html">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
      1.4. Floating Point Numbers
     </a>
    </li>
@@ -331,7 +331,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/numbers/bits.ipynb"
+        <a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/numbers/float.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -391,7 +391,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/ryoichikawai/comp-phys//issues/new?title=Issue%20on%20page%20%2Fnumbers/bits.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/ryoichikawai/comp-phys//issues/new?title=Issue%20on%20page%20%2Fnumbers/float.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -419,7 +419,7 @@ title="Open an issue"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/numbers/bits.ipynb"
+        <a href="../_sources/numbers/float.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -456,23 +456,60 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy">
+   1.4.1. Numpy
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Bits</h1>
+                <h1>Floating Point Numbers</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#numpy">
+   1.4.1. Numpy
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -480,51 +517,116 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="bits">
-<h1><span class="section-number">1.1. </span>Bits<a class="headerlink" href="#bits" title="Permalink to this heading">#</a></h1>
-<p>The current digital computers are mostly binary machines\footnote{We don’t consider q-bit used in quantum computers.} and use a bit <span class="math notranslate nohighlight">\(b\)</span> as the smallest unit of information where <span class="math notranslate nohighlight">\(b=0\)</span> or <span class="math notranslate nohighlight">\(1\)</span> (or we write it equivalently as <span class="math notranslate nohighlight">\(b=\{0,1\}\)</span>). Inside a computer,  information is generally encoded in a string of bits such as <span class="math notranslate nohighlight">\(01100101000101100\cdots\)</span>.  The number of unique expressions depends on the length of the string, which is measured as the number of bits. An <span class="math notranslate nohighlight">\(N\)</span>-bit string</p>
-<div class="math notranslate nohighlight">
-\[
-N\text{-bit string} = b_{N-1} b_{N-2} \cdots b_2 b_1 b_0
-\]</div>
-<p>can express <span class="math notranslate nohighlight">\(2^N\)</span> different values.  For instance, there are only four possible realizations of a 2-bit string: <span class="math notranslate nohighlight">\(00\)</span>, <span class="math notranslate nohighlight">\(01\)</span>, <span class="math notranslate nohighlight">\(10\)</span>, <span class="math notranslate nohighlight">\(11\)</span>.  <span class="math notranslate nohighlight">\(N\)</span> can be very large but always finite and limited by the size of hardware.<a class="footnote-reference brackets" href="#note-brain" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>
-The common lengths of the binary string in the present computers are <span class="math notranslate nohighlight">\(8\)</span>, <span class="math notranslate nohighlight">\(16\)</span>, <span class="math notranslate nohighlight">\(32\)</span>, and <span class="math notranslate nohighlight">\(64\)</span>.   The string of 8 bit is called a byte.  The number of different expressions these strings can have is shown in <a class="reference internal" href="#table-binary-sizes"><span class="std std-numref">Table 1.1</span></a>.</p>
-<table class="table" id="table-binary-sizes">
-<caption><span class="caption-number">Table 1.1 </span><span class="caption-text">Common binary strings and their capacity</span><a class="headerlink" href="#table-binary-sizes" title="Permalink to this table">#</a></caption>
-<thead>
-<tr class="row-odd"><th class="head text-align:right"><p>size in bits</p></th>
-<th class="head text-align:right"><p>size in bytes</p></th>
-<th class="head text-align:right"><p># of expressions</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-align:right"><p>8</p></td>
-<td class="text-align:right"><p>1</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(2^8=256\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:right"><p>16</p></td>
-<td class="text-align:right"><p>2</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(2^{16}=65536\)</span></p></td>
-</tr>
-<tr class="row-even"><td class="text-align:right"><p>32</p></td>
-<td class="text-align:right"><p>4</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(2^{32}=4,294,967,296\)</span></p></td>
-</tr>
-<tr class="row-odd"><td class="text-align:right"><p>64</p></td>
-<td class="text-align:right"><p>8</p></td>
-<td class="text-align:right"><p><span class="math notranslate nohighlight">\(2^{64}=18,446,744,073,709,551,616\)</span></p></td>
-</tr>
-</tbody>
-</table>
-<p>We <em>encode</em> numbers and characters in binary strings and <em>decode</em> binary strings to get human-readable information.  Encoding/decoding is not a one-to-one map.<br />
-The same one byte of string may correspond to multiple different things, integer, character, and others as shown in the following sections. For example, <span class="math notranslate nohighlight">\(01000001\)</span> can be character ‘A’ or integer <span class="math notranslate nohighlight">\(65\)</span>.  Some computer languages (dynamical language) such as python choose an appropriate encoding scheme based on the context but in compiler-based languages, programmers must declare the type of each variable before using it or otherwise the computer issues an error message.</p>
-<hr class="docutils" />
-<p>Last modified on 09/08/2022 by R. Kawai.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="floating-point-numbers">
+<span id="sec-float"></span><h1><span class="section-number">1.4. </span>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this heading">#</a></h1>
+<p>There is no way to express real numbers in discrete systems. For example, we cannot express any irrational number using a finite number of letters 0-9.  Therefore, we express real number approximately using scientific notation such as <span class="math notranslate nohighlight">\(1.32567 \times 10^{12}\)</span>.  Similarly digital computers use so-called <em>floating point</em> representation.  A <em>single precision</em> floating point stores a real number in a 32-bit string, of which 24 bits are used for mantissa.  The corresponding significant figure is <span class="math notranslate nohighlight">\(\log_{10} 2^{24} \approx 7\)</span>.  The exponent part is <span class="math notranslate nohighlight">\(2^{2^7}=2^{-128}\)</span> to <span class="math notranslate nohighlight">\(2^{2^7-1}=2^{127}\)</span> which is approximately <span class="math notranslate nohighlight">\(10^{-38}\)</span> to <span class="math notranslate nohighlight">\(10^{+38}\)</span>.  One bit is used for the sign, which results in <span class="math notranslate nohighlight">\(-0.\)</span> and <span class="math notranslate nohighlight">\(+0.\)</span>.  They are treated as two different number.</p>
+<p>Usually, the single precision is not accurate enough for computational physics. A <em>double precision floating point</em> uses a 64-bit string, 54 bits for mantissa and 10 bits for exponent as shown in <a class="reference internal" href="#fig-double-float"><span class="std std-numref">Fig. 1.1</span></a>.  The largest value the mantissa can express  is <span class="math notranslate nohighlight">\(2^{53} = 9007,199,254,740,992\)</span>, which corresponds to significant figure 16.  The maximum exponent part is between <span class="math notranslate nohighlight">\(2^{-2^9} = 2^{-512} \approx 10^{-308}\)</span> and <span class="math notranslate nohighlight">\(2^{2^9-1} = 2^{511} \approx 10^{308}\)</span>.<a class="footnote-reference brackets" href="#denormalized" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a>  Any value above the largest floating point number is treated as infinity, which appears as <code class="docutils literal notranslate"><span class="pre">inf</span></code> in output.</p>
+<p>Common CPUs used in desktop and laptop computers are capable of double precision floating point arithmetic.  The default size of floating point in python is 64.</p>
+<figure class="align-default" id="fig-double-float">
+<img alt="../_images/double-float.png" src="../_images/double-float.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">64-bit string for floating point expression.  The last bit is used for the sign and 11 bits from <span class="math notranslate nohighlight">\(b_{52}\)</span> to <span class="math notranslate nohighlight">\(b_{62}\)</span> express the exponent.  The remaining 52 bits express the mantissa.</span><a class="headerlink" href="#fig-double-float" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Since the floating point numbers are <em>quantized</em>, there is always a gap between the nearest two floating point numbers.  Any values inside the gap cannot be expressed in standard computer languages, which may causes inaccurate results due to quantization error. The positive value next to zero is <span class="math notranslate nohighlight">\(1.1754944 \times 10^{-38}\)</span> for single precision. (See <a class="reference internal" href="#fig-loating-point-line"><span class="std std-numref">Fig. 1.2</span></a>.)  If we try to use a number between zero and the smallest floating point value, <em>underflow error</em> occurs.
+Another gap we should pay attention to is the machine epsilon <span class="math notranslate nohighlight">\(\epsilon\)</span>, the gap between 1 and next number above it.  There is no floating point value between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(1+\epsilon\)</span>. (See  <a class="reference internal" href="#fig-loating-point-line"><span class="std std-numref">Fig. 1.2</span></a>.)</p>
+<figure class="align-default" id="fig-loating-point-line">
+<img alt="../_images/floating-point-line.png" src="../_images/floating-point-line.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Discreteness of floating point numbers.</span><a class="headerlink" href="#fig-loating-point-line" title="Permalink to this image">#</a></p>
+</figcaption>
+</figure>
+<p>In some cases such as <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>, the value is not defined as a real number.  The outcome of such calculation is expressed as <code class="docutils literal notranslate"><span class="pre">nan</span></code>  (not a number).</p>
+<section id="numpy">
+<h2><span class="section-number">1.4.1. </span>Numpy<a class="headerlink" href="#numpy" title="Permalink to this heading">#</a></h2>
+<p><a class="reference external" href="https://numpy.org/doc/stable/user/whatisnumpy.html">NumPy</a> is the fundamental package for scientific computing in Python. Although there are other math packages, we use numpy exclusively. See <a class="reference external" href="https://numpy.org/doc/stable/">Numpy documentation</a> for its usage. A book by Oliphant<span id="id2">[<a class="reference internal" href="../references/references.html#id7" title="T. E. Oliphant. Guide to Numpy. Continuum Press, 2015. ISBN 97815173000074.">1</a>]</span> is also recommneded.</p>
+<p>In order to use it, we must first load the package.  In this lecture, we load it as</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">np</span></code> is a shorthand name of numpy.  This is fairly standard.</p>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-float"><span class="std std-numref">1.4</span></a>.1   Range of floating point numbers</p>
+<p>Let us try to find the largest and smallest numbers in your computer system.  We use the <code class="docutils literal notranslate"><span class="pre">float_info</span></code> class in <code class="docutils literal notranslate"><span class="pre">sys</span></code> library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load sys package for system information</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">fmin</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span>
+<span class="n">fmax</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Smallest float =&quot;</span><span class="p">,</span><span class="n">fmin</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Largest float =&quot;</span><span class="p">,</span><span class="n">fmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Smallest float = 2.2250738585072014e-308
+ Largest float = 1.7976931348623157e+308
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-float"><span class="std std-numref">1.4</span></a>.2   Special value <code class="docutils literal notranslate"><span class="pre">inf</span></code></p>
+<p>Find what is the outcome of a number larger than the maximum or smaller than minimum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;max * 10 =&quot;</span><span class="p">,</span> <span class="n">fmax</span><span class="o">*</span><span class="mf">10.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min / 10 =&quot;</span><span class="p">,</span> <span class="n">fmin</span><span class="o">/</span><span class="mf">10.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;min * 10^{-20} =&quot;</span><span class="p">,</span> <span class="n">fmin</span> <span class="o">*</span> <span class="mf">1.e-20</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>max * 10 = inf
+min / 10 = 2.225073858507203e-309
+min * 10^{-20} = 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Note that the value smaller than the smallest float is obtained.  This means that <em>denormalized float</em> <a class="footnote-reference brackets" href="#denormalized" id="id3" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> is used below the smallest in the standard float.  However, if the value is even smaller than the smallest in denormalized float, th e anser is replaced with 0.</p>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-float"><span class="std std-numref">1.4</span></a>.3   Special value <code class="docutils literal notranslate"><span class="pre">nan</span></code></p>
+<p>See the outcome of <span class="math notranslate nohighlight">\(\sqrt{-1}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;sqrt(-1)=&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>sqrt(-1)= nan
+</pre></div>
+</div>
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_14299/3943542636.py:3: RuntimeWarning: invalid value encountered in sqrt
+  print(&quot;sqrt(-1)=&quot;,np.sqrt(-1))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.7976931348623157e+308
+</pre></div>
+</div>
+</div>
+</div>
 <hr class="footnotes docutils" />
-<aside class="footnote brackets" id="note-brain" role="note">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">1</a><span class="fn-bracket">]</span></span>
-<p>Our brain also consists of a finite number of neurons but it is huge (about <span class="math notranslate nohighlight">\(10^{11}\)</span>). Despite of that, humans are able to develop the concept of infinity and continuous numbers!</p>
+<aside class="footnote brackets" id="denormalized" role="note">
+<span class="label"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id1">1</a>,<a role="doc-backlink" href="#id3">2</a>)</span>
+<p>There is a slightly better enconding known as <em>denormalized float</em>.  The smallest value in the denormalized float method is <span class="math notranslate nohighlight">\(4.9406564584124654 \times 10^{-324}\)</span> for double and <span class="math notranslate nohighlight">\(1.401298 \times 10^{-45}\)</span> for single  which is smaller than the smallest value in the standard floating point method.  Most of modern computer programming language use denormalized float for very small number.  However, if the smallest possible value is asked, the system still returns the value in the standard floating point.</p>
 </aside>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -554,17 +656,17 @@ The same one byte of string may correspond to multiple different things, integer
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="integers.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title"><span class="section-number">1. </span>Numbers and Quantization Errors</p>
+            <p class="prev-next-title"><span class="section-number">1.3. </span>Integers</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="ascii.html" title="next page">
+    <a class='right-next' id="next-link" href="../derivative/intro.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Characters</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Defferentiation</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>

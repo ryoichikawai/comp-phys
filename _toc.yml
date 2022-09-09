@@ -23,6 +23,7 @@ parts:
       -  file: numbers/bits
       -  file: numbers/ascii
       -  file: numbers/integers
+      -  file: numbers/float
    -  file: derivative/intro
    -  file: integral/intro
    -  file: root-finding/intro
