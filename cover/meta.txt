@@ -1,0 +1,21 @@
+InfoBegin
+InfoKey: CreationDate
+InfoValue: D:20141217114342-06'00'
+InfoBegin
+InfoKey: Creator
+InfoValue: Draw
+InfoBegin
+InfoKey: Producer
+InfoValue: LibreOffice 4.1
+PdfID0: 93a624e2267832565968a2df00b631ba
+PdfID1: 93a624e2267832565968a2df00b631ba
+NumberOfPages: 1
+BookmarkBegin
+BookmarkTitle: Cover
+BookmarkLevel: 1
+BookmarkPageNumber: 1
+PageMediaBegin
+PageMediaNumber: 1
+PageMediaRotation: 0
+PageMediaRect: 0 0 612 792
+PageMediaDimensions: 612 792
