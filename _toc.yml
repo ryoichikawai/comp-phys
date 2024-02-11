@@ -1,0 +1,46 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: cover
+parts:
+-  caption:
+   numbered: false
+   chapters:
+   -  file: aboutme
+   -  file: preface
+   -  file: preparation/intro
+      sections:
+      -  file: preparation/thisbook
+      -  file: preparation/python
+      -  file: preparation/jupyter
+      -  file: preparation/cloud
+-  caption: Numerical Analysis
+   numbered: true
+   chapters:
+   -  file: numbers/intro
+      sections:
+      -  file: numbers/bits
+      -  file: numbers/ascii
+      -  file: numbers/integers
+      -  file: numbers/float
+      -  file: numbers/errors
+   -  file: derivative/intro
+   -  file: integral/intro
+   -  file: root-finding/intro
+   -  file: ode/intro
+   -  file: matrix/intro
+   -  file: fft/intro
+   -  file: pde/intro
+-  caption: Monte Carlo simulation
+   numbered: true
+   chapters:
+   -  file: random-number/intro
+   -  file: random-walk/intro
+   -  file: metropolis/intro
+   -  file: langevin/intro
+   -  file: optimization/intro
+-  caption:
+   numbered: false
+   chapters:
+   -  file: references/references
