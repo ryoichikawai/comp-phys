@@ -1,0 +1,867 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.5. Digitization Errors &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numbers/errors';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. Defferentiation" href="../derivative/intro.html" />
+    <link rel="prev" title="1.4. Floating Point Numbers" href="float.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">1. Numbers and Quantization Errors</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.5. Digitization Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../derivative/intro.html">2. Defferentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/numbers/errors.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fnumbers/errors.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/numbers/errors.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Digitization Errors</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-digitization-error">1.5.1. The origin of digitization error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underflow-errors">1.5.2. Underflow errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-epsilon">1.5.3. Machine epsilon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulation-of-tiny-round-off-errors">1.5.4. Accumulation of tiny round-off errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denormalized-floating-point-advanced-topics">1.5.5. Denormalized floating point (advanced topics)</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="digitization-errors">
+<span id="sec-digitization-errors"></span><h1><span class="section-number">1.5. </span>Digitization Errors<a class="headerlink" href="#digitization-errors" title="Link to this heading">#</a></h1>
+<section id="the-origin-of-digitization-error">
+<h2><span class="section-number">1.5.1. </span>The origin of digitization error<a class="headerlink" href="#the-origin-of-digitization-error" title="Link to this heading">#</a></h2>
+<p>True real numbers are continuous.Between any two real numbers there are uncountably many of other real numbers.  On the other hand, floating point numbers is expressed in 64 bits of a binary string and thus there are only finite numbers of them.  Real numbers expressed in the floating point format are descrete.  Figure <a class="reference internal" href="#fig-floating-point-line"><span class="std std-numref">Fig. 1.2</span></a> illustrates the descreteness of floating point numbers.  As you can see there is a gap between two nearest numbers.  No values between them are possible.  If you enter a number inside the gap, computers won’t understand it and the nearest floating point number is assigned.  Almost all real numbers fall into a gap.  Hence, floating point calculation never be exact. The error is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Discretization_error">digitization error</a> and it is unfortunately unavoidable.  In some cases, errors dominate and the result of calculation can be completely garbage.  We need to understand the extent of digitization errors and mitigating them by good algorithms is essential to computational physics. Every gap can be a sourc of computational error (often called as <em>neumerical error</em>.)  In particular the gap between 0 and the smallest positive floating point numer causes significant trouble known as underflow error.  Similarly we draw attention to the gap between 1 and the next flowting point value <span class="math notranslate nohighlight">\(1+\epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is called <em>machine epsilon</em>.  See the diagram  <a class="reference internal" href="#fig-floating-point-line"><span class="std std-numref">Fig. 1.2</span></a>.</p>
+<figure class="align-default" id="fig-floating-point-line">
+<img alt="../_images/floating-point-line.png" src="../_images/floating-point-line.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.2 </span><span class="caption-text">Discreteness of floating point numbers.</span><a class="headerlink" href="#fig-floating-point-line" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="underflow-errors">
+<h2><span class="section-number">1.5.2. </span>Underflow errors<a class="headerlink" href="#underflow-errors" title="Link to this heading">#</a></h2>
+<p>The smallest positive floating number in double precision is fmin=<span class="math notranslate nohighlight">\(2.2250738585072014E-308\)</span>. (See Sec. <a class="reference internal" href="float.html#sec-float"><span class="std std-numref">Section 1.4</span></a>.)  The next floating number below fmin is <span class="math notranslate nohighlight">\(0\)</span>. If the result of computation happens to be btween 0 and fmin, <em>underflow</em> occurs and it is replaced with 0.  fmin is very small and thus 0 is practically a good approxaimation.  So, this error seems not significant and computation will not be terminated at this point.  However, as computation continues disaster may happen at a later time.</p>
+<hr class="docutils" />
+<p><strong>Example 1.5.1</strong></p>
+<p>Let us evaluate the Bohr radius (the radius of a hydrogen atom) in SI units.</p>
+<p>The Bohr radius is given by <span class="math notranslate nohighlight">\(a_0 = \displaystyle\frac{4 \pi \epsilon_0 \hbar^2}{m e^2}\)</span> where</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\epsilon_0 = 8.854187817 \times 10^{-12} F/m\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\hbar = 6.62606957 \times 10^{-34}/2\pi, m^2\, kg / s \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(m = 9.10938291 \times 10^{-31}\, kg\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e = 1.602176565 \times 10^{-19} C\)</span></p></li>
+</ul>
+<p>The parameter values are small in SI units.  In order to demonstrate the danger of underflow error, we first try to calculate it using sngle precision (float32 in numpy).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python issues runtim warning message when the number is too large.</span>
+<span class="c1"># The warning is often annoying.  Therefore, we hide the warniong message</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+
+<span class="c1"># Using single precision throuout the calculation</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># Set the parameter values</span>
+<span class="n">pi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">epsilon</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">8.854187817e-12</span><span class="p">)</span>
+<span class="n">hbar</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">6.62606957e-34</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="p">))</span>
+<span class="n">mass</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">9.10938291e-31</span><span class="p">)</span>
+<span class="n">e</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">1.602176565e-19</span><span class="p">)</span>
+
+<span class="c1"># Evaluate the denominator and numerator separately.</span>
+<span class="n">denominator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">mass</span><span class="o">*</span><span class="n">e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">numerator</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="n">epsilon</span><span class="o">*</span><span class="n">hbar</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;denorminator =&quot;</span><span class="p">,</span><span class="n">denominator</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numeratr =&quot;</span><span class="p">,</span> <span class="n">numerator</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Bohr radius=&quot;</span><span class="p">,</span><span class="n">numerator</span><span class="o">/</span><span class="n">denominator</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>denorminator = 0.0
+numeratr = 0.0
+Bohr radius= nan
+</pre></div>
+</div>
+</div>
+</div>
+<p>Both denominator and neumerator are too small and replaced by 0.  This underflow error seems innocent and computation continues.  But the next operation is now 0/0 which causes nan.  Python issues runtime warning message.  If double precision were used, no underflow took place and the correct value would be obtained.  Here we try to mitigate the underflow error by changing the order of computation.
+Rewriting the formula as <span class="math notranslate nohighlight">\(a = \displaystyle\left(\frac{4\pi \epsilon_0}{m}\right) \left(\frac{\hbar}{e}\right)^2\)</span> and evaluate inside each parenthesis separately. No underflow occurs in this way even with single precision.  In the follwing code, <span class="math notranslate nohighlight">\(x=\displaystyle\left(\frac{4\pi \epsilon_0}{m}\right)\)</span> and <span class="math notranslate nohighlight">\(y= \displaystyle\left(\frac{\hbar}{e}\right)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="mf">4.</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">epsilon</span><span class="o">/</span><span class="n">mass</span><span class="p">))</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">(</span><span class="n">hbar</span><span class="o">/</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x =&quot;</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;y =&quot;</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a =&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x = 1.2214331e+20
+y = 6.582119e-16
+a = 5.2917722e-11
+</pre></div>
+</div>
+</div>
+</div>
+<p>We find that Bohr radius is <span class="math notranslate nohighlight">\(5.2917722 \times 10^{-11}\)</span> m.  Now we need to check if all the figures are significant.  The significant figure of the parameter values is 10.  However, the significant figure of single precision is about 7. Hence, the siginificant figure of the outcome is 7 at best.  We can safely say that <span class="math notranslate nohighlight">\(a_0 = 5.291772\times 10^{-11}\)</span> m. (Notice that the last digit “2” is ignored.)</p>
+<p><em>Exercise:</em>  Evaluate the Bohr radius up to 10 siginificant figure using double precision.</p>
+</section>
+<section id="machine-epsilon">
+<h2><span class="section-number">1.5.3. </span>Machine epsilon<a class="headerlink" href="#machine-epsilon" title="Link to this heading">#</a></h2>
+<p>The gap between <span class="math notranslate nohighlight">\(1\)</span> and the next floating point number above 1 is called <em><a class="reference external" href="https://en.wikipedia.org/wiki/Machine_epsilon">machine epsilon</a></em> <span class="math notranslate nohighlight">\(\epsilon\)</span>.  See Fig. <a class="reference internal" href="#fig-floating-point-line"><span class="std std-numref">Fig. 1.2</span></a>.  There is no floating point number  between <span class="math notranslate nohighlight">\(1\)</span> and <span class="math notranslate nohighlight">\(1+\epsilon\)</span>. Any number between them is rounded down to 1.  For eample, <span class="math notranslate nohighlight">\(1+\frac{\epsilon}{2} \Rightarrow 1\)</span>.
+This can cause catastrophic errors in some applications. It is so important that numpy provide the value of <span class="math notranslate nohighlight">\(\epsilon\)</span>.  In the following example, you can find the machine epsilon of your computer.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span>  <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># get machine epsilon in double precision from numpy</span>
+<span class="n">e</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">eps</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;epsilon =&quot;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1+epsilon =&quot;</span><span class="p">,</span><span class="mf">1.0</span><span class="o">+</span><span class="n">e</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1+epsilon/2 =&quot;</span><span class="p">,</span><span class="mf">1.0</span><span class="o">+</span><span class="n">e</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>epsilon = 2.220446049250313e-16
+1+epsilon = 1.0000000000000002
+1+epsilon/2 = 1.0
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that <span class="math notranslate nohighlight">\(1+\epsilon\)</span> shows <span class="math notranslate nohighlight">\(2\)</span> at the last figure.  Only the first figure of the machine epsilon survived in <span class="math notranslate nohighlight">\(1+\epsilon\)</span> and there is no room for the remaining part of the machine epsilon.   In <span class="math notranslate nohighlight">\(1+\epsilon/2\)</span>, we don’t see any part of <span class="math notranslate nohighlight">\(\epsinlon\)</span>.<br />
+In fact, <span class="math notranslate nohighlight">\(1 + \epsilon/2 + \epsilon/2\)</span> is not <span class="math notranslate nohighlight">\(1+\epsilon\)</span> but <span class="math notranslate nohighlight">\(1\)</span>.  Check it out.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">e</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Example 1.5.2</strong> 7/3-4/3-1 = ?</p>
+<p>Consider simple calculations <span class="math notranslate nohighlight">\(a=\displaystyle\frac{5}{3}-\frac{2}{3}-1\)</span> and <span class="math notranslate nohighlight">\(b=\displaystyle\frac{7}{3}-\frac{4}{3}-1\)</span>.  You can easily find that both are exactly zero.  However, computers don’t think so.  The former vanishes as expected but the latter equals to the machine epsilon.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mi">5</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">2</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">1</span>
+<span class="n">b</span><span class="o">=</span><span class="mi">7</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="o">/</span><span class="mi">3</span><span class="o">-</span><span class="mi">1</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;a=&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="s2">&quot;   b=&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>a= 0.0    b= 2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<p>The former vanishes as expected but the latter equals to the machine epsilon.</p>
+<hr class="docutils" />
+<p><strong>Example 1.5.3</strong></p>
+<p>Suppose that we want to evalue <span class="math notranslate nohighlight">\(y=\displaystyle\frac{(x+1)^2-1}{x}\)</span> for small <span class="math notranslate nohighlight">\(x\)</span>.  Somehow we are not smart and evaluate it directly. A smart person would simplify the expression and find <span class="math notranslate nohighlight">\(y=x+2\)</span>.  Since these two expresions are mathematically equivalent, both should produce the same result, shouldn’t it? Let us try with <span class="math notranslate nohighlight">\(x=1, 1/10, \cdots, 1/10^{17}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">i</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">18</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="p">((</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">x</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="mi">2</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x=</span><span class="si">{0:8.1e}</span><span class="s2">, y=</span><span class="si">{1:15.12f}</span><span class="s2">, x+2=</span><span class="si">{2:15.12f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">z</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x= 1.0e+00, y= 3.000000000000, x+2= 3.000000000000
+x= 1.0e-01, y= 2.100000000000, x+2= 2.100000000000
+x= 1.0e-02, y= 2.010000000000, x+2= 2.010000000000
+x= 1.0e-03, y= 2.001000000000, x+2= 2.001000000000
+x= 1.0e-04, y= 2.000099999999, x+2= 2.000100000000
+x= 1.0e-05, y= 2.000010000014, x+2= 2.000010000000
+x= 1.0e-06, y= 2.000000999924, x+2= 2.000001000000
+x= 1.0e-07, y= 2.000000101088, x+2= 2.000000100000
+x= 1.0e-08, y= 1.999999987845, x+2= 2.000000010000
+x= 1.0e-09, y= 2.000000165481, x+2= 2.000000001000
+x= 1.0e-10, y= 2.000000165481, x+2= 2.000000000100
+x= 1.0e-11, y= 2.000000165481, x+2= 2.000000000010
+x= 1.0e-12, y= 2.000177801165, x+2= 2.000000000001
+x= 1.0e-13, y= 1.998401444325, x+2= 2.000000000000
+x= 1.0e-14, y= 1.998401444325, x+2= 2.000000000000
+x= 1.0e-15, y= 2.220446049250, x+2= 2.000000000000
+x= 1.0e-16, y= 0.000000000000, x+2= 2.000000000000
+x= 1.0e-17, y= 0.000000000000, x+2= 2.000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us compare the two calculations in plots.   We use matplotlib package.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from previouse code cell</span>
+<span class="c1"># </span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="s1">&#39;--&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;x+2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7e9cf84f80a4db80c61a643a7fa54020de14021ca75cbdcf4d79e3d05188c50a.png" src="../_images/7e9cf84f80a4db80c61a643a7fa54020de14021ca75cbdcf4d79e3d05188c50a.png" />
+</div>
+</div>
+<p>Notice that the direct evaluation of <span class="math notranslate nohighlight">\(y\)</span>  devates from the exact value <span class="math notranslate nohighlight">\(x+2\)</span> for x smaller than <span class="math notranslate nohighlight">\(10^{-9}\)</span> and catastrophic error takes place below <span class="math notranslate nohighlight">\(x=10^{-16}\)</span>.  Recall that when <span class="math notranslate nohighlight">\(x\)</span> is smaller than the machine epsilon, <span class="math notranslate nohighlight">\(x+1=1\)</span>!, which cuases this catstrophe.</p>
+<hr class="docutils" />
+<p><strong>Example</strong></p>
+<p>Addition of two floating point numbers most likely falls into a gap between two floating point numbers and is rounded off to a new floating point number. Any operation of floating point numbers is subject to the digitization error. Consider <span class="math notranslate nohighlight">\(N\)</span> repeated addition of <span class="math notranslate nohighlight">\(x\)</span>, that is <span class="math notranslate nohighlight">\(x+x+\cdots+x\)</span>.  The exact answer is obviously <span class="math notranslate nohighlight">\(N x\)</span>.  However, the repeated addition accumulate error cased by each addition.  To see that we add <span class="math notranslate nohighlight">\(1.2\)</span> a million times.</p>
+</section>
+<section id="accumulation-of-tiny-round-off-errors">
+<h2><span class="section-number">1.5.4. </span>Accumulation of tiny round-off errors<a class="headerlink" href="#accumulation-of-tiny-round-off-errors" title="Link to this heading">#</a></h2>
+<p>Since the most of real numbers are between two floating point numbers, each step of calculation suffurs from a tiny round-off error.  Many real applications involves millions of floating point operations and the round-off errors accumulate.  At the end, the error is no longer negligible.  To demonstraite it, we do a kind of stupid calculation.  We just add a millions of <span class="math notranslate nohighlight">\(1.2\)</span>.  The answer should be <span class="math notranslate nohighlight">\(1.2 \times 10^6\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># we add 1.2 million times.</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1000000</span>
+<span class="n">x</span><span class="o">=</span><span class="mf">1.2</span>
+<span class="n">xsum</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">xsum</span><span class="o">=</span><span class="n">xsum</span><span class="o">+</span><span class="n">x</span>
+
+<span class="c1"># the above calculation is equivalent to 1.2 \times 10^6</span>
+<span class="n">xmul</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="n">x</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Summation = &quot;</span><span class="p">,</span><span class="n">xsum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multiplication =&quot;</span><span class="p">,</span> <span class="n">xmul</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error =&quot;</span><span class="p">,</span><span class="n">xsum</span><span class="o">-</span><span class="n">xmul</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Summation =  1199999.9999773693
+Multiplication = 1200000.0
+error = -2.263067290186882e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p>The error is tiny but could be significant depending on the application. In computational physics applications, a million operations is very small calculation. Billions of operations are ubiquitous.  We need to be careful about the accumulation of tiny errors.</p>
+</section>
+<section id="denormalized-floating-point-advanced-topics">
+<h2><span class="section-number">1.5.5. </span>Denormalized floating point (advanced topics)<a class="headerlink" href="#denormalized-floating-point-advanced-topics" title="Link to this heading">#</a></h2>
+<p>Many computer systems try to avoid underflow by switching to a different type of floating point method knwown as denormalized float.  Let us check if python uses it.  Try fmin/10.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">fmin</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fmin/10 =&quot;</span><span class="p">,</span><span class="n">fmin</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fmin/10 = 2.225073858507203e-309
+</pre></div>
+</div>
+</div>
+</div>
+<p>This is smaller than fmin and not 0.  Python apprently used denormalized float.  However, there is limit.  Try fmin <span class="math notranslate nohighlight">\(\times 1.0e(-16)\)</span>.  Even denormalized float sufferes from underflow error.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;fmin/10 =&quot;</span><span class="p">,</span><span class="n">fmin</span><span class="o">/</span><span class="mf">1e16</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>fmin/10 = 0.0
+</pre></div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<p>Last modified on 02/09/2024 by R. Kawai.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./numbers"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="float.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.4. </span>Floating Point Numbers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../derivative/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Defferentiation</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-origin-of-digitization-error">1.5.1. The origin of digitization error</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#underflow-errors">1.5.2. Underflow errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#machine-epsilon">1.5.3. Machine epsilon</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accumulation-of-tiny-round-off-errors">1.5.4. Accumulation of tiny round-off errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#denormalized-floating-point-advanced-topics">1.5.5. Denormalized floating point (advanced topics)</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

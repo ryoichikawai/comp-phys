@@ -1,0 +1,760 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>1.4. Floating Point Numbers &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'numbers/float';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.5. Digitization Errors" href="errors.html" />
+    <link rel="prev" title="1.3. Integers" href="integers.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">1. Numbers and Quantization Errors</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="integers.html">1.3. Integers</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">1.5. Digitization Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../derivative/intro.html">2. Defferentiation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/numbers/float.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fnumbers/float.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/numbers/float.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Floating Point Numbers</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-range-of-floating-points">1.4.1. The range of floating points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-value-inf">1.4.2. Special value “inf”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-value-nan">1.4.3. Special value “nan”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-errors">1.4.4. Overflow errors</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="floating-point-numbers">
+<span id="sec-float"></span><h1><span class="section-number">1.4. </span>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Link to this heading">#</a></h1>
+<p>There is no way to express real numbers in discrete systems. For example, we cannot express any irrational number using a finite number of letters 0-9.  Therefore, we express real number approximately using scientific notation such as <span class="math notranslate nohighlight">\(1.32567 \times 10^{12}\)</span>.  Similarly digital computers use so-called <em>floating point</em> representation.  <span class="math notranslate nohighlight">\(1.32567 \times 10^{12}\)</span> is expressed as <span class="math notranslate nohighlight">\(1.32567e12\)</span>.</p>
+<p>A <em>single precision</em> floating point stores a real number in a 32-bit string, of which 24 bits are used for mantissa.  The corresponding significant figure is <span class="math notranslate nohighlight">\(\log_{10} 2^{24} \approx 7\)</span>.  The exponent part is <span class="math notranslate nohighlight">\(2^{2^7}=2^{-128}\)</span> to <span class="math notranslate nohighlight">\(2^{2^7-1}=2^{127}\)</span> which is approximately <span class="math notranslate nohighlight">\(10^{-38}\)</span> to <span class="math notranslate nohighlight">\(10^{+38}\)</span>.  One bit is used for the sign.  This method allows two different expressions of zero, <span class="math notranslate nohighlight">\(+0.\)</span> and <span class="math notranslate nohighlight">\(-0.\)</span>.  Inside the computers, they are treated as two different numbers.
+Usually, the single precision is not accurate enough for computational physics and thus we should avoid it.</p>
+<p>A <em>double precision floating point</em> uses a 64-bit string, 54 bits for mantissa and 10 bits for exponent as shown in <a class="reference internal" href="#fig-double-float"><span class="std std-numref">Fig. 1.1</span></a>.  The largest value the mantissa can express  is <span class="math notranslate nohighlight">\(2^{53} = 9007,199,254,740,992\)</span>, which corresponds to significant figure 16.  The maximum exponent part is between <span class="math notranslate nohighlight">\(2^{-2^9} = 2^{-5Modern computers implement more advanced floating point arithmatics known as IEEE 754. Common CPUs used in desktop and laptop computers are capable of double precision floating point arithmetic. Some advanced computers are equipped with special arithmatic engine capable ofr 128-bits floating point arithmatics. The default size of floating point in python is 64, which is good enough for most of numerical calculation in physics.12} \approx 10^{-308}\)</span> and <span class="math notranslate nohighlight">\(2^{2^9-1} = 2^{511} \approx 10^{308}\)</span>.<br />
+Modern computers implement more advanced floating point arithmatics known as <a class="reference external" href="https://en.wikipedia.org/wiki/IEEE_754#2019">IEEE 754</a>. Common CPUs used in desktop and laptop computers are capable of double precision floating point arithmetic.  Some advanced computers are equipped with special arithmatic engine capable ofr 128-bits floating point arithmatics. The default size of floating point in python is 64, which is good enough for most of numerical calculation in physics.</p>
+<figure class="align-default" id="fig-double-float">
+<img alt="../_images/double-float.png" src="../_images/double-float.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 1.1 </span><span class="caption-text">64-bit string for floating point expression.  The last bit is used for the sign and 11 bits from <span class="math notranslate nohighlight">\(b_{52}\)</span> to <span class="math notranslate nohighlight">\(b_{62}\)</span> express the exponent.  The remaining 52 bits express the mantissa.</span><a class="headerlink" href="#fig-double-float" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="the-range-of-floating-points">
+<h2><span class="section-number">1.4.1. </span>The range of floating points<a class="headerlink" href="#the-range-of-floating-points" title="Link to this heading">#</a></h2>
+<p>As discussed above, floating point has a finite range based on the size of bit string.  In most computers, the range is</p>
+<table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Minimum value</p></th>
+<th class="head"><p>Maximum value</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>single</p></td>
+<td><p>1.175494351E-38</p></td>
+<td><p>3.402823466E+38</p></td>
+</tr>
+<tr class="row-odd"><td><p>double</p></td>
+<td><p>2.2250738585072014E-308</p></td>
+<td><p>1.7976931348623158E+308</p></td>
+</tr>
+</tbody>
+</table>
+<p>You don’t have to memorize these numbers since pythonknows them.  The follwoing example extract those information from python.</p>
+<hr class="docutils" />
+<p><strong>Example 1.4.1</strong> Range of floating point numbers</p>
+<p>Let us try to find the largest and smallest <em>positive</em> numbers in your computer system.  We use the <code class="docutils literal notranslate"><span class="pre">float_info</span></code> class in <code class="docutils literal notranslate"><span class="pre">sys</span></code> library.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># load sys package for system information</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">fmin</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">min</span>
+<span class="n">fmax</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">float_info</span><span class="o">.</span><span class="n">max</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Smallest float =&quot;</span><span class="p">,</span><span class="n">fmin</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Largest float =&quot;</span><span class="p">,</span><span class="n">fmax</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Smallest float = 2.2250738585072014e-308
+ Largest float = 1.7976931348623157e+308
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="special-value-inf">
+<h2><span class="section-number">1.4.2. </span>Special value “inf”<a class="headerlink" href="#special-value-inf" title="Link to this heading">#</a></h2>
+<p>If the value exceeds the max, python outputs “inf”.  Although it is not real infinity, python thinks it is.  Getting inf means your calculation failed due to <em>overflow error</em>.</p>
+<hr class="docutils" />
+<p><strong>Example 1.4.2</strong> Special value <code class="docutils literal notranslate"><span class="pre">inf</span></code></p>
+<p>Find what is the outcome of a number larger than the maximum or smaller than minimum.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;2 x fmax =&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="o">*</span><span class="n">fmax</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2 x fmax = inf
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="special-value-nan">
+<h2><span class="section-number">1.4.3. </span>Special value “nan”<a class="headerlink" href="#special-value-nan" title="Link to this heading">#</a></h2>
+<p>If mathematical operation is undefined, python just outputs “nan” whcih stands for “not a number”.</p>
+<hr class="docutils" />
+<p><strong>Example 1.4.3</strong> Special value <code class="docutils literal notranslate"><span class="pre">nan</span></code></p>
+<p><span class="math notranslate nohighlight">\(\sqrt{-1}\)</span> is not defined within floating point. (The squre root function is defined as floating point and thus it does not understand complex number.)  Python issues a runtim warning message.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># square root is not available in python core.</span>
+<span class="c1"># we use numpy</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/tmp/ipykernel_11450/965727510.py:5: RuntimeWarning: invalid value encountered in sqrt
+  np.sqrt(-1)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>nan
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="overflow-errors">
+<h2><span class="section-number">1.4.4. </span>Overflow errors<a class="headerlink" href="#overflow-errors" title="Link to this heading">#</a></h2>
+<p>When the output of a calculation exceeds the maximum of floating point, you need to find a better algorithm to compute it.  Thre is no universal mitigation of “inf”.  The following example is often used in statistical physcs.</p>
+<hr class="docutils" />
+<p><strong>Example 1.4.4</strong> Factorial of a large integer is astronomically large. For example, 1000!.  Let try to write it down. (We are wasting space.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we use math package to compute a large factorial.</span>
+<span class="c1"># (numpy math.factorial has been deprecated.)</span>
+<span class="kn">import</span> <span class="nn">math</span>
+
+<span class="c1"># 1000! using math factorial function</span>
+<span class="n">math</span><span class="o">.</span><span class="n">factorial</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>402387260077093773543702433923003985719374864210714632543799910429938512398629020592044208486969404800479988610197196058631666872994808558901323829669944590997424504087073759918823627727188732519779505950995276120874975462497043601418278094646496291056393887437886487337119181045825783647849977012476632889835955735432513185323958463075557409114262417474349347553428646576611667797396668820291207379143853719588249808126867838374559731746136085379534524221586593201928090878297308431392844403281231558611036976801357304216168747609675871348312025478589320767169132448426236131412508780208000261683151027341827977704784635868170164365024153691398281264810213092761244896359928705114964975419909342221566832572080821333186116811553615836546984046708975602900950537616475847728421889679646244945160765353408198901385442487984959953319101723355556602139450399736280750137837615307127761926849034352625200015888535147331611702103968175921510907788019393178114194545257223865541461062892187960223838971476088506276862967146674697562911234082439208160153780889893964518263243671616762179168909779911903754031274622289988005195444414282012187361745992642956581746628302955570299024324153181617210465832036786906117260158783520751516284225540265170483304226143974286933061690897968482590125458327168226458066526769958652682272807075781391858178889652208164348344825993266043367660176999612831860788386150279465955131156552036093988180612138558600301435694527224206344631797460594682573103790084024432438465657245014402821885252470935190620929023136493273497565513958720559654228749774011413346962715422845862377387538230483865688976461927383814900140767310446640259899490222221765904339901886018566526485061799702356193897017860040811889729918311021171229845901641921068884387121855646124960798722908519296819372388642614839657382291123125024186649353143970137428531926649875337218940694281434118520158014123344828015051399694290153483077644569099073152433278288269864602789864321139083506217095002597389863554277196742822248757586765752344220207573630569498825087968928162753848863396909959826280956121450994871701244516461260379029309120889086942028510640182154399457156805941872748998094254742173582401063677404595741785160829230135358081840096996372524230560855903700624271243416909004153690105933983835777939410970027753472000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+</pre></div>
+</div>
+</div>
+</div>
+<p>which is practically useless.  It is diffuclt even to see how big the value is.  So, we want to express it in scientific notation <span class="math notranslate nohighlight">\(a \times 10^{b}\)</span>. If you try to convert the above integer number to a floating point number using <code class="docutils literal notranslate"><span class="pre">float(math.factorial(1000))</span></code>, the number is obviously too large and the conversion causes overflow error.  We need to calculate the scientific notation manually. In order to find the mantissa <span class="math notranslate nohighlight">\(a\)</span> and exponent <span class="math notranslate nohighlight">\(b\)</span>, first we evaluate <span class="math notranslate nohighlight">\(\log N!\)</span> as follows.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+y &amp;=&amp; \log(N!) = \log(1 \cdot 2 \cdot 3 \cdots N-1 \cdot N) \\
+&amp;=&amp; \log(1)+\log(2)+\log(3)+\cdots + \log(N-1)+\log(N)
+\end{eqnarray}
+\end{split}\]</div>
+<p>which is just a sum of small number.  Once we found <span class="math notranslate nohighlight">\(y\)</span>, the factorial can be obtained by <span class="math notranslate nohighlight">\(n! = e^y\)</span>.  However, it is still not in scientific notation.  First we change the base from <span class="math notranslate nohighlight">\(e\)</span> to <span class="math notranslate nohighlight">\(10\)</span> as <span class="math notranslate nohighlight">\(e^y  = 10^z \)</span>,  where <span class="math notranslate nohighlight">\(z = y \log_{10}(e)\)</span>.  Then, <span class="math notranslate nohighlight">\(n! = 10^z\)</span>.
+Next we split <span class="math notranslate nohighlight">\(z\)</span> to the floor k=<span class="math notranslate nohighlight">\(\lfloor z \rfloor\)</span> and the residual <span class="math notranslate nohighlight">\(\delta=z - \lfloor z \rfloor\)</span>.
+Now, we have <span class="math notranslate nohighlight">\(n! = 10^{k+\delta} = 10^\delta \times 10^k\)</span> and thus the mantissa is <span class="math notranslate nohighlight">\(10^\delta\)</span> and power is <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># evaluate log(1) + log(2) + ... + log(1000)</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1001</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+<span class="c1"># change the base from e to 10</span>
+<span class="n">z</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="o">*</span><span class="n">y</span>
+
+<span class="c1"># find power</span>
+<span class="n">b</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">z</span><span class="p">))</span>
+
+<span class="c1"># find mantissa</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="n">z</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;power=&quot;</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;mantissa=&quot;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>power= 2567
+mantissa= 4.023872600769742
+</pre></div>
+</div>
+</div>
+</div>
+<p>which tells that <span class="math notranslate nohighlight">\(1000! \approx 4.0239 \times 10^{2567}\)</span>.  You can see that the number is far above the maximum of double precision.</p>
+<hr class="docutils" />
+<p>Last modified on 02/09/2024 by R. Kawai.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./numbers"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="integers.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.3. </span>Integers</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="errors.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">1.5. </span>Digitization Errors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-range-of-floating-points">1.4.1. The range of floating points</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-value-inf">1.4.2. Special value “inf”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#special-value-nan">1.4.3. Special value “nan”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overflow-errors">1.4.4. Overflow errors</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
