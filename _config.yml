@@ -3,7 +3,7 @@
 
 title: Computational Methods for Physics with Python.
 author: Ryoichi Kawai
-copyright: "Ryoichi Kawai 2024"
+copyright: "Ryoichi Kawai 2023"
 logo: me-tiny.png
 only_build_toc_files: true
 
@@ -39,17 +39,16 @@ html:
    use_issues_button: true
    use_repository_button: true
    use_download_button: true
-   use_issues_button: true
+#   use_issues_button: true
 
 sphinx:
-   config:
-      bibtex_reference_style: label
+   bibtex_reference_style: label
    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
    extra_extensions:
    -  sphinx_jupyterbook_latex
 
 launch_buttons:
    notebook_interface: "classic"
-   binderhub_url: ""
+#   binderhub_url: ""
    colab_url: "https://colab.research.google.com"
 #   thebe: true

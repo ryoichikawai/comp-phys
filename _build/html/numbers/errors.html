@@ -576,8 +576,8 @@ This can cause catastrophic errors in some applications. It is so important that
 </div>
 </div>
 </div>
-<p>Notice that <span class="math notranslate nohighlight">\(1+\epsilon\)</span> shows <span class="math notranslate nohighlight">\(2\)</span> at the last figure.  Only the first figure of the machine epsilon survived in <span class="math notranslate nohighlight">\(1+\epsilon\)</span> and there is no room for the remaining part of the machine epsilon.   In <span class="math notranslate nohighlight">\(1+\epsilon/2\)</span>, we don’t see any part of <span class="math notranslate nohighlight">\(\epsinlon\)</span>.<br />
-In fact, <span class="math notranslate nohighlight">\(1 + \epsilon/2 + \epsilon/2\)</span> is not <span class="math notranslate nohighlight">\(1+\epsilon\)</span> but <span class="math notranslate nohighlight">\(1\)</span>.  Check it out.</p>
+<p>Notice that <span class="math notranslate nohighlight">\(1+\epsilon\)</span> shows <span class="math notranslate nohighlight">\(2\)</span> at the last figure.  Only the first figure of the machine epsilon appeared and there is no room for the remaining part of <span class="math notranslate nohighlight">\(\epsilon\)</span>.  Notice that <span class="math notranslate nohighlight">\(1+\epsilon/2\)</span> outputs exactly 1.0. Adding <span class="math notranslate nohighlight">\(\epsilon/2\)</span> does nothing.</p>
+<p><em>Exercise</em> Compute <span class="math notranslate nohighlight">\(1 + \epsilon/2 + \epsilon/2\)</span>.  The  <span class="math notranslate nohighlight">\(1+\epsilon\)</span> but <span class="math notranslate nohighlight">\(1\)</span>.  Check it out.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">e</span><span class="o">/</span><span class="mf">2.0</span> <span class="o">+</span> <span class="n">e</span><span class="o">/</span><span class="mf">2.0</span><span class="p">)</span>
