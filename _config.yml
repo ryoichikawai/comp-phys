@@ -42,7 +42,7 @@ html:
 #   use_issues_button: true
 
 sphinx:
-   bibtex_reference_style: label
+   bibtex_reference_style: author_year
    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
    extra_extensions:
    -  sphinx_jupyterbook_latex

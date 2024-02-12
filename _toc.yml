@@ -25,6 +25,8 @@ parts:
       -  file: numbers/integers
       -  file: numbers/float
       -  file: numbers/errors
+      -  file: numbers/applications
+      -  file: numbers/problems
    -  file: derivative/intro
       sections:
       -  file: derivative/derivative1
