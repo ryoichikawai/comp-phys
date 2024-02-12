@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>2.1. Finite Difference Methods &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative1';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.2. Mitigating errors" href="error-mitigation.html" />
+    <link rel="prev" title="2. Numerical Derivative" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Mitigating errors</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/derivative1.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/derivative1.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/derivative/derivative1.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Finite Difference Methods</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-methods">
+<span id="sec-finite-diff"></span><h1><span class="section-number">2.1. </span>Finite Difference Methods<a class="headerlink" href="#finite-difference-methods" title="Link to this heading">#</a></h1>
+<p>First, we look at the mathematical definition of derivative:</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{dx} f(x) = \lim_{h \searrow 0} \frac{f(x+h)-f(x)}{h} = \lim_{h \searrow 0} \frac{f(x)-f(x-h)}{h}
+\]</div>
+<p>The mathematical procedure of limit operation <span class="math notranslate nohighlight">\(h \searrow 0\)</span> requires that <span class="math notranslate nohighlight">\(h\)</span> continuously approaches 0 from the positive side.  However, floating point numbers are discrete and infinitesimally small number is not available . If the smallest value, <span class="math notranslate nohighlight">\(h=0\)</span>, is used, we have <span class="math notranslate nohighlight">\(0/0\)</span> and thus the derivative is <code class="docutils literal notranslate"><span class="pre">nan</span></code>.  If the next smallest number, <code class="docutils literal notranslate"><span class="pre">realmin</span></code> (see Section <a class="reference internal" href="../numbers/float.html#sec-floating-point"><span class="std std-numref">Section 1.4</span></a>)  is used, the numerator <span class="math notranslate nohighlight">\(f(x+h)-f(x)\)</span> is very inaccurate due to the roundoff error discussed in Section <a class="reference internal" href="../numbers/errors.html#sec-digitization-errors"><span class="std std-numref">Section 1.5</span></a>. The last resort is to use <span class="math notranslate nohighlight">\(1 \gg h &gt; \)</span> <code class="docutils literal notranslate"><span class="pre">realmin</span></code>, which avoid the roundoff error. However, the ration of the numerator and denominator is not exactly the above limit, hence the result is deviated from the actual derivative.  In fact, the exact derivative cannot be obtained from any finite value of <span class="math notranslate nohighlight">\(h\)</span>.  Nevertheless, we hope that there exists <span class="math notranslate nohighlight">\(h\)</span> small enough to get the approximated limit but large enough to avoid the roundoff error. Such approximation is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a>.</p>
+<p>There is another issue with the use of a finite <span class="math notranslate nohighlight">\(h\)</span>.  The two limits in the above definition do not agree. See Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>.  There are two candidates of numerical derivative, the <em>forward finite difference</em> method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{dx} f(x) \approx \Delta_\text{f}^{h} f(x)  \equiv \displaystyle \frac{f(x+h)-f(x)}{h}
+\]</div>
+<p>and the <em>backward finite difference</em> method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d}{dx} f(x) \approx \Delta_\text{b}^{h} f(x) \equiv \displaystyle \frac{f(x)-f(x-h)}{h}.
+\]</div>
+<p>Notice that there is no limit operation. We shall call <span class="math notranslate nohighlight">\(\Delta_\text{f}^{h}\)</span> and <span class="math notranslate nohighlight">\(\Delta_\text{b}^{h}\)</span> forward and backward finite difference operators, which depend on the value of <span class="math notranslate nohighlight">\(h\)</span>. Unlike the exact derivative the forward and backward finite difference methods do not agree each other due to the finite <span class="math notranslate nohighlight">\(h\)</span>. As illustrated in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>, one of them overestimates and the other underestimates.</p>
+<figure class="align-default" id="fig-diff">
+<img alt="../_images/diff.png" src="../_images/diff.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Illustration of various numerical derivatives.  The exact derivative is the slope of the curve (black line) at <span class="math notranslate nohighlight">\(x\)</span>, which is shown as the dotted line. The forward finite difference method shown in green underestimates the slop whereas the backward finite difference method shown in blue overestimates it.  The mean finite different method shown in red looks very close to the exact derivative.</span><a class="headerlink" href="#fig-diff" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion:</p>
+<div class="math notranslate nohighlight">
+\[
+f(x+h) = f(x) + h\, f'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+f(x-h) = f(x) - h\, f'(x) + \frac{h^2}{2} f''(x) - \frac{h^3}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f'\)</span> and <span class="math notranslate nohighlight">\(f''\)</span> indicate the first and second order derivatives of <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(\mathcal{O}(h^4)\)</span> the remaining terms with <span class="math notranslate nohighlight">\(h^4\)</span> and higher order.</p>
+<p>Substituting the expansions  to the definition of the finite difference methods, we find</p>
+<div class="math notranslate nohighlight">
+\[
+    \Delta_\text{f} f(x) =  f'(x) + \frac{h}{2} f''(x) + \mathcal{O}(h^2)
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+    \Delta_\text{b} f(x) =  f'(x) - \frac{h}{2} f''(x) + \mathcal{O}(h^2)
+\]</div>
+<p>The leading term in the error <span class="math notranslate nohighlight">\( \Delta_\text{f,f} f(x) - f'(x)\)</span> is <span class="math notranslate nohighlight">\(\pm  \frac{h}{2} f''(x)\)</span>, which is the order of <span class="math notranslate nohighlight">\(h\)</span>. This means that if <span class="math notranslate nohighlight">\(h\)</span> is small enough, the numerical methods agree with the exact derivative. However, the error decreases only linearly with <span class="math notranslate nohighlight">\(h\)</span>.  We need to remember that if <span class="math notranslate nohighlight">\(h\)</span> is too small, the roundoff error kills the accuracy.  Hence, <span class="math notranslate nohighlight">\(h\)</span> cannot be too small.  Error at the order <span class="math notranslate nohighlight">\(h\)</span> is in general not acceptable and these methods are not accurate enough for practical applications.</p>
+<p>There is a better method.  Noting that the error in the forward and backward finite difference method is exactly the same in magnitude but has opposite sign, we can get rid of the error at the order of <span class="math notranslate nohighlight">\(h\)</span>.
+Taking the mean of the two approximations, we obtain <em>mean finite difference method</em>:</p>
+<div class="math notranslate nohighlight">
+\[
+\Delta_\text{m} f(x) \equiv \frac{\Delta_\text{F} f(x)+\Delta_\text{B} f(x)}{2} = \displaystyle\frac{f(x+h)-f(x-h)}{2h} = f'(x) + \frac{h^2}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(f^{(3)}\)</span> is the third order derivative.    Notice that the leading error is the order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Since <span class="math notranslate nohighlight">\(h \ll 1\)</span>, <span class="math notranslate nohighlight">\(h^2 \ll h\)</span> and thus the mean finite difference method is more accurate than the forward and backward finite difference methods. The improvement is clearly visible in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>.</p>
+<p>Mathematically speaking, the small error in the mean finite difference method is related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_value_theorem">mean value theorem</a> which states that there is at least one number <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> such that
+<span class="math notranslate nohighlight">\(f'(c)=\displaystyle\frac{f(b)-f(a)}{b-a}\)</span>.
+Let <span class="math notranslate nohighlight">\(b=x+h\)</span> and <span class="math notranslate nohighlight">\(a=x-h\)</span>. The mean finite different method gives the slope of the curve at some point <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(x+h\)</span> and <span class="math notranslate nohighlight">\(x-h\)</span>.  When <span class="math notranslate nohighlight">\(h\)</span> is small, <span class="math notranslate nohighlight">\(c\)</span> is apprximately <span class="math notranslate nohighlight">\(x\)</span>.  Then, we obtain the mean finite difference method.</p>
+<p>How do we find an appropriate value of <span class="math notranslate nohighlight">\(h\)</span>?
+As we are repeatedly warned that when <span class="math notranslate nohighlight">\(h\)</span> is too small, the finite different methods suffer from the round-off error.  Therefore, we must choose the value of <span class="math notranslate nohighlight">\(h\)</span>  carefully, not too big and not too small. Noting that <span class="math notranslate nohighlight">\(x+h = x (1+h/x)\)</span>, it is pointless to use <span class="math notranslate nohighlight">\(h/x &lt; \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the machine epsilon. (See Section <a class="reference internal" href="../numbers/float.html#sec-floating-point"><span class="std std-numref">Section 1.4</span></a>.)
+The following example illustrates that the finite difference method fails when <span class="math notranslate nohighlight">\(h\)</span> is too small.</p>
+<hr class="docutils" />
+<p><strong>Example 2.1.1</strong>: Accuracy of numerical 1st order derivative</p>
+<p>Let’s numerically evaluate the derivative of <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{1}{3}x^3\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span> and compare the results with the exact value.
+The analytic form of derivative is <span class="math notranslate nohighlight">\(f'(x)=x^2\)</span> and thus the exact value is <span class="math notranslate nohighlight">\(f'(1)=1\)</span>.  The following code computes the derivative using the forward, backward and mean finite difference methods for
+<span class="math notranslate nohighlight">\(h=1, 0.1, 0.01, \cdots, 10^{-19}\)</span>.  The absolute error is measured by <span class="math notranslate nohighlight">\(\delta = |f'(1)-\Delta f(1)|\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># we use numpy array </span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># define function f(x)=x^3/3 before computation begins</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span>
+
+<span class="c1"># computation starts here</span>
+
+<span class="c1"># set a spoint where the dreivative is computed</span>
+<span class="n">x</span><span class="o">=</span><span class="mf">1.0</span>
+
+<span class="c1"># 20 different values of h are considered</span>
+<span class="n">imax</span><span class="o">=</span><span class="mi">20</span>
+
+<span class="c1"># define h as a numpy array</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+
+<span class="c1"># d_f = forward finite difference </span>
+<span class="n">d_f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+
+<span class="c1"># d_b = backwaord finite difference</span>
+<span class="n">d_b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+
+<span class="c1"># d_m = mean value finite difference</span>
+<span class="n">d_m</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+
+<span class="c1"># errors in each method</span>
+<span class="n">err_f</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+<span class="n">err_b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+<span class="n">err_m</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">imax</span><span class="p">)</span>
+
+<span class="c1"># header for table output</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:^62}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;Absolute Errors&#39;</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:^6}</span><span class="s2"> </span><span class="si">{1:^18}</span><span class="s2"> </span><span class="si">{2:^18}</span><span class="s2"> </span><span class="si">{3:^20}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span><span class="s1">&#39;forward&#39;</span><span class="p">,</span><span class="s1">&#39;backward&#39;</span><span class="p">,</span><span class="s1">&#39;mean value&#39;</span><span class="p">))</span>
+
+<span class="c1"># reset the counter i and start iteration</span>
+<span class="n">i</span><span class="o">=</span><span class="mi">0</span>
+<span class="k">while</span><span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="n">imax</span><span class="p">):</span>
+    
+    <span class="c1"># define displacement h</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="mi">10</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="n">i</span><span class="p">)</span>
+    
+    <span class="c1"># evaluation of numerical derivative</span>
+    <span class="n">d_f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># Forward diffrence</span>
+    <span class="n">d_b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">/</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="c1"># Backward diffrence</span>
+    <span class="n">d_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="c1"># Mean value</span>
+
+    <span class="c1"># Errors</span>
+    <span class="n">err_f</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">d_f</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">err_b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">d_b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">err_m</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="n">d_m</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    
+    <span class="c1"># print out the results</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:6.1e}</span><span class="s2"> </span><span class="si">{1:18.10e}</span><span class="s2"> </span><span class="si">{2:18.10e}</span><span class="s2"> </span><span class="si">{3:18.10e}</span><span class="s2">&quot;</span>
+              <span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">err_f</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">err_b</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">err_m</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+    
+    <span class="c1"># increment the counter</span>
+    <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>                       Absolute Errors                        
+  h         forward            backward           mean value     
+1.0e+00   1.3333333333e+00   6.6666666667e-01   3.3333333333e-01
+1.0e-01   1.0333333333e-01   9.6666666667e-02   3.3333333333e-03
+1.0e-02   1.0033333333e-02   9.9666666667e-03   3.3333333333e-05
+1.0e-03   1.0003333333e-03   9.9966666667e-04   3.3333330629e-07
+1.0e-04   1.0000333328e-04   9.9996666613e-05   3.3333344973e-09
+1.0e-05   1.0000040685e-05   9.9999720719e-06   3.4306779639e-11
+1.0e-06   9.9995112279e-07   1.0000046338e-06   2.6755486715e-11
+1.0e-07   1.0050393939e-07   1.0044642806e-07   2.8755664516e-11
+1.0e-08   5.0247592753e-09   6.0774709709e-09   5.2635584780e-10
+1.0e-09   8.2740370999e-08   2.8281931574e-08   2.7229219768e-08
+1.0e-10   8.2740370999e-08   8.2740370999e-08   8.2740370999e-08
+1.0e-11   8.2740370999e-08   8.2740370999e-08   8.2740370999e-08
+1.0e-12   8.8900582341e-05   2.2121720122e-05   3.3389431110e-05
+1.0e-13   7.9927783736e-04   3.1094518727e-04   2.4416632505e-04
+1.0e-14   7.9927783736e-04   7.9927783736e-04   7.9927783736e-04
+1.0e-15   1.1022302463e-01   7.9927783736e-04   5.4711873394e-02
+1.0e-16   1.0000000000e+00   1.1022302463e-01   4.4488848769e-01
+1.0e-17   1.0000000000e+00   1.0000000000e+00   1.0000000000e+00
+1.0e-18   1.0000000000e+00   1.0000000000e+00   1.0000000000e+00
+1.0e-19   1.0000000000e+00   1.0000000000e+00   1.0000000000e+00
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code block</span>
+<span class="c1"># plot the above data</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># plot of the derivatives</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">d_f</span><span class="p">,</span> <span class="s1">&#39;--ob&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">d_b</span><span class="p">,</span> <span class="s1">&#39;--dg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;backword&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">d_m</span><span class="p">,</span> <span class="s1">&#39;--sr&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Derivative&#39;</span><span class="p">)</span>
+
+<span class="c1"># plot of the absolute errors</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">err_f</span><span class="p">,</span> <span class="s1">&#39;--ob&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;forward&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">err_b</span><span class="p">,</span> <span class="s1">&#39;--dg&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;backword&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">err_m</span><span class="p">,</span> <span class="s1">&#39;--sr&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Absolute error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/f02782bf0a2a0c68136af34f786f7807338205ab51b3c777cf0e813baba69812.png" src="../_images/f02782bf0a2a0c68136af34f786f7807338205ab51b3c777cf0e813baba69812.png" />
+</div>
+</div>
+<p>The error in forward and backward methods is almost the same and decreases in the same way as <span class="math notranslate nohighlight">\(h\)</span>.  However, the improvement stop at <span class="math notranslate nohighlight">\(h \sim 10^{-8}\)</span> and the error increases for smaller <span class="math notranslate nohighlight">\(h\)</span> due to the round-off error. The best answer is obtained with <span class="math notranslate nohighlight">\(h=10^{-8}\)</span>. The mean difference method shows much better result.  The error decreases with <span class="math notranslate nohighlight">\(h^2\)</span>.  The best value is obtained at <span class="math notranslate nohighlight">\(h=10^{-5}\)</span> and the result is better than the best value obtained by the forward or backward method.  It is quite clear that the mean difference method is much better than the two others.  When <span class="math notranslate nohighlight">\(h\)</span> hits the machine epsilon <span class="math notranslate nohighlight">\(\epsilon \approx 2 \times 10^{-16}\)</span>, the finite difference vanishes completely.</p>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./derivative"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Numerical Derivative</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="error-mitigation.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Mitigating errors</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

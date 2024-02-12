@@ -207,7 +207,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="errors.html">1.5. Digitization Errors</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../derivative/intro.html">2. Defferentiation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
@@ -467,7 +470,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="floating-point-numbers">
-<span id="sec-float"></span><h1><span class="section-number">1.4. </span>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Link to this heading">#</a></h1>
+<span id="sec-floating-point"></span><h1><span class="section-number">1.4. </span>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Link to this heading">#</a></h1>
 <p>There is no way to express real numbers in discrete systems. For example, we cannot express any irrational number using a finite number of letters 0-9.  Therefore, we express real number approximately using scientific notation such as <span class="math notranslate nohighlight">\(1.32567 \times 10^{12}\)</span>.  Similarly digital computers use so-called <em>floating point</em> representation.  <span class="math notranslate nohighlight">\(1.32567 \times 10^{12}\)</span> is expressed as <span class="math notranslate nohighlight">\(1.32567e12\)</span>.</p>
 <p>A <em>single precision</em> floating point stores a real number in a 32-bit string, of which 24 bits are used for mantissa.  The corresponding significant figure is <span class="math notranslate nohighlight">\(\log_{10} 2^{24} \approx 7\)</span>.  The exponent part is <span class="math notranslate nohighlight">\(2^{2^7}=2^{-128}\)</span> to <span class="math notranslate nohighlight">\(2^{2^7-1}=2^{127}\)</span> which is approximately <span class="math notranslate nohighlight">\(10^{-38}\)</span> to <span class="math notranslate nohighlight">\(10^{+38}\)</span>.  One bit is used for the sign.  This method allows two different expressions of zero, <span class="math notranslate nohighlight">\(+0.\)</span> and <span class="math notranslate nohighlight">\(-0.\)</span>.  Inside the computers, they are treated as two different numbers.
 Usually, the single precision is not accurate enough for computational physics and thus we should avoid it.</p>
@@ -502,7 +505,7 @@ Modern computers implement more advanced floating point arithmatics known as <a 
 </table>
 <p>You don’t have to memorize these numbers since pythonknows them.  The follwoing example extract those information from python.</p>
 <hr class="docutils" />
-<p><strong>Example 1.4.1</strong> Range of floating point numbers</p>
+<p><strong>Example 1.4.1</strong>: Range of floating point numbers</p>
 <p>Let us try to find the largest and smallest <em>positive</em> numbers in your computer system.  We use the <code class="docutils literal notranslate"><span class="pre">float_info</span></code> class in <code class="docutils literal notranslate"><span class="pre">sys</span></code> library.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -528,7 +531,7 @@ Modern computers implement more advanced floating point arithmatics known as <a 
 <h2><span class="section-number">1.4.2. </span>Special value “inf”<a class="headerlink" href="#special-value-inf" title="Link to this heading">#</a></h2>
 <p>If the value exceeds the max, python outputs “inf”.  Although it is not real infinity, python thinks it is.  Getting inf means your calculation failed due to <em>overflow error</em>.</p>
 <hr class="docutils" />
-<p><strong>Example 1.4.2</strong> Special value <code class="docutils literal notranslate"><span class="pre">inf</span></code></p>
+<p><strong>Example 1.4.2</strong>: number above fmax</p>
 <p>Find what is the outcome of a number larger than the maximum or smaller than minimum.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -547,7 +550,7 @@ Modern computers implement more advanced floating point arithmatics known as <a 
 <h2><span class="section-number">1.4.3. </span>Special value “nan”<a class="headerlink" href="#special-value-nan" title="Link to this heading">#</a></h2>
 <p>If mathematical operation is undefined, python just outputs “nan” whcih stands for “not a number”.</p>
 <hr class="docutils" />
-<p><strong>Example 1.4.3</strong> Special value <code class="docutils literal notranslate"><span class="pre">nan</span></code></p>
+<p><strong>Example 1.4.3</strong>: square root of -1.</p>
 <p><span class="math notranslate nohighlight">\(\sqrt{-1}\)</span> is not defined within floating point. (The squre root function is defined as floating point and thus it does not understand complex number.)  Python issues a runtim warning message.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -574,7 +577,8 @@ Modern computers implement more advanced floating point arithmatics known as <a 
 <h2><span class="section-number">1.4.4. </span>Overflow errors<a class="headerlink" href="#overflow-errors" title="Link to this heading">#</a></h2>
 <p>When the output of a calculation exceeds the maximum of floating point, you need to find a better algorithm to compute it.  Thre is no universal mitigation of “inf”.  The following example is often used in statistical physcs.</p>
 <hr class="docutils" />
-<p><strong>Example 1.4.4</strong> Factorial of a large integer is astronomically large. For example, 1000!.  Let try to write it down. (We are wasting space.)</p>
+<p><strong>Example 1.4.4</strong></p>
+<p>Factorial of a large integer is astronomically large. For example, 1000!.  Let try to write it down. (We are wasting space.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Here we use math package to compute a large factorial.</span>

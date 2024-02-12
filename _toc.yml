@@ -26,6 +26,9 @@ parts:
       -  file: numbers/float
       -  file: numbers/errors
    -  file: derivative/intro
+      sections:
+      -  file: derivative/derivative1
+      -  file: derivative/error-mitigation
    -  file: integral/intro
    -  file: root-finding/intro
    -  file: ode/intro
