@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. Mitigating errors" href="error-mitigation.html" />
+    <link rel="next" title="2.2. Optimizing step size" href="error-mitigation.html" />
     <link rel="prev" title="2. Numerical Derivative" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -211,7 +211,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Mitigating errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Optimizing step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -434,7 +435,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -450,6 +453,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">2.1.1. Two-points methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">2.1.2. Four-point method</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -461,6 +473,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-methods">
 <span id="sec-finite-diff"></span><h1><span class="section-number">2.1. </span>Finite Difference Methods<a class="headerlink" href="#finite-difference-methods" title="Link to this heading">#</a></h1>
+<section id="two-points-methods">
+<h2><span class="section-number">2.1.1. </span>Two-points methods<a class="headerlink" href="#two-points-methods" title="Link to this heading">#</a></h2>
 <p>First, we look at the mathematical definition of derivative:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -484,7 +498,7 @@ document.write(`
 <p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Illustration of various numerical derivatives.  The exact derivative is the slope of the curve (black line) at <span class="math notranslate nohighlight">\(x\)</span>, which is shown as the dotted line. The forward finite difference method shown in green underestimates the slop whereas the backward finite difference method shown in blue overestimates it.  The mean finite different method shown in red looks very close to the exact derivative.</span><a class="headerlink" href="#fig-diff" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion:</p>
+<p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion<span id="id1">[<a class="reference internal" href="../references/references.html#id8" title="Mary L. Boas. Mathematical Methods in the Physical Sciences. Wiley, 3rd edition, 2006.">5</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 f(x+h) = f(x) + h\, f'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
@@ -514,11 +528,18 @@ Taking the mean of the two approximations, we obtain <em>mean finite difference 
 <p>Mathematically speaking, the small error in the mean finite difference method is related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_value_theorem">mean value theorem</a> which states that there is at least one number <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> such that
 <span class="math notranslate nohighlight">\(f'(c)=\displaystyle\frac{f(b)-f(a)}{b-a}\)</span>.
 Let <span class="math notranslate nohighlight">\(b=x+h\)</span> and <span class="math notranslate nohighlight">\(a=x-h\)</span>. The mean finite different method gives the slope of the curve at some point <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(x+h\)</span> and <span class="math notranslate nohighlight">\(x-h\)</span>.  When <span class="math notranslate nohighlight">\(h\)</span> is small, <span class="math notranslate nohighlight">\(c\)</span> is apprximately <span class="math notranslate nohighlight">\(x\)</span>.  Then, we obtain the mean finite difference method.</p>
+<blockquote>
+<div><p><strong>Method 2.1:</strong> Two-point finite difference method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{df}{dx} = \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)
+\]</div>
+</div></blockquote>
 <p>How do we find an appropriate value of <span class="math notranslate nohighlight">\(h\)</span>?
 As we are repeatedly warned that when <span class="math notranslate nohighlight">\(h\)</span> is too small, the finite different methods suffer from the round-off error.  Therefore, we must choose the value of <span class="math notranslate nohighlight">\(h\)</span>  carefully, not too big and not too small. Noting that <span class="math notranslate nohighlight">\(x+h = x (1+h/x)\)</span>, it is pointless to use <span class="math notranslate nohighlight">\(h/x &lt; \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the machine epsilon. (See Section <a class="reference internal" href="../numbers/float.html#sec-floating-point"><span class="std std-numref">Section 1.4</span></a>.)
 The following example illustrates that the finite difference method fails when <span class="math notranslate nohighlight">\(h\)</span> is too small.</p>
 <hr class="docutils" />
-<p><strong>Example 2.1.1</strong>: Accuracy of numerical 1st order derivative</p>
+<p><strong>Example 2.1.1</strong>: Accuracy of two-points methods</p>
 <p>Let’s numerically evaluate the derivative of <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{1}{3}x^3\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span> and compare the results with the exact value.
 The analytic form of derivative is <span class="math notranslate nohighlight">\(f'(x)=x^2\)</span> and thus the exact value is <span class="math notranslate nohighlight">\(f'(1)=1\)</span>.  The following code computes the derivative using the forward, backward and mean finite difference methods for
 <span class="math notranslate nohighlight">\(h=1, 0.1, 0.01, \cdots, 10^{-19}\)</span>.  The absolute error is measured by <span class="math notranslate nohighlight">\(\delta = |f'(1)-\Delta f(1)|\)</span>.</p>
@@ -649,6 +670,19 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
 </div>
 <p>The error in forward and backward methods is almost the same and decreases in the same way as <span class="math notranslate nohighlight">\(h\)</span>.  However, the improvement stop at <span class="math notranslate nohighlight">\(h \sim 10^{-8}\)</span> and the error increases for smaller <span class="math notranslate nohighlight">\(h\)</span> due to the round-off error. The best answer is obtained with <span class="math notranslate nohighlight">\(h=10^{-8}\)</span>. The mean difference method shows much better result.  The error decreases with <span class="math notranslate nohighlight">\(h^2\)</span>.  The best value is obtained at <span class="math notranslate nohighlight">\(h=10^{-5}\)</span> and the result is better than the best value obtained by the forward or backward method.  It is quite clear that the mean difference method is much better than the two others.  When <span class="math notranslate nohighlight">\(h\)</span> hits the machine epsilon <span class="math notranslate nohighlight">\(\epsilon \approx 2 \times 10^{-16}\)</span>, the finite difference vanishes completely.</p>
 </section>
+<section id="four-point-method">
+<h2><span class="section-number">2.1.2. </span>Four-point method<a class="headerlink" href="#four-point-method" title="Link to this heading">#</a></h2>
+<p>The derivative corresponds to the slope of a curve at a given point.  To obtain the slope, we need to evalaute at least the function at two different points.  The two-point method approximates the curve with a straight line by evaluating the function at two points.  If we have more information about the curve, we should be able to get more accurate derivative.   The fllowing symmetric four-point is commonly used. Its error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span>, much better than the mean finite difference method.<span id="id2">[<a class="reference internal" href="../references/references.html#id6" title="Daniel Zwillinger. CRC Stanbdard Mathematical Tables and Formula. CRC Press, 35th edition, 2012.">6</a>]</span></p>
+<blockquote>
+<div><p><strong>Method 2.1.2:</strong> Four-point finite difference method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{df}{dx} = \displaystyle\frac{f(x+2h)- 8 f(x+h) + 8 f(x-h) -f(x-2h)}{12h} + \mathcal{O}(h^4)
+\]</div>
+</div></blockquote>
+<p><em>Exercise</em>:  Verify that the order of error is <span class="math notranslate nohighlight">\(h^4\)</span> using the Taylor expansions.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -659,16 +693,16 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./derivative"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               
@@ -694,7 +728,7 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Mitigating errors</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Optimizing step size</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -705,7 +739,21 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">2.1.1. Two-points methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">2.1.2. Four-point method</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

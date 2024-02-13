@@ -1,0 +1,58 @@
+Traceback (most recent call last):
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1314, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 173, in wrapped
+    return loop.run_until_complete(inner)
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+
+h=0.01
+N=100
+
+# define the evaluation points
+x=np.linspace(0,2*np.pi,N+1)
+
+# f(x)
+fc=np.sin(x)
+
+# f(x+h)
+ff=np.sin(x+h)
+
+# f(x-h)
+fb=np.sin(x-h)
+
+# second order derivative
+df=(ff+fb-2*fc)/h**2
+
+# plot derivative d/dx sin(x) as circle and -sin(x) as red line
+import matplotlib.pyplot as plt
+
+plt.xlabel('x')
+plt.ylabel('Derivative')
+plt.plot(x,df, 'ob', label='d/dx sin(x)')
+plt.plot(x,-f,'-r', label='-sin(x)')
+plt.legend(loc=4)
+------------------
+
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[1], line 27[0m
+[1;32m     25[0m plt[38;5;241m.[39mylabel([38;5;124m'[39m[38;5;124mDerivative[39m[38;5;124m'[39m)
+[1;32m     26[0m plt[38;5;241m.[39mplot(x,df, [38;5;124m'[39m[38;5;124mob[39m[38;5;124m'[39m, label[38;5;241m=[39m[38;5;124m'[39m[38;5;124md/dx sin(x)[39m[38;5;124m'[39m)
+[0;32m---> 27[0m plt[38;5;241m.[39mplot(x,[38;5;241m-[39m[43mf[49m,[38;5;124m'[39m[38;5;124m-r[39m[38;5;124m'[39m, label[38;5;241m=[39m[38;5;124m'[39m[38;5;124m-sin(x)[39m[38;5;124m'[39m)
+[1;32m     28[0m plt[38;5;241m.[39mlegend(loc[38;5;241m=[39m[38;5;241m4[39m)
+
+[0;31mNameError[0m: name 'f' is not defined
+

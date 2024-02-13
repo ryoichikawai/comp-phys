@@ -31,6 +31,7 @@ parts:
       sections:
       -  file: derivative/derivative1
       -  file: derivative/error-mitigation
+      -  file: derivative/derivative2
    -  file: integral/intro
    -  file: root-finding/intro
    -  file: ode/intro

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.2. Mitigating errors &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.2. Optimizing step size &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/error-mitigation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Integralation" href="../integral/intro.html" />
+    <link rel="next" title="2.3. Second order derivative" href="derivative2.html" />
     <link rel="prev" title="2.1. Finite Difference Methods" href="derivative1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -211,7 +211,8 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Mitigating errors</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Optimizing step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -447,7 +448,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Mitigating errors</h1>
+    <h1>Optimizing step size</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -458,6 +459,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-step-size">2.2.2. Optimal step size</a></li>
 </ul>
             </nav>
         </div>
@@ -469,8 +471,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="mitigating-errors">
-<span id="sec-h-optimization"></span><h1><span class="section-number">2.2. </span>Mitigating errors<a class="headerlink" href="#mitigating-errors" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="optimizing-step-size">
+<span id="sec-h-optimization"></span><h1><span class="section-number">2.2. </span>Optimizing step size<a class="headerlink" href="#optimizing-step-size" title="Link to this heading">#</a></h1>
 <section id="estimation-of-nuemrical-errors">
 <h2><span class="section-number">2.2.1. </span>Estimation of nuemrical errors<a class="headerlink" href="#estimation-of-nuemrical-errors" title="Link to this heading">#</a></h2>
 <p>In the previous section, we are able to see good values of <span class="math notranslate nohighlight">\(h\)</span> because we know the exact derivative.  In practice, we don’t know the actual error and therefore we cannot use a plot like the right panel of Fig. \ref{fig:derivatives} to find an appropriate value for <span class="math notranslate nohighlight">\(h\)</span>. Eq. (\ref{eq:derivative_error_mean}) suggests that the leading error is given by <span class="math notranslate nohighlight">\(\frac{|f^{(3)}|}{3!} h^2\)</span>. Unless we know the third order derivative, we still don’t know the magnitude of error.  However, we can estimate it numerically. Suppose that we calculate the derivative using two different vales of step sizes, <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(h'=h/2\)</span>.  We expect that the output is more accurate with <span class="math notranslate nohighlight">\(h'\)</span> than <span class="math notranslate nohighlight">\(h\)</span>. Using Eq. (\ref{eq:derivative_error_mean}), the change of the mean finite difference is given by
@@ -480,11 +482,15 @@ document.write(`
 which suggests that the error is estimated by
 $<span class="math notranslate nohighlight">\(
 \text{Error in }\Delta_M f(x) \approx  \left | \Delta_\text{M} f(x) - \Delta'_\text{M} f(x) \right |  .
-\)</span><span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\((eq-diff-error)
 Note that the exact value of \)</span>f’(x)$ is not needed to find the error.</p>
 <p>Based on this error estimate,  we can write a code that automatically finds numerical derivative with a desired accuracy using the error estimate.</p>
+</section>
+<section id="optimal-step-size">
+<h2><span class="section-number">2.2.2. </span>Optimal step size<a class="headerlink" href="#optimal-step-size" title="Link to this heading">#</a></h2>
+<p>What is the best step size?  As we saw in the previous section, the result is not accurate if <span class="math notranslate nohighlight">\(h\)</span> is too large.  On the other hand, if <span class="math notranslate nohighlight">\(h\)</span> is too small, the result is again bad.  We can find an optimal step size based on the estimated error <code class="xref eq docutils literal notranslate"><span class="pre">eq-diff-error</span></code>.</p>
 <blockquote>
-<div><p><strong>Alrgorithm</strong>:  Neumerical derivative with tolerance</p>
+<div><p><strong>Alrgorithm 2.2.1</strong>:  Neumerical derivative with tolerance</p>
 <ol class="arabic simple">
 <li><p>Set a value of \textit{tolerance} (allowed error).</p></li>
 <li><p>Set a reference step size <span class="math notranslate nohighlight">\(h_1\)</span> and evaluate a reference derivative <span class="math notranslate nohighlight">\(g_1 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_1\)</span>.</p></li>
@@ -582,11 +588,11 @@ Tolerance is OK.
       </div>
     </a>
     <a class="right-next"
-       href="../integral/intro.html"
+       href="derivative2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Integralation</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Second order derivative</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -607,6 +613,7 @@ Tolerance is OK.
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optimal-step-size">2.2.2. Optimal step size</a></li>
 </ul>
   </nav></div>
 

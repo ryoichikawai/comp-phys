@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Numerical Derivative &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.3. Second order derivative &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -67,11 +67,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. Finite Difference Methods" href="derivative1.html" />
-    <link rel="prev" title="1.7. Problems" href="../numbers/problems.html" />
+    <link rel="next" title="3. Integralation" href="../integral/intro.html" />
+    <link rel="prev" title="2.2. Optimizing step size" href="error-mitigation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,10 +209,10 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Optimizing step size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Second order derivative</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -286,7 +286,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/intro.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/derivative2.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +334,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/derivative2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +364,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/derivative/intro.ipynb" target="_blank"
+      <li><a href="../_sources/derivative/derivative2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -435,7 +435,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -446,11 +448,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Numerical Derivative</h1>
+    <h1>Second order derivative</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">2.3.1. Three-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">2.3.2. Five-point method</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -460,13 +471,92 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numerical-derivative">
-<span id="chap-derivative"></span><h1><span class="section-number">2. </span>Numerical Derivative<a class="headerlink" href="#numerical-derivative" title="Link to this heading">#</a></h1>
-<p>When we study physics, we often investigate the change of certain quantities.  That is why basic calculus plays a major role in physics.  Evaluating the derivative of a function <span class="math notranslate nohighlight">\(f(x)\)</span> is an ubiquitous operation in physics.  However, an analytical expression of the derivative is not always available.  Then, a numerical method must be deployed to evaluate it.  That is not only the reason we need numerical derivative.  In some cases an analytical expression of the function itself is not available.  For example, when a function is experimentally obtained by measurement, it is given as a set of numerical data, <span class="math notranslate nohighlight">\((x_i, f_i),\, i=1, \cdots, N\)</span>.  Then, analysis of such data is always numerical.  There are many algorithms for numerical derivative.  In this chapter, we study some of well-known algorithms useful for studying physics.</p>
-<p>Numerical methods are in general not exact and involve systematic errors.  Understanding the source of errors and their magnitude is very important.  It is possible to estimate the magnitude of expected errors based on mathematical analysis and the study of numerical error is an important part of numerical analysis.  We will investigate the degrees of errors through theory and examples.</p>
-<p>In this section, we assume that an analytical expression of function <span class="math notranslate nohighlight">\(f(x)\)</span> is given and that we can numerically evaluate it at any point <span class="math notranslate nohighlight">\(x\)</span>. Furthermore, we assume that the numerical error in the evaluation of the function is negligibly small.  In other words, the main errors arises from the numerical algorithm of derivative.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="second-order-derivative">
+<h1><span class="section-number">2.3. </span>Second order derivative<a class="headerlink" href="#second-order-derivative" title="Link to this heading">#</a></h1>
+<section id="three-point-method">
+<h2><span class="section-number">2.3.1. </span>Three-point method<a class="headerlink" href="#three-point-method" title="Link to this heading">#</a></h2>
+<p>We can evaluated the second order derivative using the mean value method twice.
+First, we pretend that the first order derivative is known. Using the mean value method with step size <span class="math notranslate nohighlight">\(h/2\)</span>, we obtain</p>
+<div class="math notranslate nohighlight">
+\[
+f''(x) \approx \Delta_M f'(x) = \frac{f'(x+\frac{h}{2})-f'(x-\frac{h}{2})}{h}
+\]</div>
+<p>Then, we replace the first order derivatives with approximated ones using the mean value method again.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+f'(x+\frac{h}{2}) &amp;\rightarrow&amp; \Delta_M f(x+\frac{h}{2}) = \frac{f(x+h)-f(x)}{h} \\
+f'(x-\frac{h}{2}) &amp;\rightarrow&amp; \Delta_M f(x-\frac{h}{2}) = \frac{f(x)-f(x-h)}{h}.
+\end{eqnarray}
+\end{split}\]</div>
+<p>The result is</p>
+<div class="math notranslate nohighlight" id="equation-eq-diff2-s3">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-diff2-s3" title="Link to this equation">#</a></span>\[
+f''(x) \approx \Delta^{(2)}_M f(x) \equiv \displaystyle\frac{f(x+h)+f(x-h)-2f(x)}{h^2}.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\Delta^{(2)}_M\)</span> is the second order mean finite difference operator.
+Using the Taylor expansion, we find that the error of this approximation is the order of <span class="math notranslate nohighlight">\(h^2\)</span>, the same as the first order mean value method.</p>
+<blockquote>
+<div><p><strong>Method 2.3.1:</strong> Three-point finite difference method of the second order derivative</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{d^2f}{dx^2} = \frac{f(x+h)+f(x-h)-2f(x)}{h^2} + \mathcal{O}(h^2)
+\]</div>
+</div></blockquote>
+<p><strong>Example 2.3.1</strong></p>
+<p>The second order derivative of <span class="math notranslate nohighlight">\(\sin(x)\)</span> is <span class="math notranslate nohighlight">\(-\sin(x)\)</span>.  let us evaluate the second order derivative of <span class="math notranslate nohighlight">\(\sin(x)\)</span> at <span class="math notranslate nohighlight">\(x=2 n \pi / N\)</span> where <span class="math notranslate nohighlight">\(n=0, 1, \cdots, N\)</span>.  Use <span class="math notranslate nohighlight">\(N=100\)</span> and plot the result. Verify that it is <span class="math notranslate nohighlight">\(-\sin(x)\)</span> at least within the accuracy of the numerical method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">h</span><span class="o">=</span><span class="mf">0.01</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">100</span>
+
+<span class="c1"># define the evaluation points</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># f(x)</span>
+<span class="n">fc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="c1"># f(x+h)</span>
+<span class="n">ff</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span>
+
+<span class="c1"># f(x-h)</span>
+<span class="n">fb</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">)</span>
+
+<span class="c1"># second order derivative</span>
+<span class="n">df</span><span class="o">=</span><span class="p">(</span><span class="n">ff</span><span class="o">+</span><span class="n">fb</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">fc</span><span class="p">)</span><span class="o">/</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># plot derivative d/dx sin(x) as circle and -sin(x) as red line</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Derivative&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">df</span><span class="p">,</span> <span class="s1">&#39;ob&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;d/dx sin(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="o">-</span><span class="n">fc</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;-sin(x)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f11f3aa3220&gt;
+</pre></div>
+</div>
+<img alt="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" src="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" />
+</div>
+</div>
+</section>
+<section id="five-point-method">
+<h2><span class="section-number">2.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
+<p>Better accuracy can be obtained by the five-point method.<span id="id1">[]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
+<blockquote>
+<div><p><strong>Method 2.3.2:</strong> Four-point finite difference method</p>
+<div class="math notranslate nohighlight">
+\[
+\frac{df}{dx} = \frac{-f(x+2h) + 16 f(x+h) - 30 f(x) + 16 f(x-h) -f(x-2h)}{12h^2} + \mathcal{O}(h^4)
+\]</div>
+</div></blockquote>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -478,16 +568,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./derivative"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               
@@ -500,20 +590,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../numbers/problems.html"
+       href="error-mitigation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Optimizing step size</p>
       </div>
     </a>
     <a class="right-next"
-       href="derivative1.html"
+       href="../integral/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.1. </span>Finite Difference Methods</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Integralation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -524,7 +614,21 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">2.3.1. Three-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">2.3.2. Five-point method</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
