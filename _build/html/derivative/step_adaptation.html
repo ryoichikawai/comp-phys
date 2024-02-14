@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>8. Partial Differential Equations &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.2. Adaptation of step size &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -65,11 +65,13 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'pde/intro';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/step_adaptation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="9. Random Number Generators" href="../random-number/intro.html" />
-    <link rel="prev" title="7. Fourier Transformation" href="../fft/intro.html" />
+    <link rel="next" title="2.3. Second order derivative" href="derivative2.html" />
+    <link rel="prev" title="2.1. Finite Difference Methods" href="derivative1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -207,11 +209,11 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -219,7 +221,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. Partial Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
 <ul class="nav bd-sidenav">
@@ -277,6 +279,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/step_adaptation.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -302,7 +335,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fpde/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/step_adaptation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -332,7 +365,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/pde/intro.md" target="_blank"
+      <li><a href="../_sources/derivative/step_adaptation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -342,7 +375,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -403,7 +436,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -414,11 +449,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Partial Differential Equations</h1>
+    <h1>Adaptation of step size</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2. Adaptation of step size</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -428,9 +472,85 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="partial-differential-equations">
-<h1><span class="section-number">8. </span>Partial Differential Equations<a class="headerlink" href="#partial-differential-equations" title="Link to this heading">#</a></h1>
-<p><strong>To be written</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="adaptation-of-step-size">
+<span id="sec-h-adaptaion"></span><h1><span class="section-number">2.2. </span>Adaptation of step size<a class="headerlink" href="#adaptation-of-step-size" title="Link to this heading">#</a></h1>
+<section id="estimation-of-nuemrical-errors">
+<h2><span class="section-number">2.2.1. </span>Estimation of nuemrical errors<a class="headerlink" href="#estimation-of-nuemrical-errors" title="Link to this heading">#</a></h2>
+<p>In the previous section, we are able to see good values of <span class="math notranslate nohighlight">\(h\)</span> because we know the exact derivative.  In practice, we don’t know the actual error and therefore we cannot use a plot like the right plot of Example 2.1.1 to find an appropriate value for <span class="math notranslate nohighlight">\(h\)</span>. Equation eq}<code class="docutils literal notranslate"><span class="pre">eq_mean_diff</span></code> suggests that the leading error is given by <span class="math notranslate nohighlight">\(\frac{|f^{(3)}|}{3!} h^2\)</span>. Unless we know the third order derivative, we still don’t know the magnitude of error.  However, we can estimate it numerically. Suppose that we calculate the derivative using two different vales of step sizes, <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(h'=h/2\)</span>.  We expect that the output is more accurate with <span class="math notranslate nohighlight">\(h'\)</span> than <span class="math notranslate nohighlight">\(h\)</span>. Using Eq. <a class="reference internal" href="derivative1.html#equation-eq-mean-diff">(2.1)</a>, the change of the mean finite difference is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\left | \Delta_\text{M} f(x) - \Delta'_\text{M} f(x) \right | \approx \frac{|f^{(3)}|}{3!} \frac{3}{4} h^2 = \frac{3}{4} \times  \left [ \text{error in } \Delta_\text{M} f(x) \right ]
+\]</div>
+<p>which suggests that the error is estimated by</p>
+<div class="math notranslate nohighlight" id="equation-eq-diff-error">
+<span class="eqno">(2.2)<a class="headerlink" href="#equation-eq-diff-error" title="Link to this equation">#</a></span>\[
+\text{Error in }\Delta_M f(x) \approx  \left | \Delta_\text{M} f(x) - \Delta'_\text{M} f(x) \right |
+\]</div>
+<p>Note that the exact value of <span class="math notranslate nohighlight">\(f'(x)\)</span> is not needed to find the error.  The right handside can be interpreted as the improvement of the nemerical derivative due to a smaller step size.  If there is not much improvement, there is no point to use a further smaller step size.</p>
+<p>Based on this error estimate,  we can write a code that automatically finds numerical derivative with a desired accuracy using the error estimate.</p>
+</section>
+<section id="id1">
+<h2><span class="section-number">2.2.2. </span>Adaptation of step size<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>What is the best step size?  As we saw in the previous section, the result is not accurate if <span class="math notranslate nohighlight">\(h\)</span> is too large.  On the other hand, if <span class="math notranslate nohighlight">\(h\)</span> is too small, the result is again bad.  We can find an optimal step size based on the estimated error <a class="reference internal" href="#equation-eq-diff-error">(2.2)</a>.</p>
+<div class="admonition-alrgorithm-2-2-1-automatic-adaptation-of-step-size admonition">
+<p class="admonition-title">Alrgorithm 2.2.1:  Automatic adaptation of step size</p>
+<ol class="arabic simple">
+<li><p>Set a value of \textit{tolerance} (allowed error).</p></li>
+<li><p>Set a reference step size <span class="math notranslate nohighlight">\(h_1\)</span> and evaluate a reference derivative <span class="math notranslate nohighlight">\(g_1 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_1\)</span>.</p></li>
+<li><p>Set a new step size <span class="math notranslate nohighlight">\(h_2=h_1/2\)</span> and evaluate a new derivative <span class="math notranslate nohighlight">\(g_2 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_2\)</span>.
+4.Evaluate error <span class="math notranslate nohighlight">\(\delta = |g_2-g_1|\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(\delta &lt; \text{tolerance}\)</span>, <span class="math notranslate nohighlight">\(g_2\)</span> is the desired result.  Stop the loop.</p></li>
+<li><p>If not, let <span class="math notranslate nohighlight">\(g_1=g_2\)</span> and <span class="math notranslate nohighlight">\(h_1=h_2\)</span> (previous <span class="math notranslate nohighlight">\(g_2\)</span> and <span class="math notranslate nohighlight">\(h_2\)</span> are now the reference).</p></li>
+<li><p>Go back to Step 3.</p></li>
+</ol>
+</div>
+<p>Here the absolute error is used.  We can also use a relative error <span class="math notranslate nohighlight">\(\left |\displaystyle \frac{g_2 - g_1}{g_1} \right |\)</span> instead. Then, the tolerance specifies a desired relative error.</p>
+<p><strong>Example 2.2.1</strong></p>
+<p>Let us calculat the same problem as Example 2.1.1.  We numerically evaluate the derivative of  <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{1}{3}x^3\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span> again.  This time, we do not specify the step length <span class="math notranslate nohighlight">\(h\)</span>. Instead we specify a tolerance and the program will automatically find an appropriate <span class="math notranslate nohighlight">\(h\)</span> for the given tolerance. Let the absolute error tolerance be 0.001.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+           
+<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># define a function</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span>
+    
+<span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span>
+
+<span class="n">x</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">h</span><span class="o">=</span><span class="mf">1.0</span>   <span class="c1"># initial interval</span>
+<span class="n">diff_old</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>  <span class="c1">#  derivative first try</span>
+<span class="n">delta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>  <span class="c1"># any value bigger than tol is OK.</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:^10}</span><span class="s2"> </span><span class="si">{1:^16}</span><span class="s2"> </span><span class="si">{2:^16}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span><span class="s1">&#39;derivative&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">))</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">delta</span><span class="o">&gt;</span><span class="n">tol</span><span class="p">):</span>
+    <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">diff_new</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># improved derivative</span>
+    <span class="n">delta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diff_new</span><span class="o">-</span><span class="n">diff_old</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:10.3e}</span><span class="s2"> </span><span class="si">{1:16.10e}</span><span class="s2"> </span><span class="si">{2:16.10e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">diff_new</span><span class="p">,</span><span class="n">delta</span><span class="p">))</span>
+    <span class="n">diff_old</span><span class="o">=</span><span class="n">diff_new</span>
+            
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tolerance is OK.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    h         derivative         error      
+ 5.000e-01 1.0833333333e+00 2.5000000000e-01
+ 2.500e-01 1.0208333333e+00 6.2500000000e-02
+ 1.250e-01 1.0052083333e+00 1.5625000000e-02
+ 6.250e-02 1.0013020833e+00 3.9062500000e-03
+ 3.125e-02 1.0003255208e+00 9.7656250000e-04
+Tolerance is OK.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The calculation found that <span class="math notranslate nohighlight">\(h=3.125 \times 10^{-2}\)</span> produces the derivative with four significant figures.</p>
+<p><em>Exercise</em>  Solve the same problem with the relative error with tolerance 0.0001.</p>
+<hr class="docutils" />
+<p>Last modified on 2/14/2024 by R. Kawai</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -442,16 +562,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
-            path: "./pde"
+            name: "jbook",
+            path: "./derivative"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               
@@ -464,20 +584,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../fft/intro.html"
+       href="derivative1.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Fourier Transformation</p>
+        <p class="prev-next-title"><span class="section-number">2.1. </span>Finite Difference Methods</p>
       </div>
     </a>
     <a class="right-next"
-       href="../random-number/intro.html"
+       href="derivative2.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">9. </span>Random Number Generators</p>
+        <p class="prev-next-title"><span class="section-number">2.3. </span>Second order derivative</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -488,7 +608,21 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2. Adaptation of step size</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

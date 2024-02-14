@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. Optimizing step size" href="error-mitigation.html" />
+    <link rel="next" title="2.2. Adaptation of step size" href="step_adaptation.html" />
     <link rel="prev" title="2. Numerical Derivative" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -211,8 +211,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Optimizing step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -520,21 +521,21 @@ f(x-h) = f(x) - h\, f'(x) + \frac{h^2}{2} f''(x) - \frac{h^3}{3!} f^{(3)}(x) + \
 <p>The leading term in the error <span class="math notranslate nohighlight">\( \Delta_\text{f,f} f(x) - f'(x)\)</span> is <span class="math notranslate nohighlight">\(\pm  \frac{h}{2} f''(x)\)</span>, which is the order of <span class="math notranslate nohighlight">\(h\)</span>. This means that if <span class="math notranslate nohighlight">\(h\)</span> is small enough, the numerical methods agree with the exact derivative. However, the error decreases only linearly with <span class="math notranslate nohighlight">\(h\)</span>.  We need to remember that if <span class="math notranslate nohighlight">\(h\)</span> is too small, the roundoff error kills the accuracy.  Hence, <span class="math notranslate nohighlight">\(h\)</span> cannot be too small.  Error at the order <span class="math notranslate nohighlight">\(h\)</span> is in general not acceptable and these methods are not accurate enough for practical applications.</p>
 <p>There is a better method.  Noting that the error in the forward and backward finite difference method is exactly the same in magnitude but has opposite sign, we can get rid of the error at the order of <span class="math notranslate nohighlight">\(h\)</span>.
 Taking the mean of the two approximations, we obtain <em>mean finite difference method</em>:</p>
-<div class="math notranslate nohighlight">
-\[
+<div class="math notranslate nohighlight" id="equation-eq-mean-diff">
+<span class="eqno">(2.1)<a class="headerlink" href="#equation-eq-mean-diff" title="Link to this equation">#</a></span>\[
 \Delta_\text{m} f(x) \equiv \frac{\Delta_\text{F} f(x)+\Delta_\text{B} f(x)}{2} = \displaystyle\frac{f(x+h)-f(x-h)}{2h} = f'(x) + \frac{h^2}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(f^{(3)}\)</span> is the third order derivative.    Notice that the leading error is the order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Since <span class="math notranslate nohighlight">\(h \ll 1\)</span>, <span class="math notranslate nohighlight">\(h^2 \ll h\)</span> and thus the mean finite difference method is more accurate than the forward and backward finite difference methods. The improvement is clearly visible in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>.</p>
 <p>Mathematically speaking, the small error in the mean finite difference method is related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_value_theorem">mean value theorem</a> which states that there is at least one number <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> such that
 <span class="math notranslate nohighlight">\(f'(c)=\displaystyle\frac{f(b)-f(a)}{b-a}\)</span>.
 Let <span class="math notranslate nohighlight">\(b=x+h\)</span> and <span class="math notranslate nohighlight">\(a=x-h\)</span>. The mean finite different method gives the slope of the curve at some point <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(x+h\)</span> and <span class="math notranslate nohighlight">\(x-h\)</span>.  When <span class="math notranslate nohighlight">\(h\)</span> is small, <span class="math notranslate nohighlight">\(c\)</span> is apprximately <span class="math notranslate nohighlight">\(x\)</span>.  Then, we obtain the mean finite difference method.</p>
-<blockquote>
-<div><p><strong>Method 2.1:</strong> Two-point finite difference method</p>
+<div class="admonition-method-2-1-1-two-point-finite-difference-method admonition">
+<p class="admonition-title">Method 2.1.1: Two-point finite difference method</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{df}{dx} = \frac{f(x+h)-f(x-h)}{2h} + \mathcal{O}(h^2)
 \]</div>
-</div></blockquote>
+</div>
 <p>How do we find an appropriate value of <span class="math notranslate nohighlight">\(h\)</span>?
 As we are repeatedly warned that when <span class="math notranslate nohighlight">\(h\)</span> is too small, the finite different methods suffer from the round-off error.  Therefore, we must choose the value of <span class="math notranslate nohighlight">\(h\)</span>  carefully, not too big and not too small. Noting that <span class="math notranslate nohighlight">\(x+h = x (1+h/x)\)</span>, it is pointless to use <span class="math notranslate nohighlight">\(h/x &lt; \epsilon\)</span> where <span class="math notranslate nohighlight">\(\epsilon\)</span> is the machine epsilon. (See Section <a class="reference internal" href="../numbers/float.html#sec-floating-point"><span class="std std-numref">Section 1.4</span></a>.)
 The following example illustrates that the finite difference method fails when <span class="math notranslate nohighlight">\(h\)</span> is too small.</p>
@@ -673,14 +674,18 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
 <section id="four-point-method">
 <h2><span class="section-number">2.1.2. </span>Four-point method<a class="headerlink" href="#four-point-method" title="Link to this heading">#</a></h2>
 <p>The derivative corresponds to the slope of a curve at a given point.  To obtain the slope, we need to evalaute at least the function at two different points.  The two-point method approximates the curve with a straight line by evaluating the function at two points.  If we have more information about the curve, we should be able to get more accurate derivative.   The fllowing symmetric four-point is commonly used. Its error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span>, much better than the mean finite difference method.<span id="id2">[<a class="reference internal" href="../references/references.html#id6" title="Daniel Zwillinger. CRC Stanbdard Mathematical Tables and Formula. CRC Press, 35th edition, 2012.">6</a>]</span></p>
-<blockquote>
-<div><p><strong>Method 2.1.2:</strong> Four-point finite difference method</p>
+<div class="admonition-method-2-1-2-four-point-finite-difference-method admonition">
+<p class="admonition-title">Method 2.1.2:  Four-point finite difference method</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{df}{dx} = \displaystyle\frac{f(x+2h)- 8 f(x+h) + 8 f(x-h) -f(x-2h)}{12h} + \mathcal{O}(h^4)
 \]</div>
+</div>
+<blockquote>
+<div><p><em>Exercise</em>:  Verify that the order of error is <span class="math notranslate nohighlight">\(h^4\)</span> using the Taylor expansions.</p>
 </div></blockquote>
-<p><em>Exercise</em>:  Verify that the order of error is <span class="math notranslate nohighlight">\(h^4\)</span> using the Taylor expansions.</p>
+<hr class="docutils" />
+<p>Last modified on 2/14/2024 by R. Kawai</p>
 </section>
 </section>
 
@@ -724,11 +729,11 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
       </div>
     </a>
     <a class="right-next"
-       href="error-mitigation.html"
+       href="step_adaptation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Optimizing step size</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Adaptation of step size</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

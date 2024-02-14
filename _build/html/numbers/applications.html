@@ -211,8 +211,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/error-mitigation.html">2.2. Optimizing step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -477,7 +478,7 @@ document.write(`
 <p>Many physics applications such as molecular dynamics simulation need to solve quadratic equations:
 <span class="math notranslate nohighlight">\(a x^2 + b x + c = 0\)</span>. Its solitions are well known.  If <span class="math notranslate nohighlight">\(a\ne 0\)</span>, we have the standard formula:</p>
 <div class="math notranslate nohighlight" id="equation-eq-quadratic-standard">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-quadratic-standard" title="Link to this equation">#</a></span>\[
+<span class="eqno">(1.1)<a class="headerlink" href="#equation-eq-quadratic-standard" title="Link to this equation">#</a></span>\[
 x_+ = \frac{-b + \sqrt{b^2 - 4 a c}}{2 a}, \qquad x_- = \frac{-b - \sqrt{b^2 - 4 a c}}{2 a}
 \]</div>
 <p>When <span class="math notranslate nohighlight">\(a=0\)</span>, we have only one solution <span class="math notranslate nohighlight">\(x_0=-c/b\)</span>.  There seems no problem evaluating these solutions.  However, in some cases, computers give us wrong answers.</p>
@@ -492,7 +493,7 @@ x_+ = \frac{-b + \sqrt{b^2 - 4 a c}}{2 a} = \frac{2c}{-b+\sqrt{b^2 - 4 a c}} = \
 <div><p><strong>Algorithm 1.6.1</strong> Roots of quadratic equations
 Roots of <span class="math notranslate nohighlight">\(a x^2 + b x + c = 0\)</span> (<span class="math notranslate nohighlight">\(a\ne 0\)</span> and <span class="math notranslate nohighlight">\(b\ne 0\)</span>) are given by</p>
 <div class="math notranslate nohighlight" id="equation-eq-quadratic-smart">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-quadratic-smart" title="Link to this equation">#</a></span>\[\begin{split}
+<span class="eqno">(1.2)<a class="headerlink" href="#equation-eq-quadratic-smart" title="Link to this equation">#</a></span>\[\begin{split}
 \begin{eqnarray}
 x_1 &amp;=&amp; \frac{-b - \text{sign}(b)\sqrt{b^2 - 4 a c}}{2a}  \\
 x_2 &amp;=&amp; \frac{c}{a x_1}
@@ -559,7 +560,7 @@ a=1.00e-15, regular=-2.7755575615628914e-01, smart=-2.5000000000000006e-01
 <img alt="../_images/cfe914ecb036de339c6ddce8ed9603677db82736c89209e916d890b44c23f033.png" src="../_images/cfe914ecb036de339c6ddce8ed9603677db82736c89209e916d890b44c23f033.png" />
 </div>
 </div>
-<p>The result of smart formular Eq. <a class="reference internal" href="#equation-eq-quadratic-smart">()</a> approaches the correct limit as <span class="math notranslate nohighlight">\(a \rightarrow 0\)</span>.  On the other hand, standard formular <a class="reference internal" href="#equation-eq-quadratic-standard">()</a> becomes errorneous for <span class="math notranslate nohighlight">\(a&lt;10^{-7}\)</span>.  In fact, a graduate student who was investing non-equilibrium thermal processes using hard disc molecular dynamics suffered from this error.</p>
+<p>The result of smart formular Eq. <a class="reference internal" href="#equation-eq-quadratic-smart">(1.2)</a> approaches the correct limit as <span class="math notranslate nohighlight">\(a \rightarrow 0\)</span>.  On the other hand, standard formular <a class="reference internal" href="#equation-eq-quadratic-standard">(1.1)</a> becomes errorneous for <span class="math notranslate nohighlight">\(a&lt;10^{-7}\)</span>.  In fact, a graduate student who was investing non-equilibrium thermal processes using hard disc molecular dynamics suffered from this error.</p>
 <hr class="docutils" />
 <p>Last modified on 2/12/2024 by R. Kawai.</p>
 </section>

@@ -30,8 +30,9 @@ parts:
    -  file: derivative/intro
       sections:
       -  file: derivative/derivative1
-      -  file: derivative/error-mitigation
+      -  file: derivative/step_adaptation
       -  file: derivative/derivative2
+      -  file: derivative/laplacian
    -  file: integral/intro
    -  file: root-finding/intro
    -  file: ode/intro

@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Integralation" href="../integral/intro.html" />
-    <link rel="prev" title="2.2. Optimizing step size" href="error-mitigation.html" />
+    <link rel="next" title="2.4. Laplacian" href="laplacian.html" />
+    <link rel="prev" title="2.2. Adaptation of step size" href="step_adaptation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -211,8 +211,9 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="error-mitigation.html">2.2. Optimizing step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -491,7 +492,7 @@ f'(x-\frac{h}{2}) &amp;\rightarrow&amp; \Delta_M f(x-\frac{h}{2}) = \frac{f(x)-f
 \end{split}\]</div>
 <p>The result is</p>
 <div class="math notranslate nohighlight" id="equation-eq-diff2-s3">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-diff2-s3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(2.3)<a class="headerlink" href="#equation-eq-diff2-s3" title="Link to this equation">#</a></span>\[
 f''(x) \approx \Delta^{(2)}_M f(x) \equiv \displaystyle\frac{f(x+h)+f(x-h)-2f(x)}{h^2}.
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Delta^{(2)}_M\)</span> is the second order mean finite difference operator.
@@ -539,7 +540,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f9efb6023b0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f193d7ab890&gt;
 </pre></div>
 </div>
 <img alt="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" src="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" />
@@ -548,7 +549,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </section>
 <section id="five-point-method">
 <h2><span class="section-number">2.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
-<p>Better accuracy can be obtained by the five-point method.<span id="id1">[]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
+<p>Better accuracy can be obtained by the five-point method.<span id="id1">[<a class="reference internal" href="../references/references.html#id10" title="Milton Abramowitz and Irene A. Stegun. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. Dover Publications, 1970. Table 25.2.">7</a>]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
 <blockquote>
 <div><p><strong>Method 2.3.2:</strong> Four-point finite difference method</p>
 <div class="math notranslate nohighlight">
@@ -590,20 +591,20 @@ Using the Taylor expansion, we find that the error of this approximation is the 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="error-mitigation.html"
+       href="step_adaptation.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Optimizing step size</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Adaptation of step size</p>
       </div>
     </a>
     <a class="right-next"
-       href="../integral/intro.html"
+       href="laplacian.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Integralation</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>Laplacian</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
