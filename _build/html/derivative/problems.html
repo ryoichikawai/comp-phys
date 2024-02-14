@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Numerical Derivative &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.5. Problems &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -67,11 +67,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/problems';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. Finite Difference Methods" href="derivative1.html" />
-    <link rel="prev" title="1.7. Problems" href="../numbers/problems.html" />
+    <link rel="next" title="3. Integralation" href="../integral/intro.html" />
+    <link rel="prev" title="2.4. Laplacian" href="laplacian.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,12 +209,12 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
 <li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">2.5. Problems</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.5. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -288,7 +288,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/intro.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/problems.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -336,7 +336,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/problems.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,7 +366,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/derivative/intro.ipynb" target="_blank"
+      <li><a href="../_sources/derivative/problems.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -448,7 +448,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Numerical Derivative</h1>
+    <h1>Problems</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -462,13 +462,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="numerical-derivative">
-<span id="chap-derivative"></span><h1><span class="section-number">2. </span>Numerical Derivative<a class="headerlink" href="#numerical-derivative" title="Link to this heading">#</a></h1>
-<p>When we study physics, we often investigate the change of certain quantities.  That is why basic calculus plays a major role in physics.  Evaluating the derivative of a function <span class="math notranslate nohighlight">\(f(x)\)</span> is an ubiquitous operation in physics.  However, an analytical expression of the derivative is not always available.  Then, a numerical method must be deployed to evaluate it.  That is not only the reason we need numerical derivative.  In some cases an analytical expression of the function itself is not available.  For example, when a function is experimentally obtained by measurement, it is given as a set of numerical data, <span class="math notranslate nohighlight">\((x_i, f_i),\, i=1, \cdots, N\)</span>.  Then, analysis of such data is always numerical.  There are many algorithms for numerical derivative.  In this chapter, we study some of well-known algorithms useful for studying physics.</p>
-<p>Numerical methods are in general not exact and involve systematic errors.  Understanding the source of errors and their magnitude is very important.  It is possible to estimate the magnitude of expected errors based on mathematical analysis and the study of numerical error is an important part of numerical analysis.  We will investigate the degrees of errors through theory and examples.</p>
-<p>In this section, we assume that an analytical expression of function <span class="math notranslate nohighlight">\(f(x)\)</span> is given and that we can numerically evaluate it at any point <span class="math notranslate nohighlight">\(x\)</span>. Furthermore, we assume that the numerical error in the evaluation of the function is negligibly small.  In other words, the main errors arises from the numerical algorithm of derivative.</p>
-<div class="toctree-wrapper compound">
-</div>
+  <section class="tex2jax_ignore mathjax_ignore" id="problems">
+<span id="sec-diff-problems"></span><h1><span class="section-number">2.5. </span>Problems<a class="headerlink" href="#problems" title="Link to this heading">#</a></h1>
+<p><strong>2.1</strong> Evaluate the first order derivative of <span class="math notranslate nohighlight">\(\sin(x)\)</span> for interval <span class="math notranslate nohighlight">\((0,2\pi)\)</span> with tolerance 0.0001 at <span class="math notranslate nohighlight">\(x=\frac{\pi}{4}\)</span>, <span class="math notranslate nohighlight">\(\frac{\pi}{2}\)</span>, and <span class="math notranslate nohighlight">\(\pi\)</span>. What value of <span class="math notranslate nohighlight">\(h\)</span> is needed to satisfy the tolerance at each point?   Is the optimal <span class="math notranslate nohighlight">\(h\)</span> independent of <span class="math notranslate nohighlight">\(x\)</span>?</p>
+<hr class="docutils" />
+<p><strong>2.2</strong> Evaluate the second order derivative of <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{1}{12} x^4\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span> usig <span class="math notranslate nohighlight">\(h=1, 0.1, 0.01, \cdots, 10^{-10}\)</span>.</p>
+<p>(1) First use the three-poiojt method. Compare the result with the exact derivative (<span class="math notranslate nohighlight">\(f''(x) = x^2\)</span>) and plot the error as a function of <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<p>(2) Try also the five-point method and evaluate the error.  You will find unexpectedly good result even for relatively large values of <span class="math notranslate nohighlight">\(h\)</span>.   Can you explain why the error is so small in this case?</p>
+<hr class="docutils" />
+<p>Last modified on 2/14/2024 by R. Kawai</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -480,16 +482,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./derivative"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               
@@ -502,20 +504,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../numbers/problems.html"
+       href="laplacian.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">2.4. </span>Laplacian</p>
       </div>
     </a>
     <a class="right-next"
-       href="derivative1.html"
+       href="../integral/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.1. </span>Finite Difference Methods</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Integralation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

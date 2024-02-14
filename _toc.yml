@@ -33,6 +33,7 @@ parts:
       -  file: derivative/step_adaptation
       -  file: derivative/derivative2
       -  file: derivative/laplacian
+      -  file: derivative/problems
    -  file: integral/intro
    -  file: root-finding/intro
    -  file: ode/intro

@@ -214,6 +214,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Second order derivative</a></li>
 <li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">2.5. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
@@ -540,7 +541,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f193d7ab890&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7ff228ea1510&gt;
 </pre></div>
 </div>
 <img alt="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" src="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" />
@@ -550,13 +551,13 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 <section id="five-point-method">
 <h2><span class="section-number">2.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
 <p>Better accuracy can be obtained by the five-point method.<span id="id1">[<a class="reference internal" href="../references/references.html#id10" title="Milton Abramowitz and Irene A. Stegun. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. Dover Publications, 1970. Table 25.2.">7</a>]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
-<blockquote>
-<div><p><strong>Method 2.3.2:</strong> Four-point finite difference method</p>
+<div class="admonition-method-2-3-2-five-point-finite-difference-method-for-2nd-order-derivative admonition">
+<p class="admonition-title">Method 2.3.2: Five-point finite difference method for 2nd order derivative</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{df}{dx} = \frac{-f(x+2h) + 16 f(x+h) - 30 f(x) + 16 f(x-h) -f(x-2h)}{12h^2} + \mathcal{O}(h^4)
 \]</div>
-</div></blockquote>
+</div>
 </section>
 </section>
 
