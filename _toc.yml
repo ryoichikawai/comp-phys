@@ -35,6 +35,8 @@ parts:
       -  file: derivative/laplacian
       -  file: derivative/problems
    -  file: integral/intro
+      sections:
+      -  file: integral/rectangle
    -  file: root-finding/intro
    -  file: ode/intro
    -  file: matrix/intro

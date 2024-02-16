@@ -1,3 +1,0 @@
-# Integralation
-
-**To be written**

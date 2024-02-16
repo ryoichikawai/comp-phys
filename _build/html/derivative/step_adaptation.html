@@ -214,9 +214,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
 <li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">2.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">3. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/rectangle.html">3.1. Piecewise integration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
@@ -493,7 +497,7 @@ document.write(`
 <h2><span class="section-number">2.2.2. </span>Adaptation of step size<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <p>What is the best step size?  As we saw in the previous section, the result is not accurate if <span class="math notranslate nohighlight">\(h\)</span> is too large.  On the other hand, if <span class="math notranslate nohighlight">\(h\)</span> is too small, the result is again bad.  We can find an optimal step size based on the estimated error <a class="reference internal" href="#equation-eq-diff-error">(2.2)</a>.</p>
 <div class="admonition-alrgorithm-2-2-1-automatic-adaptation-of-step-size admonition">
-<p class="admonition-title">Alrgorithm 2.2.1:  Automatic adaptation of step size</p>
+<p class="admonition-title">Alrgorithm 2.2.1  Automatic adaptation of step size</p>
 <ol class="arabic simple">
 <li><p>Set a value of \textit{tolerance} (allowed error).</p></li>
 <li><p>Set a reference step size <span class="math notranslate nohighlight">\(h_1\)</span> and evaluate a reference derivative <span class="math notranslate nohighlight">\(g_1 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_1\)</span>.</p></li>

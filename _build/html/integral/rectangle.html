@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.2. Adaptation of step size &#8212; Computational Methods for Physics with Python.</title>
+    <title>3.1. Piecewise integration &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -67,11 +67,11 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/error-mitigation';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/rectangle';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.3. Second order derivative" href="derivative2.html" />
-    <link rel="prev" title="2.1. Finite Difference Methods" href="derivative1.html" />
+    <link rel="next" title="4. Root Finding" href="../root-finding/intro.html" />
+    <link rel="prev" title="3. Numerical Integration" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,13 +209,18 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.2. Adaptation of step size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">2.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Piecewise integration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
@@ -286,7 +291,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/derivative/error-mitigation.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/rectangle.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -334,7 +339,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fderivative/error-mitigation.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/rectangle.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -364,7 +369,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/derivative/error-mitigation.ipynb" target="_blank"
+      <li><a href="../_sources/integral/rectangle.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -448,7 +453,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Adaptation of step size</h1>
+    <h1>Piecewise integration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -458,8 +463,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2. Adaptation of step size</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-methods">3.1.1. Rectangular methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">3.1.2. Trapezoidal rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-rule">3.1.3. Simpson rule</a></li>
 </ul>
             </nav>
         </div>
@@ -471,84 +477,104 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="adaptation-of-step-size">
-<span id="sec-h-adaptaion"></span><h1><span class="section-number">2.2. </span>Adaptation of step size<a class="headerlink" href="#adaptation-of-step-size" title="Link to this heading">#</a></h1>
-<section id="estimation-of-nuemrical-errors">
-<h2><span class="section-number">2.2.1. </span>Estimation of nuemrical errors<a class="headerlink" href="#estimation-of-nuemrical-errors" title="Link to this heading">#</a></h2>
-<p>In the previous section, we are able to see good values of <span class="math notranslate nohighlight">\(h\)</span> because we know the exact derivative.  In practice, we don’t know the actual error and therefore we cannot use a plot like the right plot of Example 2.1.1 to find an appropriate value for <span class="math notranslate nohighlight">\(h\)</span>. Equation eq}<code class="docutils literal notranslate"><span class="pre">eq_mean_diff</span></code> suggests that the leading error is given by <span class="math notranslate nohighlight">\(\frac{|f^{(3)}|}{3!} h^2\)</span>. Unless we know the third order derivative, we still don’t know the magnitude of error.  However, we can estimate it numerically. Suppose that we calculate the derivative using two different vales of step sizes, <span class="math notranslate nohighlight">\(h\)</span> and <span class="math notranslate nohighlight">\(h'=h/2\)</span>.  We expect that the output is more accurate with <span class="math notranslate nohighlight">\(h'\)</span> than <span class="math notranslate nohighlight">\(h\)</span>. Using Eq. <a class="reference internal" href="derivative1.html#equation-eq-mean-diff">(2.1)</a>, the change of the mean finite difference is given by</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="piecewise-integration">
+<span id="sec-int-piecewise"></span><h1><span class="section-number">3.1. </span>Piecewise integration<a class="headerlink" href="#piecewise-integration" title="Link to this heading">#</a></h1>
+<p>We want to integrate a function <span class="math notranslate nohighlight">\(f(x)\)</span> from <span class="math notranslate nohighlight">\(a\)</span> to <span class="math notranslate nohighlight">\(b\)</span>.
+Similarly to the numerical derivative problems, there are two different cases.  In one case, a closed form expression of the function is known and we can evaluate the function value at any point of <span class="math notranslate nohighlight">\(x \in [a,b]\)</span>.  In the other case, the function values are given as a finite sequence <span class="math notranslate nohighlight">\(f_n = f(x_n), n=0, \cdots, N\)</span> and the analytical expression of the function is unknown. In this section, we focus on the former case and the latter case will be discussed in a later chapter.</p>
+<figure class="align-default" id="fig-int-rectangle">
+<img alt="../_images/int_rectangle.png" src="../_images/int_rectangle.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">The forward (left) and backward (right) recutangular rules are illustrated.  The integral is the sum of the shadowed area of all boxes shown in the diagrams.</span><a class="headerlink" href="#fig-int-rectangle" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="rectangular-methods">
+<h2><span class="section-number">3.1.1. </span>Rectangular methods<a class="headerlink" href="#rectangular-methods" title="Link to this heading">#</a></h2>
+<p>We begin with the Rieman’s definition of integral:</p>
 <div class="math notranslate nohighlight">
 \[
-\left | \Delta_\text{M} f(x) - \Delta'_\text{M} f(x) \right | \approx \frac{|f^{(3)}|}{3!} \frac{3}{4} h^2 = \frac{3}{4} \times  \left [ \text{error in } \Delta_\text{M} f(x) \right ]
+\int_{a}^{b} f(x) dx = \lim_{N \rightarrow \infty} \sum_{n=0}^{N-1} f(x_n)\, h  = \lim_{N \rightarrow \infty} \sum_{n=1}^{N} f(x_n)\, h
 \]</div>
-<p>which suggests that the error is estimated by</p>
-<div class="math notranslate nohighlight" id="equation-eq-diff-error">
-<span class="eqno">(2.2)<a class="headerlink" href="#equation-eq-diff-error" title="Link to this equation">#</a></span>\[
-\text{Error in }\Delta_M f(x) \approx  \left | \Delta_\text{M} f(x) - \Delta'_\text{M} f(x) \right |
+<p>where <span class="math notranslate nohighlight">\(h =(b-a)/N\)</span> and <span class="math notranslate nohighlight">\(x_n=a + n\, h\)</span>.   Note that <span class="math notranslate nohighlight">\(h\)</span> depends on <span class="math notranslate nohighlight">\(N\)</span>.  Numerical methods do not understand this kind of limit since it ends up with <span class="math notranslate nohighlight">\(\infty \times 0\)</span>.  Beside, summing infinitely many terms costs infinite CPU time.  We hope that sufficiently large <span class="math notranslate nohighlight">\(N\)</span> (i.e., sufficiently small <span class="math notranslate nohighlight">\(h&gt;0\)</span>) gives a value close to the exact integral. This is the rectangular rule.  There are two ways to form a set of boxes. In the forward rectangular method, the left edge of the rectangle matches to the curve. See the left panel of Fig. <a class="reference internal" href="#fig-int-rectangle"><span class="std std-numref">Fig. 3.1</span></a>.  Mathematically, it is expressed as</p>
+<div class="math notranslate nohighlight" id="equation-eq-int-fwd-rectangle">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-int-fwd-rectangle" title="Link to this equation">#</a></span>\[
+\int_{a}^{b} f(x) dx \approx  \sum_{n=0}^{N-1} f(x_n)\, h .
 \]</div>
-<p>Note that the exact value of <span class="math notranslate nohighlight">\(f'(x)\)</span> is not needed to find the error.  The right handside can be interpreted as the improvement of the nemerical derivative due to a smaller step size.  If there is not much improvement, there is no point to use a further smaller step size.</p>
-<p>Based on this error estimate,  we can write a code that automatically finds numerical derivative with a desired accuracy using the error estimate.</p>
-</section>
-<section id="id1">
-<h2><span class="section-number">2.2.2. </span>Adaptation of step size<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>What is the best step size?  As we saw in the previous section, the result is not accurate if <span class="math notranslate nohighlight">\(h\)</span> is too large.  On the other hand, if <span class="math notranslate nohighlight">\(h\)</span> is too small, the result is again bad.  We can find an optimal step size based on the estimated error <a class="reference internal" href="#equation-eq-diff-error">(2.2)</a>.</p>
-<div class="admonition-alrgorithm-2-2-1-automatic-adaptation-of-step-size admonition">
-<p class="admonition-title">Alrgorithm 2.2.1:  Automatic adaptation of step size</p>
+<p>Similarly, in the backward rectangular method (the right panel of Fig. <a class="reference internal" href="#fig-int-rectangle"><span class="std std-numref">Fig. 3.1</span></a>) , the right edge of the rectangle matches the curve and thus we have</p>
+<div class="math notranslate nohighlight" id="equation-eq-int-bwd-rectangle">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-int-bwd-rectangle" title="Link to this equation">#</a></span>\[
+\int_{a}^{b} f(x) dx \approx  \sum_{n=1}^{N} f(x_n)\, h .
+\]</div>
+<p>In the rectangular method, the curve is approximated by piecewise constants: for <span class="math notranslate nohighlight">\(x \in (x_i,x_{i+1}), f(x)=c_i\)</span>.  Then, each piece is integrated analytically, that is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_i}^{x_{i+1}} f(x) dx = \int_{x_i}^{x_{i+1}} c_i dx = c_i (x_{i+1}-x_i) = c_i h\, .
+\]</div>
+<p>The forward rectangular method used <span class="math notranslate nohighlight">\(c_i = f(x_i)\)</span> and the backward rectangular method <span class="math notranslate nohighlight">\(c_i = f(x_{i+1})\)</span>.</p>
+<div class="admonition-alrgorithm-3-1-1-forward-rectangular-rule admonition">
+<p class="admonition-title">Alrgorithm 3.1.1:  Forward rectangular rule</p>
 <ol class="arabic simple">
-<li><p>Set a value of \textit{tolerance} (allowed error).</p></li>
-<li><p>Set a reference step size <span class="math notranslate nohighlight">\(h_1\)</span> and evaluate a reference derivative <span class="math notranslate nohighlight">\(g_1 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_1\)</span>.</p></li>
-<li><p>Set a new step size <span class="math notranslate nohighlight">\(h_2=h_1/2\)</span> and evaluate a new derivative <span class="math notranslate nohighlight">\(g_2 = \Delta_\text{M} f(x)\)</span> using <span class="math notranslate nohighlight">\(h_2\)</span>.
-4.Evaluate error <span class="math notranslate nohighlight">\(\delta = |g_2-g_1|\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\delta &lt; \text{tolerance}\)</span>, <span class="math notranslate nohighlight">\(g_2\)</span> is the desired result.  Stop the loop.</p></li>
-<li><p>If not, let <span class="math notranslate nohighlight">\(g_1=g_2\)</span> and <span class="math notranslate nohighlight">\(h_1=h_2\)</span> (previous <span class="math notranslate nohighlight">\(g_2\)</span> and <span class="math notranslate nohighlight">\(h_2\)</span> are now the reference).</p></li>
-<li><p>Go back to Step 3.</p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(s=0.0\)</span> where <span class="math notranslate nohighlight">\(s\)</span> should be double (float64).</p></li>
+<li><p>Repeat steps 4-6 for <span class="math notranslate nohighlight">\(n=0\)</span> to <span class="math notranslate nohighlight">\(n=N-1\)</span>:</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=a+n*h\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(s=s+f(x)\)</span>.</p></li>
+<li><p>Go back to step 4 and repeat with new <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>The integral is given by <span class="math notranslate nohighlight">\(s*h\)</span>.</p></li>
 </ol>
 </div>
-<p>Here the absolute error is used.  We can also use a relative error <span class="math notranslate nohighlight">\(\left |\displaystyle \frac{g_2 - g_1}{g_1} \right |\)</span> instead. Then, the tolerance specifies a desired relative error.</p>
-<p><strong>Example 2.2.1</strong></p>
-<p>Let us calculat the same problem as Example 2.1.1.  We numerically evaluate the derivative of  <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{1}{3}x^3\)</span> at <span class="math notranslate nohighlight">\(x=1\)</span> again.  This time, we do not specify the step length <span class="math notranslate nohighlight">\(h\)</span>. Instead we specify a tolerance and the program will automatically find an appropriate <span class="math notranslate nohighlight">\(h\)</span> for the given tolerance. Let the absolute error tolerance be 0.001.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-           
-<span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>  <span class="c1"># define a function</span>
-    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">/</span><span class="mi">3</span>
-    
-<span class="n">tol</span><span class="o">=</span><span class="mf">0.001</span>
-
-<span class="n">x</span><span class="o">=</span><span class="mf">1.0</span>
-<span class="n">h</span><span class="o">=</span><span class="mf">1.0</span>   <span class="c1"># initial interval</span>
-<span class="n">diff_old</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>  <span class="c1">#  derivative first try</span>
-<span class="n">delta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">finfo</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">max</span>  <span class="c1"># any value bigger than tol is OK.</span>
-    
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:^10}</span><span class="s2"> </span><span class="si">{1:^16}</span><span class="s2"> </span><span class="si">{2:^16}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">&#39;h&#39;</span><span class="p">,</span><span class="s1">&#39;derivative&#39;</span><span class="p">,</span><span class="s1">&#39;error&#39;</span><span class="p">))</span>
-<span class="k">while</span> <span class="p">(</span><span class="n">delta</span><span class="o">&gt;</span><span class="n">tol</span><span class="p">):</span>
-    <span class="n">h</span><span class="o">=</span><span class="n">h</span><span class="o">/</span><span class="mf">2.0</span>
-    <span class="n">diff_new</span><span class="o">=</span><span class="p">(</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">h</span><span class="p">)</span><span class="o">-</span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">h</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">h</span><span class="p">)</span>  <span class="c1"># improved derivative</span>
-    <span class="n">delta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">diff_new</span><span class="o">-</span><span class="n">diff_old</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:10.3e}</span><span class="s2"> </span><span class="si">{1:16.10e}</span><span class="s2"> </span><span class="si">{2:16.10e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">diff_new</span><span class="p">,</span><span class="n">delta</span><span class="p">))</span>
-    <span class="n">diff_old</span><span class="o">=</span><span class="n">diff_new</span>
-            
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tolerance is OK.&quot;</span><span class="p">)</span>
-</pre></div>
+<p>As seen in Fig. <a class="reference internal" href="#fig-int-rectangle"><span class="std std-numref">Fig. 3.1</span></a> the rectangular method seems not accurate. To analyze the accuracy, we consider a small integral interval from <span class="math notranslate nohighlight">\(x_{n}\)</span> to <span class="math notranslate nohighlight">\(x_{n+1}=x_n+h\)</span>.  Expanding the integral with respect to <span class="math notranslate nohighlight">\(h\)</span> (See Appendix \ref{ap:int_expand}),  the integral is expressed as power series of <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-int-expand">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-int-expand" title="Link to this equation">#</a></span>\[
+\int_{x_{n}}^{x_{n}+h} f(x) dx = f(x_n) h + f'(x_n) \frac{h^2}{2} + f''(x_n) \frac{h^3}{3!} + + f^{(3)}(x_n) \frac{h^4}{4!} + \mathcal{O}(h^5)\,.
+\]</div>
+<p>Then, the whole integral in the forward scheme is expressed as</p>
+<div class="math notranslate nohighlight">
+\[
+\int_a^b f(x) dx = \sum_{n=0}^{N-1} \int_{x_{n}}^{x_{n}+h} f(x) dx =  \sum_{n=0}^{N-1} \left [f(x_n) h + f'(x_n) \frac{h^2}{2} + \mathcal{O}(h^3) \right ]
+\]</div>
+<p>By neglecting <span class="math notranslate nohighlight">\(h^2\)</span> and higher orders, we obtain the rectangular rule.
+Therefore, the error of the rectangular rule is the order of <span class="math notranslate nohighlight">\(h^2\)</span> per segment.  Since there are <span class="math notranslate nohighlight">\(N\)</span> segments, the total error is
+order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>.  Hence, the total error is the order of <span class="math notranslate nohighlight">\(h\)</span>.  You might think that if a very small value of <span class="math notranslate nohighlight">\(h\)</span> is used the error is negligible. Unfortunately, the round-off error gets too large when <span class="math notranslate nohighlight">\(N\)</span> is too large (See Example x.x.x). In practice, this method is rarely used.</p>
+</section>
+<section id="trapezoidal-rule">
+<h2><span class="section-number">3.1.2. </span>Trapezoidal rule<a class="headerlink" href="#trapezoidal-rule" title="Link to this heading">#</a></h2>
+<p>Istead of approximating with piecewise constant lines, fitting each segment of the curve with a linear function.  For <span class="math notranslate nohighlight">\(x \in [x_i, x_{i+1}]\)</span>, we approximate function <span class="math notranslate nohighlight">\(f(x)\)</span> with a linear equation <span class="math notranslate nohighlight">\(a_i x + b_i\)</span> such that <span class="math notranslate nohighlight">\(f(x_i)= a_i x_i + b_i\)</span> and <span class="math notranslate nohighlight">\(f(x_{i+1}) = a_i x_{i+1}+b_i\)</span>.  Then, the area below the linear line, which is a trapezoid, approximate the integral of the segment.  See Fig. <a class="reference internal" href="#fig-int-trapezoid"><span class="std std-numref">Fig. 3.2</span></a>  Hence,</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_i}^{x_{i+1}} f(x) dx \approx \frac{h}{2}[f(x_i)+f(x_{i+1})]\,.
+\]</div>
+<p>Adding all segments, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-int-trapezoid">
+<span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-int-trapezoid" title="Link to this equation">#</a></span>\[
+\int_{a}^{b} f(x) dx \approx \sum_{i=0}^{N-1} \frac{h}{2}[f(x_i)+f(x_{i+1})] = \frac{h}{2} [f(a) + f(b)] + \sum_{i=1}^{N-1} f(x_i)
+\]</div>
+<p>Notice that this formula is equivalen to the average of the forward and backward rectangular methods.   Note also that the difference between the trapezoidal rule and the rectangular rule is only how the end points <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span> are treated.</p>
+<figure class="align-default" id="fig-int-trapezoid">
+<img alt="../_images/int_trapezoid.png" src="../_images/int_trapezoid.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 3.2 </span><span class="caption-text">The trapezoidal rule is illustrated.  The integral is approximated by the shadowed area of all trapezoids shown in the diagrams.</span><a class="headerlink" href="#fig-int-trapezoid" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Let us find the order of error by substituting the forward finite difference method, <span class="math notranslate nohighlight">\(f'(x_n) = \displaystyle\frac{f(x_n+h)-f(x_n)}{h}+\mathcal{O}(h)\)</span> into Eq. <a class="reference internal" href="#equation-eq-int-expand">(3.3)</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-error-trapezoid">
+<span class="eqno">(3.5)<a class="headerlink" href="#equation-eq-error-trapezoid" title="Link to this equation">#</a></span>\[
+\int_{x_{i}}^{x_{i+1}} f(x) dx = f(x_i) h + f'(x_i)\frac{h^2}{2} + \mathcal{O}(h^3) = \frac{f(x_i)+f(x_{i+1})}{2} h + \mathcal{O}(h^3)\,.
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(h^3\)</span> and higher orders is ignored, we obtain the trapezoid rule.  Hence, the trapezoidal rule is locally accurate up to <span class="math notranslate nohighlight">\(h^2\)</span>, better than the rectangular rule.  The total error is the order of <span class="math notranslate nohighlight">\(h^3 N =(b-a) h^2\)</span>.  The trapezoidal method is commonly used due to its simplicity and reasonable accuracy. Interestingly, if the function vanishes at the integral limits, <span class="math notranslate nohighlight">\(f(a)=f(b)=0\)</span>, then the rectangular rule produces exactly the same result as the trapezoidal rule.</p>
+<div class="admonition-alrgorithm-3-1-2-trapezoidal-rule admonition">
+<p class="admonition-title">Alrgorithm 3.1.2:  Trapezoidal rule</p>
+<ol class="arabic simple">
+<li><p>Set the step length: <span class="math notranslate nohighlight">\(h=\displaystyle\frac{b-a}{N}\)</span></p></li>
+<li><p>Set <span class="math notranslate nohighlight">\(s=0.5*(f(a)+f(b))\)</span> where <span class="math notranslate nohighlight">\(s\)</span> should be double (float64).</p></li>
+<li><p>Repeat steps 4-6 for <span class="math notranslate nohighlight">\(n=1\)</span> to <span class="math notranslate nohighlight">\(n=N-1\)</span>:</p></li>
+<li><p><span class="math notranslate nohighlight">\(x=a+n*h\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(s=s+f(x)\)</span>.</p></li>
+<li><p>Go back to step 4 and repeat with new <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+<li><p>The integral is given by <span class="math notranslate nohighlight">\(s*h\)</span>.</p></li>
+</ol>
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    h         derivative         error      
- 5.000e-01 1.0833333333e+00 2.5000000000e-01
- 2.500e-01 1.0208333333e+00 6.2500000000e-02
- 1.250e-01 1.0052083333e+00 1.5625000000e-02
- 6.250e-02 1.0013020833e+00 3.9062500000e-03
- 3.125e-02 1.0003255208e+00 9.7656250000e-04
-Tolerance is OK.
-</pre></div>
-</div>
-</div>
-</div>
-<p>The calculation found that <span class="math notranslate nohighlight">\(h=3.125 \times 10^{-2}\)</span> produces the derivative with four significant figures.</p>
-<p><em>Exercise</em>  Solve the same problem with the relative error with tolerance 0.0001.</p>
-<hr class="docutils" />
-<p>Last modified on 2/14/2024 by R. Kawai</p>
+</section>
+<section id="simpson-rule">
+<h2><span class="section-number">3.1.3. </span>Simpson rule<a class="headerlink" href="#simpson-rule" title="Link to this heading">#</a></h2>
 </section>
 </section>
 
@@ -565,7 +591,7 @@ Tolerance is OK.
         },
         kernelOptions: {
             name: "jbook",
-            path: "./derivative"
+            path: "./integral"
         },
         predefinedOutput: true
     }
@@ -583,20 +609,20 @@ Tolerance is OK.
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="derivative1.html"
+       href="intro.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.1. </span>Finite Difference Methods</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Numerical Integration</p>
       </div>
     </a>
     <a class="right-next"
-       href="derivative2.html"
+       href="../root-finding/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.3. </span>Second order derivative</p>
+        <p class="prev-next-title"><span class="section-number">4. </span>Root Finding</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -616,8 +642,9 @@ Tolerance is OK.
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimation-of-nuemrical-errors">2.2.1. Estimation of nuemrical errors</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.2.2. Adaptation of step size</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-methods">3.1.1. Rectangular methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">3.1.2. Trapezoidal rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-rule">3.1.3. Simpson rule</a></li>
 </ul>
   </nav></div>
 

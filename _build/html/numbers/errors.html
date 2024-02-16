@@ -214,9 +214,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">2.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../integral/intro.html">3. Integralation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">3. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/rectangle.html">3.1. Piecewise integration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
@@ -663,15 +667,22 @@ x= 1.0e-17, y= 0.000000000000, x+2= 2.000000000000
 <img alt="../_images/7e9cf84f80a4db80c61a643a7fa54020de14021ca75cbdcf4d79e3d05188c50a.png" src="../_images/7e9cf84f80a4db80c61a643a7fa54020de14021ca75cbdcf4d79e3d05188c50a.png" />
 </div>
 </div>
-<p>Notice that the direct evaluation of <span class="math notranslate nohighlight">\(y\)</span>  devates from the exact value <span class="math notranslate nohighlight">\(x+2\)</span> for x smaller than <span class="math notranslate nohighlight">\(10^{-9}\)</span> and catastrophic error takes place below <span class="math notranslate nohighlight">\(x=10^{-16}\)</span>.  Recall that when <span class="math notranslate nohighlight">\(x\)</span> is smaller than the machine epsilon, <span class="math notranslate nohighlight">\(x+1=1\)</span>!, which cuases this catstrophe.</p>
+<p>Notice that the direct evaluation of <span class="math notranslate nohighlight">\(y\)</span>  devates from the exact value <span class="math notranslate nohighlight">\(x+2\)</span> for x smaller than <span class="math notranslate nohighlight">\(10^{-9}\)</span> and <a class="reference external" href="https://en.wikipedia.org/wiki/Catastrophic_cancellation">catastrophic cancellation</a> takes place below <span class="math notranslate nohighlight">\(x=10^{-16}\)</span>.  Recall that when <span class="math notranslate nohighlight">\(x\)</span> is smaller than the machine epsilon, <span class="math notranslate nohighlight">\(x+1=1\)</span>!, which cuases this catstrophe.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Catastrophic cancellation</p>
+<p>In numerical arithmatics, subtracting two similar numbers may lose the accuracy completely.</p>
+</div>
 <hr class="docutils" />
-<p><strong>Example</strong></p>
+<p><strong>Example 1.5.4</strong></p>
 <p>Addition of two floating point numbers most likely falls into a gap between two floating point numbers and is rounded off to a new floating point number. Any operation of floating point numbers is subject to the digitization error. Consider <span class="math notranslate nohighlight">\(N\)</span> repeated addition of <span class="math notranslate nohighlight">\(x\)</span>, that is <span class="math notranslate nohighlight">\(x+x+\cdots+x\)</span>.  The exact answer is obviously <span class="math notranslate nohighlight">\(N x\)</span>.  However, the repeated addition accumulate error cased by each addition.  To see that we add <span class="math notranslate nohighlight">\(1.2\)</span> a million times.</p>
 </section>
 <section id="accumulation-of-tiny-round-off-errors">
 <h2><span class="section-number">1.5.4. </span>Accumulation of tiny round-off errors<a class="headerlink" href="#accumulation-of-tiny-round-off-errors" title="Link to this heading">#</a></h2>
 <p>Since the most of real numbers are between two floating point numbers, each step of calculation suffurs from a tiny round-off error.  Many real applications involves millions of floating point operations and the round-off errors accumulate.  At the end, the error is no longer negligible.  This round-off error is an serious issue for digital computers.  On February 25, 1991, during the Gulf War, an American Patriot Missile battery in Dharan, Saudi Arabia, failed to track and intercept an incoming Iraqi Scud missile. The Scud struck an American Army barracks, killing 28 soldiers and injuring around 100 other people. Patriot missile.  Round-off error is suspected to have caused this tragedy.<span id="id3">[<a class="reference internal" href="../references/references.html#id2" title="Eliot Marshall. Fatal error: how patriot overlooked a scud. Science, 255(5050):1347-1347, 1992.">4</a>]</span></p>
-<p>To demonstraite it, we do a kind of stupid calculation.  We just add a millions of <span class="math notranslate nohighlight">\(1.2\)</span>.  The answer should be <span class="math notranslate nohighlight">\(1.2 \times 10^6\)</span>.</p>
+<hr class="docutils" />
+<p><strong>Example 1.5.5</strong></p>
+<p>Consider <span class="math notranslate nohighlight">\(N\)</span> repeated addition of <span class="math notranslate nohighlight">\(x\)</span>, that is <span class="math notranslate nohighlight">\(x+x+\cdots+x\)</span>.  The exact answer is obviously <span class="math notranslate nohighlight">\(N x\)</span>.  However, the repeated addition accumulate tiny round-off errors.  Let us add <span class="math notranslate nohighlight">\(1.2\)</span> a million times.  The exact answer is <span class="math notranslate nohighlight">\(1.2 \times 10^6\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -686,21 +697,26 @@ x= 1.0e-17, y= 0.000000000000, x+2= 2.000000000000
 <span class="c1"># the above calculation is equivalent to 1.2 \times 10^6</span>
 <span class="n">xmul</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="n">x</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Summation = &quot;</span><span class="p">,</span><span class="n">xsum</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Multiplication =&quot;</span><span class="p">,</span> <span class="n">xmul</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;x+x+...+x =&quot;</span><span class="p">,</span><span class="n">xsum</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;      N*x =&quot;</span><span class="p">,</span> <span class="n">xmul</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;error =&quot;</span><span class="p">,</span><span class="n">xsum</span><span class="o">-</span><span class="n">xmul</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Summation =  1199999.9999773693
-Multiplication = 1200000.0
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>x+x+...+x = 1199999.9999773693
+      N*x = 1200000.0
 error = -2.263067290186882e-05
 </pre></div>
 </div>
 </div>
 </div>
-<p>The error is tiny but could be significant depending on the application. In computational physics applications, a million operations is very small calculation. Billions of operations are ubiquitous.  We need to be careful about the accumulation of tiny errors.</p>
+<p>The error is tiny but could be significant depending on the application. In many computational physics applications, a million operations is very small calculation. Billions of operations are ubiquitous.  We need to be careful about the accumulation of tiny errors.</p>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Accumulation of round-off errors</p>
+<p>A large number of floating point arithmetic operators accumulate round-off errors.</p>
+</div>
 </section>
 <section id="denormalized-floating-point-advanced-topics">
 <h2><span class="section-number">1.5.5. </span>Denormalized floating point (advanced topics)<a class="headerlink" href="#denormalized-floating-point-advanced-topics" title="Link to this heading">#</a></h2>

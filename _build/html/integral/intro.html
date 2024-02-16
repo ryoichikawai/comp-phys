@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Integralation &#8212; Computational Methods for Physics with Python.</title>
+    <title>3. Numerical Integration &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -65,11 +65,13 @@ const thebe_selector = ".thebe,.cell"
 const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Root Finding" href="../root-finding/intro.html" />
-    <link rel="prev" title="2.4. Laplacian" href="../derivative/laplacian.html" />
+    <link rel="next" title="3.1. Piecewise integration" href="rectangle.html" />
+    <link rel="prev" title="2.5. Problems" href="../derivative/problems.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -212,9 +214,13 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">2.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Integralation</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="rectangle.html">3.1. Piecewise integration</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
@@ -277,6 +283,37 @@ const thebe_selector_output = ".output, .cell_output"
 
 
 
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/intro.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
 <div class="dropdown dropdown-source-buttons">
   <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
     <i class="fab fa-github"></i>
@@ -332,7 +369,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/integral/intro.md" target="_blank"
+      <li><a href="../_sources/integral/intro.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -342,7 +379,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -414,7 +451,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Integralation</h1>
+    <h1>Numerical Integration</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -428,9 +465,13 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="integralation">
-<h1><span class="section-number">3. </span>Integralation<a class="headerlink" href="#integralation" title="Link to this heading">#</a></h1>
-<p><strong>To be written</strong></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="numerical-integration">
+<span id="ch-integral"></span><h1><span class="section-number">3. </span>Numerical Integration<a class="headerlink" href="#numerical-integration" title="Link to this heading">#</a></h1>
+<p>Like derivatives, integrals are also common mathematical tools used in physics.  While derivatives suffer from catastrofic cancellation due to the subtraction of two similar values, numerical integration is a bit more robust than numerical derivative since integration is essentiall addition.  However, the huge repetition of additions incur significant round-off errors as discussed in.  A good algorithm uses less addition without the expense of accuracy.  First, a simple method (rectangle rule) is used to demonstrate a basic idea of numerical integration.  Like forward finite difference method of numerical derivative, this method is not accurate enough for practical use.  However, a simple modification (trapezoidal rule), similar to mean finite difference method of numerical derivative, improves the accuracy.  More advanced methods (Simpson rule) will be introduced.</p>
+<p>Improper integral needs special attention.   For example, when integral limits involve infinity like <span class="math notranslate nohighlight">\(\displaystyle\int_0^\infty f(x) \dd{x}\)</span>,  most numerical integration methods require infinitely many addition, which cannot be done.  Another example is the case where integrand has integrable singularities like <span class="math notranslate nohighlight">\(\displaystyle\frac{1}{\sqrt{x}}\)</span>.  Since we cannot evaluate the function value at <span class="math notranslate nohighlight">\(x=0\)</span>, the common numerical methods fail.  There is no systematic resolution to these problems.  We need to deal with them on case-by-case basis.  Several common practices will be introduced in this chapter.
+In addition, a magic method called Gaussian quadrature, which gives rather accurate results for certain types of integrals just by computing several points, will be discussed.</p>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -442,16 +483,16 @@ document.write(`
         },
         codeMirrorConfig: {
             theme: "abcdef",
-            mode: "python"
+            mode: "jbook"
         },
         kernelOptions: {
-            name: "python3",
+            name: "jbook",
             path: "./integral"
         },
         predefinedOutput: true
     }
     </script>
-    <script>kernelName = 'python3'</script>
+    <script>kernelName = 'jbook'</script>
 
                 </article>
               
@@ -464,20 +505,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../derivative/laplacian.html"
+       href="../derivative/problems.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.4. </span>Laplacian</p>
+        <p class="prev-next-title"><span class="section-number">2.5. </span>Problems</p>
       </div>
     </a>
     <a class="right-next"
-       href="../root-finding/intro.html"
+       href="rectangle.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Root Finding</p>
+        <p class="prev-next-title"><span class="section-number">3.1. </span>Piecewise integration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -1,3 +1,0 @@
-# Defferentiation
-
-**To be written**
