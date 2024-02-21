@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -219,6 +219,7 @@ const thebe_selector_output = ".output, .cell_output"
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Piecewise integration</a></li>
+
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
@@ -463,10 +464,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3.1. Piecewise integration</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-methods">3.1.1. Rectangular methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">3.1.2. Trapezoidal rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-rule">3.1.3. Simpson rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-s-rule">3.1.3. Simpson’s rule</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">3.2. Canned routines</a></li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -533,7 +539,109 @@ Similarly to the numerical derivative problems, there are two different cases.  
 \]</div>
 <p>By neglecting <span class="math notranslate nohighlight">\(h^2\)</span> and higher orders, we obtain the rectangular rule.
 Therefore, the error of the rectangular rule is the order of <span class="math notranslate nohighlight">\(h^2\)</span> per segment.  Since there are <span class="math notranslate nohighlight">\(N\)</span> segments, the total error is
-order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>.  Hence, the total error is the order of <span class="math notranslate nohighlight">\(h\)</span>.  You might think that if a very small value of <span class="math notranslate nohighlight">\(h\)</span> is used the error is negligible. Unfortunately, the round-off error gets too large when <span class="math notranslate nohighlight">\(N\)</span> is too large (See Example x.x.x). In practice, this method is rarely used.</p>
+order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>.  Hence, the total error is the order of <span class="math notranslate nohighlight">\(h\)</span>.  You might think that if a very small value of <span class="math notranslate nohighlight">\(h\)</span> is used the error is negligible. Unfortunately, the round-off error gets too large when <span class="math notranslate nohighlight">\(N\)</span> is too large (See Sec <a class="reference internal" href="../numbers/errors.html#sec-digitization-errors"><span class="std std-numref">Section 1.5</span></a>). In practice, this method is rarely used.</p>
+<hr class="docutils" />
+<p><strong>Example 3.1.1</strong></p>
+<p>Let’s integrate <span class="math notranslate nohighlight">\(f(x)=x^2 \sin(x)\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=4\pi\)</span> using the rectangular rule.  The exact answer is
+<span class="math notranslate nohighlight">\(\int_0^{4 \pi} \cos(x) dx =8 \pi\)</span>. First we plot the function to see hpw the curve looks like.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">4.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;f(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" src="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" />
+<img alt="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" src="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" />
+</div>
+</div>
+<p>The curve oscillates and gets steeper as <span class="math notranslate nohighlight">\(x\)</span> increases. In addition, the functiopn value does not vanish at the upper integral limit.  The rectangular rule is not suitabgle for this type of curve.  In the following example code, we evaluate integral using <span class="math notranslate nohighlight">\(N=2^{k+2},\, k=0, \cdots (k_\text{max}-1)\)</span>.  The step size is given by <span class="math notranslate nohighlight">\(h=4\pi/N\)</span>.  We plot the integral and absolute error as a function of <span class="math notranslate nohighlight">\(h\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integration of x^2 cos(x) by the rectangular rule.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set the lower and upper bound of the integration.</span>
+<span class="n">a</span><span class="o">=</span><span class="mf">0.</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># exact value is known.</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># the number of evaluation points </span>
+<span class="n">kmax</span><span class="o">=</span><span class="mi">15</span>
+
+<span class="c1"># allocate arrays</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">integral</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">error</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+
+<span class="c1"># loop over different step size</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">kmax</span><span class="p">):</span>
+    
+    <span class="c1"># set the number of steps</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># set the step size</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+
+    <span class="c1"># the locations where the function is evaluated.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># function values</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># rectangluar rule</span>
+    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+    
+    <span class="c1"># absolute error</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">exact</span><span class="p">)</span>
+
+    <span class="c1"># reset x and f for next cycle</span>
+    <span class="k">del</span> <span class="n">x</span>
+    <span class="k">del</span> <span class="n">f</span>
+    
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># plot of the integral</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">integral</span><span class="p">,</span><span class="s2">&quot;-k&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;rectangular&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">h</span><span class="p">[</span><span class="n">kmax</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="n">exact</span><span class="p">,</span><span class="n">exact</span><span class="p">],</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Integral&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot of the absolute error</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;ob&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;rectangular&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$h$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/eb0dd59e20337794cbca98a8dc5c6c45fbcd07727d21b57722b6abe651de14e4.png" src="../_images/eb0dd59e20337794cbca98a8dc5c6c45fbcd07727d21b57722b6abe651de14e4.png" />
+</div>
+</div>
+<p>From naked eyes (left panel), the integral looks converging well below <span class="math notranslate nohighlight">\(h=10^{-2}\)</span>.  However, the actual error (right panel) shows that the error is still significant.  The error is propotional to <span class="math notranslate nohighlight">\(h\)</span> as the theory predicts.</p>
 </section>
 <section id="trapezoidal-rule">
 <h2><span class="section-number">3.1.2. </span>Trapezoidal rule<a class="headerlink" href="#trapezoidal-rule" title="Link to this heading">#</a></h2>
@@ -572,15 +680,96 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 <li><p>The integral is given by <span class="math notranslate nohighlight">\(s*h\)</span>.</p></li>
 </ol>
 </div>
+<hr class="docutils" />
+<p><strong>Example 3.1.2</strong></p>
+<p>We solve the same integral as Example 3.1.1 using the trapezoidal rule.  The oscillation function suggests that the curve gets steep between the tops and the bottoms.  The trapezoidal rule takes into account the slope.  The major soure of error is the big curvature at the tops and the bottoms.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integration of x^2 cos(x) by the rectangular rule.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set the lower and upper bound of the integration.</span>
+<span class="n">a</span><span class="o">=</span><span class="mf">0.</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># exact value is known.</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># the number of evaluation points </span>
+<span class="n">kmax</span><span class="o">=</span><span class="mi">15</span>
+
+<span class="c1"># allocate arrays</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">integral</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">error</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+
+<span class="c1"># loop over different step size</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">kmax</span><span class="p">):</span>
+    
+    <span class="c1"># set the number of steps</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># set the step size</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+
+    <span class="c1"># the locations where the function is evaluated.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># function values</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># trapezoidal rule</span>
+    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="mf">2.</span>
+    
+    <span class="c1"># absolute error</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">exact</span><span class="p">)</span>
+
+    <span class="c1"># reset x and f for next cycle</span>
+    <span class="k">del</span> <span class="n">x</span>
+    <span class="k">del</span> <span class="n">f</span>
+    
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># plot of the integral</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">integral</span><span class="p">,</span><span class="s2">&quot;-k&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;trapezoid&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">h</span><span class="p">[</span><span class="n">kmax</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="n">exact</span><span class="p">,</span><span class="n">exact</span><span class="p">],</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Integral&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot of the absolute error</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;ob&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;trapezoid&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$h^2$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/a9ae5b7b01f8790fe50f1b96c192000d1b7f8edbf5f7796f3038f7df752c36aa.png" src="../_images/a9ae5b7b01f8790fe50f1b96c192000d1b7f8edbf5f7796f3038f7df752c36aa.png" />
+</div>
+</div>
+<p>The integral seems converging faster than the rectangular rule in Example 3.1.1. The absolute error also shows that indeed the error decreasing much faster.  The arror is in propotion to <span class="math notranslate nohighlight">\(h^2\)</span> as expected from the theory.</p>
+<blockquote>
+<div><p><em>Exercise</em>:  Integrate <span class="math notranslate nohighlight">\(f(x)=x^2 \sin(x)\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=4 \pi\)</span> using rectangular and trapezoid rules.  Exact integral is <span class="math notranslate nohighlight">\(-16 \pi^2\)</span>.  Do you see any difference between the two methods?  If not, why?</p>
+</div></blockquote>
 </section>
-<section id="simpson-rule">
-<h2><span class="section-number">3.1.3. </span>Simpson rule<a class="headerlink" href="#simpson-rule" title="Link to this heading">#</a></h2>
+<section id="simpson-s-rule">
+<h2><span class="section-number">3.1.3. </span>Simpson’s rule<a class="headerlink" href="#simpson-s-rule" title="Link to this heading">#</a></h2>
 <p>The rectangular method takes into account opnly the first term in the expansion <a class="reference internal" href="#equation-eq-int-expand1">(3.3)</a> and ignores the first order derivative <span class="math notranslate nohighlight">\(f'(x)\)</span>.  The trapezoidal method includes the derivative information but ignores the second order derivative <span class="math notranslate nohighlight">\(f''(x)\)</span>.  On other words, it take into account the slope of the curve but not the curvature  Natural extension to this line of approximation is to take into account the curvature or <span class="math notranslate nohighlight">\(f''(x)\)</span>.  Recall that the evaluation of <span class="math notranslate nohighlight">\(f''(x)\)</span> requires at least three data points (See Sec <a class="reference internal" href="../derivative/derivative2.html#sec-diff-second"><span class="std std-numref">Section 2.3</span></a>.)  Hence, we consider another interval <span class="math notranslate nohighlight">\([x_{n-1},x_n]\)</span>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-int-expand2">
 <span class="eqno">(3.6)<a class="headerlink" href="#equation-eq-int-expand2" title="Link to this equation">#</a></span>\[
 \int_{x_{n}}^{x_{n}-h} f(x) dx = -f(x_n) h + f'(x_n) \frac{h^2}{2} - f''(x_n) \frac{h^3}{3!} + +f^{(3)}(x_n) \frac{h^4}{4!} + \mathcal{O}(h^5)
 \]</div>
-<p>By adding Eqs. <a class="reference internal" href="#equation-eq-int-expand1">(3.3)</a> and <a class="reference internal" href="#equation-eq-int-expand2">(3.6)</a>, we find the integral from <span class="math notranslate nohighlight">\(x_{n-1}\)</span> to <span class="math notranslate nohighlight">\(x_{n+1}\)</span> as</p>
+<p>By adding Eqs. <a class="reference internal" href="#equation-eq-int-expand1">(3.3)</a> and <a class="reference internal" href="#equation-eq-int-expand2">(3.6)</a>, we find an approximated integral as</p>
 <div class="math notranslate nohighlight" id="equation-eq-int-expand3">
 <span class="eqno">(3.7)<a class="headerlink" href="#equation-eq-int-expand3" title="Link to this equation">#</a></span>\[
 \int_{x_{n-1}}^{x_{n+1}} f(x) dx = 2 f'(x_n) h + 2 f''(x_n) \frac{h^3}{3!} + \mathcal{O}(h^5)
@@ -597,7 +786,7 @@ Repeating this formular, we obtain the <a class="reference external" href="https
 \[
 \int_{a}^{b} f(x) dx = \sum_{j=0}^{N/2-1} \left [ f(x_{2j})+4 f(x_{2j+1})+f(x_{2j+2}) \right ] \frac{h}{3} + \mathcal{O}(h^4)
 \]</div>
-<p>The error of the Simpson rule is the order of <span class="math notranslate nohighlight">\(h^5\)</span> per segment and thus <span class="math notranslate nohighlight">\(h^4\)</span> for the whole integral which is two orders of magnitude better than that of the trapezoidal rule.</p>
+<p>The error of the Simpson’s rule is the order of <span class="math notranslate nohighlight">\(h^5\)</span> per segment and thus <span class="math notranslate nohighlight">\(h^4\)</span> for the whole integral which is two orders of magnitude better than that of the trapezoidal rule.</p>
 <div class="admonition-alrgorithm-3-1-3-simpson-s-rule admonition">
 <p class="admonition-title">Alrgorithm 3.1.3:  Simpson’s rule</p>
 <ol class="arabic simple">
@@ -611,7 +800,176 @@ Repeating this formular, we obtain the <a class="reference external" href="https
 <li><p>The integral is given by <span class="math notranslate nohighlight">\(s*h/3.0\)</span>.</p></li>
 </ol>
 </div>
+<hr class="docutils" />
+<p><strong>Example 3.1.3</strong></p>
+<p>We solve the same integral as Example 3.1.1 using the Simplson’s rule.   The slope and the curvature are both taken care of by the Simpson’s rule.  Hence, we expect a very good result.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integration of x^2 cos(x) by the Simpson&#39;s rule.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># Set the lower and upper bound of the integration.</span>
+<span class="n">a</span><span class="o">=</span><span class="mf">0.</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># exact value is known.</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># the number of evaluation points </span>
+<span class="n">kmax</span><span class="o">=</span><span class="mi">15</span>
+
+<span class="c1"># allocate arrays</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">integral</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">error</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+
+<span class="c1"># loop over different step size</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">kmax</span><span class="p">):</span>
+    
+    <span class="c1"># set the number of steps</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># set the step size</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+
+    <span class="c1"># the locations where the function is evaluated.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># function values</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># trapezoidal rule</span>
+    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">+</span><span class="mf">4.0</span><span class="o">*</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">-</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="mf">3.</span>
+    
+    <span class="c1"># absolute error</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">exact</span><span class="p">)</span>
+
+    <span class="c1"># reset x and f for next cycle</span>
+    <span class="k">del</span> <span class="n">x</span>
+    <span class="k">del</span> <span class="n">f</span>
+    
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># plot of the integral</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">integral</span><span class="p">,</span><span class="s2">&quot;-k&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Simpson&#39;s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">h</span><span class="p">[</span><span class="n">kmax</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="n">exact</span><span class="p">,</span><span class="n">exact</span><span class="p">],</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Integral&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot of the absolute error</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;ob&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Simpson&#39;s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;$h^4$&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/effefb6447ac748992cd5947fca6a40bb3461b5a90443a7d493b485cd915d1f8.png" src="../_images/effefb6447ac748992cd5947fca6a40bb3461b5a90443a7d493b485cd915d1f8.png" />
+</div>
+</div>
+<p>The convergency is remarkably faster compared to the two previous methods.  The error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span> as theoretically estimated.  Note also that the round-off error is visible below <span class="math notranslate nohighlight">\(h=10^{-3}\)</span>.</p>
 </section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="canned-routines">
+<h1><span class="section-number">3.2. </span>Canned routines<a class="headerlink" href="#canned-routines" title="Link to this heading">#</a></h1>
+<p>The trapezoidal and Simplson’s rules are widely used in neumerical computations.  There are many preprogrmamed pacakges so that you don’t have to write your own code.  Nothing is worng with using the canned routines.  However, we must know the limitation of the methods the routines use or otherwise your calculation may not be accurate.</p>
+<p>A python package <a class="reference external" href="https://scipy.org">scipy</a> contains a large number of canned routines for scientific computation, including <code class="docutils literal notranslate"><span class="pre">trapzoid</span></code> (trapezoidal rule) and <code class="docutils literal notranslate"><span class="pre">simpson</span></code> (Simpson’s rule).  The following example uses the <code class="docutils literal notranslate"><span class="pre">simpson</span></code> subroutine.</p>
+<hr class="docutils" />
+<p><strong>Example 3.1.4</strong></p>
+<p>We solve the same integral as Example 3.1.1 using simpson  in scipy.  See <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.integrate.simpson.html#scipy.integrate.simpson">reference manual</a>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Integration of x^2 cos(x) using the canned routines `simpson` in scipy.</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># load the scipy integral package</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+
+<span class="c1"># Set the lower and upper bound of the integration.</span>
+<span class="n">a</span><span class="o">=</span><span class="mf">0.</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">4.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># exact value is known.</span>
+<span class="n">exact</span> <span class="o">=</span> <span class="mf">8.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+
+<span class="c1"># the number of evaluation points </span>
+<span class="n">kmax</span><span class="o">=</span><span class="mi">15</span>
+
+<span class="c1"># allocate arrays</span>
+<span class="n">h</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">integral</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+<span class="n">error</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">kmax</span><span class="p">)</span>
+
+<span class="c1"># loop over different step size</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">kmax</span><span class="p">):</span>
+    
+    <span class="c1"># set the number of steps</span>
+    <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">k</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># set the step size</span>
+    <span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+
+    <span class="c1"># the locations where the function is evaluated.</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># function values</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+    <span class="c1"># Simpson subroutine from scipy.</span>
+    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">integrate</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="c1"># absolute error</span>
+    <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">exact</span><span class="p">)</span>
+
+    <span class="c1"># reset x and f for next cycle</span>
+    <span class="k">del</span> <span class="n">x</span>
+    <span class="k">del</span> <span class="n">f</span>
+    
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># plot of the integral</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">integral</span><span class="p">,</span><span class="s2">&quot;-k&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;simpson in scipy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">([</span><span class="n">h</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">h</span><span class="p">[</span><span class="n">kmax</span><span class="o">-</span><span class="mi">1</span><span class="p">]],[</span><span class="n">exact</span><span class="p">,</span><span class="n">exact</span><span class="p">],</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Integral&quot;</span><span class="p">)</span>
+
+<span class="c1"># plot of the absolute error</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">error</span><span class="p">,</span> <span class="s2">&quot;ob&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;simpson in scipy&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">loglog</span><span class="p">(</span><span class="n">h</span><span class="p">,</span><span class="n">h</span><span class="o">**</span><span class="mi">4</span><span class="p">,</span><span class="s2">&quot;--r&quot;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;$h^4$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;h&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/0ad5e747d527b5211d1a069bcd74a63b85ece7a82b8d312d304ac247cce58984.png" src="../_images/0ad5e747d527b5211d1a069bcd74a63b85ece7a82b8d312d304ac247cce58984.png" />
+</div>
+</div>
+<p>The result is identical to that of Example 3.1.3.</p>
+<blockquote>
+<div><p><em>Exercise</em>:  Numerically evaluate <span class="math notranslate nohighlight">\(\int_0^{2 n \pi} e^{-x} \cos(x)\, dx\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is integer.  The exact answer is <span class="math notranslate nohighlight">\(\frac{1}{2}\left(1-e^{-2 n \pi}\right)\)</span>.  Try  <span class="math notranslate nohighlight">\(n=1, 5, 10\)</span>.   Minize the error so that siginificant figures are more than 4.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>Last modified on 2/21/2024 by R. Kawai</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -678,10 +1036,15 @@ Repeating this formular, we obtain the <a class="reference external" href="https
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">3.1. Piecewise integration</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rectangular-methods">3.1.1. Rectangular methods</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#trapezoidal-rule">3.1.2. Trapezoidal rule</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-rule">3.1.3. Simpson rule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simpson-s-rule">3.1.3. Simpson’s rule</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">3.2. Canned routines</a></li>
+</ul>
+
   </nav></div>
 
 </div></div>
