@@ -37,6 +37,7 @@ parts:
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
+      -  file: integral/problems
    -  file: root-finding/intro
    -  file: ode/intro
    -  file: matrix/intro
