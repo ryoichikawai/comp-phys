@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -70,7 +70,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/piecewise';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3.3. Problems" href="problems.html" />
+    <link rel="next" title="3.3. Improper Integral I: Infinite interval" href="improper_infinite.html" />
     <link rel="prev" title="3. Numerical Integration" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -220,7 +220,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Piecewise integration</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="problems.html">3.3. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">3.3. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">3.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises.html">3.5. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
@@ -561,11 +563,13 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;f(x)&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f7a286c4400&gt;]
+</pre></div>
+</div>
 <img alt="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" src="../_images/d9dbf02f413306a8966e07904771a9f0d0c88eeda71db6e14a22afdd7a502694.png" />
 </div>
 </div>
@@ -656,7 +660,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 <p>Adding all segments, we obtain the <a class="reference external" href="https://en.wikipedia.org/wiki/Trapezoidal_rule">trapezoidal rule</a></p>
 <div class="math notranslate nohighlight" id="equation-eq-int-trapezoid">
 <span class="eqno">(3.4)<a class="headerlink" href="#equation-eq-int-trapezoid" title="Link to this equation">#</a></span>\[
-\int_{a}^{b} f(x) dx \approx \sum_{n=0}^{N-1} \frac{h}{2}[f(x_n)+f(x_{n+1})] = \frac{h}{2} [f(a) + f(b)] + \sum_{n=1}^{N-1} f(x_n)
+\int_{a}^{b} f(x) dx \approx \sum_{n=0}^{N-1} \frac{h}{2}[f(x_n)+f(x_{n+1})] = \frac{h}{2} [f(a) + f(b)] + h \sum_{n=1}^{N-1} f(x_n)
 \]</div>
 <p>Notice that this formula is equivalen to the average of the forward and backward rectangular methods.   Note also that the difference between the trapezoidal rule and the rectangular rule is only how the end points <span class="math notranslate nohighlight">\(f(a)\)</span> and <span class="math notranslate nohighlight">\(f(b)\)</span> are treated.</p>
 <figure class="align-default" id="fig-int-trapezoid">
@@ -674,13 +678,13 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 <div class="admonition-alrgorithm-3-1-2-trapezoidal-rule admonition">
 <p class="admonition-title">Alrgorithm 3.1.2:  Trapezoidal rule</p>
 <ol class="arabic simple">
-<li><p>Set the step length: <span class="math notranslate nohighlight">\(h=\displaystyle\frac{b-a}{N}\)</span></p></li>
-<li><p>Set <span class="math notranslate nohighlight">\(s=0.5*(f(a)+f(b))\)</span> where <span class="math notranslate nohighlight">\(s\)</span> should be double (float64).</p></li>
-<li><p>Repeat steps 4-6 for <span class="math notranslate nohighlight">\(n=1\)</span> to <span class="math notranslate nohighlight">\(n=N-1\)</span>:</p></li>
-<li><p><span class="math notranslate nohighlight">\(x=a+n*h\)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\(s=s+f(x)\)</span>.</p></li>
-<li><p>Go back to step 4 and repeat with new <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
-<li><p>The integral is given by <span class="math notranslate nohighlight">\(s*h\)</span>.</p></li>
+<li><p>Choose an appropriate N (often through try and error).</p></li>
+<li><p>Get the step length: <span class="math notranslate nohighlight">\(h=\displaystyle\frac{b-a}{N}\)</span></p></li>
+<li><p>Generate evaluation points <span class="math notranslate nohighlight">\(x_n = a + n h,\, n=0,\cdots N\)</span>.</p></li>
+<li><p>Evaluate function values:  <span class="math notranslate nohighlight">\(f_n = f(x_n)\)</span></p></li>
+<li><p>Add up all <span class="math notranslate nohighlight">\(f_n\)</span>.</p></li>
+<li><p>Apply the boundary correction, that is subtract <span class="math notranslate nohighlight">\(f(x_0)+f(x_n)\)</span>.</p></li>
+<li><p>Multiply <span class="math notranslate nohighlight">\(h\)</span>,</p></li>
 </ol>
 </div>
 <hr class="docutils" />
@@ -724,7 +728,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
     <span class="n">f</span> <span class="o">=</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
     <span class="c1"># trapezoidal rule</span>
-    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">N</span><span class="p">]</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="mf">2.</span>
+    <span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">f</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="p">])</span><span class="o">*</span><span class="n">h</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="mf">2.</span>
     
     <span class="c1"># absolute error</span>
     <span class="n">error</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="n">integral</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">exact</span><span class="p">)</span>
@@ -970,8 +974,8 @@ Repeating this formular, we obtain the <a class="reference external" href="https
 </div></blockquote>
 <section id="clenshawcurtis-quadrature">
 <h2><span class="section-number">3.2.1. </span>Clenshaw–Curtis quadrature<a class="headerlink" href="#clenshawcurtis-quadrature" title="Link to this heading">#</a></h2>
-<p>Simpson’s method provides adequate accuracy for most of application.  There are even better methods, for example, <a class="reference external" href="https://en.wikipedia.org/wiki/Clenshaw%E2%80%93Curtis_quadrature">Clenshaw–Curtis quadrature</a>.  The algorithm is a bit more complicated.  The idea is to trnasform an integral to another integral suitable for neumarical integration by variable transformations and the Fourier cosine expansion. See <a class="reference external" href="https://en.wikipedia.org/wiki/Clenshaw%E2%80%93Curtis_quadrature">Wikipedia page</a> for details.</p>
-<p>Scipy provides a canned routine <code class="docutils literal notranslate"><span class="pre">quad</span></code> which uses the Clenshaw–Curtis quadrature.  You can compute <span class="math notranslate nohighlight">\(\int_a^b f(x) dx\)</span> by just calling <code class="docutils literal notranslate"><span class="pre">quad(f(x),a,b)</span></code>.  You dont have to specify the stempsize <span class="math notranslate nohighlight">\(h\)</span> nor the number of steps <span class="math notranslate nohighlight">\(N\)</span>.  It returns the integral value and the absolute error in a tuple.<br />
+<p>Simpson’s method provides adequate accuracy for most of application.  There are even better methods, for example, <a class="reference external" href="https://en.wikipedia.org/wiki/Clenshaw%E2%80%93Curtis_quadrature">Clenshaw–Curtis quadrature</a>.  The algorithm is a bit more complicated.  The idea is to convert the original integral to another form of integral suitable for neumarical integration by variable transformations and the Fourier cosine expansion. See <a class="reference external" href="https://en.wikipedia.org/wiki/Clenshaw%E2%80%93Curtis_quadrature">Wikipedia page</a> for details.</p>
+<p>Scipy provides a canned routine <code class="docutils literal notranslate"><span class="pre">quad</span></code> which uses the Clenshaw–Curtis quadrature.  You can compute <span class="math notranslate nohighlight">\(\int_a^b f(x) dx\)</span> by just calling <code class="docutils literal notranslate"><span class="pre">quad(f(x),a,b)</span></code>.  You dont have to specify the stempsize <span class="math notranslate nohighlight">\(h\)</span> nor the number of steps <span class="math notranslate nohighlight">\(N\)</span>.  It is automatically It returns the integral value and the absolute error in a tuple.<br />
 In most cases, the error is close to the round-off limit.  See the following example.</p>
 <hr class="docutils" />
 <p><strong>Example 3.1.4</strong>  We solve the same integral as Example 3.1.1 using quad in scipy.</p>
@@ -1042,11 +1046,11 @@ abs. error: 4.7354927655701164e-12
       </div>
     </a>
     <a class="right-next"
-       href="problems.html"
+       href="improper_infinite.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3.3. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Improper Integral I: Infinite interval</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

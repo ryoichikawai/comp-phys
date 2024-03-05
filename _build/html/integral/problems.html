@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Problems &#8212; Computational Methods for Physics with Python.</title>
+    <title>3.4. Problems &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -70,8 +70,8 @@ const thebe_selector_output = ".output, .cell_output"
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/problems';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4. Root Finding" href="../root-finding/intro.html" />
-    <link rel="prev" title="3.1. Piecewise integration" href="piecewise.html" />
+    <link rel="next" title="3.5. Exercise solutions" href="exercises.html" />
+    <link rel="prev" title="3.3. Improper Integral I: Infinite interval" href="improper_infinite.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -220,7 +220,9 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">3.1. Piecewise integration</a></li>
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">3.3. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises.html">3.5. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
@@ -468,7 +470,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="problems">
-<span id="sec-int-problems"></span><h1><span class="section-number">3.3. </span>Problems<a class="headerlink" href="#problems" title="Link to this heading">#</a></h1>
+<span id="sec-int-problems"></span><h1><span class="section-number">3.4. </span>Problems<a class="headerlink" href="#problems" title="Link to this heading">#</a></h1>
 <p><strong>3.1</strong> Integrate <span class="math notranslate nohighlight">\(f(x)=x^2 \sin(x)\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=4 \pi\)</span> using rectangular and trapezoid rules.  Exact integral is <span class="math notranslate nohighlight">\(-16 \pi^2\)</span>.  Do you see any difference between the two methods?  If not, why?</p>
 <hr class="docutils" />
 <p><strong>3.2</strong>  Numerically integrate <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{\sin(x)}{1+x^2}\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=\pi\)</span> using your favorite method.
@@ -483,8 +485,17 @@ Analytical solution by Mathematica is</p>
 The answer should be real but the result contains imaginary unit.  It is not obvious that the imaginary parts are canceled out. This expression is too complicated.  Analytical solutions are not always useful.  Furthermore, these trigonometric integrals must be numerically evaluated.  So, why don’t we evaluate the original integral numerically from the beginning?</p>
 <p>The numerical result from Mathematica is <span class="math notranslate nohighlight">\(0.716086 + 4.08428 \times 10^{-17} i\)</span>.  The imaginary part is supposed to be zero but it was not fully cancelled out due to the round-off error.  You should be able to do better than Mathematica.</p>
 <hr class="docutils" />
-<p><strong>3.3</strong> Evaluate the integral <span class="math notranslate nohighlight">\(\displaystyle\int_0^5 (4x-x^2) e^{-2x} dx\)</span>.
-The exact value is known to be <span class="math notranslate nohighlight">\(\displaystyle\frac{3}{4} + \frac{17}{4} e^{-10}\sim 0.75019294970149056062\)</span>.  The integrand rises very rapidly and decreases to zero slowly. The standard piecewise integration methods do not like this kind of integral.</p>
+<p><strong>3.3</strong> The energy density of blackbody radiation at temperature <span class="math notranslate nohighlight">\(T\)</span> is given by <span class="math notranslate nohighlight">\(u(T) = \displaystyle\frac{8 \pi (k T)^4}{(h c)^3} J\)</span>
+where <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(k\)</span> are Plank constant\cite{Griffiths}, speed of light, and Boltzmann constant\cite{Blundell}.
+The factor <span class="math notranslate nohighlight">\(J\)</span> is a dimensionless constant determined by integral:</p>
+<div class="math notranslate nohighlight">
+\[
+J = \int_0^\infty \frac{x^3}{e^x  - 1} \, dx
+\]</div>
+<p>This integral can be analytically calculated and the answer is  <span class="math notranslate nohighlight">\(J = \frac{\pi^4}{15}\)</span>.<br />
+Integrate it numerically and compare the result with the exact value.</p>
+<p><em>Hint</em> Note that the integrand can be written as <span class="math notranslate nohighlight">\(f(x) e^{-x}\)</span> where <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{x^3}{1  - e^{-x}}\)</span>.  If <span class="math notranslate nohighlight">\(f(x)\)</span> behaves nicely, you may be able to use the Gauss-Lagurre quadrature.
+Indeed <span class="math notranslate nohighlight">\(f(x) \rightarrow x^3\)</span> as <span class="math notranslate nohighlight">\(x \rightarrow \infty\)</span> and thus <span class="math notranslate nohighlight">\(f(x)\)</span> behaves like a polynomial.  Then, the Gaussian quadrature is expected to generate a good result.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -518,20 +529,20 @@ The exact value is known to be <span class="math notranslate nohighlight">\(\dis
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="piecewise.html"
+       href="improper_infinite.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">3.1. </span>Piecewise integration</p>
+        <p class="prev-next-title"><span class="section-number">3.3. </span>Improper Integral I: Infinite interval</p>
       </div>
     </a>
     <a class="right-next"
-       href="../root-finding/intro.html"
+       href="exercises.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4. </span>Root Finding</p>
+        <p class="prev-next-title"><span class="section-number">3.5. </span>Exercise solutions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

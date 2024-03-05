@@ -1,0 +1,870 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>3.3. Improper Integral I: Infinite interval &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/improper_infinite';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="3.4. Problems" href="problems.html" />
+    <link rel="prev" title="3.1. Piecewise integration" href="piecewise.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.6. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">2.5. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="piecewise.html">3.1. Piecewise integration</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">3.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exercises.html">3.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/improper_infinite.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/improper_infinite.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/integral/improper_infinite.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Improper Integral I: Infinite interval</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">3.3.1. Method of variable transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">3.3.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">3.3.2.1. Gauss-Lagguerre quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">3.3.2.2. Gauss-Hermite quadrature</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="improper-integral-i-infinite-interval">
+<span id="sec-int-improper1"></span><h1><span class="section-number">3.3. </span>Improper Integral I: Infinite interval<a class="headerlink" href="#improper-integral-i-infinite-interval" title="Link to this heading">#</a></h1>
+<p>When infinity is involved in either the integral interval or the integrand, we have an <a class="reference external" href="https://en.wikipedia.org/wiki/Improper_integral">improper integral</a>.  In this section, we deal with the former and the latter type of improper integral is discussed in the next section.</p>
+<p>If the upper and/or lower limit envolves <span class="math notranslate nohighlight">\(\infty\)</span>,  the methods of peicewise intetration won’t work since infinite segments must be added up.</p>
+<p>For example, consider</p>
+<div class="math notranslate nohighlight">
+\[
+\int_1^\infty x^{-2}\, dx\,.
+\]</div>
+<p>Despite the infinite interval this integral converges to <span class="math notranslate nohighlight">\(1\)</span>.   One might hope that the infinity can be approximated by some large number <span class="math notranslate nohighlight">\(L\)</span>.  Then, the approxmated integral is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_1^L x^{-2}\, dx = 1 - \frac{1}{L}
+\]</div>
+<p>If we want to get four digits of accuracy, <span class="math notranslate nohighlight">\(L\)</span> must be larger than <span class="math notranslate nohighlight">\(10^{4}\)</span>.  If step size <span class="math notranslate nohighlight">\(h=10^{-2}\)</span> is used, we have sum up <span class="math notranslate nohighlight">\(10^6\)</span> segments.</p>
+<blockquote>
+<div><p><strong>Exercise 3.2.1</strong>:  Evaluate the integral using the trapezoidal rule.</p>
+</div></blockquote>
+<p>The output of the above exercise suggests that this approach is feasible for this simple integral. However, if we need a higher accuracy, the accumulation of round-off error may become an issue. Furthermore, if the integrand is more complicated, it is difficult to find an appropriate upper bound.</p>
+<p>There are better strategies.  In the following, two approaches are introduced.</p>
+<section id="method-of-variable-transformation">
+<h2><span class="section-number">3.3.1. </span>Method of variable transformation<a class="headerlink" href="#method-of-variable-transformation" title="Link to this heading">#</a></h2>
+<p>One way to overcome the above problem is to split the integral to two parts</p>
+<div class="math notranslate nohighlight">
+\[
+\int_a^\infty f(x)\, dx = \int_a^b f(x)\, dx + \int_b^\infty f(x)\,dx
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(b\)</span> is a constant to be chosen.
+The first term in the right hand side can be integrated by the trapezoidal or the simpson rule. The second term needs to be transformed to a numerically computable form by introducing a new variable <span class="math notranslate nohighlight">\(y=\displaystyle\frac{1}{x}\)</span>. Then, the integral we need to compute is</p>
+<div class="math notranslate nohighlight">
+\[
+\int_b^\infty f(x)\, dx = \int_0^{1/b} \frac{1}{y^2}\, f\left (\frac{1}{y} \right )\, dy
+\]</div>
+<p>Now the infinity disappeared.
+However, the new form is not necessarily trouble free since the integrand may not be defined at the lower bound  (divided-by-zero error). If we can evaluate <span class="math notranslate nohighlight">\(\displaystyle\lim_{y \rightarrow 0} \frac{1}{y^2} f\left (\frac{1}{y} \right )\)</span> analytically by hand, then standard methods such as the Simpson method works if an appropriate <span class="math notranslate nohighlight">\(b\)</span> is chosen.</p>
+<p><strong>Example 3.2.1</strong>  Evcaluate <span class="math notranslate nohighlight">\(\displaystyle\int_0^\infty \frac{1}{x^2+1} dx\)</span>.  The exact answer is known to be <span class="math notranslate nohighlight">\(\pi/2\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^\infty \frac{1}{x^2+1} dx = \int_0^b \frac{1}{x^2+1} dx + \int_0^{1/b} \frac{1}{y^2}\frac{1}{\frac{1}{y^2}+1} dy = \int_0^b \frac{1}{x^2+1} dx + \int_0^{1/b} \frac{1}{y^2+1} dy
+\]</div>
+<p>Now we conveniently choose <span class="math notranslate nohighlight">\(b=1\)</span>.  Then, the two seprate integrals become ideitical.  Hence,</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^\infty \frac{1}{x^2+1} dx = \int_0^1 \frac{2}{x^2+1} dx
+\]</div>
+<p>Now, we integrate this using the Simson’s rule.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">100</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mf">2.</span><span class="o">/</span><span class="p">(</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">s</span><span class="o">=</span><span class="n">integrate</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+<span class="n">error</span><span class="o">=</span><span class="n">s</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;simpson =&quot;</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  exact =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  error =&quot;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>simpson = 1.5707963267948768
+  exact = 1.5707963267948966
+  error = -1.9761969838327786e-14
+</pre></div>
+</div>
+</div>
+</div>
+<p>We obtain 14 digits of precision.</p>
+<p>There is another variable transformation for <span class="math notranslate nohighlight">\(\int_0^\infty f(x) dx\)</span>.  Using <span class="math notranslate nohighlight">\(x = (1-y)/y\)</span> and its inverse <span class="math notranslate nohighlight">\(y = 1/(x+1)\)</span></p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^\infty f(x) \, dx = \int_0^1 \frac{1}{y^2} f\left(\frac{1-y}{y}\right)\, dy
+\]</div>
+<p>This is not necessary a better approach than the previous one. One advantage is that we don’t have to devide the interval. In fact, many canned routines such as scipy.integrate.quad uses this method.  So, you may want to try this approach first.  If not satisfactory, use the previous one.</p>
+<blockquote>
+<div><p><strong>Exercise 3.2.2:</strong>  Solve Exercise 3.2.1 using this method. Is there any improvment in the accuracy?</p>
+</div></blockquote>
+</section>
+<section id="gaussian-quadratures">
+<h2><span class="section-number">3.3.2. </span>Gaussian Quadratures<a class="headerlink" href="#gaussian-quadratures" title="Link to this heading">#</a></h2>
+<p>There amazing methods, known as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian quadrature</a>.  Some of them are quite useful for physics as shown in Appication section.  In the following, we introduce two of them <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Laguerre_quadrature">Gauss-Laggeurre quadrature</a> and
+<a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Hermite_quadrature">Gauss–Hermite quadrature</a>.</p>
+<section id="gauss-lagguerre-quadrature">
+<h3><span class="section-number">3.3.2.1. </span>Gauss-Lagguerre quadrature<a class="headerlink" href="#gauss-lagguerre-quadrature" title="Link to this heading">#</a></h3>
+<p>the Gaussian-Laguerre Quadrature approximate the following form of integral as a simple weighted sum:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^\infty f(x) e^{-x} \, dx \approx \sum_{i=1}^{n} w_i f(x_i)
+\]</div>
+<p>where the bscissa <span class="math notranslate nohighlight">\(x_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>-th root of Laguerre polynomial <span class="math notranslate nohighlight">\(L_n(x)\)</span> and the weight <span class="math notranslate nohighlight">\(w_i\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{x_i}{(n+1)^2[L_{n+1}(x_i)]^2}
+\]</div>
+<p>Amazingly, <span class="math notranslate nohighlight">\(n\)</span> can be as small as 4 to get a resonable approximation despite that the integral interval is infinite. It is almost a miracle that the sum of several terms approximate the improper integral.  Now, a question is if this method can be used in the absence of the exponential function.  Suppose that we want to evalute <span class="math notranslate nohighlight">\(\int_0^\infty g(x)\, dx\)</span>. Can we do the following?</p>
+<div class="math notranslate nohighlight">
+\[
+\int_0^\infty g(x)\, dx = \int_0^\infty g(x) e^{x} e^{-x}\, dx \approx \sum_{i=1}^{n} w_i g(x_i) e^{x_i}
+\]</div>
+<p>It looks cheating.  It is known to work in some cases but fails in many other cases.  There is no guarntee.</p>
+<p>The following code generates the abscissas and the weights for any ginve <span class="math notranslate nohighlight">\(n\)</span> with 20 digits of precision. See Chapter xxx for root finding methods and Chapter yyy for special functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># We use sympy package</span>
+<span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="n">symbols</span><span class="p">,</span> <span class="n">poly</span><span class="p">,</span> <span class="n">laguerre</span>
+
+<span class="c1"># this function computes abscissas and weights for ginve n</span>
+<span class="k">def</span> <span class="nf">laguerre_weights_roots</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="n">laguerre</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">all_roots</span><span class="p">()</span>
+    <span class="n">x_i</span> <span class="o">=</span> <span class="p">[</span><span class="n">rt</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">]</span>
+    <span class="n">w_i</span> <span class="o">=</span> <span class="p">[(</span><span class="n">rt</span> <span class="o">/</span> <span class="p">((</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">laguerre</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">rt</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">w_i</span>
+
+<span class="c1"># set the number of abscissas</span>
+<span class="n">n</span><span class="o">=</span><span class="mi">4</span>
+
+<span class="c1"># compute all abscissas and weights</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">laguerre_weights_roots</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="c1"># print out the results</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; </span><span class="si">{0:^3}</span><span class="s2"> </span><span class="si">{1:^25}</span><span class="s2"> </span><span class="si">{2:^25}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span><span class="s2">&quot;x_i&quot;</span><span class="p">,</span><span class="s2">&quot;w_i&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:3d}</span><span class="s2"> </span><span class="si">{1:25.19e}</span><span class="s2"> </span><span class="si">{2:25.19e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  i             x_i                       w_i           
+  0  3.2254768961939231180e-1  6.0315410434163360164e-1
+  1  1.7457611011583465757e+0  3.5741869243779968664e-1
+  2  4.5366202969211279833e+0  3.8887908515005384272e-2
+  3  9.3950709123011331292e+0  5.3929470556132745010e-4
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example 3.2.2</strong>  Let us evaluate <span class="math notranslate nohighlight">\(\int_0^\infty \sin(b x) e^{-a x}\, dx\)</span>.  The exact anser is <span class="math notranslate nohighlight">\(\frac{b}{a^2 + b^2}\)</span>. We try <span class="math notranslate nohighlight">\(a=b=1\)</span>.  Then, the answer should be <span class="math notranslate nohighlight">\(0.5\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># We use 8-point method.</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.7027963230510100e-1</span><span class="p">,</span> <span class="mf">9.0370177679937991e-1</span><span class="p">,</span>
+            <span class="mf">2.2510866298661307</span><span class="p">,</span>    <span class="mf">4.2667001702876588</span><span class="p">,</span>
+            <span class="mf">7.0459054023934657</span><span class="p">,</span>    <span class="mf">1.0758516010180995e+1</span><span class="p">,</span>
+            <span class="mf">1.5740678641278005e+1</span><span class="p">,</span> <span class="mf">2.2863131736889264e+1</span><span class="p">])</span>
+
+<span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.6918858934163753e-1</span><span class="p">,</span> <span class="mf">4.1878678081434296e-1</span><span class="p">,</span>
+            <span class="mf">1.7579498663717181e-1</span><span class="p">,</span> <span class="mf">3.3343492261215652e-2</span><span class="p">,</span>
+            <span class="mf">2.7945362352256725e-3</span><span class="p">,</span> <span class="mf">9.0765087733582131e-5</span><span class="p">,</span>
+            <span class="mf">8.4857467162725315e-7</span><span class="p">,</span> <span class="mf">1.0480011748715104e-9</span><span class="p">])</span>
+
+<span class="n">gauss</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">exact</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Exact=</span><span class="si">{0:18.12e}</span><span class="se">\n</span><span class="s2"> Gauss=</span><span class="si">{1:18.12e}</span><span class="se">\n</span><span class="s2"> Error=</span><span class="si">{2:18.12e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span>  <span class="n">gauss</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">gauss</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Exact=5.000000000000e-01
+ Gauss=4.999877537353e-01
+ Error=1.224626470031e-05
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example 3.2.3</strong></p>
+<p>Considering we used only 8 points, five digits agreement is quite good.</p>
+<blockquote>
+<div><p><strong>Exercise:</strong>  Try <span class="math notranslate nohighlight">\(n=4\)</span> and find how good or bad it is.</p>
+</div></blockquote>
+</section>
+<section id="gauss-hermite-quadrature">
+<h3><span class="section-number">3.3.2.2. </span>Gauss-Hermite quadrature<a class="headerlink" href="#gauss-hermite-quadrature" title="Link to this heading">#</a></h3>
+<p>Another popular Gaussian quadrature is <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Hermite_quadrature">Gauss-Hermite quadrature</a> which approximates the following improper integral:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{-\infty}^\infty f(x) e^{-x^2}\, dx \approx \sum_{i=1}^n w_i \left[f(x_i)+f(-x_i) \right]
+\]</div>
+<p>where the bscissa <span class="math notranslate nohighlight">\(x_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span>-th root of Hermite polynomial <span class="math notranslate nohighlight">\(H_n(x)\)</span> and the weight <span class="math notranslate nohighlight">\(w_i\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+w_i = \frac{2^{n-1} n! \sqrt{\pi}}{n^2[H_{n-1}(x_i)]^2}
+\]</div>
+<p>The following code generates the abscissas and the weights for any ginve  with 20 digits of precision. See Chapter xxx for root finding methods and Chapter yyy for special functions.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">hermite_weights_roots</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">roots</span> <span class="o">=</span> <span class="n">poly</span><span class="p">(</span><span class="n">hermite</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">all_roots</span><span class="p">()</span>
+    <span class="n">x_i</span> <span class="o">=</span> <span class="p">[</span><span class="n">rt</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">]</span>
+    <span class="n">w_i</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">2</span><span class="o">**</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">*</span> <span class="n">hermite</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">rt</span><span class="p">))</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">evalf</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span> <span class="k">for</span> <span class="n">rt</span> <span class="ow">in</span> <span class="n">roots</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">x_i</span><span class="p">,</span> <span class="n">w_i</span>
+
+<span class="n">n</span><span class="o">=</span><span class="mi">8</span>
+<span class="p">[</span><span class="n">x</span><span class="p">,</span><span class="n">w</span><span class="p">]</span><span class="o">=</span><span class="n">hermite_weights_roots</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; </span><span class="si">{0:^3}</span><span class="s2"> </span><span class="si">{1:^25}</span><span class="s2"> </span><span class="si">{2:^25}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;i&quot;</span><span class="p">,</span><span class="s2">&quot;x_i&quot;</span><span class="p">,</span><span class="s2">&quot;w_i&quot;</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{0:3d}</span><span class="s2"> </span><span class="si">{1:25.19e}</span><span class="s2"> </span><span class="si">{2:25.19e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">w</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>  i             x_i                       w_i           
+  0 -2.9306374202572440192e+0  1.9960407221136761921e-4
+  1 -1.9816567566958429259e+0  1.7077983007413475456e-2
+  2 -1.1571937124467801947e+0  2.0780232581489187954e-1
+  3 -3.8118699020732211685e-1  6.6114701255824129103e-1
+  4  3.8118699020732211685e-1  6.6114701255824129103e-1
+  5  1.1571937124467801947e+0  2.0780232581489187954e-1
+  6  1.9816567566958429259e+0  1.7077983007413475456e-2
+  7  2.9306374202572440192e+0  1.9960407221136761921e-4
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Example 3.2.2</strong>  Let us evaluate <span class="math notranslate nohighlight">\(\int_{-\infty}^\infty \cos(x) e^{-x^2}\, dx\)</span>.  The exact answer is <span class="math notranslate nohighlight">\(\sqrt{\pi}e^{-1/4}\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># We use 8-point method.</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mf">2.9306374202572440192</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.9816567566958429259</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">1.1571937124467801947</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3811869902073221168</span><span class="p">,</span>
+             <span class="mf">0.3811869902073221168</span><span class="p">,</span>  <span class="mf">1.1571937124467801947</span><span class="p">,</span>
+             <span class="mf">1.9816567566958429259</span><span class="p">,</span>  <span class="mf">2.9306374202572440192</span><span class="p">])</span>
+
+<span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.9960407221136761921e-4</span><span class="p">,</span> <span class="mf">1.7077983007413475456e-2</span><span class="p">,</span>
+            <span class="mf">2.0780232581489187954e-1</span><span class="p">,</span> <span class="mf">6.6114701255824129103e-1</span><span class="p">,</span>
+            <span class="mf">6.6114701255824129103e-1</span><span class="p">,</span> <span class="mf">2.0780232581489187954e-1</span><span class="p">,</span>
+            <span class="mf">1.7077983007413475456e-2</span><span class="p">,</span> <span class="mf">1.9960407221136761921e-4</span><span class="p">])</span>
+
+<span class="n">gauss</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<span class="n">exact</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">1.</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Exact=</span><span class="si">{0:18.12e}</span><span class="se">\n</span><span class="s2"> Gauss=</span><span class="si">{1:18.12e}</span><span class="se">\n</span><span class="s2"> Error=</span><span class="si">{2:18.12e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span>  <span class="n">gauss</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">gauss</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Exact=1.380388447043e+00
+ Gauss=1.380388447031e+00
+ Error=1.184230491447e-11
+</pre></div>
+</div>
+</div>
+</div>
+<p>The agreement is quite good.</p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./integral"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="piecewise.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">3.1. </span>Piecewise integration</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="problems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Problems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">3.3.1. Method of variable transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">3.3.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">3.3.2.1. Gauss-Lagguerre quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">3.3.2.2. Gauss-Hermite quadrature</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

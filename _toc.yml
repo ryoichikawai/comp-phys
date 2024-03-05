@@ -37,7 +37,9 @@ parts:
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
+      -  file: integral/improper_infinite
       -  file: integral/problems
+      -  file: integral/exercises
    -  file: root-finding/intro
    -  file: ode/intro
    -  file: matrix/intro
