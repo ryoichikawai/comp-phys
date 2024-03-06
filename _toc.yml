@@ -38,7 +38,7 @@ parts:
       sections:
       -  file: integral/piecewise
       -  file: integral/improper_infinite
-      -  file: integral/applications
+      -  file: integral/app_fermi_dirac_integral
       -  file: integral/problems
       -  file: integral/exercises
    -  file: root-finding/intro
