@@ -48,7 +48,7 @@ sphinx:
    -  sphinx_jupyterbook_latex
 
 launch_buttons:
-   notebook_interface: "classic"
+   notebook_interface: "jupyterlab"
 #   binderhub_url: ""
    colab_url: "https://colab.research.google.com"
 #   thebe: true
