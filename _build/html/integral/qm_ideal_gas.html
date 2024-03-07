@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3.3. Ideal Fermi/Bose Gas &#8212; Computational Methods for Physics with Python.</title>
+    <title>3.3. Ideal Fermi/Bose Gases &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -67,7 +67,7 @@ const thebe_selector_output = ".output, .cell_output"
 </script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/app_fermi_dirac_integral';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/qm_ideal_gas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3.4. Problems" href="problems.html" />
@@ -220,7 +220,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">3.1. Piecewise integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">3.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Ideal Fermi/Bose Gas</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Ideal Fermi/Bose Gases</a></li>
 <li class="toctree-l2"><a class="reference internal" href="problems.html">3.4. Problems</a></li>
 <li class="toctree-l2"><a class="reference internal" href="exercises.html">3.5. Exercise solutions</a></li>
 </ul>
@@ -295,7 +295,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/app_fermi_dirac_integral.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/qm_ideal_gas.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -343,7 +343,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/app_fermi_dirac_integral.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/qm_ideal_gas.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -373,7 +373,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="../_sources/integral/app_fermi_dirac_integral.ipynb" target="_blank"
+      <li><a href="../_sources/integral/qm_ideal_gas.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -457,7 +457,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Ideal Fermi/Bose Gas</h1>
+    <h1>Ideal Fermi/Bose Gases</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -484,8 +484,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="app-fermi-dirac-integral">
-<span id="ideal-fermi-bose-gas"></span><h1><span class="section-number">3.3. </span>Ideal Fermi/Bose Gas<a class="headerlink" href="#app-fermi-dirac-integral" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="qm-ideal-gases">
+<span id="ideal-fermi-bose-gases"></span><h1><span class="section-number">3.3. </span>Ideal Fermi/Bose Gases<a class="headerlink" href="#qm-ideal-gases" title="Link to this heading">#</a></h1>
 <section id="thermodynamics-of-ideal-fermi-gases">
 <h2><span class="section-number">3.3.1. </span>Thermodynamics of Ideal Fermi Gases<a class="headerlink" href="#thermodynamics-of-ideal-fermi-gases" title="Link to this heading">#</a></h2>
 <p>In a statistical mechanics course, you learn that the following relations for an ideal Fermi gas <span id="id1">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">8</a>]</span>:</p>
@@ -509,7 +509,7 @@ f_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}+1} 
 <span class="eqno">()<a class="headerlink" href="#equation-eq-polylog" title="Link to this equation">#</a></span>\[
 f_\nu(z) = z - \frac{z^2}{2^\nu} + \frac{z^3}{3^\nu} - \cdots  = -\text{Li}_\nu(-z)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(Li_\nu(z) = z + \frac{z^2}{2^\nu} + \frac{z^3}{3^\nu} + \cdots\)</span> is called the polylogarithm function. Since the Fermi-Dirac integral is mathematically equivalent to the the polylogarithm function, some textbooks use the latter.<span id="id2">[<a class="reference internal" href="../references/references.html#id12" title="S. J. Blundell and K. M. Blundell. Concepts in Thermal Phyisics. Oxford University Oress, 2nd edition, 2009. ISBN 978-0199562107.">9</a>]</span>.  A good algorithm to compute the polylogarithm function has been developed and implemented in various mathematical packages.  In practice, it is no longer necessary to evaluate the Fermi-Dirac integral.  However, it is a good exercise of imploper integrals.</p>
+<p>where <span class="math notranslate nohighlight">\(Li_\nu(z) = z + \frac{z^2}{2^\nu} + \frac{z^3}{3^\nu} + \cdots\)</span> is called the polylogarithm function. Since the Fermi-Dirac integral is mathematically equivalent to the the polylogarithm function, some textbooks use the latter.<span id="id2">[<a class="reference internal" href="../references/references.html#id12" title="S. J. Blundell and K. M. Blundell. Concepts in Thermal Phyisics. Oxford University Oress, 2nd edition, 2009. ISBN 978-0199562107.">9</a>]</span>  A good algorithm to compute the polylogarithm function has been developed and implemented in various mathematical packages.  In practice, it is no longer necessary to evaluate the Fermi-Dirac integral.  However, it is a good exercise of imploper integrals.</p>
 <p>When an exact solutions is not available, physicists turn to approximated solutions.  It is common to consider some limiting cases such as <span class="math notranslate nohighlight">\(z \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(z \rightarrow \infty\)</span>, or special cases where analysical solution is possible (<span class="math notranslate nohighlight">\(z=1\)</span> in the current problem). Truncation of the series expansion <a class="reference internal" href="#equation-eq-polylog">()</a> provides an approximation for <span class="math notranslate nohighlight">\(z \ll 1\)</span>.  For large <span class="math notranslate nohighlight">\(z\)</span>, we have the asymptotic expansion:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -911,7 +911,7 @@ mu=1/2:   Gauss-Lagguerre= 2.9367257008e+00 asymptotic = 2.9401161642e+00
 <span class="eqno">()<a class="headerlink" href="#equation-eq-be-integral" title="Link to this equation">#</a></span>\[
 g_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}-1} \, dx = \text{Li}_\nu(z)
 \]</div>
-<p>The difference between <span class="math notranslate nohighlight">\(f_\nu(z)\)</span> and <span class="math notranslate nohighlight">\(g_\nu)z)\)</span> is only the sign in the denominator of the integrand.  However, their properties are quite different.  While the Fermi-Direc integral exits for <span class="math notranslate nohighlight">\(0 \le z &lt; \infty,~ \nu &gt; 0\)</span>, the Bose-Einstein exists only for <span class="math notranslate nohighlight">\(0 \le z &lt; 1,~ \nu &gt; 0\)</span>, except that  <span class="math notranslate nohighlight">\(z=1\)</span> is allowed for <span class="math notranslate nohighlight">\(\nu \le 1\)</span>. For <span class="math notranslate nohighlight">\(z&gt;1\)</span>, the integrad has a non-integrable sinularity at <span class="math notranslate nohighlight">\(x&gt;0\)</span> and the integral diverges.  Interesting quantum phenomena such as Bose condensation take place near <span class="math notranslate nohighlight">\(z=1\)</span>.  Therefore, its numerical evaluation needs some care. While it is an improper integral, the evaluation of <span class="math notranslate nohighlight">\(g_{5/2}(z)\)</span> seems no problem since there is no singularlity.  <span class="math notranslate nohighlight">\(g_{3/2}\)</span> suffers from an integrable singularity at <span class="math notranslate nohighlight">\(x=0\)</span>, which can be managable. The evaluation of <span class="math notranslate nohighlight">\(g_{2/1}(z)\)</span> near <span class="math notranslate nohighlight">\(z=1\)</span> is challenging since it diverges at <span class="math notranslate nohighlight">\(z=1\)</span>.</p>
+<p>The difference between <span class="math notranslate nohighlight">\(f_\nu(z)\)</span> and <span class="math notranslate nohighlight">\(g_\nu)z)\)</span> is only the sign in the denominator of the integrand.  However, their properties are quite different.  While the Fermi-Direc integral exits for <span class="math notranslate nohighlight">\(0 \le z &lt; \infty,~ \nu &gt; 0\)</span>, the Bose-Einstein exists only for <span class="math notranslate nohighlight">\(0 \le z &lt; 1,~ \nu &gt; 0\)</span>, except that  <span class="math notranslate nohighlight">\(z=1\)</span> is allowed for <span class="math notranslate nohighlight">\(\nu &gt; 1\)</span>. For <span class="math notranslate nohighlight">\(z&gt;1\)</span>, the integrad has a non-integrable sinularity at <span class="math notranslate nohighlight">\(x&gt;0\)</span> and the integral diverges.  Interesting quantum phenomena such as the Bose condensation take place near <span class="math notranslate nohighlight">\(z=1\)</span>.<span id="id3">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">8</a>]</span>  Therefore, its numerical evaluation needs some care. While it is an improper integral, the evaluation of <span class="math notranslate nohighlight">\(g_{5/2}(z)\)</span> seems no problem since there is no singularlity.  <span class="math notranslate nohighlight">\(g_{3/2}\)</span> suffers from an integrable singularity at <span class="math notranslate nohighlight">\(x=0\)</span>, which can be managable. The evaluation of <span class="math notranslate nohighlight">\(g_{2/1}(z)\)</span> near <span class="math notranslate nohighlight">\(z=1\)</span> is challenging since it diverges at <span class="math notranslate nohighlight">\(z=1\)</span>.</p>
 <p>The evaluation of the Bose-Einstein integral used be a big business. Various approximations and numerical methods were invented. However, since the intergal is equivalent to the polylogarithm function, we don’t have to evaluate the integral in the real practice any more.  Nevertheless, it is a good exercise of numerical integration. I leave it for your homework.</p>
 </section>
 </section>
