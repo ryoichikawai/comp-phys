@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3. Second order derivative &#8212; Computational Methods for Physics with Python.</title>
+    <title>3.3. Second order derivative &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -53,25 +53,17 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative2';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.4. Laplacian" href="laplacian.html" />
-    <link rel="prev" title="2.2. Adaptation of step size" href="step_adaptation.html" />
+    <link rel="next" title="3.4. Laplacian" href="laplacian.html" />
+    <link rel="prev" title="3.2. Adaptation of step size" href="step_adaptation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,35 +201,40 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Second order derivative</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">2.5. Problems</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">3. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">3.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">3.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">3.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">3.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">3.5. Exercise solutions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="derivative1.html">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">3.5. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">5.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">5.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
@@ -467,8 +464,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">2.3.1. Three-point method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">2.3.2. Five-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">3.3.1. Three-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">3.3.2. Five-point method</a></li>
 </ul>
             </nav>
         </div>
@@ -481,9 +478,9 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="second-order-derivative">
-<span id="sec-diff-second"></span><h1><span class="section-number">2.3. </span>Second order derivative<a class="headerlink" href="#second-order-derivative" title="Link to this heading">#</a></h1>
+<span id="sec-diff-second"></span><h1><span class="section-number">3.3. </span>Second order derivative<a class="headerlink" href="#second-order-derivative" title="Link to this heading">#</a></h1>
 <section id="three-point-method">
-<h2><span class="section-number">2.3.1. </span>Three-point method<a class="headerlink" href="#three-point-method" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3.1. </span>Three-point method<a class="headerlink" href="#three-point-method" title="Link to this heading">#</a></h2>
 <p>We can evaluated the second order derivative using the mean value method twice.
 First, we pretend that the first order derivative is known. Using the mean value method with step size <span class="math notranslate nohighlight">\(h/2\)</span>, we obtain</p>
 <div class="math notranslate nohighlight">
@@ -500,7 +497,7 @@ f'(x-\frac{h}{2}) &amp;\rightarrow&amp; \Delta_M f(x-\frac{h}{2}) = \frac{f(x)-f
 \end{split}\]</div>
 <p>The result is</p>
 <div class="math notranslate nohighlight" id="equation-eq-diff2-s3">
-<span class="eqno">(2.3)<a class="headerlink" href="#equation-eq-diff2-s3" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-diff2-s3" title="Link to this equation">#</a></span>\[
 f''(x) \approx \Delta^{(2)}_M f(x) \equiv \displaystyle\frac{f(x+h)+f(x-h)-2f(x)}{h^2}.
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\Delta^{(2)}_M\)</span> is the second order mean finite difference operator.
@@ -548,15 +545,15 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f4e9f93b070&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2da67174c0&gt;
 </pre></div>
 </div>
-<img alt="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" src="../_images/9ee0ec78eed7465868b54f65d48e27e2029bd3d896aa0314a78777f22afa1fea.png" />
+<img alt="../_images/f75c9edceaf3a19c5cb3b882955a9500a156444f61891684c452f7b74a42ffb0.png" src="../_images/f75c9edceaf3a19c5cb3b882955a9500a156444f61891684c452f7b74a42ffb0.png" />
 </div>
 </div>
 </section>
 <section id="five-point-method">
-<h2><span class="section-number">2.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
 <p>Better accuracy can be obtained by the five-point method.<span id="id1">[<a class="reference internal" href="../references/references.html#id10" title="Milton Abramowitz and Irene A. Stegun. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. Dover Publications, 1970. Table 25.2.">7</a>]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
 <div class="admonition-method-2-3-2-five-point-finite-difference-method-for-2nd-order-derivative admonition">
 <p class="admonition-title">Method 2.3.2: Five-point finite difference method for 2nd order derivative</p>
@@ -604,7 +601,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Adaptation of step size</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Adaptation of step size</p>
       </div>
     </a>
     <a class="right-next"
@@ -612,7 +609,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.4. </span>Laplacian</p>
+        <p class="prev-next-title"><span class="section-number">3.4. </span>Laplacian</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -632,8 +629,8 @@ Using the Taylor expansion, we find that the error of this approximation is the 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">2.3.1. Three-point method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">2.3.2. Five-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#three-point-method">3.3.1. Three-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#five-point-method">3.3.2. Five-point method</a></li>
 </ul>
   </nav></div>
 

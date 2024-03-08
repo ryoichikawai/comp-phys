@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -53,22 +53,14 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'references/references';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="13. Optimization" href="../optimization/intro.html" />
+    <link rel="prev" title="14. Optimization" href="../optimization/intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -206,35 +198,40 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">2. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">2.2. Adaptation of step size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">2.3. Second order derivative</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">2.4. Laplacian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">2.5. Problems</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">3. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">3.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">3.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">3.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">3.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">3.5. Exercise solutions</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">3. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">3.5. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">5.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">5.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
 </ul>
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">References</a></li>
@@ -515,7 +512,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">13. </span>Optimization</p>
+        <p class="prev-next-title"><span class="section-number">14. </span>Optimization</p>
       </div>
     </a>
 </div>

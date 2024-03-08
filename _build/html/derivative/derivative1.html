@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.1. Finite Difference Methods &#8212; Computational Methods for Physics with Python.</title>
+    <title>3.1. Finite Difference Methods &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -53,25 +53,17 @@
     <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script src="../_static/design-tabs.js?v=36754332"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js?v=afe5de03"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'derivative/derivative1';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.2. Adaptation of step size" href="step_adaptation.html" />
-    <link rel="prev" title="2. Numerical Derivative" href="intro.html" />
+    <link rel="next" title="3.2. Adaptation of step size" href="step_adaptation.html" />
+    <link rel="prev" title="3. Numerical Derivative" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -209,35 +201,40 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.1. Finite Difference Methods</a></li>
-<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">2.2. Adaptation of step size</a></li>
-<li class="toctree-l2"><a class="reference internal" href="derivative2.html">2.3. Second order derivative</a></li>
-<li class="toctree-l2"><a class="reference internal" href="laplacian.html">2.4. Laplacian</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">2.5. Problems</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">3. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">3.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">3.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">3.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">3.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">3.5. Exercise solutions</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="derivative2.html">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="problems.html">3.5. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">5. Ordinary Differential Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">6. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">7. Fourier Transformation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">8. Partial Differential Equations</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">5.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">5.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">9. Random Number Generators</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">10. Random Walks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">11. Metropolis Methods</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">12. Langevin Equations</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">13. Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
 </ul>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
@@ -467,8 +464,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">2.1.1. Two-points methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">2.1.2. Four-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">3.1.1. Two-points methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">3.1.2. Four-point method</a></li>
 </ul>
             </nav>
         </div>
@@ -481,16 +478,16 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="finite-difference-methods">
-<span id="sec-finite-diff"></span><h1><span class="section-number">2.1. </span>Finite Difference Methods<a class="headerlink" href="#finite-difference-methods" title="Link to this heading">#</a></h1>
+<span id="sec-finite-diff"></span><h1><span class="section-number">3.1. </span>Finite Difference Methods<a class="headerlink" href="#finite-difference-methods" title="Link to this heading">#</a></h1>
 <section id="two-points-methods">
-<h2><span class="section-number">2.1.1. </span>Two-points methods<a class="headerlink" href="#two-points-methods" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1.1. </span>Two-points methods<a class="headerlink" href="#two-points-methods" title="Link to this heading">#</a></h2>
 <p>First, we look at the mathematical definition of derivative:</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{d}{dx} f(x) = \lim_{h \searrow 0} \frac{f(x+h)-f(x)}{h} = \lim_{h \searrow 0} \frac{f(x)-f(x-h)}{h}
 \]</div>
 <p>The mathematical procedure of limit operation <span class="math notranslate nohighlight">\(h \searrow 0\)</span> requires that <span class="math notranslate nohighlight">\(h\)</span> continuously approaches 0 from the positive side.  However, floating point numbers are discrete and infinitesimally small number is not available . If the smallest value, <span class="math notranslate nohighlight">\(h=0\)</span>, is used, we have <span class="math notranslate nohighlight">\(0/0\)</span> and thus the derivative is <code class="docutils literal notranslate"><span class="pre">nan</span></code>.  If the next smallest number, <code class="docutils literal notranslate"><span class="pre">realmin</span></code> (see Section <a class="reference internal" href="../numbers/float.html#sec-floating-point"><span class="std std-numref">Section 1.4</span></a>)  is used, the numerator <span class="math notranslate nohighlight">\(f(x+h)-f(x)\)</span> is very inaccurate due to the roundoff error discussed in Section <a class="reference internal" href="../numbers/errors.html#sec-digitization-errors"><span class="std std-numref">Section 1.5</span></a>. The last resort is to use <span class="math notranslate nohighlight">\(1 \gg h &gt; \)</span> <code class="docutils literal notranslate"><span class="pre">realmin</span></code>, which avoid the roundoff error. However, the ration of the numerator and denominator is not exactly the above limit, hence the result is deviated from the actual derivative.  In fact, the exact derivative cannot be obtained from any finite value of <span class="math notranslate nohighlight">\(h\)</span>.  Nevertheless, we hope that there exists <span class="math notranslate nohighlight">\(h\)</span> small enough to get the approximated limit but large enough to avoid the roundoff error. Such approximation is known as <a class="reference external" href="https://en.wikipedia.org/wiki/Finite_difference_method">finite difference method</a>.</p>
-<p>There is another issue with the use of a finite <span class="math notranslate nohighlight">\(h\)</span>.  The two limits in the above definition do not agree. See Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>.  There are two candidates of numerical derivative, the <em>forward finite difference</em> method</p>
+<p>There is another issue with the use of a finite <span class="math notranslate nohighlight">\(h\)</span>.  The two limits in the above definition do not agree. See Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 3.1</span></a>.  There are two candidates of numerical derivative, the <em>forward finite difference</em> method</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{d}{dx} f(x) \approx \Delta_\text{f}^{h} f(x)  \equiv \displaystyle \frac{f(x+h)-f(x)}{h}
@@ -500,11 +497,11 @@ document.write(`
 \[
 \frac{d}{dx} f(x) \approx \Delta_\text{b}^{h} f(x) \equiv \displaystyle \frac{f(x)-f(x-h)}{h}.
 \]</div>
-<p>Notice that there is no limit operation. We shall call <span class="math notranslate nohighlight">\(\Delta_\text{f}^{h}\)</span> and <span class="math notranslate nohighlight">\(\Delta_\text{b}^{h}\)</span> forward and backward finite difference operators, which depend on the value of <span class="math notranslate nohighlight">\(h\)</span>. Unlike the exact derivative the forward and backward finite difference methods do not agree each other due to the finite <span class="math notranslate nohighlight">\(h\)</span>. As illustrated in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>, one of them overestimates and the other underestimates.</p>
+<p>Notice that there is no limit operation. We shall call <span class="math notranslate nohighlight">\(\Delta_\text{f}^{h}\)</span> and <span class="math notranslate nohighlight">\(\Delta_\text{b}^{h}\)</span> forward and backward finite difference operators, which depend on the value of <span class="math notranslate nohighlight">\(h\)</span>. Unlike the exact derivative the forward and backward finite difference methods do not agree each other due to the finite <span class="math notranslate nohighlight">\(h\)</span>. As illustrated in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 3.1</span></a>, one of them overestimates and the other underestimates.</p>
 <figure class="align-default" id="fig-diff">
 <img alt="../_images/diff.png" src="../_images/diff.png" />
 <figcaption>
-<p><span class="caption-number">Fig. 2.1 </span><span class="caption-text">Illustration of various numerical derivatives.  The exact derivative is the slope of the curve (black line) at <span class="math notranslate nohighlight">\(x\)</span>, which is shown as the dotted line. The forward finite difference method shown in green underestimates the slop whereas the backward finite difference method shown in blue overestimates it.  The mean finite different method shown in red looks very close to the exact derivative.</span><a class="headerlink" href="#fig-diff" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Illustration of various numerical derivatives.  The exact derivative is the slope of the curve (black line) at <span class="math notranslate nohighlight">\(x\)</span>, which is shown as the dotted line. The forward finite difference method shown in green underestimates the slop whereas the backward finite difference method shown in blue overestimates it.  The mean finite different method shown in red looks very close to the exact derivative.</span><a class="headerlink" href="#fig-diff" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion<span id="id1">[<a class="reference internal" href="../references/references.html#id8" title="Mary L. Boas. Mathematical Methods in the Physical Sciences. Wiley, 3rd edition, 2006.">5</a>]</span>:</p>
@@ -530,10 +527,10 @@ f(x-h) = f(x) - h\, f'(x) + \frac{h^2}{2} f''(x) - \frac{h^3}{3!} f^{(3)}(x) + \
 <p>There is a better method.  Noting that the error in the forward and backward finite difference method is exactly the same in magnitude but has opposite sign, we can get rid of the error at the order of <span class="math notranslate nohighlight">\(h\)</span>.
 Taking the mean of the two approximations, we obtain <em>mean finite difference method</em>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-mean-diff">
-<span class="eqno">(2.1)<a class="headerlink" href="#equation-eq-mean-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-mean-diff" title="Link to this equation">#</a></span>\[
 \Delta_\text{m} f(x) \equiv \frac{\Delta_\text{F} f(x)+\Delta_\text{B} f(x)}{2} = \displaystyle\frac{f(x+h)-f(x-h)}{2h} = f'(x) + \frac{h^2}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(f^{(3)}\)</span> is the third order derivative.    Notice that the leading error is the order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Since <span class="math notranslate nohighlight">\(h \ll 1\)</span>, <span class="math notranslate nohighlight">\(h^2 \ll h\)</span> and thus the mean finite difference method is more accurate than the forward and backward finite difference methods. The improvement is clearly visible in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 2.1</span></a>.</p>
+<p>where <span class="math notranslate nohighlight">\(f^{(3)}\)</span> is the third order derivative.    Notice that the leading error is the order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Since <span class="math notranslate nohighlight">\(h \ll 1\)</span>, <span class="math notranslate nohighlight">\(h^2 \ll h\)</span> and thus the mean finite difference method is more accurate than the forward and backward finite difference methods. The improvement is clearly visible in Fig. <a class="reference internal" href="#fig-diff"><span class="std std-numref">Fig. 3.1</span></a>.</p>
 <p>Mathematically speaking, the small error in the mean finite difference method is related to the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_value_theorem">mean value theorem</a> which states that there is at least one number <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> such that
 <span class="math notranslate nohighlight">\(f'(c)=\displaystyle\frac{f(b)-f(a)}{b-a}\)</span>.
 Let <span class="math notranslate nohighlight">\(b=x+h\)</span> and <span class="math notranslate nohighlight">\(a=x-h\)</span>. The mean finite different method gives the slope of the curve at some point <span class="math notranslate nohighlight">\(c\)</span> between <span class="math notranslate nohighlight">\(x+h\)</span> and <span class="math notranslate nohighlight">\(x-h\)</span>.  When <span class="math notranslate nohighlight">\(h\)</span> is small, <span class="math notranslate nohighlight">\(c\)</span> is apprximately <span class="math notranslate nohighlight">\(x\)</span>.  Then, we obtain the mean finite difference method.</p>
@@ -680,7 +677,7 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
 <p>The error in forward and backward methods is almost the same and decreases in the same way as <span class="math notranslate nohighlight">\(h\)</span>.  However, the improvement stop at <span class="math notranslate nohighlight">\(h \sim 10^{-8}\)</span> and the error increases for smaller <span class="math notranslate nohighlight">\(h\)</span> due to the round-off error. The best answer is obtained with <span class="math notranslate nohighlight">\(h=10^{-8}\)</span>. The mean difference method shows much better result.  The error decreases with <span class="math notranslate nohighlight">\(h^2\)</span>.  The best value is obtained at <span class="math notranslate nohighlight">\(h=10^{-5}\)</span> and the result is better than the best value obtained by the forward or backward method.  It is quite clear that the mean difference method is much better than the two others.  When <span class="math notranslate nohighlight">\(h\)</span> hits the machine epsilon <span class="math notranslate nohighlight">\(\epsilon \approx 2 \times 10^{-16}\)</span>, the finite difference vanishes completely.</p>
 </section>
 <section id="four-point-method">
-<h2><span class="section-number">2.1.2. </span>Four-point method<a class="headerlink" href="#four-point-method" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">3.1.2. </span>Four-point method<a class="headerlink" href="#four-point-method" title="Link to this heading">#</a></h2>
 <p>The derivative corresponds to the slope of a curve at a given point.  To obtain the slope, we need to evalaute at least the function at two different points.  The two-point method approximates the curve with a straight line by evaluating the function at two points.  If we have more information about the curve, we should be able to get more accurate derivative.   The fllowing symmetric four-point is commonly used. Its error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span>, much better than the mean finite difference method.<span id="id2">[<a class="reference internal" href="../references/references.html#id6" title="Daniel Zwillinger. CRC Stanbdard Mathematical Tables and Formula. CRC Press, 35th edition, 2012.">6</a>]</span></p>
 <div class="admonition-method-2-1-2-four-point-finite-difference-method admonition">
 <p class="admonition-title">Method 2.1.2:  Four-point finite difference method</p>
@@ -733,7 +730,7 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Numerical Derivative</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Numerical Derivative</p>
       </div>
     </a>
     <a class="right-next"
@@ -741,7 +738,7 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.2. </span>Adaptation of step size</p>
+        <p class="prev-next-title"><span class="section-number">3.2. </span>Adaptation of step size</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -761,8 +758,8 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">2.1.1. Two-points methods</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">2.1.2. Four-point method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#two-points-methods">3.1.1. Two-points methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#four-point-method">3.1.2. Four-point method</a></li>
 </ul>
   </nav></div>
 

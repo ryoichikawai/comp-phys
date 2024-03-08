@@ -27,6 +27,10 @@ parts:
       -  file: numbers/errors
       -  file: numbers/applications
       -  file: numbers/problems
+   -  file: functions/intro
+      sections:
+      -  file: functions/functions
+      -  file: functions/plotting
    -  file: derivative/intro
       sections:
       -  file: derivative/derivative1
@@ -34,6 +38,7 @@ parts:
       -  file: derivative/derivative2
       -  file: derivative/laplacian
       -  file: derivative/problems
+   -  file: root-finding/intro
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
@@ -41,7 +46,6 @@ parts:
       -  file: integral/qm_ideal_gas
       -  file: integral/problems
       -  file: integral/exercises
-   -  file: root-finding/intro
    -  file: ode/intro
    -  file: matrix/intro
    -  file: fft/intro
