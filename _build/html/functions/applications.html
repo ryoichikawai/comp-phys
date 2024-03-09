@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Functions &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.3. Applications in Physics &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -59,11 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'functions/intro';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'functions/applications';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2.1. Common Functions in Physics" href="functions.html" />
-    <link rel="prev" title="1.7. Problems" href="../numbers/problems.html" />
+    <link rel="next" title="3. Numerical Derivative" href="../derivative/intro.html" />
+    <link rel="prev" title="2.2. Plotting functions" href="plotting.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -201,10 +201,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Functions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">2. Functions</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="functions.html">2.1. Common Functions in Physics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plotting.html">2.2. Plotting functions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="applications.html">2.3. Applications in Physics</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.3. Applications in Physics</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">3. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -293,7 +293,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/functions/intro.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/functions/applications.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -341,7 +341,7 @@
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Ffunctions/intro.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Ffunctions/applications.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -371,7 +371,7 @@
       
       
       
-      <li><a href="../_sources/functions/intro.ipynb" target="_blank"
+      <li><a href="../_sources/functions/applications.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -442,7 +442,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -453,11 +455,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Functions</h1>
+    <h1>Applications in Physics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hydrogen-atom">2.3.1. Hydrogen Atom</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -467,12 +477,78 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="functions">
-<span id="ch-functions"></span><h1><span class="section-number">2. </span>Functions<a class="headerlink" href="#functions" title="Link to this heading">#</a></h1>
-<p>Mathematical expressions often involves predefined functions, from elementary functions such as <span class="math notranslate nohighlight">\(\sin(x)\)</span> to special functions such as <span class="math notranslate nohighlight">\(H_n(x)\)</span> (Hermite polynomials).  Such functions are not a part of python core.  Many mathematical packages provides them and you have to pick one suitable for your application. In this chapter, the packages used in this lecuture, <code class="docutils literal notranslate"><span class="pre">math</span></code>, <code class="docutils literal notranslate"><span class="pre">numpy</span></code>, <code class="docutils literal notranslate"><span class="pre">scipy</span></code>, <code class="docutils literal notranslate"><span class="pre">sympy</span></code>, and <code class="docutils literal notranslate"><span class="pre">mpmath</span></code> are introduced.</p>
-<p>Visualizing mathematical expressions is very important not only for showing the results but also for understanding the problems.  Visualization package <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is very powerful and we will be using it throughout the lecture.  A very basic use of <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> is introduced here.  Advanced usage will be covered as needed.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="applications-in-physics">
+<h1><span class="section-number">2.3. </span>Applications in Physics<a class="headerlink" href="#applications-in-physics" title="Link to this heading">#</a></h1>
+<section id="hydrogen-atom">
+<h2><span class="section-number">2.3.1. </span>Hydrogen Atom<a class="headerlink" href="#hydrogen-atom" title="Link to this heading">#</a></h2>
+<p>The wavefunction of electron in a hydrogen atom can be written as a product of a radial function and an angular function as follows:<span id="id1">[<a class="reference internal" href="../references/references.html#id13" title="J. J. Sakurai and J. Napolitano. Modern Quantum Mechanics. Cambridge University Press, 3rd edition, 2020. ISBN 978-1108473224.">5</a>]</span></p>
+<div class="math notranslate nohighlight">
+\[
+\psi(\vec{r}) =  R_{n\ell}(r) Y^{m}_{\ell}(\theta,\phi)
+\]</div>
+<p>where the spherical corrdinates <span class="math notranslate nohighlight">\((r,\theta,\phi)\)</span> is used. The radial part of the wave function  is</p>
+<div class="math notranslate nohighlight">
+\[
+R_{n \ell}(r) = \left\{\left(\frac{2}{n a_0}\right)^3 \frac{(n-\ell-1)!}{2n[(n+\ell)!]^3}\right\}^{1/2} e^{-\rho/2} \rho^\ell L^{2\ell+1}_{n+\ell}(\rho)
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\rho = \frac{2 r}{n a_0}\)</span>.  <span class="math notranslate nohighlight">\(m_e\)</span> and <span class="math notranslate nohighlight">\(a_0\)</span> are the electron mass and the Bohr radius.  <span class="math notranslate nohighlight">\(L^{q}_{p}(\rho)\)</span> is the associated Laguerre polynomials are the derivative of the Legendre polynomials defined as <span class="math notranslate nohighlight">\(L^q_p(\rho) = \frac{d^q}{d\rho^q} L_p(\rho)\)</span>.</p>
+<p>The angular part is the spherical harmonics</p>
+<div class="math notranslate nohighlight">
+\[
+Y^m_\ell(\theta,\phi) = (-1)^m \sqrt{\frac{2\ell+1}{4\pi} \frac{(\ell-m)!}{(\ell+m)!}} P^m_\ell(\cos\theta) e^{i m \phi}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(P^m_\ell(\cos\theta)\)</span> is the associated Legendre polynomials defined as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+P^m_\ell(\cos\theta) &amp;=&amp; (1-\cos^2\theta)^{m/2} \frac{d^m}{d(\cos\theta)^m} P_\ell(\cos\theta)\\
+P^{-m} (\cos\theta) &amp;=&amp; (-1)^m \frac{(\ell-m)!}{(\ell+m)!} P^m_\ell(\cos\theta)
+\end{eqnarray}
+\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(m&gt;0\)</span>.</p>
+<p>Can you imagine how these functions look like?  It is too complicated even for theoretical physicists.   It is possible to simplify the expression but each set of quantum numbers <span class="math notranslate nohighlight">\((n, \ell, m)\)</span> has a different result.  We want to write a program that plots the wavefunction for any given quantum numbers.</p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.special</span></code> to compute the wavefunction. However, there is an issue.  Mathematicians and physicists define the Laguerre polynomials in different way. Scipy uses the mathematicians’ definition.  The difference is the normalization constant and the lower index.  Here is the relation between them:   <span class="math notranslate nohighlight">\(L^{q}_{p}(\rho) = \sqrt{p!}\tilde{L}^{q}_{p-1}(\rho)\)</span> where <span class="math notranslate nohighlight">\(\tilde{L}\)</span> is the laguerre polynomial in scipy.</p>
+<p>Using the atomic unit, that is <span class="math notranslate nohighlight">\(m_e=\hbar=e=1\)</span>, and thus <span class="math notranslate nohighlight">\(a_0=1\)</span>.  Then, <span class="math notranslate nohighlight">\(\rho = 2 r\)</span>. We plot <span class="math notranslate nohighlight">\(r R_{n \ell}(r)\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.special</span> <span class="kn">import</span> <span class="n">assoc_laguerre</span><span class="p">,</span> <span class="n">factorial</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">R</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">l</span><span class="p">):</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="n">n</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">)</span> <span class="o">/</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">+</span><span class="n">l</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="p">)</span>
+    <span class="n">rho</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">r</span><span class="o">/</span><span class="n">n</span>
+    <span class="k">return</span> <span class="n">c</span> <span class="o">*</span> <span class="n">rho</span><span class="o">**</span><span class="n">l</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">rho</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">assoc_laguerre</span><span class="p">(</span><span class="n">rho</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">l</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="n">l</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="c1"># generates 101 points between 0 and 15 </span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="c1"># evaluate the function at each point</span>
+<span class="n">R10</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">R20</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">R21</span> <span class="o">=</span> <span class="n">r</span><span class="o">*</span><span class="n">R</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># plot it using the default options.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">R10</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;1s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">R20</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;2s&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">R21</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;2p&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$R_{n\ell}(r)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f1de4913af0&gt;
+</pre></div>
+</div>
+<img alt="../_images/b522d3cb62cfacf26ee3dee0216f91d0373108403b77287f6ef3452074bd1076.png" src="../_images/b522d3cb62cfacf26ee3dee0216f91d0373108403b77287f6ef3452074bd1076.png" />
+</div>
+</div>
+<blockquote>
+<div><p><strong>Exercise:</strong> Plot the radial wave functions of 3s, 3p, and 3d states.</p>
+</div></blockquote>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -506,20 +582,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../numbers/problems.html"
+       href="plotting.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">2.2. </span>Plotting functions</p>
       </div>
     </a>
     <a class="right-next"
-       href="functions.html"
+       href="../derivative/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2.1. </span>Common Functions in Physics</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>Numerical Derivative</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -530,7 +606,20 @@ document.write(`
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hydrogen-atom">2.3.1. Hydrogen Atom</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
