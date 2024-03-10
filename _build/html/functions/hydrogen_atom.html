@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.3.2. Hydrogen Atom &#8212; Computational Methods for Physics with Python.</title>
+    <title>2.3.3. Hydrogen Atom &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="3. Numerical Derivative" href="../derivative/intro.html" />
-    <link rel="prev" title="2.3.1. Quantum Free Falling" href="qm_free_falling.html" />
+    <link rel="prev" title="2.3.2. Quantum Free Falling" href="qm_free_falling.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -206,8 +206,9 @@
 <li class="toctree-l2"><a class="reference internal" href="functions.html">2.1. Common Functions in Physics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="plotting.html">2.2. Plotting functions</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">2.3. Applications in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="qm_free_falling.html">2.3.1. Quantum Free Falling</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">2.3.2. Hydrogen Atom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="overdamped.html">2.3.1. An Overdamped Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_free_falling.html">2.3.2. Quantum Free Falling</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">2.3.3. Hydrogen Atom</a></li>
 </ul>
 </li>
 </ul>
@@ -470,8 +471,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-wavefunction">2.3.2.1. Radial Wavefunction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-wavefunction">2.3.2.2. Angular Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-wavefunction">2.3.3.1. Radial Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-wavefunction">2.3.3.2. Angular Wavefunction</a></li>
 </ul>
             </nav>
         </div>
@@ -484,8 +485,8 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="hydrogen-atom">
-<h1><span class="section-number">2.3.2. </span>Hydrogen Atom<a class="headerlink" href="#hydrogen-atom" title="Link to this heading">#</a></h1>
-<p>The wavefunction of electron in a hydrogen atom can be written as a product of a radial function and an angular function as follows:<span id="id1">[<a class="reference internal" href="../references/references.html#id13" title="J. J. Sakurai and J. Napolitano. Modern Quantum Mechanics. Cambridge University Press, 3rd edition, 2020. ISBN 978-1108473224.">5</a>]</span></p>
+<h1><span class="section-number">2.3.3. </span>Hydrogen Atom<a class="headerlink" href="#hydrogen-atom" title="Link to this heading">#</a></h1>
+<p>The wavefunction of electron in a hydrogen atom can be written as a product of a radial function and an angular function as follows:<span id="id1">[<a class="reference internal" href="../references/references.html#id13" title="J. J. Sakurai and J. Napolitano. Modern Quantum Mechanics. Cambridge University Press, 3rd edition, 2020. ISBN 978-1108473224.">6</a>]</span></p>
 <div class="math notranslate nohighlight">
 \[
 \psi(\vec{r}) =  R_{n\ell}(r) Y^{m}_{\ell}(\theta,\phi)
@@ -512,8 +513,8 @@ P^{-m} (\cos\theta) &amp;=&amp; (-1)^m \frac{(\ell-m)!}{(\ell+m)!} P^m_\ell(\cos
 <p>where <span class="math notranslate nohighlight">\(m&gt;0\)</span>.</p>
 <p>Can you imagine how these functions look like?  It is too complicated even for theoretical physicists.   It is possible to simplify the expression but each set of quantum numbers <span class="math notranslate nohighlight">\((n, \ell, m)\)</span> has a different result.  We want to write a program that plots the wavefunction for any given quantum numbers.</p>
 <section id="radial-wavefunction">
-<h2><span class="section-number">2.3.2.1. </span>Radial Wavefunction<a class="headerlink" href="#radial-wavefunction" title="Link to this heading">#</a></h2>
-<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.special</span></code> to compute the wavefunction. However, there is an issue.  Mathematicians and physicists define the Laguerre polynomials in different way. (Even within the physics community, different definitions and notations have been used.<span id="id2">[<a class="reference internal" href="../references/references.html#id14" title="L. E. Ballentine. Quantum Mechanics - A Modern Development. World Scientific, 2nd edition, 2014. ISBN 978-9814578578.">6</a>]</span>  Scipy uses the mathematicians’ definition.  The difference is the normalization constant and the lower index.  Here is the relation between them:   <span class="math notranslate nohighlight">\(L^{q}_{p}(\rho) = \sqrt{p!}\tilde{L}^{q}_{p-1}(\rho)\)</span> where <span class="math notranslate nohighlight">\(\tilde{L}\)</span> is the laguerre polynomial in scipy.</p>
+<h2><span class="section-number">2.3.3.1. </span>Radial Wavefunction<a class="headerlink" href="#radial-wavefunction" title="Link to this heading">#</a></h2>
+<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.special</span></code> to compute the wavefunction. However, there is an issue.  Mathematicians and physicists define the Laguerre polynomials in different way. (Even within the physics community, different definitions and notations have been used.<span id="id2">[<a class="reference internal" href="../references/references.html#id14" title="L. E. Ballentine. Quantum Mechanics - A Modern Development. World Scientific, 2nd edition, 2014. ISBN 978-9814578578.">7</a>]</span>  Scipy uses the mathematicians’ definition.  The difference is the normalization constant and the lower index.  Here is the relation between them:   <span class="math notranslate nohighlight">\(L^{q}_{p}(\rho) = \sqrt{p!}\tilde{L}^{q}_{p-1}(\rho)\)</span> where <span class="math notranslate nohighlight">\(\tilde{L}\)</span> is the laguerre polynomial in scipy.</p>
 <p>Using the atomic unit, that is <span class="math notranslate nohighlight">\(m_e=\hbar=e=1\)</span>, and thus <span class="math notranslate nohighlight">\(a_0=1\)</span>.  Then, <span class="math notranslate nohighlight">\(\rho = 2 r\)</span>. We plot <span class="math notranslate nohighlight">\(r R_{n \ell}(r)\)</span>. We plot <span class="math notranslate nohighlight">\(r R_{n\ell}(r)\)</span> since the probability to find particle at <span class="math notranslate nohighlight">\(r\)</span> is given by <span class="math notranslate nohighlight">\(r^2 |R_{n\ell}(r)|^2 dr\)</span>.  (The factor <span class="math notranslate nohighlight">\(r^2\)</span> comes from the volume element of the spherical coordinates.)</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -558,7 +559,7 @@ P^{-m} (\cos\theta) &amp;=&amp; (-1)^m \frac{(\ell-m)!}{(\ell+m)!} P^m_\ell(\cos
 </div></blockquote>
 </section>
 <section id="angular-wavefunction">
-<h2><span class="section-number">2.3.2.2. </span>Angular Wavefunction<a class="headerlink" href="#angular-wavefunction" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.3.3.2. </span>Angular Wavefunction<a class="headerlink" href="#angular-wavefunction" title="Link to this heading">#</a></h2>
 <p>The angular part of the wavefunction is a function of two angles <span class="math notranslate nohighlight">\(\theta\)</span> and <span class="math notranslate nohighlight">\(\phi\)</span>.  However, we are familiar with <span class="math notranslate nohighlight">\(e^{-m \phi}\)</span>, which represents a traveling wave along a circle.  Therefore, <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{2\pi}} e^{i m \phi}\)</span> is excluded.  The associated Legendre polynomial in <code class="docutils literal notranslate"><span class="pre">scipy.special</span></code>  has an unexpected name <code class="docutils literal notranslate"><span class="pre">lpmv</span></code>.  See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.special.lpmv.html">documentation</a>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -649,7 +650,7 @@ P^{-m} (\cos\theta) &amp;=&amp; (-1)^m \frac{(\ell-m)!}{(\ell+m)!} P^m_\ell(\cos
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.3.1. </span>Quantum Free Falling</p>
+        <p class="prev-next-title"><span class="section-number">2.3.2. </span>Quantum Free Falling</p>
       </div>
     </a>
     <a class="right-next"
@@ -677,8 +678,8 @@ P^{-m} (\cos\theta) &amp;=&amp; (-1)^m \frac{(\ell-m)!}{(\ell+m)!} P^m_\ell(\cos
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-wavefunction">2.3.2.1. Radial Wavefunction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-wavefunction">2.3.2.2. Angular Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#radial-wavefunction">2.3.3.1. Radial Wavefunction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#angular-wavefunction">2.3.3.2. Angular Wavefunction</a></li>
 </ul>
   </nav></div>
 
