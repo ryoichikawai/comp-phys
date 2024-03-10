@@ -478,9 +478,9 @@ document.write(`
 <p>A classical particle of mass <span class="math notranslate nohighlight">\(m\)</span> is in a periodic potential field <span class="math notranslate nohighlight">\(U(x) = U_0 \cos(2\pi x/\lambda)\)</span> where <span class="math notranslate nohighlight">\(U_0 &gt; 0\)</span> is a strength of the potential and <span class="math notranslate nohighlight">\(\lambda &gt; 0\)</span> is the wave length.  The space is filled with a viscous fluid and thus a strong friction force acts on the particle when it moves.  Its motion is determined by the Newton’s equation of motion:</p>
 <div class="math notranslate nohighlight">
 \[
-m \ddot{x} = - \gamma \dot{x} + \frac{2\pi}{\lambda} \sin\left(\frac{2\pi x}{\lambda}\right)
+m \ddot{x} = - \gamma \dot{x} + \frac{2\pi U_0}{\lambda} \sin\left(\frac{2\pi x}{\lambda}\right)
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\gamma&gt;0\)</span> is the friction constant.  The friction is so strong that the inertial term <span class="math notranslate nohighlight">\(m \ddot{x}\)</span> can be neglected (overdupmed).  Using the normalized coordinate <span class="math notranslate nohighlight">\(\xi =\frac{2\pi x}{\lambda}\)</span> and time <span class="math notranslate nohighlight">\(\tau = \frac{2\pi}{\gamma\lambda} t\)</span>, the equation of motion becomes</p>
+<p>where <span class="math notranslate nohighlight">\(\gamma&gt;0\)</span> is the friction constant.  The friction is so strong that the inertial term <span class="math notranslate nohighlight">\(m \ddot{x}\)</span> can be neglected (overdupmed).  Using the normalized coordinate <span class="math notranslate nohighlight">\(\xi =\displaystyle\frac{2\pi x}{\lambda}\)</span> and time <span class="math notranslate nohighlight">\(\tau = \displaystyle\frac{U_0}{\gamma} \left(\displaystyle\frac{2\pi}{\lambda}\right)^2 t\)</span>, the equation of motion becomes</p>
 <div class="math notranslate nohighlight">
 \[
 \frac{d}{d\tau} \xi = \sin(\xi)

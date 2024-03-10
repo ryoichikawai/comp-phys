@@ -33,6 +33,7 @@ parts:
       -  file: functions/plotting
       -  file: functions/applications
          sections:
+         -  file: functions/overdamped
          -  file: functions/qm_free_falling
          -  file: functions/hydrogen_atom
    -  file: derivative/intro
