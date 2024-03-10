@@ -31,6 +31,10 @@ parts:
       sections:
       -  file: functions/functions
       -  file: functions/plotting
+      -  file: functions/applications
+         sections:
+         -  file: functions/qm_free_falling
+         -  file: functions/hydrogen_atom
    -  file: derivative/intro
       sections:
       -  file: derivative/derivative1
