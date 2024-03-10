@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -197,16 +197,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.6. Applications</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.7. Problems</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.7. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.8. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functions/applications.html">2.3. Applications in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.1. Quantum Free Falling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.2. Hydrogen Atom</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">3. Numerical Derivative</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="derivative1.html">3.1. Finite Difference Methods</a></li>
 <li class="toctree-l2"><a class="reference internal" href="step_adaptation.html">3.2. Adaptation of step size</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">3.3. Second order derivative</a></li>
@@ -215,7 +221,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
@@ -545,7 +551,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f2da67174c0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.legend.Legend at 0x7f6d4324b460&gt;
 </pre></div>
 </div>
 <img alt="../_images/f75c9edceaf3a19c5cb3b882955a9500a156444f61891684c452f7b74a42ffb0.png" src="../_images/f75c9edceaf3a19c5cb3b882955a9500a156444f61891684c452f7b74a42ffb0.png" />
@@ -554,7 +560,7 @@ Using the Taylor expansion, we find that the error of this approximation is the 
 </section>
 <section id="five-point-method">
 <h2><span class="section-number">3.3.2. </span>Five-point method<a class="headerlink" href="#five-point-method" title="Link to this heading">#</a></h2>
-<p>Better accuracy can be obtained by the five-point method.<span id="id1">[<a class="reference internal" href="../references/references.html#id10" title="Milton Abramowitz and Irene A. Stegun. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. Dover Publications, 1970. Table 25.2.">7</a>]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
+<p>Better accuracy can be obtained by the five-point method.<span id="id1">[<a class="reference internal" href="../references/references.html#id10" title="Milton Abramowitz and Irene A. Stegun. Handbook of Mathematical Functions with Formulas, Graphs, and Mathematical Tables. Dover Publications, 1970. Table 25.2.">9</a>]</span>  Its error is the order of <span class="math notranslate nohighlight">\(h^4\)</span>.</p>
 <div class="admonition-method-2-3-2-five-point-finite-difference-method-for-2nd-order-derivative admonition">
 <p class="admonition-title">Method 2.3.2: Five-point finite difference method for 2nd order derivative</p>
 <div class="math notranslate nohighlight">
