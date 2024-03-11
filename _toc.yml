@@ -44,6 +44,9 @@ parts:
       -  file: derivative/laplacian
       -  file: derivative/problems
    -  file: root-finding/intro
+      sections:
+      -  file: root-finding/root_polynomials
+      -  file: root-finding/root_bisection
    -  file: integral/intro
       sections:
       -  file: integral/piecewise

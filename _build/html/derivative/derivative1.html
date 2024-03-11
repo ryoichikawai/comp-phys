@@ -206,8 +206,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../functions/applications.html">2.3. Applications in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.1. Quantum Free Falling</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.2. Hydrogen Atom</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/overdamped.html">2.3.1. An Overdamped Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.2. Quantum Free Falling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.3. Hydrogen Atom</a></li>
 </ul>
 </li>
 </ul>
@@ -220,8 +221,12 @@
 <li class="toctree-l2"><a class="reference internal" href="problems.html">3.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_polynomials.html">4.1. Roots of Polynomials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_bisection.html">4.2. Bisection Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
@@ -510,7 +515,7 @@ document.write(`
 <p><span class="caption-number">Fig. 3.1 </span><span class="caption-text">Illustration of various numerical derivatives.  The exact derivative is the slope of the curve (black line) at <span class="math notranslate nohighlight">\(x\)</span>, which is shown as the dotted line. The forward finite difference method shown in green underestimates the slop whereas the backward finite difference method shown in blue overestimates it.  The mean finite different method shown in red looks very close to the exact derivative.</span><a class="headerlink" href="#fig-diff" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion<span id="id1">[<a class="reference internal" href="../references/references.html#id8" title="Mary L. Boas. Mathematical Methods in the Physical Sciences. Wiley, 3rd edition, 2006.">7</a>]</span>:</p>
+<p>Now, we investigate how accurate the forward and backward finite difference methods are. We estimate the order of error using Taylor expansion<span id="id1">[<a class="reference internal" href="../references/references.html#id8" title="Mary L. Boas. Mathematical Methods in the Physical Sciences. Wiley, 3rd edition, 2006.">8</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 f(x+h) = f(x) + h\, f'(x) + \frac{h^2}{2} f''(x) + \frac{h^3}{3!} f^{(3)}(x) + \mathcal{O}(h^4)
@@ -684,7 +689,7 @@ The analytic form of derivative is <span class="math notranslate nohighlight">\(
 </section>
 <section id="four-point-method">
 <h2><span class="section-number">3.1.2. </span>Four-point method<a class="headerlink" href="#four-point-method" title="Link to this heading">#</a></h2>
-<p>The derivative corresponds to the slope of a curve at a given point.  To obtain the slope, we need to evalaute at least the function at two different points.  The two-point method approximates the curve with a straight line by evaluating the function at two points.  If we have more information about the curve, we should be able to get more accurate derivative.   The fllowing symmetric four-point is commonly used. Its error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span>, much better than the mean finite difference method.<span id="id2">[<a class="reference internal" href="../references/references.html#id6" title="Daniel Zwillinger. CRC Stanbdard Mathematical Tables and Formula. CRC Press, 35th edition, 2012.">8</a>]</span></p>
+<p>The derivative corresponds to the slope of a curve at a given point.  To obtain the slope, we need to evalaute at least the function at two different points.  The two-point method approximates the curve with a straight line by evaluating the function at two points.  If we have more information about the curve, we should be able to get more accurate derivative.   The fllowing symmetric four-point is commonly used. Its error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span>, much better than the mean finite difference method.<span id="id2">[<a class="reference internal" href="../references/references.html#id6" title="Daniel Zwillinger. CRC Stanbdard Mathematical Tables and Formula. CRC Press, 35th edition, 2012.">9</a>]</span></p>
 <div class="admonition-method-2-1-2-four-point-finite-difference-method admonition">
 <p class="admonition-title">Method 2.1.2:  Four-point finite difference method</p>
 <div class="math notranslate nohighlight">
