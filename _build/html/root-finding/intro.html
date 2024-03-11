@@ -485,6 +485,13 @@ document.write(`
 <li><p><strong>Proposing a new candidate</strong>  There are many methods.  All of them use the information of previous candidates.  For example, some use the derivative of <span class="math notranslate nohighlight">\(f(x)\)</span> at the previous candidate to predict the root. Other use several previous candidates and to predict a new one.  As the iteration continues, we gain more information about the function and are able to find a better candidate.</p></li>
 <li><p><strong>Termination of the iteration</strong>  We cannot repeat the iteration forever and there must be rule to terminate it.  We want to stop the iteration when the difference between the candidate and the root is small enough. However, such error cannot be obtained unless we know the exact root.  Hence, we are only able to make an estimate of the error. There are several methods to do so.</p></li>
 </ol>
+<p>The standard methods have some limitation.  If a root is well separated from others  (Fig. <a class="reference internal" href="#fig-roots"><span class="std std-numref">Fig. 4.1</span></a>A), it is relatively easy to find it.  If two roots are very close to each other (Fig. <a class="reference internal" href="#fig-roots"><span class="std std-numref">Fig. 4.1</span></a>B), it is difficult find them.  When two roots are degenerate  (Fig. <a class="reference internal" href="#fig-roots"><span class="std std-numref">Fig. 4.1</span></a>C), the standard methods are powerless.  In this lecture, we do not attempt to solve the latter two cases.</p>
+<figure class="align-default" id="fig-roots">
+<a class="reference internal image-reference" href="../_images/roots.png"><img alt="../_images/roots.png" src="../_images/roots.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text">(A) It is rather easy to find an isolated root.  (B) When two roots are close together, it is diffcult to find them. (C) When two roots are degenerate, the standard methods fail to find them.</span><a class="headerlink" href="#fig-roots" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
 <hr class="docutils" />
 <p>Last modified on 3/11/2024 by R. Kawai.</p>
 <div class="toctree-wrapper compound">
