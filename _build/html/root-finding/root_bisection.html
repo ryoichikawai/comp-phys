@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/root_bisection';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Numerical Integration" href="../integral/intro.html" />
+    <link rel="next" title="4.3. Newton-Raphson method" href="root_newton.html" />
     <link rel="prev" title="4.1. Roots of Polynomials" href="root_polynomials.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -224,6 +224,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">4. Root Finding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="root_polynomials.html">4.1. Roots of Polynomials</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">4.2. Bisection Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -550,7 +551,7 @@ reached xmax
 </div>
 </div>
 </div>
-<p>Noting that <span class="math notranslate nohighlight">\(x^3 - 9 x^2 +23 x - 15 = (x-1)(x-3)(x-5)\)</span>,  there are three positive roots.  The above code successfully fond the three brackets.  You can also find the brackets easily by plotting the function.  In the following plotting, the black dots are the roots and the vertical red lines bracket the roots.</p>
+<p>Noting that <span class="math notranslate nohighlight">\(x^3 - 9 x^2 +23 x - 15 = (x-1)(x-3)(x-5)\)</span>,  there are three positive roots.  The above code successfully fond the three brackets.  You can also find the brackets easily by plotting the function.  In the following plotting, the lower and upper bounds of each bracket are indicated by blue and green lines respectively. The roots shown as black dots are inside the bracket.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
@@ -566,20 +567,21 @@ reached xmax
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$x$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$f(x)$&quot;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xL</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+
 <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xU</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xL</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">xU</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;g&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;-&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b6e930ba5ebddc2a65c32ddca67204ca31bbc7fc8795f19128d1688f30fbae93.png" src="../_images/b6e930ba5ebddc2a65c32ddca67204ca31bbc7fc8795f19128d1688f30fbae93.png" />
+<img alt="../_images/63eebe834aa8b16944204667012cbb2d90338c986a7c0131b8645230b4ff081c.png" src="../_images/63eebe834aa8b16944204667012cbb2d90338c986a7c0131b8645230b4ff081c.png" />
 </div>
 </div>
 </section>
 <section id="id1">
 <h2><span class="section-number">4.2.2. </span>Bisection Method<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Starting with an initial bracket, the bracket is narrowed by a half. Repeating this procedure until the bracket becomes so narrow that the the lower and upper limits of the bracket is almost identical.  Then, its midpoint is the root with a desired accuracy. Consider  a n initial bracket <span class="math notranslate nohighlight">\([x_L,x_U]\)</span>. The mid point <span class="math notranslate nohighlight">\(x_M}\)</span> between  <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> divide the bracket into two smaller intervals <span class="math notranslate nohighlight">\([x_L,x_M]\)</span> and <span class="math notranslate nohighlight">\([x_M,x_U]\)</span>.  One of the interval brackets the root.  If <span class="math notranslate nohighlight">\(f(x_L) f(x_M) &lt; 0\)</span>, the root must be between <span class="math notranslate nohighlight">\(x_L}\)</span> and <span class="math notranslate nohighlight">\(x_M\)</span>.  Now we have a new bracket <span class="math notranslate nohighlight">\([x_L,x_M]\)</span>.  Otherwise, the root must be between <span class="math notranslate nohighlight">\(x_M\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span>, which is the new bracket.  Repeating this procedure, the root is isolated in a small region. Noting that the error cannot be bigger than <span class="math notranslate nohighlight">\(x_U-x_L\)</span> and thus the iteration is terminated when <span class="math notranslate nohighlight">\(x_U-x_L &lt; \text{tolerence}\)</span>. This is the method of bisection.  Figure <a class="reference internal" href="#fig-bisection"><span class="std std-numref">Fig. 4.2</span></a> demonstrates how the bisection method works.  The procedure of this iterative method is  as follows.</p>
+<p>Starting with an initial bracket, the bracket is narrowed by a half. Repeating this procedure until the bracket becomes so narrow that the the lower and upper limits of the bracket is almost identical.  Then, its midpoint is the root with a desired accuracy. Consider  a n initial bracket <span class="math notranslate nohighlight">\([x_L,x_U]\)</span>. The mid point <span class="math notranslate nohighlight">\(x_M\)</span> between  <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> divide the bracket into two smaller intervals <span class="math notranslate nohighlight">\([x_L,x_M]\)</span> and <span class="math notranslate nohighlight">\([x_M,x_U]\)</span>.  One of the interval brackets the root.  If <span class="math notranslate nohighlight">\(f(x_L) f(x_M) &lt; 0\)</span>, the root must be between <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_M\)</span>.  Now we have a new bracket <span class="math notranslate nohighlight">\([x_L,x_M]\)</span>.  Otherwise, the root must be between <span class="math notranslate nohighlight">\(x_M\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span>, which is the new bracket.  Repeating this procedure, the root is isolated in a small region. Noting that the error cannot be bigger than <span class="math notranslate nohighlight">\(x_U-x_L\)</span> and thus the iteration is terminated when <span class="math notranslate nohighlight">\(x_U-x_L &lt; \text{tolerence}\)</span>. This is the method of bisection.  Figure <a class="reference internal" href="#fig-bisection"><span class="std std-numref">Fig. 4.2</span></a> demonstrates how the bisection method works.  The procedure of this iterative method is  as follows.</p>
 <figure class="align-default" id="fig-bisection">
 <a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" src="../_images/bisection.png" style="height: 300px;" /></a>
 <figcaption>
@@ -683,11 +685,11 @@ reached xmax
       </div>
     </a>
     <a class="right-next"
-       href="../integral/intro.html"
+       href="root_newton.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Numerical Integration</p>
+        <p class="prev-next-title"><span class="section-number">4.3. </span>Newton-Raphson method</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
