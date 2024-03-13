@@ -476,8 +476,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secant-method">4.3.1. Secant Method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">4.3.2. Canned routines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.3.1. Newton-Raphson method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secant-method">4.3.2. Secant Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-methods">4.3.3. Advanced Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">4.3.4. Canned routines</a></li>
 </ul>
             </nav>
         </div>
@@ -491,8 +493,10 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="newton-raphson-method">
 <span id="sec-newton-raphson"></span><h1><span class="section-number">4.3. </span>Newton-Raphson method<a class="headerlink" href="#newton-raphson-method" title="Link to this heading">#</a></h1>
-<p>The key step of iterative methods is how to propose a new candidate of root based on the previous candidates.  The derivative of the function provides can be a good resource to construct the  next candidate. Suppose that the <span class="math notranslate nohighlight">\(n\)</span>-th candidate <span class="math notranslate nohighlight">\(x_n\)</span> was not good enough.<br />
-We approximate the function using Taylor expansion around <span class="math notranslate nohighlight">\(x_n\)</span> as follows:</p>
+<p>The key step of iterative methods is how to propose a new candidate of root based on the previous candidates.  The derivative of the function provides can be a good resource to construct the  next candidate. Suppose that the <span class="math notranslate nohighlight">\(n\)</span>-th candidate <span class="math notranslate nohighlight">\(x_n\)</span> was not good enough. What informnation can be used  to propose a new candidate?  The slope of the function should provide a useful information.  The Neton-Raphson and secant methods, both utilize the derivative function to propose a better candidate,.</p>
+<section id="id1">
+<h2><span class="section-number">4.3.1. </span>Newton-Raphson method<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>We approximate the function using Taylor expansion around <span class="math notranslate nohighlight">\(x_n\)</span> as follows:</p>
 <div class="math notranslate nohighlight" id="equation-eq-taylor-1">
 <span class="eqno">(4.1)<a class="headerlink" href="#equation-eq-taylor-1" title="Link to this equation">#</a></span>\[
 f(x) \approx f(x_n) + f'(x_n) (x-x_n) 
@@ -505,7 +509,7 @@ f(x_n) + f'(x_n) (x-x_n) = 0
 <p>The root of this equation is the next candidate, that is</p>
 <div class="math notranslate nohighlight" id="equation-eq-newton-raphson">
 <span class="eqno">(4.2)<a class="headerlink" href="#equation-eq-newton-raphson" title="Link to this equation">#</a></span>\[
-x_(n+1) = x_n - \frac{f(x_n)}{f'(x_n)}
+x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)}
 \]</div>
 <p>which should be closer to the root than <span class="math notranslate nohighlight">\(x_n\)</span> as Fig. <a class="reference internal" href="#fig-newton-raphson"><span class="std std-numref">Fig. 4.3</span></a> illustrate.  Repeating this procedure, <span class="math notranslate nohighlight">\(x_n\)</span> approaches the root rather quickly.</p>
 <p>We need a reasonable criteria for terminating the iteration. Let us denote the root as <span class="math notranslate nohighlight">\(x^*\)</span>. From Eq. <a class="reference internal" href="#equation-eq-taylor-1">(4.1)</a> we have</p>
@@ -603,14 +607,15 @@ In order to avoid this failure, find a rough estimate of root using the bisectio
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.AxLine at 0x7f716d88a290&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.lines.AxLine at 0x7f8728b0ed10&gt;
 </pre></div>
 </div>
 <img alt="../_images/2c3406d7cf62cc8e4e62c7858d281cf9cb9fa51df8a2b1ef6c214e341310ff13.png" src="../_images/2c3406d7cf62cc8e4e62c7858d281cf9cb9fa51df8a2b1ef6c214e341310ff13.png" />
 </div>
 </div>
+</section>
 <section id="secant-method">
-<h2><span class="section-number">4.3.1. </span>Secant Method<a class="headerlink" href="#secant-method" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.2. </span>Secant Method<a class="headerlink" href="#secant-method" title="Link to this heading">#</a></h2>
 <p>The Newton-Raphson method requires the analytic expression of the first order derivative, which limits the range of applications. However, the same idea can be used without the analytic expression.  If we replace the analytic derivative with the numerical derivative (see Chapter <a class="reference internal" href="../derivative/intro.html#chap-derivative"><span class="std std-numref">Section 3</span></a> ), the Newton-Raphson procedure still works.  Using the backward finite difference method, the recursive equation <a class="reference internal" href="#equation-eq-newton-raphson">(4.2)</a> becomes</p>
 <div class="math notranslate nohighlight">
 \[
@@ -640,11 +645,11 @@ x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
 <span class="c1"># set tolerance</span>
 <span class="n">ftol</span> <span class="o">=</span> <span class="mf">1.e-8</span>
 
-<span class="c1"># set the initial candiate</span>
+<span class="c1"># set the initial candidate</span>
 <span class="n">x1</span> <span class="o">=</span> <span class="mf">4.0</span>
 <span class="n">x2</span> <span class="o">=</span> <span class="mf">4.1</span>
 
-<span class="c1"># set the maximum itertation</span>
+<span class="c1"># set the maximum iteration</span>
 <span class="n">nmax</span> <span class="o">=</span> <span class="mi">100</span>
 
 <span class="n">f1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
@@ -671,8 +676,12 @@ x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
 </div>
 <p>Notice that the secant method found a root nearest to the pair of the initial points.</p>
 </section>
+<section id="advanced-methods">
+<h2><span class="section-number">4.3.3. </span>Advanced Methods<a class="headerlink" href="#advanced-methods" title="Link to this heading">#</a></h2>
+<p>The secant method has various weakness, namely it is not guaranteed to converge.  For example, if it happens that <span class="math notranslate nohighlight">\(f(x_n) = 0\)</span> or very close to 0, the iteration cannot continue.  To overcome this difficulty, a hybrid method combining the bisection method and the secant method, which called the <a class="reference external" href="https://en.wikipedia.org/wiki/Brent%27s_method">Brent method</a>, or Brent-Dekker method.  We do not discuss the method in this lecture.  In the following section, a canned routine of Brent method is shown.</p>
+</section>
 <section id="canned-routines">
-<h2><span class="section-number">4.3.2. </span>Canned routines<a class="headerlink" href="#canned-routines" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3.4. </span>Canned routines<a class="headerlink" href="#canned-routines" title="Link to this heading">#</a></h2>
 <p>Now we know the pros and cons of the Newton-Raphson method.  So, we use canned routines carefully. <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> provides <code class="docutils literal notranslate"><span class="pre">newton</span></code>.  See the <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.newton.html">usage</a>.</p>
 <p><strong>Example</strong> Solve the same problem with <code class="docutils literal notranslate"><span class="pre">scipy.op[timize.newton</span></code>.</p>
 <div class="cell docutils container">
@@ -713,9 +722,6 @@ x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
 <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">15</span>
 
-<span class="k">def</span> <span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">23</span>
-
 <span class="n">x0</span> <span class="o">=</span> <span class="mf">4.1</span>
 <span class="n">xtol</span><span class="o">=</span><span class="mf">1e-6</span>
 
@@ -732,6 +738,31 @@ x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
 </div>
 </div>
 <p>Notice again that a different root from the Newtow-Raphson is obtained,  which is the nearest to the initial position.</p>
+<p>The Brent method is also provided by <code class="docutils literal notranslate"><span class="pre">scipy.optimize.brentq</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Solves x**3-9*x**2+23*x-15=0 by the Brent method</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">brentq</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">15</span>
+    
+<span class="c1"># The initial braket is taken from the previouse section.</span>
+<span class="n">x1</span><span class="o">=</span><span class="mf">2.50656e+00</span>
+<span class="n">x2</span><span class="o">=</span><span class="mf">3.16192e+00</span>
+
+<span class="n">brentq</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>2.999999999999995
+</pre></div>
+</div>
+</div>
+</div>
 <hr class="docutils" />
 <p>Last modified on 3/13/2024 by R. Kawai</p>
 </section>
@@ -801,8 +832,10 @@ x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secant-method">4.3.1. Secant Method</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">4.3.2. Canned routines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.3.1. Newton-Raphson method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#secant-method">4.3.2. Secant Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-methods">4.3.3. Advanced Methods</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routines">4.3.4. Canned routines</a></li>
 </ul>
   </nav></div>
 
