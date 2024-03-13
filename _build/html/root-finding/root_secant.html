@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.8. Problems &#8212; Computational Methods for Physics with Python.</title>
+    <title>4.4. Secant Method &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -59,11 +59,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'numbers/problems';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/root_secant';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="2. Functions" href="../functions/intro.html" />
-    <link rel="prev" title="1.7. Applications" href="applications.html" />
+    <link rel="next" title="5. Numerical Integration" href="../integral/intro.html" />
+    <link rel="prev" title="4.3. Newton-Raphson method" href="root_newton.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -191,15 +191,15 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">1. Numbers and Quantization Errors</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="bits.html">1.1. Bits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ascii.html">1.2. Characters</a></li>
-<li class="toctree-l2"><a class="reference internal" href="integers.html">1.3. Integers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="float.html">1.4. Floating Point Numbers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="errors.html">1.5. Digitization Errors</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="applications.html">1.7. Applications</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.8. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.7. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.8. Problems</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -221,11 +221,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">3.5. Problems</a></li>
 </ul>
 </li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_polynomials.html">4.1. Roots of Polynomials</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_bisection.html">4.2. Bisection Method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_newton.html">4.3. Newton-Raphson method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_secant.html">4.4. Secant Method</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">4. Root Finding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="root_polynomials.html">4.1. Roots of Polynomials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root_bisection.html">4.2. Bisection Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">4.4. Secant Method</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -305,7 +305,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/numbers/problems.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/root-finding/root_secant.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +353,7 @@
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fnumbers/problems.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Froot-finding/root_secant.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -383,7 +383,7 @@
       
       
       
-      <li><a href="../_sources/numbers/problems.ipynb" target="_blank"
+      <li><a href="../_sources/root-finding/root_secant.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -454,7 +454,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -465,11 +467,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Problems</h1>
+    <h1>Secant Method</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routine">4.4.1. Canned routine</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -479,19 +489,100 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="problems">
-<span id="sec-numbers-problems"></span><h1><span class="section-number">1.8. </span>Problems<a class="headerlink" href="#problems" title="Link to this heading">#</a></h1>
-<p><strong>1.1</strong>   In statistical mechanics, factorial <span class="math notranslate nohighlight">\(n!\)</span> of huge integer <span class="math notranslate nohighlight">\(n\)</span> such as the Avogadro number often appears. It is difficult to manage such a huge number even analytically.  A common method to deal with such a large number is to use the <a class="reference external" href="https://en.wikipedia.org/wiki/Stirling%27s_approximation">Stirling’s approximation</a>:</p>
-<div class="math notranslate nohighlight" id="equation-eq-stirling1">
-<span class="eqno">(1.3)<a class="headerlink" href="#equation-eq-stirling1" title="Link to this equation">#</a></span>\[
-\ln(n!) \approx n \ln(n) - n + \frac{1}{2} \ln(2 \pi n)
+  <section class="tex2jax_ignore mathjax_ignore" id="secant-method">
+<span id="sec-secant"></span><h1><span class="section-number">4.4. </span>Secant Method<a class="headerlink" href="#secant-method" title="Link to this heading">#</a></h1>
+<p>The Newton-Raphson method requires the analytic expression of the first order derivative, which limits the range of applications. However, the same idea can be used without the analytic expression.  If we replace the analytic derivative with the numerical derivative (see Chapter <a class="reference internal" href="../derivative/intro.html#chap-derivative"><span class="std std-numref">Section 3</span></a> ), the Newton-Raphson procedure still works.  Using the backward finite difference method, the recursive equation <a class="reference internal" href="root_newton.html#equation-eq-newton-raphson">(4.2)</a> becomes</p>
+<div class="math notranslate nohighlight">
+\[
+x_{n+1} = x_n - \frac{x_{n}-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)
 \]</div>
-<p>Then, the factorial can be approximated as</p>
-<div class="math notranslate nohighlight" id="equation-eq-stirling2">
-<span class="eqno">(1.4)<a class="headerlink" href="#equation-eq-stirling2" title="Link to this equation">#</a></span>\[
-n! \approx \sqrt{2 \pi n} \left ( \frac{n}{\text{e}} \right )^n\, .
-\]</div>
-<p>To verify the accuracy of this formula, compute the ratio <span class="math notranslate nohighlight">\(R=\displaystyle\frac{n!}{\sqrt{2 \pi n} \left ( \frac{n}{\text{e}} \right )^n}\)</span>  for <span class="math notranslate nohighlight">\(n=10, 100\)</span>, and <span class="math notranslate nohighlight">\(1000\)</span>. If the approximation is good, <span class="math notranslate nohighlight">\(R\)</span> approaches <span class="math notranslate nohighlight">\(1\)</span> as <span class="math notranslate nohighlight">\(n\)</span> increases. Verify it by computing <span class="math notranslate nohighlight">\(R\)</span>. Note that direct calculation of <span class="math notranslate nohighlight">\(R\)</span> is hard but <span class="math notranslate nohighlight">\(\ln R\)</span> can be easily evaluated.</p>
+<p>This method is commonly known as the secant method. Use the bisection method before starting the secant method to ensure the convergence.</p>
+<p>One problem is that this method needs two points to start the iteration. However, this is not a big issue since we can pick any point close to the initial guess. If the root is already bracketed between <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, use <span class="math notranslate nohighlight">\(x_1 = x_0 + \Delta\)</span> with <span class="math notranslate nohighlight">\(\Delta \ll b-a\)</span>. If the secant method is preceded by the bisection method, use the final bracket from the bisection calculation.  Then, <span class="math notranslate nohighlight">\(\Delta = (b-a)/10\)</span> is good enough.</p>
+<div class="admonition-algorithm-secant admonition">
+<p class="admonition-title">Algorithm: Secant</p>
+<ol class="arabic simple">
+<li><p>Set a tolerance <span class="math notranslate nohighlight">\(xtol\)</span> or <span class="math notranslate nohighlight">\(ftol\)</span>.</p></li>
+<li><p>Choose two initial points <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(x_1 = x_0 + \delta\)</span>.</p></li>
+<li><p>Reset thne counter <span class="math notranslate nohighlight">\(n=1\)</span></p></li>
+<li><p>Estimate a new candidate by <span class="math notranslate nohighlight">\(x_{n+1} = x_n - \displaystyle\frac{x_n-x_{n-1}}{f(x_n)-f(x_{n-1})} f(x_n)\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(|x_{n+1}-x_n| &lt; xtol\)</span> and/or <span class="math notranslate nohighlight">\(f(x_{n+1}) &lt; ftol\)</span>, then <span class="math notranslate nohighlight">\(x_{n+1}\)</span> is the root.  Stop the iteration.</p></li>
+<li><p>Otherwise, increment <span class="math notranslate nohighlight">\(n\)</span> and go to step 4.</p></li>
+</ol>
+</div>
+<p><strong>Example</strong>  We solve <span class="math notranslate nohighlight">\(x^3 - 9 x^2 +23 x - 15=0\)</span> one more time but with the secant method this time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">15</span>
+
+<span class="c1"># set tolerance</span>
+<span class="n">ftol</span> <span class="o">=</span> <span class="mf">1.e-8</span>
+
+<span class="c1"># set the initial candiate</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="mf">4.0</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="mf">4.1</span>
+
+<span class="c1"># set the maximum itertation</span>
+<span class="n">nmax</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="n">f1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">f2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+
+<span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">f2</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">ftol</span> <span class="ow">and</span> <span class="n">n</span><span class="o">&lt;</span><span class="n">nmax</span><span class="p">:</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">f2</span><span class="o">-</span><span class="n">f1</span><span class="p">)</span><span class="o">*</span><span class="n">f2</span>
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">x2</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f2</span>
+    <span class="n">x2</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="n">f2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;root= </span><span class="si">{0:10.7e}</span><span class="s2">, f(x)= </span><span class="si">{1:15.8e}</span><span class="s2">, iteration= </span><span class="si">{2:3d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">f2</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root= 5.0000000e+00, f(x)= -1.61861635e-11, iteration=   8
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that the root nearest to the pair of the initial points.</p>
+<section id="canned-routine">
+<h2><span class="section-number">4.4.1. </span>Canned routine<a class="headerlink" href="#canned-routine" title="Link to this heading">#</a></h2>
+<p>You don’t see the secant method in <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code>.  Actually, there is but hidden in <code class="docutils literal notranslate"><span class="pre">newton</span></code>.  If the option <code class="docutils literal notranslate"><span class="pre">fprime=</span></code> is not specified, it automatically uses the secant method.  It does not require the second initial position.  The routine will generate the second point automatically.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">9</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">23</span><span class="o">*</span><span class="n">x</span><span class="o">-</span><span class="mi">15</span>
+
+<span class="k">def</span> <span class="nf">df</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">18</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">23</span>
+
+<span class="n">x0</span> <span class="o">=</span> <span class="mf">4.1</span>
+<span class="n">xtol</span><span class="o">=</span><span class="mf">1e-6</span>
+
+<span class="c1"># if &#39;fprime=&#39; option is not used,</span>
+<span class="c1"># &#39;newton&#39; uses the secant method.</span>
+<span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span><span class="n">tol</span><span class="o">=</span><span class="n">xtol</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5.000000000001222
+</pre></div>
+</div>
+</div>
+</div>
+<p>Notice that a different root from the Newtow-Raphson is obtained,  which is the nearest to the initial position.</p>
+<hr class="docutils" />
+<p>Last modified on 3/13/2024 by R. Kawai</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -507,7 +598,7 @@ n! \approx \sqrt{2 \pi n} \left ( \frac{n}{\text{e}} \right )^n\, .
         },
         kernelOptions: {
             name: "jbook",
-            path: "./numbers"
+            path: "./root-finding"
         },
         predefinedOutput: true
     }
@@ -525,20 +616,20 @@ n! \approx \sqrt{2 \pi n} \left ( \frac{n}{\text{e}} \right )^n\, .
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="applications.html"
+       href="root_newton.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1.7. </span>Applications</p>
+        <p class="prev-next-title"><span class="section-number">4.3. </span>Newton-Raphson method</p>
       </div>
     </a>
     <a class="right-next"
-       href="../functions/intro.html"
+       href="../integral/intro.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">2. </span>Functions</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Numerical Integration</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -549,7 +640,20 @@ n! \approx \sqrt{2 \pi n} \left ( \frac{n}{\text{e}} \right )^n\, .
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"></div>
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routine">4.4.1. Canned routine</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
