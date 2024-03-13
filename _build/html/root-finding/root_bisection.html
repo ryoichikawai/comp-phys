@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -478,6 +478,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bracketing-a-root">4.2.1. Bracketing a root</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.2. Bisection Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routine">4.2.3. Canned routine</a></li>
 </ul>
             </nav>
         </div>
@@ -581,7 +582,10 @@ reached xmax
 </section>
 <section id="id1">
 <h2><span class="section-number">4.2.2. </span>Bisection Method<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>Starting with an initial bracket, the bracket is narrowed by a half. Repeating this procedure until the bracket becomes so narrow that the the lower and upper limits of the bracket is almost identical.  Then, its midpoint is the root with a desired accuracy. Consider  a n initial bracket <span class="math notranslate nohighlight">\([x_L,x_U]\)</span>. The mid point <span class="math notranslate nohighlight">\(x_M\)</span> between  <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> divide the bracket into two smaller intervals <span class="math notranslate nohighlight">\([x_L,x_M]\)</span> and <span class="math notranslate nohighlight">\([x_M,x_U]\)</span>.  One of the interval brackets the root.  If <span class="math notranslate nohighlight">\(f(x_L) f(x_M) &lt; 0\)</span>, the root must be between <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_M\)</span>.  Now we have a new bracket <span class="math notranslate nohighlight">\([x_L,x_M]\)</span>.  Otherwise, the root must be between <span class="math notranslate nohighlight">\(x_M\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span>, which is the new bracket.  Repeating this procedure, the root is isolated in a small region. Noting that the error cannot be bigger than <span class="math notranslate nohighlight">\(x_U-x_L\)</span> and thus the iteration is terminated when <span class="math notranslate nohighlight">\(x_U-x_L &lt; \text{tolerence}\)</span>. This is the method of bisection.  Figure <a class="reference internal" href="#fig-bisection"><span class="std std-numref">Fig. 4.2</span></a> demonstrates how the bisection method works.  The procedure of this iterative method is  as follows.</p>
+<p>The bisection method is simple and robust.  Howeve, it may consume more cpu time than other approaches.
+Starting with an initial bracket, the bracket is narrowed by a half. Repeating this procedure until the bracket becomes so narrow that the the lower and upper limits of the bracket is almost identical.  Then, its midpoint is the root with a desired accuracy. Consider  a n initial bracket <span class="math notranslate nohighlight">\([x_L,x_U]\)</span>. The mid point <span class="math notranslate nohighlight">\(x_M\)</span> between  <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> divide the bracket into two smaller intervals <span class="math notranslate nohighlight">\([x_L,x_M]\)</span> and <span class="math notranslate nohighlight">\([x_M,x_U]\)</span>.  One of the interval brackets the root.  If <span class="math notranslate nohighlight">\(f(x_L) f(x_M) &lt; 0\)</span>, the root must be between <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_M\)</span>.  Now we have a new bracket <span class="math notranslate nohighlight">\([x_L,x_M]\)</span>.  Otherwise, the root must be between <span class="math notranslate nohighlight">\(x_M\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span>, which is the new bracket.  Repeating this procedure, the root is isolated in a small region. Noting that the error cannot be bigger than <span class="math notranslate nohighlight">\(x_U-x_L\)</span> and thus the iteration is terminated when <span class="math notranslate nohighlight">\(x_U-x_L &lt; \text{xtol}\)</span>. Instead of the absolute error, we can use relative error, for example <span class="math notranslate nohighlight">\((x_U-x_L)&lt; rtol X_M\)</span>.</p>
+<p>Alternatively, we can use the tolerance based on the function value.  If the function value is close enough to 0, that is <span class="math notranslate nohighlight">\(|f(x_M)| &lt; \text{ftol}\)</span>, we stop the iteration. When the slop of the curve near the root is small, xtol works better.  In the opposite case, ftol is better. cannot It is better to set the maximum number of iteration just in case the termination condition never be satisfied.</p>
+<p>Figure <a class="reference internal" href="#fig-bisection"><span class="std std-numref">Fig. 4.2</span></a> demonstrates how the bisection method works.</p>
 <figure class="align-default" id="fig-bisection">
 <a class="reference internal image-reference" href="../_images/bisection.png"><img alt="../_images/bisection.png" src="../_images/bisection.png" style="height: 300px;" /></a>
 <figcaption>
@@ -591,57 +595,111 @@ reached xmax
 <div class="admonition-algorithm-bisection-method admonition">
 <p class="admonition-title">Algorithm: Bisection Method</p>
 <ol class="arabic simple">
-<li><p>Get a initial bracket <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> and a tolerance <span class="math notranslate nohighlight">\(\epsilon\)</span>.</p></li>
+<li><p>Get a initial bracket <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span> and a tolerance xtol or rtol.</p></li>
 <li><p>Make it sure that <span class="math notranslate nohighlight">\(f(x_L) f(x_U) &lt;0\)</span>.  Otherwise, stop and check the initial bracket.</p></li>
 <li><p>Evaluate the function at the mid point <span class="math notranslate nohighlight">\(x_M = \frac{1}{2}(x_L+x_U)\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(x_U - x_L&lt; \epsilon\)</span>, <span class="math notranslate nohighlight">\(x_M\)</span> is the root and stop here.  Otherwise continue.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(x_U - x_L&lt; xtol\)</span> or <span class="math notranslate nohighlight">\(|f(x_M)|&lt; ftol, \)</span>x_M$ is the root and stop here.  Otherwise continue.</p></li>
 <li><p>If <span class="math notranslate nohighlight">\(f(x_L) f(x_M) &lt; 0\)</span>, then the root is between <span class="math notranslate nohighlight">\(x_L\)</span> and <span class="math notranslate nohighlight">\(x_M\)</span>.  Let <span class="math notranslate nohighlight">\(x_U=x_M\)</span> and go to step 3.  Otherwise continue.</p></li>
 <li><p>The root must be between <span class="math notranslate nohighlight">\(x_M\)</span> and <span class="math notranslate nohighlight">\(x_U\)</span>.  Let <span class="math notranslate nohighlight">\(x_L=x_M\)</span> and go to Step 3.</p></li>
 </ol>
 </div>
+<p><strong>Example</strong>  We solve <span class="math notranslate nohighlight">\(x^3 - 9 x^2 +23 x - 15=0\)</span>.  The roots are already bracketed in the previous example.   We use rtol.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
 <span class="c1"># a bracket obtained in the previous code cell is used here</span>
 
-<span class="c1"># set a tolerance</span>
-<span class="n">tol</span><span class="o">=</span><span class="mf">1.e-5</span>
-   
-<span class="c1"># initial bracket</span>
-<span class="n">x1</span><span class="o">=</span><span class="n">xL</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">x2</span><span class="o">=</span><span class="n">xU</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-<span class="n">f1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
-<span class="n">f2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">bisection</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">ftol</span><span class="p">,</span><span class="n">nmax</span><span class="p">):</span>
+<span class="c1"># function that finds a root in a given bracket</span>
+<span class="c1"># input: x1, x2 = bracket</span>
+<span class="c1">#        ftol = tolerance for f(x)</span>
+<span class="c1">#        nmax = maximum itertation</span>
+<span class="c1"># output: array of the followings:</span>
+<span class="c1">#        root = root found by the bisection method</span>
+<span class="c1">#        func = the function value at the root</span>
+<span class="c1">#           n = the number of iteration</span>
+<span class="c1">#</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span>
+    <span class="n">f2</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
 
-<span class="c1"># iteration counter</span>
-<span class="n">n</span><span class="o">=</span><span class="mi">0</span>
+    <span class="c1"># iteration counter</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">0</span>
 
-<span class="c1"># mid point</span>
-<span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
-<span class="n">fm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
-
-<span class="k">while</span> <span class="n">x2</span><span class="o">-</span><span class="n">x1</span> <span class="o">&gt;</span> <span class="n">tol</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">f1</span><span class="o">*</span><span class="n">fm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># root in the lower half</span>
-        <span class="n">x2</span><span class="o">=</span><span class="n">xm</span>
-        <span class="n">f2</span><span class="o">=</span><span class="n">fm</span>
-    <span class="k">else</span><span class="p">:</span>          <span class="c1"># root in the upper half</span>
-        <span class="n">x1</span><span class="o">=</span><span class="n">xm</span>
-        <span class="n">f1</span><span class="o">=</span><span class="n">fm</span>
-
-    <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>      <span class="c1"># new mid point</span>
+    <span class="c1"># mid point</span>
+    <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>
     <span class="n">fm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
-    <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Answer = </span><span class="si">{0:7.5f}</span><span class="s2">, (iteration = </span><span class="si">{1:3d}</span><span class="s2">)&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">xm</span><span class="p">,</span><span class="n">n</span><span class="p">))</span>
+    <span class="k">while</span> <span class="nb">abs</span><span class="p">(</span><span class="n">fm</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">ftol</span> <span class="ow">and</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">nmax</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">f1</span><span class="o">*</span><span class="n">fm</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># root in the lower half</span>
+            <span class="n">x2</span><span class="o">=</span><span class="n">xm</span>
+            <span class="n">f2</span><span class="o">=</span><span class="n">fm</span>
+        <span class="k">else</span><span class="p">:</span>          <span class="c1"># root in the upper half</span>
+            <span class="n">x1</span><span class="o">=</span><span class="n">xm</span>
+            <span class="n">f1</span><span class="o">=</span><span class="n">fm</span>
+
+        <span class="n">xm</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mf">2.0</span>      <span class="c1"># new mid point</span>
+        <span class="n">fm</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">xm</span><span class="p">)</span>
+        <span class="n">n</span><span class="o">+=</span><span class="mi">1</span>
+
+    <span class="k">return</span> <span class="p">[</span><span class="n">xm</span><span class="p">,</span> <span class="n">fm</span> <span class="p">,</span><span class="n">n</span><span class="p">]</span>
+
+<span class="c1"># main routine starts here</span>
+
+<span class="c1"># set a tolerance</span>
+<span class="n">ftol</span> <span class="o">=</span> <span class="mf">1.e-6</span>
+
+<span class="c1"># setr maximum iteration</span>
+<span class="n">nmax</span> <span class="o">=</span> <span class="mi">100</span>
+   
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="p">[</span><span class="n">root</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">n</span><span class="p">]</span><span class="o">=</span><span class="n">bisection</span><span class="p">(</span><span class="n">xL</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">xU</span><span class="p">[</span><span class="n">k</span><span class="p">],</span><span class="n">ftol</span><span class="p">,</span><span class="n">nmax</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;root= </span><span class="si">{0:10.7e}</span><span class="s2">, f(x)= </span><span class="si">{1:15.8e}</span><span class="s2">, iteration= </span><span class="si">{2:3d}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Answer = 3.00064, (iteration =  17)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root= 1.0000000e+00, f(x)=  0.00000000e+00, iteration=  11
+root= 3.0000000e+00, f(x)=  0.00000000e+00, iteration=   9
+root= 5.0000000e+00, f(x)=  0.00000000e+00, iteration=  14
 </pre></div>
 </div>
 </div>
 </div>
+<blockquote>
+<div><p><strong>Exercise</strong>  Do the same calculation with xtol. Try to get the most accurate results with a small tolerance. Which tolerance is better for this function, xtol or rtol?</p>
+</div></blockquote>
+</section>
+<section id="canned-routine">
+<h2><span class="section-number">4.2.3. </span>Canned routine<a class="headerlink" href="#canned-routine" title="Link to this heading">#</a></h2>
+<p>Once we understood the algorithm, it is a bit safer to use a canned routine.  <code class="docutils literal notranslate"><span class="pre">scipy.optimize</span></code> provides <code class="docutils literal notranslate"><span class="pre">bisect</span></code>.  The default tolerance is xtol <span class="math notranslate nohighlight">\(=2 \times 10^{-12}\)</span> and rtol<span class="math notranslate nohighlight">\(=8.881784197001252 \times 10^{-16}\)</span>. We can change it using the option <code class="docutils literal notranslate"><span class="pre">xtol=</span></code> and/or <code class="docutils literal notranslate"><span class="pre">rtol=</span></code>.  When both are specified, the iteration stops as soon as one of the conditions is satisfied.  By default the iteration is limited to 100 but can be changed with option “maxiter=”.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cells</span>
+
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span>
+
+<span class="c1"># using xtol</span>
+<span class="n">r</span><span class="o">=</span><span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">xL</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">xU</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">xtol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;root with xtol= </span><span class="si">{0:12.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+
+<span class="c1"># using rtol</span>
+<span class="n">r</span><span class="o">=</span><span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">xL</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">xU</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rtol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;root with rtol= </span><span class="si">{0:12.6e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>root with xtol= 3.000000e+00
+root with rtol= 3.000000e+00
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p><em>Exercise:</em>   Knowing that <span class="math notranslate nohighlight">\(x^3 - 4 x^2 + x - 6\)</span> has only one negative root, find it by the bisection method.</p>
+</div></blockquote>
+<hr class="docutils" />
+<p>Last modified on 3/13/2024 by R. Kawai</p>
 </section>
 </section>
 
@@ -711,6 +769,7 @@ reached xmax
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bracketing-a-root">4.2.1. Bracketing a root</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.2.2. Bisection Method</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#canned-routine">4.2.3. Canned routine</a></li>
 </ul>
   </nav></div>
 
