@@ -1,0 +1,814 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>4.4.1. Classical Turning Points &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/turning_points';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Numerical Integration" href="../integral/intro.html" />
+    <link rel="prev" title="4.4. Application in Physics" href="applications.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.7. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.8. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functions/applications.html">2.3. Applications in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functions/overdamped.html">2.3.1. An Overdamped Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.2. Quantum Free Falling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.3. Hydrogen Atom</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">3. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">3.5. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">4. Root Finding</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="root_polynomials.html">4.1. Roots of Polynomials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root_bisection.html">4.2. Bisection Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.1. Classical Turning Points</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">5.4. Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">5.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/root-finding/turning_points.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Froot-finding/turning_points.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/root-finding/turning_points.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Classical Turning Points</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-points-of-the-morse-potential">4.4.1.1. Turning points of the Morse Potential</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-points-of-the-exp-6-hybrid-potential">4.4.1.2. Turning points of the (exp-6) hybrid potential</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="classical-turning-points">
+<h1><span class="section-number">4.4.1. </span>Classical Turning Points<a class="headerlink" href="#classical-turning-points" title="Link to this heading">#</a></h1>
+<p>When a classical particle with energy <span class="math notranslate nohighlight">\(E\)</span> is confined in a potential <span class="math notranslate nohighlight">\(U(x)\)</span>. (See Fig \ref{fig:oscillation}.)  The particle oscillates between turning points <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.  The period of oscillation<span id="id1">[<a class="reference internal" href="../references/references.html#id16" title="J. R. Taylor. Classical Mechanics. University Science Books, 2004.">11</a>]</span> is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-oscillation-period">
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-oscillation-period" title="Link to this equation">#</a></span>\[
+T=2 \int_{x_1}^{x_2} \frac{1}{v(x)}\, dx
+\]</div>
+<p>where the speed of the particle at <span class="math notranslate nohighlight">\(x\)</span> is given by</p>
+<div class="math notranslate nohighlight">
+\[
+v(x) = \sqrt{\frac{2(E-U(x))}{m}}
+\]</div>
+<p>The integral bounds are determined by solving <span class="math notranslate nohighlight">\(v(x)=0\)</span>, which leads to <span class="math notranslate nohighlight">\(E-U(x)=0\)</span>.  Unless the potential takes a simple mathematical form, we need to find the turning point numerically.</p>
+<figure class="align-default" id="fig-turning-points">
+<a class="reference internal image-reference" href="../_images/turning_points.png"><img alt="../_images/turning_points.png" src="../_images/turning_points.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text">Energy diagram of a claasical particle confined in a potential <span class="math notranslate nohighlight">\(U(x)\)</span>.</span><a class="headerlink" href="#fig-turning-points" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Let us investigate the vibration of a diatomic molecule. The inter-atomic interaction is often modeled either by the Morse potential or by the Lenard-Jones potential.
+The Morse potential defined by
+$<span class="math notranslate nohighlight">\(
+U_M(r) = D_e\left[e^{- 2 a r} - 2 e^{-a r}\right]
+\)</span>$</p>
+<p>where <span class="math notranslate nohighlight">\(r\)</span> is the inter-atomic distance and <span class="math notranslate nohighlight">\(r_c\)</span> is the equilibrium distance.  <span class="math notranslate nohighlight">\(D_e&gt;0\)</span> is the dissociation energy.  When the kinetic energy <span class="math notranslate nohighlight">\(E\)</span> exceeds it, the molecule breaks up.  When <span class="math notranslate nohighlight">\(E&lt;D_e\)</span>, the molecule vibrates.  The positive constant <span class="math notranslate nohighlight">\(a\)</span> along with <span class="math notranslate nohighlight">\(D_e\)</span> controls the strength of the force between the atoms.  The first term represents repulsion between the atoms and the second term attraction. This potential is often used to describe the vibration of covalently bounded molecules. For numerical purpose,  energy and potential are normalized as <span class="math notranslate nohighlight">\(k = E/D_e\)</span> and <span class="math notranslate nohighlight">\(u = U/D_e\)</span>.  The distance is normalized as <span class="math notranslate nohighlight">\(x=a r\)</span>.  Then, the potential energy becomes</p>
+<div class="math notranslate nohighlight">
+\[
+u_M(x) =e^{- 2 x} - 2 e^{-x}
+\]</div>
+<p>The Lenard-Jones potential is given by</p>
+<div class="math notranslate nohighlight">
+\[
+U_{LJ} = 4 D_e \left[ \left(\frac{\sigma}{r}\right)^{12} - \left(\frac{\sigma}{r}\right)^{6}\right]
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\sigma\)</span> is a positive constant. Similarly to the Morse potential, the first term comes from the repulsive force and the second term from the attractive force. The latter represents the van der Waals attraction thus this potential works for weakly bounded diatomic molecules.</p>
+<p>Normalizing the distance as <span class="math notranslate nohighlight">\(x=\displaystyle\frac{\sigma}{r}\)</span>, we have a simple expression</p>
+<div class="math notranslate nohighlight">
+\[
+u_{LJ} = 4 \left(\frac{1}{x^{12}} - \frac{1}{x^6}\right)
+\]</div>
+<p>These potentials are mathematically simple enough that the location of the potential minimum <span class="math notranslate nohighlight">\(x_\text{min}\)</span>,  and also the turning points <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> can be obtained by hand calculation.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{align}
+x_\text{min} &amp;= 0, \quad &amp;x_1 &amp;= - \ln (1+\sqrt{k}), \quad &amp; x_2 &amp;= -\ln (1-\sqrt{k})\qquad &amp;\text{Morse potential}&amp; \\
+x_\text{min} &amp;= 2^{1/6}, \quad &amp;x_1 &amp; = x_\text{min} (1-\sqrt{k}), \quad &amp;x_2 &amp;=  x_\text{min} (1+\sqrt{k}\qquad &amp;\text{Lennard-Jones potential}&amp;
+\end{align}
+\end{split}\]</div>
+<p>where the turning points are the roots of <span class="math notranslate nohighlight">\(u(x) = k-1\)</span> where <span class="math notranslate nohighlight">\(0&lt;k&lt;1\)</span> is the (normalized) kinetic energy.</p>
+<p>While these potentials are mathematically convenient, they do not accurately represent the real molecular interaction. An old idea to improve the accuracy for a certain molecules, a hybrid mode, which takes the repulsive part from the Morse potential and the attractive part from the Lenard-Jones potential, was proposed.  The resulting expression becomes a bit complicated as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+U_\text{hybrid} (r) = D_e \frac{a}{a-6} \left[\frac{6}{a} e^{a(1-r/\sigma)} - \left(\frac{\sigma}{r}\right)^6\right]
+\]</div>
+<p>which is sometimes called the (exp-6) potential.
+It has two parameters <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(\sigma\)</span> inherited from the two original potentials.  However, <span class="math notranslate nohighlight">\(a\)</span> is dimensionless now and thus we cannot get rid of it by normalization.  Introducing the normalized distance <span class="math notranslate nohighlight">\(x=r/\sigma\)</span> and normalized energy <span class="math notranslate nohighlight">\(u = U/D_e\)</span>, the potential is simplified as</p>
+<div class="math notranslate nohighlight">
+\[
+u_\text{hybrid}(x) = \frac{a}{a-6} \left(\frac{6}{a} e^{a(1-x)} - 1/x^6\right)
+\]</div>
+<p>which has the potential minimum at <span class="math notranslate nohighlight">\(x=1\)</span> and the depth of the potential <span class="math notranslate nohighlight">\(u(1)=-1\)</span>. As <span class="math notranslate nohighlight">\(x \rightarrow \infty\)</span>, the potential vanishes and thus the dissociation energy is 1.  Hence, it has all desired properties.  An drawback is that while we can find the location of the pontential minimum without a computer, we are no longer able to calculate the turning points by hand. We need to get them numerically.</p>
+<section id="turning-points-of-the-morse-potential">
+<h2><span class="section-number">4.4.1.1. </span>Turning points of the Morse Potential<a class="headerlink" href="#turning-points-of-the-morse-potential" title="Link to this heading">#</a></h2>
+<p>In order to boost our confidence on the canned routine, we compute the turning points for the Morse potential using <code class="docutils literal notranslate"><span class="pre">scipy.optimize.bisect</span></code> and <code class="docutils literal notranslate"><span class="pre">scipy.optimize.newton</span></code>.  Then, we compare the results with the exact answer.  First we plot the potential and find the brackets by visual inspection.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mf">2.</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2.</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/887cece5413a3ff5ba52952958009b36ddae2bc234f56d1950b51318cc0d5fc8.png" src="../_images/887cece5413a3ff5ba52952958009b36ddae2bc234f56d1950b51318cc0d5fc8.png" />
+</div>
+</div>
+<p>From the plot, it is clear that one turning point must be between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(0\)</span>.  The other turning point can be anywhere between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.  Let us find the turning points for the kinetic energy <span class="math notranslate nohighlight">\(k=1/2\)</span> (the red line in the above plot). we can safely say that the upper turning point is between 1 and 3.  So, we don’t have to use a bracketing program.  We use the bisection and secant methods and compare the results.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
+
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">newton</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1"># set the kinetic energy</span>
+<span class="n">k</span><span class="o">=</span><span class="mf">0.5</span>
+
+<span class="c1"># inner turning point</span>
+<span class="n">x1_bisect</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">x1_secant</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x1_exact</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="c1"># outer turning point</span>
+<span class="n">x2_bisect</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">)</span>
+<span class="n">x2_secant</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x2_exact</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bisection: x1=</span><span class="si">{0:15.10f}</span><span class="s2">,  x2=</span><span class="si">{1:15.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1_bisect</span><span class="p">,</span><span class="n">x2_bisect</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   secant: x1=</span><span class="si">{0:15.10f}</span><span class="s2">,  x2=</span><span class="si">{1:15.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1_secant</span><span class="p">,</span><span class="n">x2_secant</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    exact: x1=</span><span class="si">{0:15.10f}</span><span class="s2">,  x2=</span><span class="si">{1:15.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1_exact</span><span class="p">,</span><span class="n">x2_exact</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bisection: x1=  -0.5347999967,  x2=   1.2279471773
+   secant: x1=  -0.5347999967,  x2=   1.2279471773
+    exact: x1=  -0.5347999967,  x2=   1.2279471773
+</pre></div>
+</div>
+</div>
+</div>
+<p>All three agree perfectly.  Now, we are confertable to use <code class="docutils literal notranslate"><span class="pre">bisect</span></code> and <code class="docutils literal notranslate"><span class="pre">newton</span></code> in <code class="docutils literal notranslate"><span class="pre">scipy</span></code>.</p>
+<blockquote>
+<div><p><strong>Exercise:</strong>  Find the turning points of the Lenard-Jones potential for <span class="math notranslate nohighlight">\(k=0.5\)</span> and compare the results with the exact values.</p>
+</div></blockquote>
+</section>
+<section id="turning-points-of-the-exp-6-hybrid-potential">
+<h2><span class="section-number">4.4.1.2. </span>Turning points of the (exp-6) hybrid potential<a class="headerlink" href="#turning-points-of-the-exp-6-hybrid-potential" title="Link to this heading">#</a></h2>
+<p>The hybrid potential has one parameter to be specified.  We try <span class="math notranslate nohighlight">\(a=2\)</span>.  Let plot the potential first.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">v</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="mi">6</span><span class="p">)</span><span class="o">*</span><span class="p">(</span> <span class="p">(</span><span class="mi">6</span><span class="o">/</span><span class="n">a</span><span class="p">)</span> <span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">6</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">a</span><span class="o">=</span><span class="mf">2.0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span><span class="o">+</span><span class="mf">0.75</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/b504064829a89e57f72f8b0246bb26e4e48a3c46746567b6e6c57b42e60df107.png" src="../_images/b504064829a89e57f72f8b0246bb26e4e48a3c46746567b6e6c57b42e60df107.png" />
+</div>
+</div>
+<p>Clearly <span class="math notranslate nohighlight">\(x_1\)</span> is above 0.5 and below 1, and <span class="math notranslate nohighlight">\(x_2\)</span> between 1.0 and 2.0.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
+
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">bisect</span><span class="p">,</span> <span class="n">newton</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">v</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="c1"># set the kinetic energy</span>
+<span class="n">k</span><span class="o">=</span><span class="mf">0.5</span>
+
+<span class="c1"># inner turning point</span>
+<span class="n">x1_bisect</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">x1_secant</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># outer turning point</span>
+<span class="n">x2_bisect</span> <span class="o">=</span> <span class="n">bisect</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">x2_secant</span> <span class="o">=</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;bisection: x1=</span><span class="si">{0:15.10f}</span><span class="s2">,  x2=</span><span class="si">{1:15.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1_bisect</span><span class="p">,</span><span class="n">x2_bisect</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;   secant: x1=</span><span class="si">{0:15.10f}</span><span class="s2">,  x2=</span><span class="si">{1:15.10f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x1_secant</span><span class="p">,</span><span class="n">x2_secant</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>bisection: x1=   0.8193184406,  x2=   1.5085928545
+   secant: x1=   0.8193184406,  x2=   1.5085928545
+</pre></div>
+</div>
+</div>
+</div>
+<p>Visually, these answers are consistent with the crossing points of the red dashed line and the blue curve in the plot.</p>
+<p>In Chapter <a class="reference internal" href="../integral/intro.html#ch-integral"><span class="std std-numref">Section 5</span></a>, we evaluate the period of the vibration by integrating Eq. <a class="reference internal" href="#equation-eq-oscillation-period">(4.3)</a> where we use the above results.</p>
+<hr class="docutils" />
+<p>Last modified on 3/14/2024 by R. Kawai</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./root-finding"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="applications.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">4.4. </span>Application in Physics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../integral/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Numerical Integration</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-points-of-the-morse-potential">4.4.1.1. Turning points of the Morse Potential</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-points-of-the-exp-6-hybrid-potential">4.4.1.2. Turning points of the (exp-6) hybrid potential</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

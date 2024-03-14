@@ -48,6 +48,9 @@ parts:
       -  file: root-finding/root_polynomials
       -  file: root-finding/root_bisection
       -  file: root-finding/root_newton
+      -  file: root-finding/applications
+         sections:
+         -  file: root-finding/turning_points
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
