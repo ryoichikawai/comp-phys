@@ -51,6 +51,7 @@ parts:
       -  file: root-finding/applications
          sections:
          -  file: root-finding/turning_points
+         -  file: root-finding/closest_approach
          -  file: root-finding/ferromagnet
          -  file: root-finding/qm_potential_well
    -  file: integral/intro

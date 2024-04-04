@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.4.3. A Quantum Particle in a Potential Well &#8212; Computational Methods for Physics with Python.</title>
+    <title>4.4.4. A Quantum Particle in a Potential Well &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5. Numerical Integration" href="../integral/intro.html" />
-    <link rel="prev" title="4.4.2. Feromagnetic Phase Transition" href="ferromagnet.html" />
+    <link rel="prev" title="4.4.3. Feromagnetic Phase Transition" href="ferromagnet.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -227,8 +227,9 @@
 <li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="turning_points.html">4.4.1. Classical Turning Points</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ferromagnet.html">4.4.2. Feromagnetic Phase Transition</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.3. A Quantum Particle in a Potential Well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ferromagnet.html">4.4.3. Feromagnetic Phase Transition</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.4. A Quantum Particle in a Potential Well</a></li>
 </ul>
 </li>
 </ul>
@@ -485,20 +486,20 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="a-quantum-particle-in-a-potential-well">
-<h1><span class="section-number">4.4.3. </span>A Quantum Particle in a Potential Well<a class="headerlink" href="#a-quantum-particle-in-a-potential-well" title="Link to this heading">#</a></h1>
-<p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> is trapped in a square well potential of depth <span class="math notranslate nohighlight">\(V_0\)</span> and width <span class="math notranslate nohighlight">\(2a\)</span> (See <a class="reference internal" href="#fig-qm-well"><span class="std std-numref">Fig. 4.5</span></a>).  The energy eigenvalue <span class="math notranslate nohighlight">\(E\)</span> is determined by the Schödinger equation:</p>
+<h1><span class="section-number">4.4.4. </span>A Quantum Particle in a Potential Well<a class="headerlink" href="#a-quantum-particle-in-a-potential-well" title="Link to this heading">#</a></h1>
+<p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> is trapped in a square well potential of depth <span class="math notranslate nohighlight">\(V_0\)</span> and width <span class="math notranslate nohighlight">\(2a\)</span> (See <a class="reference internal" href="#fig-qm-well"><span class="std std-numref">Fig. 4.6</span></a>).  The energy eigenvalue <span class="math notranslate nohighlight">\(E\)</span> is determined by the Schödinger equation:</p>
 <div class="math notranslate nohighlight">
 \[
 \left[ -\frac{\hbar^2}{2m} \frac{d^2}{dx^2} + V(x) \right] \psi(x) = E \psi(x)
 \]</div>
 <p>Although no closed form solution is available, the analytical calculation indicates that the eigenvalues are determined by the following transcendental equations:<span id="id1">[<a class="reference internal" href="../references/references.html#id5" title="David Griffiths. Introduction to Quantum Mechanics. Cambridge University Press, 3rd edition, 2018. ISBN 978-1107189638.">3</a>]</span></p>
 <div class="math notranslate nohighlight" id="equation-eq-square-well-even">
-<span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-square-well-even" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.5)<a class="headerlink" href="#equation-eq-square-well-even" title="Link to this equation">#</a></span>\[
 f_\text{e}(z) \equiv z \tan(z) - \sqrt{z_0^2 - z^2} = 0, \qquad \text{for even states}
 \]</div>
 <p>and</p>
 <div class="math notranslate nohighlight" id="equation-eq-square-well-odd">
-<span class="eqno">(4.5)<a class="headerlink" href="#equation-eq-square-well-odd" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.6)<a class="headerlink" href="#equation-eq-square-well-odd" title="Link to this equation">#</a></span>\[
 f_\text{o}(z) \equiv z \cot(z) + \sqrt{z_0^2 - z^2} = 0, \qquad \text{for odd states}
 \]</div>
 <p>where we introduced the normalized variable and constant:</p>
@@ -510,10 +511,10 @@ z = \sqrt{\frac{2 m a^2 E}{\hbar^2}}, \qquad \text{and} \qquad z_0 = \sqrt{\frac
 <figure class="align-default" id="fig-qm-well">
 <a class="reference internal image-reference" href="../_images/square_well_energy.png"><img alt="../_images/square_well_energy.png" src="../_images/square_well_energy.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">Wavefunctions and energy levels of a quantum particle bounded in a square potential well of depth <span class="math notranslate nohighlight">\(V_0\)</span> and width <span class="math notranslate nohighlight">\(2a\)</span>.  The wave functions for <span class="math notranslate nohighlight">\(n=0\)</span> and <span class="math notranslate nohighlight">\(2\)</span> are even with respect to the space inversion and odd for <span class="math notranslate nohighlight">\(n=1\)</span> and <span class="math notranslate nohighlight">\(3\)</span>.</span><a class="headerlink" href="#fig-qm-well" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.6 </span><span class="caption-text">Wavefunctions and energy levels of a quantum particle bounded in a square potential well of depth <span class="math notranslate nohighlight">\(V_0\)</span> and width <span class="math notranslate nohighlight">\(2a\)</span>.  The wave functions for <span class="math notranslate nohighlight">\(n=0\)</span> and <span class="math notranslate nohighlight">\(2\)</span> are even with respect to the space inversion and odd for <span class="math notranslate nohighlight">\(n=1\)</span> and <span class="math notranslate nohighlight">\(3\)</span>.</span><a class="headerlink" href="#fig-qm-well" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>The roots of Eqs. <a class="reference internal" href="#equation-eq-square-well-even">(4.4)</a> and <a class="reference internal" href="#equation-eq-square-well-odd">(4.5)</a> determine the energy eigenvalues. We want to bracket the roots but finding them by a numerical method is not easy since the functions <a class="reference internal" href="#equation-eq-square-well-even">(4.4)</a> and <a class="reference internal" href="#equation-eq-square-well-odd">(4.5)</a> are not continuous. Furthermore, the number of roots depends on the system parameter <span class="math notranslate nohighlight">\(z_0\)</span>.  Fortunately, we can analytically find the brackets with a little help of mathematics and visualization.  The following code plots <span class="math notranslate nohighlight">\(f_1(z)=z \tan(z)\)</span> and <span class="math notranslate nohighlight">\(g_1(z)=\sqrt{z_0^2-z^2}\)</span> for even states and <span class="math notranslate nohighlight">\(f_2(z)=z \cot(z)\)</span> and <span class="math notranslate nohighlight">\(g_2(z)=-\sqrt{z_0^2-z^2}\)</span>.  The roots are intersections of <span class="math notranslate nohighlight">\(f_i(z)\)</span> and <span class="math notranslate nohighlight">\(g_i(z)\)</span>.  <span class="math notranslate nohighlight">\(f_1(z)\)</span> diverges at <span class="math notranslate nohighlight">\(z=\left(n+1/2\right) \pi\)</span> and  <span class="math notranslate nohighlight">\(f_2(z)\)</span> at <span class="math notranslate nohighlight">\(z= n \pi\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is integer. <span class="math notranslate nohighlight">\(g_1(z)\)</span> and <span class="math notranslate nohighlight">\(g_2(z)\)</span> are quarter circles with radius <span class="math notranslate nohighlight">\(z_0\)</span>.</p>
+<p>The roots of Eqs. <a class="reference internal" href="#equation-eq-square-well-even">(4.5)</a> and <a class="reference internal" href="#equation-eq-square-well-odd">(4.6)</a> determine the energy eigenvalues. We want to bracket the roots but finding them by a numerical method is not easy since the functions <a class="reference internal" href="#equation-eq-square-well-even">(4.5)</a> and <a class="reference internal" href="#equation-eq-square-well-odd">(4.6)</a> are not continuous. Furthermore, the number of roots depends on the system parameter <span class="math notranslate nohighlight">\(z_0\)</span>.  Fortunately, we can analytically find the brackets with a little help of mathematics and visualization.  The following code plots <span class="math notranslate nohighlight">\(f_1(z)=z \tan(z)\)</span> and <span class="math notranslate nohighlight">\(g_1(z)=\sqrt{z_0^2-z^2}\)</span> for even states and <span class="math notranslate nohighlight">\(f_2(z)=z \cot(z)\)</span> and <span class="math notranslate nohighlight">\(g_2(z)=-\sqrt{z_0^2-z^2}\)</span>.  The roots are intersections of <span class="math notranslate nohighlight">\(f_i(z)\)</span> and <span class="math notranslate nohighlight">\(g_i(z)\)</span>.  <span class="math notranslate nohighlight">\(f_1(z)\)</span> diverges at <span class="math notranslate nohighlight">\(z=\left(n+1/2\right) \pi\)</span> and  <span class="math notranslate nohighlight">\(f_2(z)\)</span> at <span class="math notranslate nohighlight">\(z= n \pi\)</span> where <span class="math notranslate nohighlight">\(n\)</span> is integer. <span class="math notranslate nohighlight">\(g_1(z)\)</span> and <span class="math notranslate nohighlight">\(g_2(z)\)</span> are quarter circles with radius <span class="math notranslate nohighlight">\(z_0\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -740,7 +741,7 @@ z = \sqrt{\frac{2 m a^2 E}{\hbar^2}}, \qquad \text{and} \qquad z_0 = \sqrt{\frac
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.4.2. </span>Feromagnetic Phase Transition</p>
+        <p class="prev-next-title"><span class="section-number">4.4.3. </span>Feromagnetic Phase Transition</p>
       </div>
     </a>
     <a class="right-next"

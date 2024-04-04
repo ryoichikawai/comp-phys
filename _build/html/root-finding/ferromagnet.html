@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.4.2. Feromagnetic Phase Transition &#8212; Computational Methods for Physics with Python.</title>
+    <title>4.4.3. Feromagnetic Phase Transition &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/ferromagnet';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.4.3. A Quantum Particle in a Potential Well" href="qm_potential_well.html" />
-    <link rel="prev" title="4.4.1. Classical Turning Points" href="turning_points.html" />
+    <link rel="next" title="4.4.4. A Quantum Particle in a Potential Well" href="qm_potential_well.html" />
+    <link rel="prev" title="4.4.2. The Closest Approach in a Scattering" href="closest_approach.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -227,8 +227,9 @@
 <li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="turning_points.html">4.4.1. Classical Turning Points</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.2. Feromagnetic Phase Transition</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qm_potential_well.html">4.4.3. A Quantum Particle in a Potential Well</a></li>
+<li class="toctree-l3"><a class="reference internal" href="closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.3. Feromagnetic Phase Transition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_potential_well.html">4.4.4. A Quantum Particle in a Potential Well</a></li>
 </ul>
 </li>
 </ul>
@@ -482,8 +483,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ising-model">4.4.2.1. The Ising Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurcation-diagram">4.4.2.2. Bifurcation Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ising-model">4.4.3.1. The Ising Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurcation-diagram">4.4.3.2. Bifurcation Diagram</a></li>
 </ul>
             </nav>
         </div>
@@ -496,10 +497,10 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="feromagnetic-phase-transition">
-<h1><span class="section-number">4.4.2. </span>Feromagnetic Phase Transition<a class="headerlink" href="#feromagnetic-phase-transition" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4.4.3. </span>Feromagnetic Phase Transition<a class="headerlink" href="#feromagnetic-phase-transition" title="Link to this heading">#</a></h1>
 <section id="the-ising-model">
-<h2><span class="section-number">4.4.2.1. </span>The Ising Model<a class="headerlink" href="#the-ising-model" title="Link to this heading">#</a></h2>
-<p>Ferromagnetic materials undergo a phase transition from a non-magnetic to a magnetic state when temperature is lowered below a certain critical temperature.   This phenomena is known as spontaneous magnetization.  The <a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a> is a simple mathematical model capable of realizing such a phase transition.<span id="id1">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">13</a>]</span>  The Ising model predicts that there is no phase transition in the one-dimensional system.  Onsager was able to show analytically that the spontaneous magnetization takes place in the two dimensional system.  However, even such a simple model becomes mathematically intractable above two dimension.  Then, the mean field approximation, which is expected to be reasonable in higher dimensions, is developed.  According to the mean field theory, the magnetization <span class="math notranslate nohighlight">\(m\)</span> satisfy the following transcendental equation:</p>
+<h2><span class="section-number">4.4.3.1. </span>The Ising Model<a class="headerlink" href="#the-ising-model" title="Link to this heading">#</a></h2>
+<p>Ferromagnetic materials undergo a phase transition from a non-magnetic to a magnetic state when temperature is lowered below a certain critical temperature.   This phenomena is known as spontaneous magnetization.  The <a class="reference external" href="https://en.wikipedia.org/wiki/Ising_model">Ising model</a> is a simple mathematical model capable of realizing such a phase transition.<span id="id1">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span>  The Ising model predicts that there is no phase transition in the one-dimensional system.  Onsager was able to show analytically that the spontaneous magnetization takes place in the two dimensional system.  However, even such a simple model becomes mathematically intractable above two dimension.  Then, the mean field approximation, which is expected to be reasonable in higher dimensions, is developed.  According to the mean field theory, the magnetization <span class="math notranslate nohighlight">\(m\)</span> satisfy the following transcendental equation:</p>
 <div class="math notranslate nohighlight">
 \[
 m = \mu \tanh \left ( \frac{C m}{k_B T} \right )
@@ -546,7 +547,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 <p>For the high temperature case (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>) , there is only one root at <span class="math notranslate nohighlight">\(x=0\)</span>.  For the low temperature case, (<span class="math notranslate nohighlight">\(\beta=10\)</span>), on the other hand, there are three roots, one at <span class="math notranslate nohighlight">\(x=0\)</span> and the other two appear below and above <span class="math notranslate nohighlight">\(x=0\)</span>.  The existence of non-zero roots suggest that the spontaneous magnetization breaks out.  We want to know how the two roots (magnetization) change as the temperature is varied.  It is not necessary to look for all the roots.  The root at <span class="math notranslate nohighlight">\(x=0\)</span> always exists. Taking into account the odd symmetry, if <span class="math notranslate nohighlight">\(x^*\)</span> is a positive root, then <span class="math notranslate nohighlight">\(-x^*\)</span> is the other root.  Therefore, we look for only the positive root.  The following code attempt to find a positive root if any.  Otherwise, it finds a sole root at <span class="math notranslate nohighlight">\(x=0\)</span>.  There are a few things we must worry.  First of all, we need to avoid zero temperature since ti causes the divided-by-zero error.  Secondly, the initial candidate for the Newton-Raphson method must be chosen carefully since there are multiple roots and it might converge to a wrong one. Based on the above plot, <span class="math notranslate nohighlight">\(x=2\)</span> may be a safe choice.</p>
 </section>
 <section id="bifurcation-diagram">
-<h2><span class="section-number">4.4.2.2. </span>Bifurcation Diagram<a class="headerlink" href="#bifurcation-diagram" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.4.3.2. </span>Bifurcation Diagram<a class="headerlink" href="#bifurcation-diagram" title="Link to this heading">#</a></h2>
 <p>Next, we want to know how the two roots (magnetization) change as the temperature is varied.  It is not necessary to look for all the roots.  The root at <span class="math notranslate nohighlight">\(x=0\)</span> always exists. Taking into account the odd symmetry, if <span class="math notranslate nohighlight">\(\xi=a\)</span> is a positive root, then <span class="math notranslate nohighlight">\(-\xi=-a\)</span> is the other root.  Therefore, we look for only the positive root.  The following code attempt to find a positive root if any.  Otherwise, it finds a sole root at <span class="math notranslate nohighlight">\(x=0\)</span>. Since the derivative is available, we use the Newton-Raphson method.  There are a few things we must be worried.  First of all, we need to avoid zero temperature since it causes the divided-by-zero error.   Secondly, the initial candidate for the Newton-Raphson method must be chosen carefully since there are multiple roots. It might converge to a wrong root. Based on the above plot, <span class="math notranslate nohighlight">\(x=2\)</span> may be a safe choice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -602,7 +603,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 <img alt="../_images/dd9b4bb3353c48d90a26f700affda6fd27c1f341a48eec724322d3cbd44ed216.png" src="../_images/dd9b4bb3353c48d90a26f700affda6fd27c1f341a48eec724322d3cbd44ed216.png" />
 </div>
 </div>
-<p>The plot shows that the spontaneous magnetization appears below <span class="math notranslate nohighlight">\(\theta=1\)</span> (It can be shown analytically that the critical temperature is 1.)  As temperature is lowered, the magnetization grows to <span class="math notranslate nohighlight">\(\pm 1\)</span>.  Although we were not able to compute for the zero temperature, the trend indicates that the magnetization is exactly <span class="math notranslate nohighlight">\(\pm 1\)</span> at <span class="math notranslate nohighlight">\(\theta=0\)</span>.  This plot agrees with experimental observation.<span id="id2">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">13</a>]</span></p>
+<p>The plot shows that the spontaneous magnetization appears below <span class="math notranslate nohighlight">\(\theta=1\)</span> (It can be shown analytically that the critical temperature is 1.)  As temperature is lowered, the magnetization grows to <span class="math notranslate nohighlight">\(\pm 1\)</span>.  Although we were not able to compute for the zero temperature, the trend indicates that the magnetization is exactly <span class="math notranslate nohighlight">\(\pm 1\)</span> at <span class="math notranslate nohighlight">\(\theta=0\)</span>.  This plot agrees with experimental observation.<span id="id2">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span></p>
 </section>
 </section>
 
@@ -637,12 +638,12 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="turning_points.html"
+       href="closest_approach.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.4.1. </span>Classical Turning Points</p>
+        <p class="prev-next-title"><span class="section-number">4.4.2. </span>The Closest Approach in a Scattering</p>
       </div>
     </a>
     <a class="right-next"
@@ -650,7 +651,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.4.3. </span>A Quantum Particle in a Potential Well</p>
+        <p class="prev-next-title"><span class="section-number">4.4.4. </span>A Quantum Particle in a Potential Well</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -670,8 +671,8 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ising-model">4.4.2.1. The Ising Model</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurcation-diagram">4.4.2.2. Bifurcation Diagram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-ising-model">4.4.3.1. The Ising Model</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bifurcation-diagram">4.4.3.2. Bifurcation Diagram</a></li>
 </ul>
   </nav></div>
 

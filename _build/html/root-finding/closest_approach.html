@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4.4. Application in Physics &#8212; Computational Methods for Physics with Python.</title>
+    <title>4.4.2. The Closest Approach in a Scattering &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -57,11 +57,13 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/applications';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'root-finding/closest_approach';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.4.1. Classical Turning Points" href="turning_points.html" />
-    <link rel="prev" title="4.3. Newton-Raphson method" href="root_newton.html" />
+    <link rel="next" title="4.4.3. Feromagnetic Phase Transition" href="ferromagnet.html" />
+    <link rel="prev" title="4.4.1. Classical Turning Points" href="turning_points.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -223,9 +225,9 @@
 <li class="toctree-l2"><a class="reference internal" href="root_polynomials.html">4.1. Roots of Polynomials</a></li>
 <li class="toctree-l2"><a class="reference internal" href="root_bisection.html">4.2. Bisection Method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="root_newton.html">4.3. Newton-Raphson method</a></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="turning_points.html">4.4.1. Classical Turning Points</a></li>
-<li class="toctree-l3"><a class="reference internal" href="closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">4.4.2. The Closest Approach in a Scattering</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ferromagnet.html">4.4.3. Feromagnetic Phase Transition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qm_potential_well.html">4.4.4. A Quantum Particle in a Potential Well</a></li>
 </ul>
@@ -309,7 +311,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/root-finding/applications.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/root-finding/closest_approach.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -357,7 +359,7 @@
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Froot-finding/applications.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Froot-finding/closest_approach.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -387,7 +389,7 @@
       
       
       
-      <li><a href="../_sources/root-finding/applications.ipynb" target="_blank"
+      <li><a href="../_sources/root-finding/closest_approach.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -469,7 +471,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Application in Physics</h1>
+    <h1>The Closest Approach in a Scattering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -483,11 +485,134 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="application-in-physics">
-<h1><span class="section-number">4.4. </span>Application in Physics<a class="headerlink" href="#application-in-physics" title="Link to this heading">#</a></h1>
-<p>In  physics, the root finding appears everywhere.  It is often a starting point of complicated numerical investigation.  In this section, a variety of physics applications from classical mechanics, statistical mechanics, quantum mechanics, and nonlinear dynamics are introduced.  Some of the results obtained in this section will be used in later chapters.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="the-closest-approach-in-a-scattering">
+<h1><span class="section-number">4.4.2. </span>The Closest Approach in a Scattering<a class="headerlink" href="#the-closest-approach-in-a-scattering" title="Link to this heading">#</a></h1>
+<p>A particle of mass <span class="math notranslate nohighlight">\(m_1\)</span> elastically and another particle of mass <span class="math notranslate nohighlight">\(m_2\)</span> collide via a spherical potential <span class="math notranslate nohighlight">\(U(r)\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the distance between the particles.  The trajectory of a particle in relative coordinates is shown in <a class="reference internal" href="#fig-scattering"><span class="std std-numref">Fig. 4.5</span></a>.  The scattering angle <span class="math notranslate nohighlight">\(\theta\)</span> depends on the impact parameter <span class="math notranslate nohighlight">\(b\)</span> and the initial energy of the particles <span class="math notranslate nohighlight">\(E\)</span>.
+For mathematical convenience, we introduce a new angle <span class="math notranslate nohighlight">\(\phi\)</span> as shown in <a class="reference internal" href="#fig-scattering"><span class="std std-numref">Fig. 4.5</span></a>.  Note that <span class="math notranslate nohighlight">\(\theta = \pi - 2 \phi\)</span>.
+This scattering problem can be analytically solved  up to the following integral<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\phi = \int_{r_0}^{\infty} \frac{b}{r^2} \frac{1}{\sqrt{1 - \displaystyle\frac{b^2}{r^2}-\displaystyle\frac{U(r)}{E}}} dr\, .
+\]</div>
+<p>The lower integral bound <span class="math notranslate nohighlight">\(r_0\)</span> is the closest distance between two particles determined by the equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-closest">
+<span class="eqno">(4.4)<a class="headerlink" href="#equation-eq-closest" title="Link to this equation">#</a></span>\[
+1 - \frac{b^2}{r_0^2}-\frac{U(r_0)}{E} = 0
+\]</div>
+<p>which is a root finding problem.</p>
+<figure class="align-default" id="fig-scattering">
+<a class="reference internal image-reference" href="../_images/scattering-diagram.png"><img alt="../_images/scattering-diagram.png" src="../_images/scattering-diagram.png" style="height: 300px;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">A trajectory of a point particle scatterd by a spherical potential centered at <span class="math notranslate nohighlight">\(O\)</span>.  The particle approaches to the potential with impact parameter <span class="math notranslate nohighlight">\(b\)</span>, reaches the closest point <span class="math notranslate nohighlight">\(r_0\)</span>, and then travels away with the scatering angle <span class="math notranslate nohighlight">\(\theta\)</span>.</span><a class="headerlink" href="#fig-scattering" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>First, we consider the Ratherford scattering where two particles of charge <span class="math notranslate nohighlight">\(Z_1 e\)</span> and <span class="math notranslate nohighlight">\(Z_2 e\)</span> collides with the Couolomb pontential, <span class="math notranslate nohighlight">\(U(r) = \displaystyle\frac{C}{r}\)</span> where <span class="math notranslate nohighlight">\(C=Z_1 Z_2 e^2\)</span>.  For mathematical convenience, we chose <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(C/b\)</span> as units of distance and energy.   In order to avoid the devided-by-zero error, we introduce a new variable <span class="math notranslate nohighlight">\(x=1/r_0\)</span>.   Then, Eq. <a class="reference internal" href="#equation-eq-closest">(4.4)</a> becomes</p>
+<div class="math notranslate nohighlight">
+\[
+1 - x^2 - \frac{x}{E} = 0
+\]</div>
+<p>which is just a quadratic equation and its positive root is <span class="math notranslate nohighlight">\(\frac{1}{2} \left(\sqrt{\frac{1}{E^2} + 4} - \frac{1}{E}\right)\)</span>. We did not have to use a numerical method. Goint back to the original notation, we have the closest apprach:</p>
+<div class="math notranslate nohighlight">
+\[
+r_0 = \frac{2b}{\sqrt{\left(\frac{Z_1 Z_2 e^2}{Eb}\right)^2+4}-\frac{Z_1 Z_2 e^2}{Eb}}
+\]</div>
+<p>Now we consider a screened Coulomb potential (also known as Yukawak potential): <span class="math notranslate nohighlight">\(U(r) = \displaystyle\frac{C e^{-a r}}{r}\)</span> where <span class="math notranslate nohighlight">\(a\)</span> is a decay constant.  Using the same normalization as before,  Eq. <a class="reference internal" href="#equation-eq-closest">(4.4)</a> becomes</p>
+<div class="math notranslate nohighlight">
+\[
+1 - x^2 - \frac{x e^{-\alpha/x}}{E} = 0
+\]</div>
+<p>Note that when <span class="math notranslate nohighlight">\(a=0\)</span> we have the Ratherford scattering.  We can test our numerical method against the special case.  Agreement with the exact solution will boost our confidence in the numerical method.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.optimize</span> <span class="kn">import</span> <span class="n">newton</span>
+
+<span class="c1"># find a </span>
+<span class="k">def</span> <span class="nf">root</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="p">):</span>
+   
+    <span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="n">x</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">a</span><span class="o">/</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="n">E</span>
+
+    <span class="k">return</span> <span class="n">newton</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># set energy (can be any positive number)</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># set decay constant</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="c1"># initial guess</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="n">numerical</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">root</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+
+<span class="n">exact</span> <span class="o">=</span> <span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">E</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">E</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;numerical=&quot;</span><span class="p">,</span><span class="n">numerical</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    exact=&quot;</span><span class="p">,</span><span class="n">exact</span><span class="p">)</span>
+</pre></div>
 </div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>numerical= 1.6180339887498947
+    exact= 1.6180339887498947
+</pre></div>
+</div>
+</div>
+</div>
+<p>The agreement is perfect.  Now, we are ready to calculate a realistic case. Let us calculate the closest approach <span class="math notranslate nohighlight">\(r_0\)</span> as a function of the impact parameter <span class="math notranslate nohighlight">\(b\)</span>. We measure length and energy in <span class="math notranslate nohighlight">\(\r{A}\)</span> and <span class="math notranslate nohighlight">\(eV\)</span>, respectively.  Then, the square of elemental charge is given by <span class="math notranslate nohighlight">\(e^2 \approx 14.2996 eV\cdot \r{A}\)</span>.  Let us assume that <span class="math notranslate nohighlight">\(Z_1=Z_2=-1\)</span> (Imagine the collision of two “classical” electrons.)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Continues from the previous code cell</span>
+
+<span class="c1"># set charge number</span>
+<span class="n">Z1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Z2</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="c1"># set constant C</span>
+<span class="n">C</span> <span class="o">=</span> <span class="mf">14.3996</span><span class="o">*</span><span class="n">Z1</span><span class="o">*</span><span class="n">Z2</span>
+
+<span class="c1"># set decay constant in inverse angstrom</span>
+<span class="n">a0</span> <span class="o">=</span> <span class="mf">1.0</span>
+
+<span class="c1"># set energy in eV</span>
+<span class="n">W</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">]</span>
+
+<span class="c1"># set number of data points</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="c1"># set impact parameters from 0.01 to 10</span>
+<span class="n">b</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">r0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        
+    <span class="c1"># normalize energy and decay constant</span>
+        <span class="n">E</span> <span class="o">=</span> <span class="n">W</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="o">/</span><span class="n">C</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">a0</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">root</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">q</span><span class="p">)</span>
+
+        <span class="c1"># back to the original closest approach</span>
+        <span class="n">r0</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">b</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">/</span><span class="n">x</span>
+        
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">r0</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;E=</span><span class="si">{</span><span class="n">W</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="si">}</span><span class="s2">eV&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;impact parameter [$\mathring</span><span class="si">{A}</span><span class="s2">$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;closest approch [$\mathring</span><span class="si">{A}</span><span class="s2">$]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/12b4f157e1578280093c9b8b4ef11bd282391893d553bc85229e4c1b6a7b05fe.png" src="../_images/12b4f157e1578280093c9b8b4ef11bd282391893d553bc85229e4c1b6a7b05fe.png" />
+</div>
+</div>
+<p>The closet approach strongly depends on the energy for small impact parameter.  For large impact parameter, it does not depend on the energy at all.  Furthermore, we notice that the impact parameter and the closest approach take the same value, suggesting that no collision takes place for the large impact parameter.  It ust misses the target.  We will see more details on the classical scattering in <a class="reference internal" href="../integral/intro.html#ch-integral"><span class="std std-numref">Chapter 5</span></a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -521,20 +646,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="root_newton.html"
+       href="turning_points.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">4.3. </span>Newton-Raphson method</p>
+        <p class="prev-next-title"><span class="section-number">4.4.1. </span>Classical Turning Points</p>
       </div>
     </a>
     <a class="right-next"
-       href="turning_points.html"
+       href="ferromagnet.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">4.4.1. </span>Classical Turning Points</p>
+        <p class="prev-next-title"><span class="section-number">4.4.3. </span>Feromagnetic Phase Transition</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
