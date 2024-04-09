@@ -226,7 +226,7 @@
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">4.4. Application in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="turning_points.html">4.4.1. Classical Turning Points</a></li>
 <li class="toctree-l3"><a class="reference internal" href="closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ferromagnet.html">4.4.3. Feromagnetic Phase Transition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ferromagnet.html">4.4.3. Ferromagnetic Phase Transition</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qm_potential_well.html">4.4.4. A Quantum Particle in a Potential Well</a></li>
 </ul>
 </li>
@@ -486,6 +486,12 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="application-in-physics">
 <h1><span class="section-number">4.4. </span>Application in Physics<a class="headerlink" href="#application-in-physics" title="Link to this heading">#</a></h1>
 <p>In  physics, the root finding appears everywhere.  It is often a starting point of complicated numerical investigation.  In this section, a variety of physics applications from classical mechanics, statistical mechanics, quantum mechanics, and nonlinear dynamics are introduced.  Some of the results obtained in this section will be used in later chapters.</p>
+<ul class="simple">
+<li><p><strong>Classical turning points</strong> (<a class="reference internal" href="turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>)   A classical particle is bound in a potential and oscillates between two turning points.  In principle the period of the oscillation can be computed but we need to know the turning points which are determined by finding roots of an equation based on the law of energy conservation.</p></li>
+<li><p><strong>Closest approach in a classical scattering</strong> (<a class="reference internal" href="closest_approach.html#app-closet-approach"><span class="std std-numref">Section 4.4.2</span></a>)   A classical particle collides with another particle.  Given an interaction potential, the scattering angle can be computed but we need the closest distance between the particles during the collision.  Finding the closest approach is essentially the same as the finding the turning point in the previous application. It is a root of an equation based on the law of energy conservation.</p></li>
+<li><p><strong>Energy of a quantum particle bound in a square potential</strong> (<a class="reference internal" href="qm_potential_well.html#app-qm-bound-states"><span class="std std-numref">Section 4.4.4</span></a>) A quantum particle is bound in a square well potential.  We can analytically solve the corresponding Schrödinger equation up to a root finding problem.  Since the equation is transcendental and we solve it numerically.</p></li>
+<li><p><strong>Ferromagnetic phase transition in an Ising system</strong> (<a class="reference internal" href="ferromagnet.html#app-ising-ferromagnet"><span class="std std-numref">Section 4.4.3</span></a>)  Ferromagnetic phase transition of Ising systems in 3-dimension or above is mathematically complicated and no analytic solution is known.  Using a mean field approximation, we can analytical derive a transcendental equation which the magnetization satisfies.  The bifurcation of the magnetization can be obtained by using a numerical root finding method.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 </section>
