@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.5. Exercise solutions &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3. Applicatins in Physics &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/exercises';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/applications';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Ordinary Differential Equations" href="../ode/intro.html" />
-    <link rel="prev" title="5.4. Problems" href="problems.html" />
+    <link rel="next" title="5.3.1. Ideal Fermi/Bose Gases" href="qm_ideal_gas.html" />
+    <link rel="prev" title="5.2.2. Improper Integrals II: Integrable Singularities" href="integrable_singularities.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -236,10 +234,17 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">5.4. Problems</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.5. Exercise solutions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
@@ -311,7 +316,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/exercises.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/applications.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -359,7 +364,7 @@
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/exercises.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/applications.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +394,7 @@
       
       
       
-      <li><a href="../_sources/integral/exercises.ipynb" target="_blank"
+      <li><a href="../_sources/integral/applications.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -471,7 +476,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Exercise solutions</h1>
+    <h1>Applicatins in Physics</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -485,110 +490,15 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="exercise-solutions">
-<span id="sec-int-exercises"></span><h1><span class="section-number">5.5. </span>Exercise solutions<a class="headerlink" href="#exercise-solutions" title="Link to this heading">#</a></h1>
-<p><strong>3.2.1</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
-<span class="n">N</span> <span class="o">=</span> <span class="mi">1000000</span>
-<span class="n">L</span> <span class="o">=</span> <span class="mf">10000.</span>
-<span class="n">h</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="n">N</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">L</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="mf">1.</span><span class="o">/</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span>
-<span class="n">integrate</span><span class="o">.</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="applicatins-in-physics">
+<span id="app-integral"></span><h1><span class="section-number">5.3. </span>Applicatins in Physics<a class="headerlink" href="#applicatins-in-physics" title="Link to this heading">#</a></h1>
+<p>Integrals appear everywhere in physics but many of them are too difficult to calculate analytically. Here are some examples.</p>
+<ul class="simple">
+<li><p><strong>The period of classical oscillation</strong> (<a class="reference internal" href="period_of_oscillation.html#app-oscillation-period"><span class="std std-numref">Section 5.3.2</span></a>):  A classical particle bound in a potential oscillates between two turning points as discussed in <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>.  The period of oscillation can be expressed as an integral but the integrand has two integrable singularities at the turning points. The methods discussed in <a class="reference internal" href="integrable_singularities.html#sec-integrable-singularities"><span class="std std-numref">Section 5.2.2</span></a> must be used.</p></li>
+<li><p><strong>Thermodynamics of quamtum ideal gases</strong> (<a class="reference internal" href="qm_ideal_gas.html#app-qm-ideal-gas"><span class="std std-numref">Section 5.3.1</span></a>):  Some thermodynamic relations for Fermi gases and Bose gases are expressed with integrals known as the Fermi-Dirac integral and the Bose-Einstein integral, respectively.  The integrals are improper since the upper bound in the integrals is infinity. WE use the methods discussed in <a class="reference internal" href="unbound_interval.html#sec-unbound-interval"><span class="std std-numref">Section 5.2.1</span></a>.</p></li>
+</ul>
+<div class="toctree-wrapper compound">
 </div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9999166630003236
-</pre></div>
-</div>
-</div>
-</div>
-<p><strong>3.2.2</strong></p>
-<p>Using the transformation <span class="math notranslate nohighlight">\(x=(1-y)/y\)</span>,</p>
-<div class="math notranslate nohighlight">
-\[
-\int_0^\infty \frac{1}{x^2+1} \, dx = \int_0^1 \frac{1}{2y^2-2y+1}\, dy
-\]</div>
-<p>Evalute the right hand side using the Simpson’s rule with <span class="math notranslate nohighlight">\(h=0.01\)</span>.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
-
-<span class="n">N</span><span class="o">=</span><span class="mi">100</span>
-<span class="n">h</span><span class="o">=</span><span class="mf">1.</span><span class="o">/</span><span class="n">N</span>
-
-<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">f</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">y</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
-<span class="n">integral</span><span class="o">=</span><span class="n">integrate</span><span class="o">.</span><span class="n">simpson</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
-<span class="n">error</span><span class="o">=</span><span class="n">integral</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;simpson =&quot;</span><span class="p">,</span><span class="n">integral</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  exact =&quot;</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;  error =&quot;</span><span class="p">,</span><span class="n">error</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>simpson = 1.570796326793627
-  exact = 1.5707963267948966
-  error = -1.269651050961329e-12
-</pre></div>
-</div>
-</div>
-</div>
-<p>Notice that the error is slightly bigger than the result of Example 3.2.1.</p>
-<p><strong>3.2.3</strong></p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.integrate</span> <span class="k">as</span> <span class="nn">integrate</span>
-
-<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
-
-<span class="n">gauss</span><span class="o">=</span><span class="n">integrate</span><span class="o">.</span><span class="n">quad</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">inf</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">gauss</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0.5000000000000002, 1.4875911973447031e-08)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="c1"># We use 4-point method.</span>
-<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">3.2254768961939231180e-1</span><span class="p">,</span> <span class="mf">1.7457611011583465757</span><span class="p">,</span>
-            <span class="mf">4.5366202969211279833</span><span class="p">,</span>    <span class="mf">9.3950709123011331292</span><span class="p">])</span>
-
-<span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">6.0315410434163360164e-1</span><span class="p">,</span> <span class="mf">3.5741869243779968664e-1</span><span class="p">,</span>
-            <span class="mf">3.8887908515005384272e-2</span><span class="p">,</span> <span class="mf">5.3929470556132745010e-4</span><span class="p">])</span>    
-
-<span class="n">gauss</span><span class="o">=</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
-<span class="n">exact</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mf">2.</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Exact=</span><span class="si">{0:18.12e}</span><span class="se">\n</span><span class="s2"> Gauss=</span><span class="si">{1:18.12e}</span><span class="se">\n</span><span class="s2"> Error=</span><span class="si">{2:18.12e}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">exact</span><span class="p">,</span>  <span class="n">gauss</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="n">exact</span><span class="o">-</span><span class="n">gauss</span><span class="p">)))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> Exact=5.000000000000e-01
- Gauss=5.048792794602e-01
- Error=4.879279460199e-03
-</pre></div>
-</div>
-</div>
-</div>
-<p>We got only 2 digits of precision.  It is still remarkable considering the function is evaluated only at four points over infinite interval.</p>
 </section>
 
     <script type="text/x-thebe-config">
@@ -622,20 +532,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="problems.html"
+       href="integrable_singularities.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.4. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">5.2.2. </span>Improper Integrals II:  Integrable Singularities</p>
       </div>
     </a>
     <a class="right-next"
-       href="../ode/intro.html"
+       href="qm_ideal_gas.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">6. </span>Ordinary Differential Equations</p>
+        <p class="prev-next-title"><span class="section-number">5.3.1. </span>Ideal Fermi/Bose Gases</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

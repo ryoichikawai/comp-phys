@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.4. Problems &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3.2. The Period of Classical Oscillation &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -57,13 +57,11 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/problems';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'integral/period_of_oscillation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.5. Exercise solutions" href="exercises.html" />
-    <link rel="prev" title="5.3. Ideal Fermi/Bose Gases" href="qm_ideal_gas.html" />
+    <link rel="next" title="5.4. Exercise solutions" href="solutions.html" />
+    <link rel="prev" title="5.3.1. Ideal Fermi/Bose Gases" href="qm_ideal_gas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -236,10 +234,17 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.2. The Period of Classical Oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
@@ -311,7 +316,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/problems.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/integral/period_of_oscillation.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch onColab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -359,7 +364,7 @@
       
       
       
-      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/problems.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fintegral/period_of_oscillation.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -389,7 +394,7 @@
       
       
       
-      <li><a href="../_sources/integral/problems.ipynb" target="_blank"
+      <li><a href="../_sources/integral/period_of_oscillation.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -471,7 +476,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Problems</h1>
+    <h1>The Period of Classical Oscillation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -485,34 +490,38 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="problems">
-<span id="sec-int-problems"></span><h1><span class="section-number">5.4. </span>Problems<a class="headerlink" href="#problems" title="Link to this heading">#</a></h1>
-<p><strong>3.1</strong> Integrate <span class="math notranslate nohighlight">\(f(x)=x^2 \sin(x)\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=4 \pi\)</span> using rectangular and trapezoid rules.  Exact integral is <span class="math notranslate nohighlight">\(-16 \pi^2\)</span>.  Do you see any difference between the two methods?  If not, why?</p>
-<hr class="docutils" />
-<p><strong>3.2</strong>  Numerically integrate <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{\sin(x)}{1+x^2}\)</span> from <span class="math notranslate nohighlight">\(x=0\)</span> to <span class="math notranslate nohighlight">\(x=\pi\)</span> using your favorite method.
-Analytical solution by Mathematica is</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-\begin{eqnarray}
- \int_0^\pi \frac{\sin(x)}{1+x^2} dx &amp;=&amp;  \frac{e}{4} \left[-2 \text{Ci}(i)+\text{Ci}(i-\pi )+\text{Ci}(i+\pi )+2 \text{Shi}(1)+i \text{Si}(i-\pi )+i \text{Si}(i+\pi )\right ]\\ 
-	&amp;&amp;+\frac{1}{4e} \left [2 \text{Ci}(i)-\text{Ci}(i-\pi )-\text{Ci}(i+\pi )+2 \text{Shi}(1)+i \text{Si}(i-\pi )+i \text{Si}(i+\pi ) \right ]
-\end{eqnarray}
-\end{split}\]</div>
-<p>where Ci, Si, and Shi are trigonometric integral functions.
-The answer should be real but the result contains imaginary unit.  It is not obvious that the imaginary parts are canceled out. This expression is too complicated.  Analytical solutions are not always useful.  Furthermore, these trigonometric integrals must be numerically evaluated.  So, why don’t we evaluate the original integral numerically from the beginning?</p>
-<p>The numerical result from Mathematica is <span class="math notranslate nohighlight">\(0.716086 + 4.08428 \times 10^{-17} i\)</span>.  The imaginary part is supposed to be zero but it was not fully cancelled out due to the round-off error.  You should be able to do better than Mathematica.</p>
-<hr class="docutils" />
-<p><strong>3.3</strong> The energy density of blackbody radiation at temperature <span class="math notranslate nohighlight">\(T\)</span> is given by <span class="math notranslate nohighlight">\(u(T) = \displaystyle\frac{8 \pi (k T)^4}{(h c)^3} J\)</span>
-where <span class="math notranslate nohighlight">\(h\)</span>, <span class="math notranslate nohighlight">\(c\)</span>, and <span class="math notranslate nohighlight">\(k\)</span> are Plank constant\cite{Griffiths}, speed of light, and Boltzmann constant\cite{Blundell}.
-The factor <span class="math notranslate nohighlight">\(J\)</span> is a dimensionless constant determined by integral:</p>
-<div class="math notranslate nohighlight">
-\[
-J = \int_0^\infty \frac{x^3}{e^x  - 1} \, dx
-\]</div>
-<p>This integral can be analytically calculated and the answer is  <span class="math notranslate nohighlight">\(J = \frac{\pi^4}{15}\)</span>.<br />
-Integrate it numerically and compare the result with the exact value.</p>
-<p><em>Hint</em> Note that the integrand can be written as <span class="math notranslate nohighlight">\(f(x) e^{-x}\)</span> where <span class="math notranslate nohighlight">\(f(x)=\displaystyle\frac{x^3}{1  - e^{-x}}\)</span>.  If <span class="math notranslate nohighlight">\(f(x)\)</span> behaves nicely, you may be able to use the Gauss-Lagurre quadrature.
-Indeed <span class="math notranslate nohighlight">\(f(x) \rightarrow x^3\)</span> as <span class="math notranslate nohighlight">\(x \rightarrow \infty\)</span> and thus <span class="math notranslate nohighlight">\(f(x)\)</span> behaves like a polynomial.  Then, the Gaussian quadrature is expected to generate a good result.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="the-period-of-classical-oscillation">
+<span id="app-oscillation-period"></span><h1><span class="section-number">5.3.2. </span>The Period of Classical Oscillation<a class="headerlink" href="#the-period-of-classical-oscillation" title="Link to this heading">#</a></h1>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">math</span>
+
+<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span>
+
+<span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5403023058681398
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -551,15 +560,15 @@ Indeed <span class="math notranslate nohighlight">\(f(x) \rightarrow x^3\)</span
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3. </span>Ideal Fermi/Bose Gases</p>
+        <p class="prev-next-title"><span class="section-number">5.3.1. </span>Ideal Fermi/Bose Gases</p>
       </div>
     </a>
     <a class="right-next"
-       href="exercises.html"
+       href="solutions.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.5. </span>Exercise solutions</p>
+        <p class="prev-next-title"><span class="section-number">5.4. </span>Exercise solutions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'functions/functions';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -234,10 +236,17 @@
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/problems.html">5.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/exercises.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
@@ -624,7 +633,16 @@ document.write(`
 </section>
 <section id="special-functions">
 <h2><span class="section-number">2.1.2. </span>Special Functions<a class="headerlink" href="#special-functions" title="Link to this heading">#</a></h2>
-<p>Special functions such as Bessel function appear in many parts of physics.  They don’t have simple closed forms and thus must be numerically evaluated. Since the algorithms to evaluate special functions are well developed and many packages provide them.  Therefore, we use the canned routines.</p>
+<p>Special functions such as Bessel function appear in many parts of physics.  Since the algorithms to evaluate special functions are well developed and many packages provide them.  Therefore, we use the canned routines.  The following special functions are popular in physics.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Legendre_polynomials">Legendre polynomials</a>: <span class="math notranslate nohighlight">\(P_n(x)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hermite_polynomials">Hermite polynomials</a>:  <span class="math notranslate nohighlight">\(H_n(x)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Laguerre_polynomials">Laguerre polynomials</a>:  <span class="math notranslate nohighlight">\(L_n(x)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_function">Gamma function</a> : <span class="math notranslate nohighlight">\(\Gamma(n)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Bessel_function">Bessel functions</a>:   <span class="math notranslate nohighlight">\(J_n(x),\, Y_n(x),\, I_n(x),\, K_n(x)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Riemann_zeta_function">Riemann <span class="math notranslate nohighlight">\(\zeta\)</span> function</a>:  <span class="math notranslate nohighlight">\(\zeta(x)\)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Polylogarithm">Polylogarithm</a>:  <span class="math notranslate nohighlight">\(Li_n(x)\)</span></p></li>
+</ul>
 <section id="scipy">
 <h3><span class="section-number">2.1.2.1. </span>scipy<a class="headerlink" href="#scipy" title="Link to this heading">#</a></h3>
 <p>SciPy provides modules for optimization, integration, interpolation, eigenvalue problems, algebraic equations, differential equations, statistics and many other classes of problems.  See the <a class="reference external" href="https://scipy.org/">documentation</a>.  It is implemented with compiler based language such Fortran and C++.  Many modules are in fact interface to well-known mathematical libraries.

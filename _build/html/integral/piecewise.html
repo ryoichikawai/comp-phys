@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/piecewise';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.2. Improper Integral I: Infinite interval" href="improper_infinite.html" />
+    <link rel="next" title="5.2. Improper Integrals" href="improper_integrals.html" />
     <link rel="prev" title="5. Numerical Integration" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -236,10 +236,17 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2"><a class="reference internal" href="qm_ideal_gas.html">5.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">5.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
@@ -500,7 +507,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="piecewise-integration">
-<span id="sec-int-piecewise"></span><h1><span class="section-number">5.1. </span>Piecewise integration<a class="headerlink" href="#piecewise-integration" title="Link to this heading">#</a></h1>
+<span id="sec-piecewise-integral"></span><h1><span class="section-number">5.1. </span>Piecewise integration<a class="headerlink" href="#piecewise-integration" title="Link to this heading">#</a></h1>
 <p>We want to integrate a function <span class="math notranslate nohighlight">\(f(x)\)</span> from <span class="math notranslate nohighlight">\(a\)</span> to <span class="math notranslate nohighlight">\(b\)</span>.
 Similarly to the numerical derivative problems, there are two different cases.  In one case, a closed form expression of the function is known and we can evaluate the function value at any point of <span class="math notranslate nohighlight">\(x \in [a,b]\)</span>.  In the other case, the function values are given as a finite sequence <span class="math notranslate nohighlight">\(f_n = f(x_n), n=0, \cdots, N\)</span> and the analytical expression of the function is unknown. In this section, we focus on the former case and the latter case will be discussed in a later chapter.</p>
 <figure class="align-default" id="fig-int-rectangle">
@@ -577,7 +584,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f4a09d59d80&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fe4bd56a230&gt;]
 </pre></div>
 </div>
 <img alt="../_images/23311fac0a6167042b73f79aaf2f00f363d9bb7240d4b6ea07ef189ea9b61d39.png" src="../_images/23311fac0a6167042b73f79aaf2f00f363d9bb7240d4b6ea07ef189ea9b61d39.png" />
@@ -1056,11 +1063,11 @@ abs. error: 4.7354927655701164e-12
       </div>
     </a>
     <a class="right-next"
-       href="improper_infinite.html"
+       href="improper_integrals.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.2. </span>Improper Integral I: Infinite interval</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Improper Integrals</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

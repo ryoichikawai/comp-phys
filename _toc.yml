@@ -57,10 +57,15 @@ parts:
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
-      -  file: integral/improper_infinite
-      -  file: integral/qm_ideal_gas
-      -  file: integral/problems
-      -  file: integral/exercises
+      -  file: integral/improper_integrals
+         sections:
+         -  file: integral/unbound_interval
+         -  file: integral/integrable_singularities
+      -  file: integral/applications
+         sections:
+         -  file: integral/qm_ideal_gas
+         -  file: integral/period_of_oscillation
+      -  file: integral/solutions
    -  file: ode/intro
    -  file: matrix/intro
    -  file: fft/intro

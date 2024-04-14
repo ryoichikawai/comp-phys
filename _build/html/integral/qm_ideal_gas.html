@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.3. Ideal Fermi/Bose Gases &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3.1. Ideal Fermi/Bose Gases &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/qm_ideal_gas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.4. Problems" href="problems.html" />
-    <link rel="prev" title="5.2. Improper Integral I: Infinite interval" href="improper_infinite.html" />
+    <link rel="next" title="5.3.2. The Period of Classical Oscillation" href="period_of_oscillation.html" />
+    <link rel="prev" title="5.3. Applicatins in Physics" href="applications.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -236,10 +236,17 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="improper_infinite.html">5.2. Improper Integral I: Infinite interval</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">5.3. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l2"><a class="reference internal" href="problems.html">5.4. Problems</a></li>
-<li class="toctree-l2"><a class="reference internal" href="exercises.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a></li>
@@ -483,12 +490,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-fermi-gases">5.3.1. Thermodynamics of Ideal Fermi Gases</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-2-and-f-5-2">5.3.1.1. <span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-2">5.3.1.2. <span class="math notranslate nohighlight">\(f_{1/2}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-fermi-gases">5.3.1.1. Thermodynamics of Ideal Fermi Gases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-2-and-f-5-2">5.3.1.1.1. <span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-2">5.3.1.1.2. <span class="math notranslate nohighlight">\(f_{1/2}\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-bose-gases-homework">5.3.2. Thermodynamics of Ideal Bose Gases (homework)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-bose-gases-homework">5.3.1.2. Thermodynamics of Ideal Bose Gases (homework)</a></li>
 </ul>
             </nav>
         </div>
@@ -500,10 +507,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="qm-ideal-gases">
-<span id="ideal-fermi-bose-gases"></span><h1><span class="section-number">5.3. </span>Ideal Fermi/Bose Gases<a class="headerlink" href="#qm-ideal-gases" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="app-qm-ideal-gas">
+<span id="ideal-fermi-bose-gases"></span><h1><span class="section-number">5.3.1. </span>Ideal Fermi/Bose Gases<a class="headerlink" href="#app-qm-ideal-gas" title="Link to this heading">#</a></h1>
 <section id="thermodynamics-of-ideal-fermi-gases">
-<h2><span class="section-number">5.3.1. </span>Thermodynamics of Ideal Fermi Gases<a class="headerlink" href="#thermodynamics-of-ideal-fermi-gases" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3.1.1. </span>Thermodynamics of Ideal Fermi Gases<a class="headerlink" href="#thermodynamics-of-ideal-fermi-gases" title="Link to this heading">#</a></h2>
 <p>In a statistical mechanics course, you learn that the following relations for an ideal Fermi gas <span id="id1">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -534,7 +541,7 @@ f_\nu(z) = \frac{\xi^\nu}{\Gamma(\nu+1)} \left[1 + \nu(\nu-1) \frac{\pi^2}{6} \x
 <p>where <span class="math notranslate nohighlight">\(\xi = \ln z\)</span>.  For intermediate values of <span class="math notranslate nohighlight">\(z\)</span>, we need to evaluate the integral numerically.  At <span class="math notranslate nohighlight">\(z=1\)</span>, the Fermi-Dirack integral can be expressed as <span class="math notranslate nohighlight">\(f_\mu(1)=(1-2^{1-\mu})\zeta(\mu)\)</span> where <span class="math notranslate nohighlight">\(\zeta(\mu)\)</span> is the Riemann zeta function which we are already familar with.  The accuracy of the neumerical method can be checked with this special value.</p>
 <p>Since the upper limit of integration is infinity, the integral is improper.  Furthermore, <span class="math notranslate nohighlight">\(f_{1/2}(z)\)</span>  the integrand has a singularity of <span class="math notranslate nohighlight">\(\frac{1}{\sqrt{x}}\)</span>.  Hence, the evaluation of <span class="math notranslate nohighlight">\(f_{1/2}(z)\)</span> is harder than <span class="math notranslate nohighlight">\(f_{3/2}(z)\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}(z)\)</span>.</p>
 <section id="f-3-2-and-f-5-2">
-<h3><span class="section-number">5.3.1.1. </span><span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span><a class="headerlink" href="#f-3-2-and-f-5-2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1.1.1. </span><span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span><a class="headerlink" href="#f-3-2-and-f-5-2" title="Link to this heading">#</a></h3>
 <p>Let us begin with the easier ones. The integral bounds suggest the Gauss-Laguerre quadrature.  Explicitely writing the integral</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -745,7 +752,7 @@ mu=5/2:   Gauss-Lagguerre= 4.23837e+01 asymptotic = 4.26152e+01 polylog = 4.2582
 <p>As <span class="math notranslate nohighlight">\(z\)</span> increases from 0, the equation of state deviates from the classical one.  The deviation becomes quite large as <span class="math notranslate nohighlight">\(z\)</span> increases beyond 10.  This indicates that the ideal fermi gas is almost classical for <span class="math notranslate nohighlight">\(z &lt; 1\)</span> (high temperature) and quantum contribution rapidly increases for <span class="math notranslate nohighlight">\(z&gt;10\)</span> (low temperature).</p>
 </section>
 <section id="f-1-2">
-<h3><span class="section-number">5.3.1.2. </span><span class="math notranslate nohighlight">\(f_{1/2}\)</span><a class="headerlink" href="#f-1-2" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1.1.2. </span><span class="math notranslate nohighlight">\(f_{1/2}\)</span><a class="headerlink" href="#f-1-2" title="Link to this heading">#</a></h3>
 <p>Now we turn to <span class="math notranslate nohighlight">\(f_{1/2}(z)\)</span>. The integral is now</p>
 <div class="math notranslate nohighlight">
 \[
@@ -912,7 +919,7 @@ mu=1/2:   Gauss-Lagguerre= 2.9367257008e+00 asymptotic = 2.9401161642e+00
 </section>
 </section>
 <section id="thermodynamics-of-ideal-bose-gases-homework">
-<h2><span class="section-number">5.3.2. </span>Thermodynamics of Ideal Bose Gases (homework)<a class="headerlink" href="#thermodynamics-of-ideal-bose-gases-homework" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3.1.2. </span>Thermodynamics of Ideal Bose Gases (homework)<a class="headerlink" href="#thermodynamics-of-ideal-bose-gases-homework" title="Link to this heading">#</a></h2>
 <p>There are similar expressions for an ideal bose gas:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -963,20 +970,20 @@ g_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}-1} 
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="improper_infinite.html"
+       href="applications.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.2. </span>Improper Integral I: Infinite interval</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Applicatins in Physics</p>
       </div>
     </a>
     <a class="right-next"
-       href="problems.html"
+       href="period_of_oscillation.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.4. </span>Problems</p>
+        <p class="prev-next-title"><span class="section-number">5.3.2. </span>The Period of Classical Oscillation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -996,12 +1003,12 @@ g_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}-1} 
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-fermi-gases">5.3.1. Thermodynamics of Ideal Fermi Gases</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-2-and-f-5-2">5.3.1.1. <span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-2">5.3.1.2. <span class="math notranslate nohighlight">\(f_{1/2}\)</span></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-fermi-gases">5.3.1.1. Thermodynamics of Ideal Fermi Gases</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-3-2-and-f-5-2">5.3.1.1.1. <span class="math notranslate nohighlight">\(f_{3/2}\)</span> and <span class="math notranslate nohighlight">\(f_{5/2}\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-1-2">5.3.1.1.2. <span class="math notranslate nohighlight">\(f_{1/2}\)</span></a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-bose-gases-homework">5.3.2. Thermodynamics of Ideal Bose Gases (homework)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#thermodynamics-of-ideal-bose-gases-homework">5.3.1.2. Thermodynamics of Ideal Bose Gases (homework)</a></li>
 </ul>
   </nav></div>
 
