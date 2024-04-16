@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -57,6 +57,8 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/period_of_oscillation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -492,36 +494,182 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-period-of-classical-oscillation">
 <span id="app-oscillation-period"></span><h1><span class="section-number">5.3.2. </span>The Period of Classical Oscillation<a class="headerlink" href="#the-period-of-classical-oscillation" title="Link to this heading">#</a></h1>
+<p>As we discussed in <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>, a classical particle confined in a potential <span class="math notranslate nohighlight">\(U(x)\)</span> (See <a class="reference internal" href="../root-finding/turning_points.html#fig-turning-points"><span class="std std-numref">Fig. 4.4</span></a>.) oscillates between turning points <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.  The period of oscillation is given by the integral</p>
+<div class="math notranslate nohighlight" id="equation-eq-oscillation-period2">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-oscillation-period2" title="Link to this equation">#</a></span>\[
+T=2 \int_{x_1}^{x_2} \frac{1}{v(x)}\, dx
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(v(x)\)</span> is the speed of the particle at <span class="math notranslate nohighlight">\(x\)</span> given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-bound-state-speed2">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-bound-state-speed2" title="Link to this equation">#</a></span>\[
+v(x) = \sqrt{\frac{2(E-U(x))}{m}}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(E\)</span> and <span class="math notranslate nohighlight">\(m\)</span> are the energy and the mass of the particle.</p>
+<p>We already computed the turning points in <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>.  In this section, we calculate the integral <a class="reference internal" href="#equation-eq-oscillation-period2">()</a>. At the turning points, the speed vanishes (<span class="math notranslate nohighlight">\(v(x_1)=v(x_2)=0\)</span> and thus the integrand has integrable singularities.  The trick discussed in <a class="reference internal" href="integrable_singularities.html#sec-integrable-singularities"><span class="std std-numref">Section 5.2.2</span></a> should work.</p>
+<p>FIrst, we need to find the form of singularities and remove them. WE find the behavior of the integrand near the turning point by expanding the potential as</p>
+<div class="math notranslate nohighlight">
+\[
+U(x) = U(x_i) + U'(x_i) (x-x_i) + \mathcal{O}(x^2)=E + U'(x_i) (x-x_i) + \mathcal{O}(x^2), \qquad i=1,2
+\]</div>
+<p>Ignoring the second order and higher, the potential is approximated by <span class="math notranslate nohighlight">\(U_i(x) = E+U'(x_i)(x-x_i)\)</span>.  Hence, the speed near the turning point is given by</p>
+<div class="math notranslate nohighlight">
+\[
+v_i(x) = \sqrt{\frac{-2U'(x_i)(x-x_i)}{m}}
+\]</div>
+<p>Note that this approximated speed approaches to the correct speed as <span class="math notranslate nohighlight">\(x \rightarrow x_i\)</span>.</p>
+<p>Next, we remove the singularities as follows.  We split the integral interval into two parts as <span class="math notranslate nohighlight">\(\int_{x_1}^{x_2} dx = \int_{x_1}^{x_c} dx +  \int_{x_c}^{x_2} dx\)</span>.   Technically, <span class="math notranslate nohighlight">\(x_c\)</span> can be anywhere between <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span> but a good choice is the crossing point of <span class="math notranslate nohighlight">\(U_1(x)\)</span> and <span class="math notranslate nohighlight">\(U_2(x)\)</span>, that is</p>
+<div class="math notranslate nohighlight">
+\[
+x_c = \frac{U'(x_1) x_1 - U'(x_2) x_2}{U'(x_1)-U'(x_2)}
+\]</div>
+<p>Then, remove the singular components from each part of the divided integrals:</p>
+<div class="math notranslate nohighlight">
+\[
+\int_{x_1}^{x_c} \left(\frac{1}{v(x)}-\frac{1}{v_1(x)} \right)dx 
++ \int_{x_c}^{x_2} \left(\frac{1}{v(x)}-\frac{1}{v_2(x)}\right) dx
+\]</div>
+<p>The singular components are analytically integrated as</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\int_{x_1}^{x_c} \frac{1}{v_1(x)} dx &amp;&amp;= \sqrt{\frac{m}{-2 U'(x_1)}} \int_{x_1}^{x_c} \frac{1}{\sqrt{x-x_1}} dx
+=\sqrt{\frac{2 m (x_c-x_1)}{|U'(x_1)|}} \\
+\int_{x_c}^{x_2} \frac{1}{v_2(x)} dx &amp;&amp;= \sqrt{\frac{m}{2 U'(x_2)}} \int_{x_c}^{x_2} \frac{1}{\sqrt{x_2-x}} dx\, .
+=\sqrt{\frac{2 m (x_2-x_c)}{|U'(x_2)|}}
+\end{eqnarray}
+\end{split}\]</div>
+<p>which will be added to the numerical integration of the non-singular parts.</p>
+<p><strong>Example</strong> <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.1</span></a>  Consider a particle of mass <span class="math notranslate nohighlight">\(m\)</span> is bound in a Morse potential</p>
+<div class="math notranslate nohighlight">
+\[
+U_M(r) = D_e\left[e^{- 2 a r} - 2 e^{-a r}\right]
+\]</div>
+<p>The turning points are <span class="math notranslate nohighlight">\(x_1 = - \ln (1+\sqrt{E+D_e})\)</span> and <span class="math notranslate nohighlight">\(x_2 = -\ln (1-\sqrt{E+D_e})\)</span>. As discussed in <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>, we normalized distance and energy by setting <span class="math notranslate nohighlight">\(a=1\)</span> and <span class="math notranslate nohighlight">\(D_e=1\)</span>. The derivative of the potential is</p>
+<div class="math notranslate nohighlight">
+\[
+U^\prime_M(r) = -2 e^{-r} (e^{-r}-1).
+\]</div>
+<p>The period of the Morse oscillator is actually known.  It is <span class="math notranslate nohighlight">\(T = \displaystyle\frac{\sqrt{2}\pi}{\sqrt{1-E}}\)</span> in the normalized unit where <span class="math notranslate nohighlight">\(E\)</span> is energy measure from the bottom of the potential<span id="id1">[<a class="reference internal" href="../references/references.html#id19" title="W. C. DeMarcus. Classical motion of a Morse oscillator. American Journal of Physics, 46(7):733-734, 07 1978. URL: https://doi.org/10.1119/1.11110, arXiv:https://pubs.aip.org/aapt/ajp/article-pdf/46/7/733/11661442/733\_1\_online.pdf, doi:10.1119/1.11110.">16</a>, <a class="reference internal" href="../references/references.html#id20" title="V. Astapenko and M. Mutafyan. The morse oscillator’s free motion as the one-dimensional analogue for the kepler problem. BiomedJ Sci &amp; Tech Res, 47:38053, 2022. doi:10.26717/BJSTR.2022.47.007440 PDF.">17</a>]</span>.  We will test the above method by comparing the output with the analytic solution.</p>
+<p>First we plot the original potential potential and the approximate one.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
-<span class="n">math</span><span class="o">.</span><span class="n">pi</span>
+<span class="k">def</span> <span class="nf">u</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">du</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">w</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">E</span><span class="o">-</span><span class="mi">1</span> <span class="o">+</span> <span class="n">du</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span>
+
+<span class="c1"># energy measured from the bottom of the potential 0 &lt; E &lt; 1.0</span>
+<span class="n">E</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># mass of the particle</span>
+<span class="n">m</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># turning points</span>
+<span class="n">x1</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+<span class="n">x2</span> <span class="o">=</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+
+<span class="c1"># midpoint</span>
+<span class="n">xc</span> <span class="o">=</span> <span class="p">(</span><span class="n">du</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">*</span><span class="n">x1</span><span class="o">-</span><span class="n">du</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span><span class="o">*</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">du</span><span class="p">(</span><span class="n">x1</span><span class="p">)</span><span class="o">-</span><span class="n">du</span><span class="p">(</span><span class="n">x2</span><span class="p">))</span>
+
+<span class="n">z1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">xc</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span>
+<span class="n">z2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">201</span><span class="p">)</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span>
+<span class="n">p1</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
+<span class="n">dp</span> <span class="o">=</span> <span class="n">p1</span><span class="o">-</span><span class="n">p0</span>
+<span class="n">q0</span> <span class="o">=</span> <span class="n">u</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span>
+<span class="n">q1</span> <span class="o">=</span> <span class="n">w</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">E</span><span class="p">)</span>
+<span class="n">dq</span> <span class="o">=</span> <span class="n">q1</span><span class="o">-</span><span class="n">q0</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">p0</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$U(x)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">q0</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">p1</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$U_1(x)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">q1</span><span class="p">,</span><span class="s1">&#39;-g&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;$U_2(x)$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="n">E</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;U(x)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">dp</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">dq</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$U_i(x)-U(x)$&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>3.141592653589793
-</pre></div>
+<img alt="../_images/403d3f379428c77664fb9591f10f6fb8dcb073bb0c27be2deb8173f06a0e3bd6.png" src="../_images/403d3f379428c77664fb9591f10f6fb8dcb073bb0c27be2deb8173f06a0e3bd6.png" />
 </div>
 </div>
-</div>
+<p>In the left panel, the red line shows the original potential <span class="math notranslate nohighlight">\(U(x)\)</span>. The dashed line indicates the energy of the particle. The blue and green lines are the approximated potentials <span class="math notranslate nohighlight">\(U_1(x)\)</span> and <span class="math notranslate nohighlight">\(U_2(x)\)</span> that has the same slope as the original potential at the turning points. Since the approximated potential is piecewise linear and thus the integration can be done analytically.  We need to use a numerical method for the difference between the red and blue line.  The right panel shows the integrand after the removal of singularities.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">math</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">trapezoid</span>
 
-<span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">cos</span>
+<span class="k">def</span> <span class="nf">vu</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">E</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">u</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>
 
-<span class="n">cos</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">vw</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">xi</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">du</span><span class="p">(</span><span class="n">xi</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">xi</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">)</span>
+
+<span class="n">N</span><span class="o">=</span><span class="mi">500</span>
+<span class="n">z1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">xc</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">z2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">z1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">x1</span><span class="o">+</span><span class="mf">0.01</span>
+<span class="n">f1</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">vu</span><span class="p">(</span><span class="n">z1</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">vw</span><span class="p">(</span><span class="n">z1</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">f1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">z1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">x1</span>
+<span class="n">z2</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">x2</span><span class="o">-</span><span class="mf">0.01</span>
+<span class="n">f2</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="n">vu</span><span class="p">(</span><span class="n">z2</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="n">vw</span><span class="p">(</span><span class="n">z2</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span>
+<span class="n">f2</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+<span class="n">z2</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">x2</span>
+
+<span class="c1"># numerical integration</span>
+<span class="n">s1</span><span class="o">=</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">f1</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">z1</span><span class="p">)</span>
+<span class="n">s2</span><span class="o">=</span><span class="n">trapezoid</span><span class="p">(</span><span class="n">f2</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">z2</span><span class="p">)</span>
+
+<span class="c1"># singular parts</span>
+<span class="n">t1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">xc</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">du</span><span class="p">(</span><span class="n">x1</span><span class="p">)))</span>
+<span class="n">t2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">m</span><span class="o">*</span><span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">xc</span><span class="p">)</span><span class="o">/</span><span class="nb">abs</span><span class="p">(</span><span class="n">du</span><span class="p">(</span><span class="n">x2</span><span class="p">)))</span>
+
+<span class="n">exact</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">E</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Numerical: T = &quot;</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">s1</span><span class="o">+</span><span class="n">s2</span><span class="o">+</span><span class="n">t1</span><span class="o">+</span><span class="n">t2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Exact: T = &quot;</span><span class="p">,</span><span class="n">exact</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.5403023058681398
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Numerical: T =  6.283196747679595
+    Exact: T =  6.283185307179586
 </pre></div>
 </div>
 </div>
 </div>
+<p>The agreement is quite good.</p>
+<p>Let’s compare the result with the harmonic approximation.  Assuming the amplitude is small, we approximate the potential up to the second order:</p>
+<div class="math notranslate nohighlight">
+\[
+U(x) = U(0) + U'(0) x + \frac{1}{2} U''(x) x^2 = -1 + x^2
+\]</div>
+<p>Recalling that the harmonic potential is given by <span class="math notranslate nohighlight">\(\frac{m \omega^2}{2} x^2\)</span>, the frequency is <span class="math notranslate nohighlight">\(\omega = \sqrt{2}\)</span>.  Thus the period is <span class="math notranslate nohighlight">\(T=2\pi/\omega = \sqrt{2}\pi \approx 4.44\)</span>.   Unlike the harmonic oscillator, the period depends on the energy due to unharmonicity.</p>
+<blockquote>
+<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.1</span></a></strong>     Confirm the validity of harmonic approximation by using a small value of <span class="math notranslate nohighlight">\(E\)</span>.</p>
+</div></blockquote>
+<blockquote>
+<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.2</span></a></strong>  Calculate the period of the oscillation for the (exp-6) hybrid potential (See <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>.)  No analytic solution is knwon for this potential.</p>
+</div></blockquote>
 </section>
 
     <script type="text/x-thebe-config">
