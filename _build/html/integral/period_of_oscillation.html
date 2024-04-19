@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.3.3. The Period of Classical Oscillation &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3.2. The Period of Classical Oscillation &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/period_of_oscillation';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.4. Exercise solutions" href="solutions.html" />
-    <link rel="prev" title="5.3.2. Scattering by the Yukawa potential" href="scattering_angle.html" />
+    <link rel="next" title="5.3.3. Scattering by the Yukawa potential" href="scattering_angle.html" />
+    <link rel="prev" title="5.3.1. Ideal Fermi/Bose Gases" href="qm_ideal_gas.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,8 +243,8 @@
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.3. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
@@ -494,7 +494,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-period-of-classical-oscillation">
-<span id="app-oscillation-period"></span><h1><span class="section-number">5.3.3. </span>The Period of Classical Oscillation<a class="headerlink" href="#the-period-of-classical-oscillation" title="Link to this heading">#</a></h1>
+<span id="app-oscillation-period"></span><h1><span class="section-number">5.3.2. </span>The Period of Classical Oscillation<a class="headerlink" href="#the-period-of-classical-oscillation" title="Link to this heading">#</a></h1>
 <p>As we discussed in <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>, a classical particle confined in a potential <span class="math notranslate nohighlight">\(U(x)\)</span> (See <a class="reference internal" href="../root-finding/turning_points.html#fig-turning-points"><span class="std std-numref">Fig. 4.4</span></a>.) oscillates between turning points <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.  The period of oscillation is given by the integral</p>
 <div class="math notranslate nohighlight" id="equation-eq-oscillation-period2">
 <span class="eqno">(5.16)<a class="headerlink" href="#equation-eq-oscillation-period2" title="Link to this equation">#</a></span>\[
@@ -540,7 +540,7 @@ x_c = \frac{U'(x_1) x_1 - U'(x_2) x_2}{U'(x_1)-U'(x_2)}
 \end{eqnarray}
 \end{split}\]</div>
 <p>which will be added to the numerical integration of the non-singular parts.</p>
-<p><strong>Example</strong> <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.3.1</span></a>  Consider a particle of mass <span class="math notranslate nohighlight">\(m\)</span> is bound in a Morse potential</p>
+<p><strong>Example</strong> <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.1</span></a>  Consider a particle of mass <span class="math notranslate nohighlight">\(m\)</span> is bound in a Morse potential</p>
 <div class="math notranslate nohighlight">
 \[
 U_M(r) = D_e\left[e^{- 2 a r} - 2 e^{-a r}\right]
@@ -692,10 +692,10 @@ U(x) = U(0) + U'(0) x + \frac{1}{2} U''(x) x^2 + \mathcal{O}(x3) \approx -1 + x^
 \]</div>
 <p>Recalling that the harmonic potential is given by <span class="math notranslate nohighlight">\(\frac{m \omega^2}{2} x^2\)</span>, the frequency is <span class="math notranslate nohighlight">\(\omega = \sqrt{2}\)</span> and the period is <span class="math notranslate nohighlight">\(T=2\pi/\omega = \sqrt{2}\pi \approx 4.44\)</span>.   Unlike the harmonic oscillator, the period depends on the energy due to the presence of the higher order terms in the Taylor expansion.</p>
 <blockquote>
-<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.3.1</span></a></strong>     Confirm the validity of harmonic approximation by using a small value of <span class="math notranslate nohighlight">\(E\)</span>.</p>
+<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.1</span></a></strong>     Confirm the validity of harmonic approximation by using a small value of <span class="math notranslate nohighlight">\(E\)</span>.</p>
 </div></blockquote>
 <blockquote>
-<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.3.2</span></a></strong>  Calculate the period of the oscillation for the (exp-6) hybrid potential (See <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>.)  No analytic solution is knwon for this potential.</p>
+<div><p><strong>Exercise <a class="reference internal" href="#app-oscillation-period"><span class="std std-numref">5.3.2.2</span></a></strong>  Calculate the period of the oscillation for the (exp-6) hybrid potential (See <a class="reference internal" href="../root-finding/turning_points.html#app-turning-points"><span class="std std-numref">Section 4.4.1</span></a>.)  No analytic solution is knwon for this potential.</p>
 </div></blockquote>
 <hr class="docutils" />
 <p>Updated on 4/16/2024 by R. Kawai</p>
@@ -732,20 +732,20 @@ U(x) = U(0) + U'(0) x + \frac{1}{2} U''(x) x^2 + \mathcal{O}(x3) \approx -1 + x^
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="scattering_angle.html"
+       href="qm_ideal_gas.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3.2. </span>Scattering by the Yukawa potential</p>
+        <p class="prev-next-title"><span class="section-number">5.3.1. </span>Ideal Fermi/Bose Gases</p>
       </div>
     </a>
     <a class="right-next"
-       href="solutions.html"
+       href="scattering_angle.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.4. </span>Exercise solutions</p>
+        <p class="prev-next-title"><span class="section-number">5.3.3. </span>Scattering by the Yukawa potential</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

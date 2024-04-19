@@ -64,8 +64,8 @@ parts:
       -  file: integral/applications
          sections:
          -  file: integral/qm_ideal_gas
-         -  file: integral/scattering_angle
          -  file: integral/period_of_oscillation
+         -  file: integral/scattering_angle
       -  file: integral/solutions
    -  file: ode/intro
    -  file: matrix/intro
