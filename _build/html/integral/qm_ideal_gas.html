@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/qm_ideal_gas';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.3.2. The Period of Classical Oscillation" href="period_of_oscillation.html" />
+    <link rel="next" title="5.3.2. Scattering by the Yukawa potential" href="scattering_angle.html" />
     <link rel="prev" title="5.3. Applicatins in Physics" href="applications.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -243,7 +243,8 @@
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
@@ -529,11 +530,11 @@ f_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}+1} 
 <p>where <span class="math notranslate nohighlight">\(\Gamma(\nu)\)</span> is the Gamma function.</p>
 <p>No closed form expression of the Fermi-Dirac function is available except for <span class="math notranslate nohighlight">\(\nu=0\)</span>.   The integral can be expanded in a power series of <span class="math notranslate nohighlight">\(z\)</span> as</p>
 <div class="math notranslate nohighlight" id="equation-eq-polylog">
-<span class="eqno">(5.8)<a class="headerlink" href="#equation-eq-polylog" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.10)<a class="headerlink" href="#equation-eq-polylog" title="Link to this equation">#</a></span>\[
 f_\nu(z) = z - \frac{z^2}{2^\nu} + \frac{z^3}{3^\nu} - \cdots  = -\text{Li}_\nu(-z)
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(Li_\nu(z) = z + \frac{z^2}{2^\nu} + \frac{z^3}{3^\nu} + \cdots\)</span> is called the polylogarithm function. Since the Fermi-Dirac integral is mathematically equivalent to the the polylogarithm function, some textbooks use the latter.<span id="id2">[<a class="reference internal" href="../references/references.html#id12" title="S. J. Blundell and K. M. Blundell. Concepts in Thermal Phyisics. Oxford University Oress, 2nd edition, 2009. ISBN 978-0199562107.">15</a>]</span>  A good algorithm to compute the polylogarithm function has been developed and implemented in various mathematical packages.  In practice, it is no longer necessary to evaluate the Fermi-Dirac integral.  However, it is a good exercise of imploper integrals.</p>
-<p>When an exact solutions is not available, physicists turn to approximated solutions.  It is common to consider some limiting cases such as <span class="math notranslate nohighlight">\(z \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(z \rightarrow \infty\)</span>, or special cases where analysical solution is possible (<span class="math notranslate nohighlight">\(z=1\)</span> in the current problem). Truncation of the series expansion <a class="reference internal" href="#equation-eq-polylog">(5.8)</a> provides an approximation for <span class="math notranslate nohighlight">\(z \ll 1\)</span>.  For large <span class="math notranslate nohighlight">\(z\)</span>, we have the asymptotic expansion:</p>
+<p>When an exact solutions is not available, physicists turn to approximated solutions.  It is common to consider some limiting cases such as <span class="math notranslate nohighlight">\(z \rightarrow 0\)</span> and <span class="math notranslate nohighlight">\(z \rightarrow \infty\)</span>, or special cases where analysical solution is possible (<span class="math notranslate nohighlight">\(z=1\)</span> in the current problem). Truncation of the series expansion <a class="reference internal" href="#equation-eq-polylog">(5.10)</a> provides an approximation for <span class="math notranslate nohighlight">\(z \ll 1\)</span>.  For large <span class="math notranslate nohighlight">\(z\)</span>, we have the asymptotic expansion:</p>
 <div class="math notranslate nohighlight">
 \[
 f_\nu(z) = \frac{\xi^\nu}{\Gamma(\nu+1)} \left[1 + \nu(\nu-1) \frac{\pi^2}{6} \xi^{-2} + \nu(\nu-1)(\nu-2)(\nu-3) \frac{7\pi^4}{360} \xi^{-4} + \cdots \right]
@@ -931,7 +932,7 @@ mu=1/2:   Gauss-Lagguerre= 2.9367257008e+00 asymptotic = 2.9401161642e+00
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(g_\nu(z)\)</span> is the Bose-Einstein integral defined by</p>
 <div class="math notranslate nohighlight" id="equation-eq-be-integral">
-<span class="eqno">(5.9)<a class="headerlink" href="#equation-eq-be-integral" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.11)<a class="headerlink" href="#equation-eq-be-integral" title="Link to this equation">#</a></span>\[
 g_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}-1} \, dx = \text{Li}_\nu(z)
 \]</div>
 <p>The difference between <span class="math notranslate nohighlight">\(f_\nu(z)\)</span> and <span class="math notranslate nohighlight">\(g_\nu)z)\)</span> is only the sign in the denominator of the integrand.  However, their properties are quite different.  While the Fermi-Direc integral exits for <span class="math notranslate nohighlight">\(0 \le z &lt; \infty,~ \nu &gt; 0\)</span>, the Bose-Einstein exists only for <span class="math notranslate nohighlight">\(0 \le z &lt; 1,~ \nu &gt; 0\)</span>, except that  <span class="math notranslate nohighlight">\(z=1\)</span> is allowed for <span class="math notranslate nohighlight">\(\nu &gt; 1\)</span>. For <span class="math notranslate nohighlight">\(z&gt;1\)</span>, the integrad has a non-integrable sinularity at <span class="math notranslate nohighlight">\(x&gt;0\)</span> and the integral diverges.  Interesting quantum phenomena such as the Bose condensation take place near <span class="math notranslate nohighlight">\(z=1\)</span>.<span id="id3">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span>  Therefore, its numerical evaluation needs some care. While it is an improper integral, the evaluation of <span class="math notranslate nohighlight">\(g_{5/2}(z)\)</span> seems no problem since there is no singularlity.  <span class="math notranslate nohighlight">\(g_{3/2}\)</span> suffers from an integrable singularity at <span class="math notranslate nohighlight">\(x=0\)</span>, which can be managable. The evaluation of <span class="math notranslate nohighlight">\(g_{2/1}(z)\)</span> near <span class="math notranslate nohighlight">\(z=1\)</span> is challenging since it diverges at <span class="math notranslate nohighlight">\(z=1\)</span>.</p>
@@ -981,11 +982,11 @@ g_\nu(z) = \frac{1}{\Gamma(\nu)} \int_0^\infty \frac{x^{\nu-1}}{z^{-1} e^{x}-1} 
       </div>
     </a>
     <a class="right-next"
-       href="period_of_oscillation.html"
+       href="scattering_angle.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.3.2. </span>The Period of Classical Oscillation</p>
+        <p class="prev-next-title"><span class="section-number">5.3.2. </span>Scattering by the Yukawa potential</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

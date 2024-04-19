@@ -243,7 +243,8 @@
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
@@ -494,8 +495,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="the-closest-approach-in-a-scattering">
 <span id="app-closet-approach"></span><h1><span class="section-number">4.4.2. </span>The Closest Approach in a Scattering<a class="headerlink" href="#the-closest-approach-in-a-scattering" title="Link to this heading">#</a></h1>
-<p>A particle of mass <span class="math notranslate nohighlight">\(m_1\)</span> elastically and another particle of mass <span class="math notranslate nohighlight">\(m_2\)</span> collide via a spherical potential <span class="math notranslate nohighlight">\(U(r)\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the distance between the particles.  The trajectory of a particle in relative coordinates is shown in <a class="reference internal" href="#fig-scattering"><span class="std std-numref">Fig. 4.5</span></a>.  The scattering angle <span class="math notranslate nohighlight">\(\theta\)</span> depends on the impact parameter <span class="math notranslate nohighlight">\(b\)</span> and the initial energy of the particles <span class="math notranslate nohighlight">\(E\)</span>.
-For mathematical convenience, we introduce a new angle <span class="math notranslate nohighlight">\(\phi\)</span> as shown in <a class="reference internal" href="#fig-scattering"><span class="std std-numref">Fig. 4.5</span></a>.  Note that <span class="math notranslate nohighlight">\(\theta = \pi - 2 \phi\)</span>.
+<p>A particle of mass <span class="math notranslate nohighlight">\(m_1\)</span> elastically and another particle of mass <span class="math notranslate nohighlight">\(m_2\)</span> collide via a spherical potential <span class="math notranslate nohighlight">\(U(r)\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the distance between the particles.  The trajectory of a particle in relative coordinates is shown in <a class="reference internal" href="#fig-scattering-angle"><span class="std std-numref">Fig. 4.5</span></a>.  The scattering angle <span class="math notranslate nohighlight">\(\theta\)</span> depends on the impact parameter <span class="math notranslate nohighlight">\(b\)</span> and the initial energy of the particles <span class="math notranslate nohighlight">\(E\)</span>.
+For mathematical convenience, we introduce a new angle <span class="math notranslate nohighlight">\(\phi\)</span> as shown in <a class="reference internal" href="#fig-scattering-angle"><span class="std std-numref">Fig. 4.5</span></a>.  Note that <span class="math notranslate nohighlight">\(\theta = \pi - 2 \phi\)</span>.
 This scattering problem can be analytically solved  up to the following integral<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -507,10 +508,10 @@ This scattering problem can be analytically solved  up to the following integral
 1 - \frac{b^2}{r_0^2}-\frac{U(r_0)}{E} = 0
 \]</div>
 <p>which is a root finding problem.</p>
-<figure class="align-default" id="fig-scattering">
+<figure class="align-default" id="fig-scattering-angle">
 <a class="reference internal image-reference" href="../_images/scattering-diagram.png"><img alt="../_images/scattering-diagram.png" src="../_images/scattering-diagram.png" style="height: 300px;" /></a>
 <figcaption>
-<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">A trajectory of a point particle scatterd by a spherical potential centered at <span class="math notranslate nohighlight">\(O\)</span>.  The particle approaches to the potential with impact parameter <span class="math notranslate nohighlight">\(b\)</span>, reaches the closest point <span class="math notranslate nohighlight">\(r_0\)</span>, and then travels away with the scatering angle <span class="math notranslate nohighlight">\(\theta\)</span>.</span><a class="headerlink" href="#fig-scattering" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text">A trajectory of a point particle scatterd by a spherical potential centered at <span class="math notranslate nohighlight">\(O\)</span>.  The particle approaches to the potential with impact parameter <span class="math notranslate nohighlight">\(b\)</span>, reaches the closest point <span class="math notranslate nohighlight">\(r_0\)</span>, and then travels away with the scatering angle <span class="math notranslate nohighlight">\(\theta\)</span>.</span><a class="headerlink" href="#fig-scattering-angle" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <p>First, we consider the Ratherford scattering where two particles of charge <span class="math notranslate nohighlight">\(Z_1 e\)</span> and <span class="math notranslate nohighlight">\(Z_2 e\)</span> collides with the Couolomb pontential, <span class="math notranslate nohighlight">\(U(r) = \displaystyle\frac{C}{r}\)</span> where <span class="math notranslate nohighlight">\(C=Z_1 Z_2 e^2\)</span>.  For mathematical convenience, we chose <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(C/b\)</span> as units of distance and energy.   In order to avoid the devided-by-zero error, we introduce a new variable <span class="math notranslate nohighlight">\(x=1/r_0\)</span>.   Then, Eq. <a class="reference internal" href="#equation-eq-closest">(4.4)</a> becomes</p>
@@ -593,7 +594,6 @@ r_0 = \frac{2b}{\sqrt{\left(\frac{Z_1 Z_2 e^2}{Eb}\right)^2+4}-\frac{Z_1 Z_2 e^2
 
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
-
 <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
     
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>

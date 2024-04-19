@@ -243,7 +243,8 @@
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
@@ -507,7 +508,7 @@ document.write(`
 <span id="app-turning-points"></span><h1><span class="section-number">4.4.1. </span>Classical Turning Points<a class="headerlink" href="#classical-turning-points" title="Link to this heading">#</a></h1>
 <p>When a classical particle with energy <span class="math notranslate nohighlight">\(E\)</span> is confined in a potential <span class="math notranslate nohighlight">\(U(x)\)</span>. (See <a class="reference internal" href="#fig-turning-points"><span class="std std-numref">Fig. 4.4</span></a>.)  The particle oscillates between turning points <span class="math notranslate nohighlight">\(x_1\)</span> and <span class="math notranslate nohighlight">\(x_2\)</span>.  The period of oscillation<span id="id1">[<a class="reference internal" href="../references/references.html#id16" title="J. R. Taylor. Classical Mechanics. University Science Books, 2004.">11</a>]</span> is given by</p>
 <div class="math notranslate nohighlight" id="equation-eq-oscillation-period1">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-oscillation-period1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(4.3)<a class="headerlink" href="#equation-eq-oscillation-period1" title="Link to this equation">#</a></span>\[
 T=2 \int_{x_1}^{x_2} \frac{1}{v(x)}\, dx
 \]</div>
 <p>where the speed of the particle at <span class="math notranslate nohighlight">\(x\)</span> is given by</p>
@@ -551,7 +552,7 @@ x_\text{min} &amp;= 2^{1/6}, \quad &amp;x_1 &amp; = x_\text{min} (1-\sqrt{k}), \
 \end{align}
 \end{split}\]</div>
 <p>where the turning points are the roots of <span class="math notranslate nohighlight">\(u(x) = k-1\)</span> where <span class="math notranslate nohighlight">\(0&lt;k&lt;1\)</span> is the (normalized) kinetic energy.</p>
-<p>While these potentials are mathematically convenient, they do not accurately represent the real molecular interaction. An old idea to improve the accuracy for a certain molecules, a hybrid mode, which takes the repulsive part from the Morse potential and the attractive part from the Lenard-Jones potential, was proposed.  The resulting expression becomes a bit complicated as follows <span id="id2">[<a class="reference internal" href="../references/references.html#id17" title="Daniel D. Konowalow. Interatomic Potentials for HeNe, HeAr, and NeAr. The Journal of Chemical Physics, 50(1):12-16, 01 1969. URL: https://doi.org/10.1063/1.1670768, arXiv:https://pubs.aip.org/aip/jcp/article-pdf/50/1/12/18860649/12\_1\_online.pdf, doi:10.1063/1.1670768.">12</a>]</span>:</p>
+<p>While these potentials are mathematically convenient, they do not accurately represent the real molecular interaction. An old idea to improve the accuracy for a certain molecules, a hybrid mode, which takes the repulsive part from the Morse potential and the attractive part from the Lenard-Jones potential, was proposed.  The resulting expression becomes a bit complicated as follows <span id="id2">[<a class="reference internal" href="../references/references.html#id17" title="Daniel D. Konowalow. Interatomic Potentials for HeNe, HeAr, and NeAr. The Journal of Chemical Physics, 50(1):12-16, 01 1969. doi:10.1063/1.1670768.">12</a>]</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 U_\text{hybrid} (r) = D_e \frac{a}{a-6} \left[\frac{6}{a} e^{a(1-r/\sigma)} - \left(\frac{\sigma}{r}\right)^6\right]
@@ -694,7 +695,7 @@ u_\text{hybrid}(x) = \frac{a}{a-6} \left(\frac{6}{a} e^{a(1-x)} - 1/x^6\right)
 </div>
 </div>
 <p>Visually, these answers are consistent with the crossing points of the red dashed line and the blue curve in the plot.</p>
-<p>In Chapter <a class="reference internal" href="../integral/period_of_oscillation.html#app-oscillation-period"><span class="std std-numref">Section 5.3.2</span></a>, we evaluate the period of the oscillation by integrating Eq. <a class="reference internal" href="#equation-eq-oscillation-period1">()</a> where we use the above results.</p>
+<p>In Chapter <a class="reference internal" href="../integral/period_of_oscillation.html#app-oscillation-period"><span class="std std-numref">Section 5.3.3</span></a>, we evaluate the period of the oscillation by integrating Eq. <a class="reference internal" href="#equation-eq-oscillation-period1">(4.3)</a> where we use the above results.</p>
 <hr class="docutils" />
 <p>Last modified on 3/14/2024 by R. Kawai</p>
 </section>

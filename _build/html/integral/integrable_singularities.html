@@ -243,7 +243,8 @@
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
@@ -497,7 +498,7 @@ document.write(`
 <p>If the integrand has integrable singularities such as <span class="math notranslate nohighlight">\(\displaystyle\frac{1}{\sqrt{x}}\)</span> within the integral interval, standard methods fail. Such improper integrals are ubiquitous in physics.  A common method is to isolate the singularity and integrate it analytically.  Then, we integrate the remaining part by a numerical method.</p>
 <p>Consider an improper integral</p>
 <div class="math notranslate nohighlight" id="equation-eq-int-singularity">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-int-singularity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.8)<a class="headerlink" href="#equation-eq-int-singularity" title="Link to this equation">#</a></span>\[
 \int_0^1 \frac{1}{(1+x)\sqrt{x}} dx = \frac{\pi}{2}
 \]</div>
 <p>This integral is finite despite that the integrand diverges at <span class="math notranslate nohighlight">\(x=0\)</span>. In order to find the type of singularity, Let us look at the integrand near <span class="math notranslate nohighlight">\(x=0\)</span>. Using the positive infinitesimal <span class="math notranslate nohighlight">\(\epsilon\)</span>, the integrand can be expanded as</p>
@@ -507,7 +508,7 @@ document.write(`
 \]</div>
 <p>Hence, the singularity is <span class="math notranslate nohighlight">\(\displaystyle\frac{1}{\sqrt{\epsilon}}\)</span> which we can integrate analytically. By subtracting the singularity from the integral, we obtain a regular integral:</p>
 <div class="math notranslate nohighlight" id="equation-eq-int-no-singularity">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-int-no-singularity" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.9)<a class="headerlink" href="#equation-eq-int-no-singularity" title="Link to this equation">#</a></span>\[
 \int_0^1 \left [ \frac{1}{(1+x)\sqrt{x}}
  - \frac{1}{\sqrt{x}} \right ] dx  = - \int_0^1 \frac{\sqrt{x}}{1+x} dx = \frac{\pi}{2} - 2
 \]</div>
@@ -545,7 +546,7 @@ document.write(`
 <img alt="../_images/c2b530e77f7d3a9e7def1668f5e5dcebb573dbe6ac60f92bece54fa0ee47d69b.png" src="../_images/c2b530e77f7d3a9e7def1668f5e5dcebb573dbe6ac60f92bece54fa0ee47d69b.png" />
 </div>
 </div>
-<p>The black line shows the original integrand  <a class="reference internal" href="#equation-eq-int-singularity">()</a> and the red dashed line is the singular part.  The two curves coincide near the singularity.  The difference between them (the blue line) is finite and smooth, can be numerically integrated by a piecewise integration method.</p>
+<p>The black line shows the original integrand  <a class="reference internal" href="#equation-eq-int-singularity">(5.8)</a> and the red dashed line is the singular part.  The two curves coincide near the singularity.  The difference between them (the blue line) is finite and smooth, can be numerically integrated by a piecewise integration method.</p>
 <p>Next we evaluate the integral.   The singular part is analytically integrated and added to the numerical integration of the non-singular part.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
