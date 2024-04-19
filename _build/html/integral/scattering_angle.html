@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -516,9 +516,9 @@ U(r) = \frac{k}{r} e^{-r/a}
 <p>where <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(a\)</span> are constants indicating the strength  and the range of the interaction, respectively.  The scattering angle for this potential is given by the following integral:</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle-y">
 <span class="eqno">(5.14)<a class="headerlink" href="#equation-eq-scattering-angle-y" title="Link to this equation">#</a></span>\[
-\phi_Y = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{u e^{-1/u a}}{E}}}  du
+\phi_Y = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{u k e^{-1/u a}}{E}}}  du
 \]</div>
-<p>To remove the singularity, we must find an analytically solvable integral that has the same singularity as in Eq. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.14)</a>.  That seems difficult but possible.  We recall that In the Rathurford scattering taught in a classical mechanics (or modern physics) course<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>.  It is a scattering by a Coulomb potential <span class="math notranslate nohighlight">\(U_c(r)=C/r\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is a constant to be determined. The scattering angle for the Coulomb potential is given by a similar integral</p>
+<p>To remove the singularity, we must find an analytically solvable integral that has the same singularity as in Eq. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.14)</a>.  That seems difficult but possible.  We recall that In the Rutherford scattering taught in a classical mechanics (or modern physics) course<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>.  It is a scattering by a Coulomb potential <span class="math notranslate nohighlight">\(U_c(r)=C/r\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is a constant to be determined. The scattering angle for the Coulomb potential is given by a similar integral</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle-c">
 <span class="eqno">(5.15)<a class="headerlink" href="#equation-eq-scattering-angle-c" title="Link to this equation">#</a></span>\[
 \phi_C = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{C u}{E}}}  du
@@ -531,20 +531,20 @@ U(r) = \frac{k}{r} e^{-r/a}
 <p>Now, we need to make the two integrals Eqs. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.14)</a> and <a class="reference internal" href="#equation-eq-scattering-angle-c">(5.15)</a> have the same singularity,   that is</p>
 <div class="math notranslate nohighlight">
 \[
-1-b^2 u_0^2 -\frac{u_0 e^{-1/u_0 a}}{E} = 1-b^2 u_0^2 -\frac{C u_0}{E}
+1-b^2 u_0^2 -\frac{u_0 k e^{-1/u_0 a}}{E} = 1-b^2 u_0^2 -\frac{C u_0}{E}
 \]</div>
-<p>which is satisfied if <span class="math notranslate nohighlight">\(C=e^{-1/u_0 a}\)</span>.</p>
+<p>which is satisfied if <span class="math notranslate nohighlight">\(C=k e^{-1/u_0 a}\)</span>.</p>
 <p>At last, we are ready to calculate the scattering angle for the Yukawa potential.  We numerically evaluate the non singular part of integral, which is the difference between the two scatterings,</p>
 <div class="math notranslate nohighlight">
 \[
 \Delta \phi = \phi_Y - \phi_C = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{u e^{-1/u a}}{E}}} - \frac{b}{\sqrt{1-b^2 u^2 -\frac{C u}{E}}} du 
 \]</div>
-<p>By adding the analytic solution of the Rathurford scattering, we obtain</p>
+<p>By adding the analytic solution of the Rutherford scattering, we obtain</p>
 <div class="math notranslate nohighlight">
 \[
 \phi_Y = \Delta \phi + \phi_C.
 \]</div>
-<p>To see if the above method is reasonable, we plot the integrands.</p>
+<p>It is always a good idea to visualize the equations you are working on.  Let us plot the integrands.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -592,10 +592,6 @@ U(r) = \frac{k}{r} e^{-r/a}
 <span class="c1"># set evaluation points (avoid the divide-by-zero error)</span>
 <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.01</span><span class="p">,</span><span class="n">u0</span><span class="o">-</span><span class="mf">0.01</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
 
-<span class="c1"># integrands</span>
-<span class="c1">#FY = fY(u)</span>
-<span class="c1">#FC = fC(u)</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 
@@ -624,73 +620,80 @@ collision energy  E =  1.00000
 closest approach r0 =  0.77942
 </pre></div>
 </div>
-<img alt="../_images/b862c9f715282d22cf21264a749e9df7c27bcb54bc0752f217e35c40751fd14d.png" src="../_images/b862c9f715282d22cf21264a749e9df7c27bcb54bc0752f217e35c40751fd14d.png" />
-</div>
-</div>
-<p>The left panel shows two integrands which have the same singularity at <span class="math notranslate nohighlight">\(u_0\)</span>.  The right panel shows the difference of the two integrands, which we numerically integrate .  Although the singularity is removed, the curve has steep change near <span class="math notranslate nohighlight">\(u_0\)</span>. It is better to use an adaptive method.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span><span class="p">,</span> <span class="n">simpson</span>
-
-<span class="c1"># nonsingular part</span>
-<span class="n">f</span><span class="o">=</span><span class="n">df</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
-<span class="n">dphi</span><span class="o">=</span><span class="n">simpson</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
-
-<span class="c1"># Ratherford scattering</span>
-<span class="n">C</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">u0</span><span class="p">))</span>
-<span class="n">phiC</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u0</span><span class="o">*</span><span class="n">E</span><span class="o">+</span><span class="n">C</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">C</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">C</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">4</span><span class="o">*</span><span class="n">b</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">E</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
-
-<span class="c1"># sacttering angle for Yukawa potential</span>
-<span class="n">phiY</span> <span class="o">=</span> <span class="n">phiC</span> <span class="o">+</span> <span class="n">dphi</span>
-<span class="n">thetaY</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">phiY</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">dphi</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">thetaY</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span><span class="s2">&quot;degree&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-0.11108108216656981
-62.00807116067912 degree
-</pre></div>
-</div>
+<img alt="../_images/6cd01376229e183753106739c8f33030ba105072f5a8a9876b9862c60274d3f5.png" src="../_images/6cd01376229e183753106739c8f33030ba105072f5a8a9876b9862c60274d3f5.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bi</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
-<span class="n">theta</span><span class="o">=</span><span class="p">[]</span>
-<span class="n">theta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">simpson</span>
 
+<span class="c1"># set impacto parameters</span>
+<span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mi">101</span><span class="p">)</span>
+
+<span class="c1"># prepare the angle as an array</span>
+<span class="n">thetaY</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">thetaC</span><span class="o">=</span><span class="p">[]</span>
+
+<span class="c1"># head-on collision (b=0)</span>
+<span class="n">thetaY</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">thetaC</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+<span class="c1"># for b&gt;0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">101</span><span class="p">):</span>
-    <span class="n">b</span><span class="o">=</span><span class="n">bi</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">b</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">u0</span><span class="o">=</span><span class="n">umax</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">u0</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+
+    <span class="c1"># avoid divided-by-zero at u=0 and u=u0</span>
     <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.05</span>
     <span class="n">u</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">u0</span><span class="o">-</span><span class="mf">0.05</span>
     <span class="n">f</span><span class="o">=</span><span class="n">df</span><span class="p">(</span><span class="n">u</span><span class="p">)</span>
+
+    <span class="c1"># enter the correct values at u=0 and u=u0</span>
     <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
-    <span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
     <span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">f</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
     <span class="n">u</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">u0</span>
+
+    <span class="c1"># evaluate the non-singular part</span>
     <span class="n">dphi</span><span class="o">=</span><span class="n">simpson</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x</span><span class="o">=</span><span class="n">u</span><span class="p">)</span>
 
+    <span class="c1"># scattering angle for Coulomb potential</span>
     <span class="n">C</span><span class="o">=</span><span class="n">k</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">u0</span><span class="p">))</span>
     <span class="n">phiC</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">C</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">b</span><span class="o">*</span><span class="n">E</span><span class="p">))</span>
 
+    <span class="c1"># scattering angle of Yukawa potential</span>
     <span class="n">phiY</span> <span class="o">=</span> <span class="n">phiC</span> <span class="o">+</span> <span class="n">dphi</span>
-    <span class="n">theta</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">phiY</span><span class="p">)</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span><span class="n">theta</span><span class="p">)</span>
+    <span class="c1"># get theta from phi</span>
+    <span class="n">thetaY</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">phiY</span><span class="p">)</span>
+    <span class="n">thetaC</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">-</span> <span class="mi">2</span><span class="o">*</span><span class="n">phiC</span><span class="p">)</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;    Strength of the potential k=</span><span class="si">{0:8.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Decay length of the potential a=</span><span class="si">{0:8.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;             Collision energy E=</span><span class="si">{0:8.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">E</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">thetaY</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Yukawa&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">thetaC</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Coulomb&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;impoact parameter&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;scattering angle&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axvline</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="s2">&quot;scattering by the Yukawa potential&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6ad3558730&gt;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>    Strength of the potential k= 1.00000
+Decay length of the potential a= 1.00000
+             Collision energy E= 1.00000
 </pre></div>
 </div>
-<img alt="../_images/1f0908078980835291336e6c4d215c02df644722c644b9295b828fc10bbbe6d9.png" src="../_images/1f0908078980835291336e6c4d215c02df644722c644b9295b828fc10bbbe6d9.png" />
+<img alt="../_images/4284415d1a2f8b472de83912bc4c34f5e3a2283d91be7261106437375fdafdd0.png" src="../_images/4284415d1a2f8b472de83912bc4c34f5e3a2283d91be7261106437375fdafdd0.png" />
 </div>
 </div>
+<p>How do you know that this result is correct?  We will calculate the same quantity by numerically solving the corresponding Newton equation in <a class="reference internal" href="../ode/intro.html#ch-ode"><span class="std std-numref">Section 6</span></a>.</p>
 </section>
 
     <script type="text/x-thebe-config">
