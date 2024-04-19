@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -549,7 +549,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/e025892f8a66751f88cd26ceb6a2249a23738b50323d2f875a1817e71f04a2fb.png" src="../_images/e025892f8a66751f88cd26ceb6a2249a23738b50323d2f875a1817e71f04a2fb.png" />
+<img alt="../_images/c8daf4e9d54c94419c1c0200a7884b24a1eae62458c9fbd79bc645d876237898.png" src="../_images/c8daf4e9d54c94419c1c0200a7884b24a1eae62458c9fbd79bc645d876237898.png" />
 </div>
 </div>
 <p>For the high temperature case (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>) , there is only one root at <span class="math notranslate nohighlight">\(x=0\)</span>.  For the low temperature case, (<span class="math notranslate nohighlight">\(\beta=10\)</span>), on the other hand, there are three roots, one at <span class="math notranslate nohighlight">\(x=0\)</span> and the other two appear below and above <span class="math notranslate nohighlight">\(x=0\)</span>.  The existence of non-zero roots suggest that the spontaneous magnetization breaks out.  We want to know how the two roots (magnetization) change as the temperature is varied.  It is not necessary to look for all the roots.  The root at <span class="math notranslate nohighlight">\(x=0\)</span> always exists. Taking into account the odd symmetry, if <span class="math notranslate nohighlight">\(x^*\)</span> is a positive root, then <span class="math notranslate nohighlight">\(-x^*\)</span> is the other root.  Therefore, we look for only the positive root.  The following code attempt to find a positive root if any.  Otherwise, it finds a sole root at <span class="math notranslate nohighlight">\(x=0\)</span>.  There are a few things we must worry.  First of all, we need to avoid zero temperature since ti causes the divided-by-zero error.  Secondly, the initial candidate for the Newton-Raphson method must be chosen carefully since there are multiple roots and it might converge to a wrong one. Based on the above plot, <span class="math notranslate nohighlight">\(x=2\)</span> may be a safe choice.</p>
@@ -608,7 +608,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8fad25ed759e24cdf4fd1b66f9e43af50de13e4dae5bf25e26f243b8763d624f.png" src="../_images/8fad25ed759e24cdf4fd1b66f9e43af50de13e4dae5bf25e26f243b8763d624f.png" />
+<img alt="../_images/dd9b4bb3353c48d90a26f700affda6fd27c1f341a48eec724322d3cbd44ed216.png" src="../_images/dd9b4bb3353c48d90a26f700affda6fd27c1f341a48eec724322d3cbd44ed216.png" />
 </div>
 </div>
 <p>The plot shows that the spontaneous magnetization appears below <span class="math notranslate nohighlight">\(\theta=1\)</span> (It can be shown analytically that the critical temperature is 1.)  As temperature is lowered, the magnetization grows to <span class="math notranslate nohighlight">\(\pm 1\)</span>.  Although we were not able to compute for the zero temperature, the trend indicates that the magnetization is exactly <span class="math notranslate nohighlight">\(\pm 1\)</span> at <span class="math notranslate nohighlight">\(\theta=0\)</span>.  This plot agrees with experimental observation.<span id="id2">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span></p>

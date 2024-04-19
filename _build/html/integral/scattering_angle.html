@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
@@ -523,7 +523,7 @@ U(r) = \frac{k}{r} e^{-r/a}
 <span class="eqno">(5.15)<a class="headerlink" href="#equation-eq-scattering-angle-c" title="Link to this equation">#</a></span>\[
 \phi_C = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{C u}{E}}}  du
 \]</div>
-<p>It turns out that the integration can be done analytically and the solution is</p>
+<p>It turns out that the integration can be done analytically<span id="id2">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span> and the solution is</p>
 <div class="math notranslate nohighlight">
 \[
 \phi_C= \frac{\pi}{2} - \tan^{-1}\left(\frac{C}{2 b E}\right)
@@ -533,7 +533,7 @@ U(r) = \frac{k}{r} e^{-r/a}
 \[
 1-b^2 u_0^2 -\frac{u_0 k e^{-1/u_0 a}}{E} = 1-b^2 u_0^2 -\frac{C u_0}{E}
 \]</div>
-<p>which is satisfied if <span class="math notranslate nohighlight">\(C=k e^{-1/u_0 a}\)</span>.</p>
+<p>which is satisfied if <span class="math notranslate nohighlight">\(C=k e^{-1/u_0 a}\)</span>.  Notice that the strength of the Coulomb potential is smaller the Yukawa potential so that the two potentials have the same closest approach.</p>
 <p>At last, we are ready to calculate the scattering angle for the Yukawa potential.  We numerically evaluate the non singular part of integral, which is the difference between the two scatterings,</p>
 <div class="math notranslate nohighlight">
 \[
@@ -620,7 +620,7 @@ collision energy  E =  1.00000
 closest approach r0 =  0.77942
 </pre></div>
 </div>
-<img alt="../_images/6cd01376229e183753106739c8f33030ba105072f5a8a9876b9862c60274d3f5.png" src="../_images/6cd01376229e183753106739c8f33030ba105072f5a8a9876b9862c60274d3f5.png" />
+<img alt="../_images/b862c9f715282d22cf21264a749e9df7c27bcb54bc0752f217e35c40751fd14d.png" src="../_images/b862c9f715282d22cf21264a749e9df7c27bcb54bc0752f217e35c40751fd14d.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -690,10 +690,12 @@ Decay length of the potential a= 1.00000
              Collision energy E= 1.00000
 </pre></div>
 </div>
-<img alt="../_images/4284415d1a2f8b472de83912bc4c34f5e3a2283d91be7261106437375fdafdd0.png" src="../_images/4284415d1a2f8b472de83912bc4c34f5e3a2283d91be7261106437375fdafdd0.png" />
+<img alt="../_images/ec42df0779531899258cd409f0f824e46ecd45b0577fcaae26066c7c2b7fc76d.png" src="../_images/ec42df0779531899258cd409f0f824e46ecd45b0577fcaae26066c7c2b7fc76d.png" />
 </div>
 </div>
-<p>How do you know that this result is correct?  We will calculate the same quantity by numerically solving the corresponding Newton equation in <a class="reference internal" href="../ode/intro.html#ch-ode"><span class="std std-numref">Section 6</span></a>.</p>
+<p>How do you know that this result is correct?  You might get confused since the scattering angle of the Coulomb potential is smaller than that of the Yukawa potential despite that the Coulomb potential has longer interaction range. Recall that the the strength of the Coulomb potential is adjusted so that the two potentials share the same closest approach, suggesting that the two scattering angles are similar. As the result of the adjustment, the Coulomb potential is weaker than the Yukawa potential.  Therefore the scattering angle of the Coulomb potential is smaller than the that of the Yukawa potential.   We will calculate the same quantity by numerically solving the corresponding Newton equation in <a class="reference internal" href="../ode/intro.html#ch-ode"><span class="std std-numref">Section 6</span></a>, which is in a good agreement with the present results.</p>
+<hr class="docutils" />
+<p>Updated on 4/18/2024 by R. Kawai</p>
 </section>
 
     <script type="text/x-thebe-config">
