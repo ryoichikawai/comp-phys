@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'ode/intro';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="7. Linear Algebrea" href="../matrix/intro.html" />
+    <link rel="next" title="6.1. Initial Value Problems" href="initial_value_problems.html" />
     <link rel="prev" title="5.4. Exercise solutions" href="../integral/solutions.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -241,14 +241,19 @@
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.2. Scattering by the Yukawa potential</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.3. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Ordinary Differential Equations</a></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">6. Ordinary Differential Equations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="initial_value_problems.html">6.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_value_problems.html">6.2. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigenvalue_problems.html">6.3. Eigenvalue Problems</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
@@ -493,6 +498,16 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="ordinary-differential-equations">
 <span id="ch-ode"></span><h1><span class="section-number">6. </span>Ordinary Differential Equations<a class="headerlink" href="#ordinary-differential-equations" title="Link to this heading">#</a></h1>
+<p>Many physics theories are expressed in various forms of ordinary differential equations(ODE).
+For example, Newton’s equations of motion are written as ODE.  Ordinary classical mechanics textbooks solve example problems analytically.  In practice, however, the majority of problems cannot be solved analytically because Newton’s equations are non-linear except for simple cases such as free falling and harmonic oscillators.  The motion of a planet (Kepler problem) is a very special case where analytical solution is possible despite of the non-linearity. For almost all practical problems, we resort to numerical methods.</p>
+<p>An ODE generally allows infinitely many different solutions. We want to find a solution that matches to given conditions.  The conditions  known as boundary conditions determine a specific solution.  In physics there are two  types of the boundary conditions.  When we want to find a time evolution of physical quantities, we solve ODEs with initial conditions.  Initial conditions are a kind of boundary condition given at a single point in time.  When we want to know a spatial profile of physical quantities, we usually specify conditions at two points in space. Eigenvalue problems expressed in differential equation forms belong to the latter type of boundary conditions.  The former is called initial value problem and the latter boundary value problem.  In numerical calculation, these two problems are quite different.  In this chapter we three types of ODEs:</p>
+<ul class="simple">
+<li><p>Initial value problems: <a class="reference internal" href="initial_value_problems.html#sec-ode-initial-value-problems"><span class="std std-numref">Section 6.1</span></a></p></li>
+<li><p>Boundary value problems: <a class="reference internal" href="boundary_value_problems.html#sec-ode-boundary-value-problems"><span class="std std-numref">Section 6.2</span></a></p></li>
+<li><p>Eigenvalue problems: <a class="reference internal" href="eigenvalue_problems.html#sec-ode-eigenvalue-problems"><span class="std std-numref">Section 6.3</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
 </section>
 
     <script type="text/x-thebe-config">
@@ -535,11 +550,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="../matrix/intro.html"
+       href="initial_value_problems.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">7. </span>Linear Algebrea</p>
+        <p class="prev-next-title"><span class="section-number">6.1. </span>Initial Value Problems</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

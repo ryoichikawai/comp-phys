@@ -68,6 +68,10 @@ parts:
          -  file: integral/scattering_angle
       -  file: integral/solutions
    -  file: ode/intro
+      sections:
+      -  file: ode/initial_value_problems
+      -  file: ode/boundary_value_problems
+      -  file: ode/eigenvalue_problems
    -  file: matrix/intro
    -  file: fft/intro
    -  file: pde/intro

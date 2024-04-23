@@ -1,0 +1,876 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6.1. Initial Value Problems &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ode/initial_value_problems';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6.2. Boundary Value Problems" href="boundary_value_problems.html" />
+    <link rel="prev" title="6. Ordinary Differential Equations" href="intro.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.7. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.8. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functions/applications.html">2.3. Applications in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functions/overdamped.html">2.3.1. An Overdamped Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.2. Quantum Free Falling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.3. Hydrogen Atom</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">3. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">3.5. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_polynomials.html">4.1. Roots of Polynomials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_bisection.html">4.2. Bisection Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_newton.html">4.3. Newton-Raphson method</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../root-finding/applications.html">4.4. Application in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/turning_points.html">4.4.1. Classical Turning Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/ferromagnet.html">4.4.3. Ferromagnetic Phase Transition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/qm_potential_well.html">4.4.4. A Quantum Particle in a Potential Well</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.3. Scattering by the Yukawa potential</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">6. Ordinary Differential Equations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">6.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boundary_value_problems.html">6.2. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eigenvalue_problems.html">6.3. Eigenvalue Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/ode/initial_value_problems.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Fode/initial_value_problems.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/ode/initial_value_problems.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Initial Value Problems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-odes">6.1.1. First Order ODEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-method">6.1.1.1. Euler method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictor-corrector-method">6.1.1.2. Predictor-Corrector Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-order-runge-kutta-method">6.1.1.3. 2nd-Order Runge-Kutta Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#th-order-runge-kutta-method">6.1.1.4. 4th-Order Runge-Kutta Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-step-runge-kutta-fehlberg-method">6.1.1.5. Adaptive Step: Runge-Kutta-Fehlberg Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-first-order-odes">6.1.2. Coupled First Order ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-odes">6.1.3. Second-Order ODEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-odes-as-a-coupled-first-order-odes">6.1.3.1. Second-Order ODEs as a Coupled First-Order ODEs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verlet-method">6.1.3.2. Verlet Method</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="initial-value-problems">
+<span id="sec-ode-initial-value-problems"></span><h1><span class="section-number">6.1. </span>Initial Value Problems<a class="headerlink" href="#initial-value-problems" title="Link to this heading">#</a></h1>
+<p>A simplest initial value problem in physics is first order ODEs expressed in a standard form,</p>
+<div class="math notranslate nohighlight">
+\[
+\dot{\mathbf{x}} = \mathbf{F}(\mathbf{x},t) 
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> is an arbitrary function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.  <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> are often vector but they can bejust a set of scalar quatities or even just a single scalar quantity.  The solution to the ODE is a function of time <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span>.  To solve it, we need to know <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> at some point <span class="math notranslate nohighlight">\(t=t_0\)</span>.  Usually, <span class="math notranslate nohighlight">\(t_0\)</span> is an initial time and we want to know <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> for <span class="math notranslate nohighlight">\(t&gt;t_0\)</span>.  However, <span class="math notranslate nohighlight">\(t_0\)</span> can be any point.  Once <span class="math notranslate nohighlight">\(\mathbf{x}(t_0)\)</span> is given, we can find <span class="math notranslate nohighlight">\(x\)</span> at any point <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Second order ODEs</p>
+<div class="math notranslate nohighlight">
+\[
+\ddot{\mathbf{x}} = F(\mathbf{x},\dot{\mathbf{x}},t)
+\]</div>
+<p>is very important in physics since the Newton’s equation of motion is written in this form.   Two initial conditions, usually <span class="math notranslate nohighlight">\(\mathbf{x}(t_0)\)</span> and <span class="math notranslate nohighlight">\(\dot{\mathbf{x}}(t_0)\)</span>, are required to solve this problem.  The two conditions can be specified at two different points <span class="math notranslate nohighlight">\(\mathbf{x}t_0)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}(t_1)\)</span>, which will be discussed in <a class="reference internal" href="boundary_value_problems.html#sec-ode-boundary-value-problems"><span class="std std-numref">Section 6.2</span></a>.
+In general, the second order ODEs of this kind can be transformed to a set of first order ODEs. Therefore, numerical methods for the first order ODEs can be used to solve the second order ODEs as well.  However, there are also algorithms specific to the second order ODEs such as the Verlet argorithm, which can be more efficient in certain applications.</p>
+<section id="first-order-odes">
+<h2><span class="section-number">6.1.1. </span>First Order ODEs<a class="headerlink" href="#first-order-odes" title="Link to this heading">#</a></h2>
+<p>For simplicity, we focus on the first order ODE of a single scalar variable <span class="math notranslate nohighlight">\(x\)</span> for a while. Multivariable cases will be discussed in the following subsections. More specifically, we want to solve the following type of ODE:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-1d">
+<span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-ode-1d" title="Link to this equation">#</a></span>\[
+\dot{x} = F(x,t)
+\]</div>
+<p>for a given function <span class="math notranslate nohighlight">\(F(x,t)\)</span> and an initial condition <span class="math notranslate nohighlight">\(x(t_0)\)</span> .  The exact solution is a continuous function <span class="math notranslate nohighlight">\(x(t)\)</span> for time period from an initial time <span class="math notranslate nohighlight">\(t_0\)</span> to a final time <span class="math notranslate nohighlight">\(t_F\)</span>.  However, in the computer we work with discrete time <span class="math notranslate nohighlight">\(t_n = t_0 + n h,\, n=0, \cdots, N\)</span> where <span class="math notranslate nohighlight">\(h\)</span> is a time step defined by <span class="math notranslate nohighlight">\(h=\displaystyle\frac{t_F-t_0}{N}\)</span>.  The numerical solution is expressed as a sequence <span class="math notranslate nohighlight">\(x(t_0), x(t_1), x(t_2), \cdots, x(t_N)\)</span>.  Our goal is to develop numerical algorithms to predict <span class="math notranslate nohighlight">\(x(t_{n+1})\)</span>  knowing the previous points <span class="math notranslate nohighlight">\(x(t_n), x(t_{n-1}), \cdots x(t_0)\)</span>. We can construct the whole sequence by repeating the procedure. In the following subsections, we use simplified expressions, <span class="math notranslate nohighlight">\(x_n \equiv x(t_n)\)</span> and <span class="math notranslate nohighlight">\(F_n \equiv F(x(t_n),t_n)\)</span>.</p>
+<p>Solving an ODE is essentially equivalent to integration.  We convert the ODE <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a> to a recursive equation involving an integral.  Let us assume that we know <span class="math notranslate nohighlight">\(x_n\)</span>.  Integrating Eq. <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a> from <span class="math notranslate nohighlight">\(t_n\)</span> to <span class="math notranslate nohighlight">\(t_{n+1}\)</span>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-integral">
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-ode-integral" title="Link to this equation">#</a></span>\[
+x_{n+1} = x_n + \int_{t_n}^{t_{n+1}} F[x(t),t]\, dt\, .
+\]</div>
+<p>which predicts <span class="math notranslate nohighlight">\(x_{n+1}\)</span>.  By repeating this recursively, we obtain the solution <span class="math notranslate nohighlight">\(x(t_0), x(t_1), x(t_2), \cdots, x(t_N)\)</span>.
+However, to calculate the integral in Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a>, we need to know <span class="math notranslate nohighlight">\(x(t)\)</span> for the interval <span class="math notranslate nohighlight">\((t_n, t_{n+1})\)</span> but that is a solution we are looking for.  How can we evaluate the integral without knowing <span class="math notranslate nohighlight">\(x(t)\)</span> for <span class="math notranslate nohighlight">\(t_n &lt; t &lt; t_{n+1}\)</span>?  The following methods approximate the integral using only the known information, that is the previous points <span class="math notranslate nohighlight">\(\{x_n, x_{n-1}, \cdots, x_0\}\)</span>.</p>
+<section id="euler-method">
+<h3><span class="section-number">6.1.1.1. </span>Euler method<a class="headerlink" href="#euler-method" title="Link to this heading">#</a></h3>
+<p>We being with the simplest method which may not be useful in practical applications but gives us some idea of how numerical integration of an ODE works. We try to estimate the integral in Eq.  {eq}<code class="docutils literal notranslate"><span class="pre">eq:ode-integral</span></code> assuming we know the values of <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(F_n\)</span>.
+<a class="reference internal" href="#fig-euler-ode"><span class="std std-numref">Fig. 6.1</span></a> illustrates what we are trying to do. Recall that the rectangle rule of numerical integration (see <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>) depends only on the single point. We use the rectangular rule to approximate the integral in Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a> as shown in the left panel of <a class="reference internal" href="#fig-euler-ode"><span class="std std-numref">Fig. 6.1</span></a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-rectangular">
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-eq-ode-rectangular" title="Link to this equation">#</a></span>\[
+\int_{t_n}^{t_{n+1}} F[x(t),t] dt \approx F_n\, h
+\]</div>
+<p>which leads to the Euler method:</p>
+<div class="math notranslate nohighlight" id="equation-eq-euler-rule">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-euler-rule" title="Link to this equation">#</a></span>\[
+x_{n+1} \approx x_n + F_n\, h.
+\]</div>
+<p>Starting from the initial value, <span class="math notranslate nohighlight">\(x_0\)</span>, we first evaluate <span class="math notranslate nohighlight">\(F_0=F(x_0,t_0)\)</span>.  Then, we obtain <span class="math notranslate nohighlight">\(x_1\)</span> by Eq. <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a>.
+Using this procedure recursively, we obtain the whole sequence from <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x_N\)</span>.</p>
+<p>The Euler method is also equivalent to the forward finite difference method of numerical derivative (see <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>) as illustrated in the right panel of <a class="reference internal" href="#fig-euler-ode"><span class="std std-numref">Fig. 6.1</span></a>.  Substituting the approximated derivative <span class="math notranslate nohighlight">\(\dot{x}_n \approx (x_{n+1} - x_{n})/h\)</span> into the ODE <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a>, we obtain <span class="math notranslate nohighlight">\((x_{n+1} - x_{n})/h = F_{n}\)</span>.  Rearranging this expression, we obtain the Euler rule <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a>.</p>
+<p>The area omitted in the left panel of {numref}`fig:euler-ode is order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Therefore the local error of the Euler method is the order of <span class="math notranslate nohighlight">\(h^2\)</span>. After <span class="math notranslate nohighlight">\(N\)</span> iteration, the global error becomes <span class="math notranslate nohighlight">\(N h^2 \sim \order{h}\)</span>.  We hope that this is a good approximation with a sufficiently small <span class="math notranslate nohighlight">\(h\)</span>. However, the Euler method is not good enough in practice.  An example is given after the predictor-corrector method is introduced.</p>
+<figure class="align-default" id="fig-euler-ode">
+<img alt="../_images/euler-ode.webp" src="../_images/euler-ode.webp" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of the Euler method.  <em>Left</em>: The curve in the figure represents the integrand of Eq. (\ref{eq:ode-integral}), which is unknown to us. Knowing <span class="math notranslate nohighlight">\(F_n\)</span> and <span class="math notranslate nohighlight">\(h\)</span>, we approximate the integral by the rectangular rule discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the slope of the curve <span class="math notranslate nohighlight">\(F_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to a straight line within a small step <span class="math notranslate nohighlight">\(h\)</span>. This is equivalent to use the forward finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.</span><a class="headerlink" href="#fig-euler-ode" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>```{admonition} Alrgorithm <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.1</span></a>:  Euler rule</p>
+<ol class="arabic simple">
+<li><p>Set the total period <span class="math notranslate nohighlight">\(T\)</span> and the number of steps <span class="math notranslate nohighlight">\(N\)</span></p></li>
+<li><p>Calculate the step size <span class="math notranslate nohighlight">\(h=\displaystyle\frac{T}{N}\)</span>.</p></li>
+<li><p>Set the initial condition <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(t_0=0\)</span>.</p></li>
+<li><p>Starting with <span class="math notranslate nohighlight">\(n=0\)</span>, repeat the following <span class="math notranslate nohighlight">\(N\)</span> times</p>
+<ol class="arabic simple">
+<li><p>Evaluate the function <span class="math notranslate nohighlight">\(F_n=F(x_n,t_n)\)</span>.</p></li>
+<li><p>Calculate a new point <span class="math notranslate nohighlight">\(x_{n+1}=x_n+F_n h\)</span>.</p></li>
+<li><p>Increment the step: <span class="math notranslate nohighlight">\(n=n+1\)</span>.</p></li>
+</ol>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="predictor-corrector-method">
+<h3><span class="section-number">6.1.1.2. </span>Predictor-Corrector Method<a class="headerlink" href="#predictor-corrector-method" title="Link to this heading">#</a></h3>
+<p>Can we improve the accuracy using a better integration method?  We expect that the accuracy will be improved if the trapezoidal rule is used instead of the rectangular rule.  Let us try it.
+Substituting the trapezoidal rule (see the left panel of <a class="reference internal" href="#fig-predict-correct"><span class="std std-numref">Fig. 6.2</span></a>.)</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-trapezoidal">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-ode-trapezoidal" title="Link to this equation">#</a></span>\[
+    \int_{t_n}^{t_{n+1}} F[x(t),t] dt \approx \frac{(F_n + F_{n+1}) h}{2}
+\]</div>
+<p>to the Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a>, we obtain a recursive equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-implicit">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-ode-implicit" title="Link to this equation">#</a></span>\[
+x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F(x_{n+1},t_{n+1} \right] .
+\]</div>
+<p>which is implicit since the both sides contain <span class="math notranslate nohighlight">\(x_{n+1}\)</span>.  To find <span class="math notranslate nohighlight">\(x_{n+1}\)</span>, we must use a root-finding method,
+which is in principle possible but too time-consuming for practical applications.  A better way is to use an approximate value of <span class="math notranslate nohighlight">\(x_{n+1}\)</span> in the right hand side. We <em>predict</em> <span class="math notranslate nohighlight">\(x_{n+1}\)</span> using the Euler method and then <em>correct</em> it by Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.6)</a>. More specifically, substituting Eq. <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a> into <span class="math notranslate nohighlight">\(F(x_{n+1},t_n+h)\)</span> in Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.6)</a>, we obtain</p>
+<div class="math notranslate nohighlight" id="equation-eq-ode-predictor-corrector">
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-ode-predictor-corrector" title="Link to this equation">#</a></span>\[
+x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F\left(x_n + F(x_n,t_n) h, t_{n+1} \right) \right].
+\]</div>
+<p>which is not implicit anymore. This is the “predictor-corrector” method.    This procedure is equivalent to approximate the <span class="math notranslate nohighlight">\(\dot(x)\)</span> with the mean finite difference method discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>. (see the right panel of <a class="reference internal" href="#fig-predict-correct"><span class="std std-numref">Fig. 6.2</span></a>.)</p>
+<figure class="align-default" id="fig-predict-correct">
+<img alt="../_images/predict-correct.webp" src="../_images/predict-correct.webp" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Illustration of the predictor-corrector method.  <em>Left</em>: The curve in the figure represents the integrand of Eq. (\ref{eq:ode-integral}), which is unknown to us. Knowing <span class="math notranslate nohighlight">\(F_n\)</span> and <span class="math notranslate nohighlight">\(h\)</span>, we approximate the integral by the trapezoidal rule discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the two slopes of the curve <span class="math notranslate nohighlight">\(F_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to a straight line within a small step <span class="math notranslate nohighlight">\(h\)</span>. This is equivalent to use the mean finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.</span><a class="headerlink" href="#fig-predict-correct" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>```{admonition} Alrgorithm <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.2</span></a>:  Predictor-corrector method</p>
+<ol class="arabic simple">
+<li><p>Set the total period <span class="math notranslate nohighlight">\(T\)</span> and the number of steps <span class="math notranslate nohighlight">\(N\)</span></p></li>
+<li><p>Calculate the step size <span class="math notranslate nohighlight">\(h=\displaystyle\frac{T}{N}\)</span>.</p></li>
+<li><p>Set the initial condition <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(t_0=0\)</span>.</p></li>
+<li><p>Starting with <span class="math notranslate nohighlight">\(n=0\)</span>, repeat the following <span class="math notranslate nohighlight">\(N\)</span> times</p>
+<ol class="arabic simple">
+<li><p>Predictor: <span class="math notranslate nohighlight">\(k_1 = F(x_n,t_n)\)</span></p></li>
+<li><p>Corrector: <span class="math notranslate nohighlight">\(k_2 = F(x_n+k_1 h,t_{n+1})\)</span>.</p></li>
+<li><p>New point: <span class="math notranslate nohighlight">\(x_{n+1}=x_n + \displaystyle\frac{h}{2} \left ( k_1 + k_2 \right )\)</span>.</p></li>
+<li><p>Increment the step: <span class="math notranslate nohighlight">\(n=n+1\)</span>.</p></li>
+</ol>
+</li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<p><strong>Example</strong> {numref}%s.1 <a class="reference external" href="sec:ode-initial-value-problems">sec:ode-initial-value-problems</a>`</p>
+<p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> is dropped from rest under a uniform gravity <span class="math notranslate nohighlight">\(g\)</span>.  The drag force due to the presence of air is <span class="math notranslate nohighlight">\(-\gamma v\)</span> where <span class="math notranslate nohighlight">\(v\)</span> is velocity and <span class="math notranslate nohighlight">\(\gamma\)</span> the frictional coefficient. The equation of motion is given by the Newton equation:</p>
+<div class="math notranslate nohighlight" id="equation-eq-eom-free-falling">
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-eom-free-falling" title="Link to this equation">#</a></span>\[
+m \dot{v} = - \gamma v - m g
+\]</div>
+<p>ans its solution is</p>
+<div class="math notranslate nohighlight">
+\[
+v(t) = \frac{m g}{\gamma} \left ( e^{-\gamma t} -1 \right )\,.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(-m g /\gamma\)</span> is the terminal velocity.</p>
+<p>Let us integrate the Newton equations using Euler and Predictor-Corrector methods and compare the results with the exact solution.  We integrate from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=10\)</span> using the step size <span class="math notranslate nohighlight">\(h=0.01\)</span>.  As usual, we simplify the mathematical expression by normalizing quantities and reduce the number of parameters.  By normalizing the time as <span class="math notranslate nohighlight">\(\tau =\gamma t/m\)</span> and introducing a new constant <span class="math notranslate nohighlight">\(\xi = m  g /gamma\)</span>, Eq. <a class="reference internal" href="#equation-eq-eom-free-falling">(6.8)</a> becomes <span class="math notranslate nohighlight">\(\dot{v} = -v + \xi\)</span> where <span class="math notranslate nohighlight">\(\dot{v} = \frac{dv}{d\tau}\)</span>.   Now, we have only one parameter <span class="math notranslate nohighlight">\(\xi\)</span> and the terminal velocity is given by <span class="math notranslate nohighlight">\(-\xi\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># parameter</span>
+<span class="n">g</span><span class="o">=</span><span class="mf">10.0</span>
+
+<span class="c1"># integration parameters</span>
+<span class="n">tmax</span><span class="o">=</span><span class="mf">10.</span>  <span class="c1"># maximum time</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1000</span>   <span class="c1"># maximum steps</span>
+<span class="n">h</span><span class="o">=</span><span class="n">tmax</span><span class="o">/</span><span class="n">N</span> <span class="c1"># time step</span>
+
+<span class="c1"># set arrays</span>
+<span class="n">v_ex</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">v_eu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">v_pc</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">h</span>
+
+<span class="c1"># intial condition</span>
+<span class="n">v_ex</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">v_eu</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">v_pc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="mf">0.0</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="c1"># Euler method</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="o">-</span><span class="n">v_eu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">g</span> 
+    <span class="n">v_eu</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_eu</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">F</span><span class="o">*</span><span class="n">h</span>
+    
+    <span class="c1"># Predictor-Corrector method</span>
+    <span class="n">F</span><span class="o">=</span> <span class="o">-</span><span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">F</span><span class="o">*</span><span class="n">h</span><span class="p">;</span>  <span class="c1"># predictor</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_pc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">F</span><span class="o">*</span><span class="n">h</span>   <span class="c1"># corrector</span>
+    
+    <span class="c1"># Exact solution</span>
+    <span class="n">v_ex</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">g</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot the solutions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_ex</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_eu</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_pc</span><span class="p">,</span><span class="s1">&#39;:r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictor-Corrector&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;v(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot the absolute errors</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v_eu</span><span class="o">-</span><span class="n">v_ex</span><span class="p">),</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Euler&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v_pc</span><span class="o">-</span><span class="n">v_ex</span><span class="p">),</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Predictor-Corrector&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;absolute error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/7bb411fef918653cd4de966b629e30f908645dec330cb2b9f9c76c7f07e7d243.png" src="../_images/7bb411fef918653cd4de966b629e30f908645dec330cb2b9f9c76c7f07e7d243.png" />
+</div>
+</div>
+<p>The left plots show that the trajectories of the two numerical methods agree with the exact trajectory at least in he naked eyes.  The right panel plots the absolute errors.  The predictor-corrector method is significantly better than the Euler method.</p>
+</section>
+<section id="nd-order-runge-kutta-method">
+<h3><span class="section-number">6.1.1.3. </span>2nd-Order Runge-Kutta Method<a class="headerlink" href="#nd-order-runge-kutta-method" title="Link to this heading">#</a></h3>
+</section>
+<section id="th-order-runge-kutta-method">
+<h3><span class="section-number">6.1.1.4. </span>4th-Order Runge-Kutta Method<a class="headerlink" href="#th-order-runge-kutta-method" title="Link to this heading">#</a></h3>
+</section>
+<section id="adaptive-step-runge-kutta-fehlberg-method">
+<h3><span class="section-number">6.1.1.5. </span>Adaptive Step: Runge-Kutta-Fehlberg Method<a class="headerlink" href="#adaptive-step-runge-kutta-fehlberg-method" title="Link to this heading">#</a></h3>
+</section>
+</section>
+<section id="coupled-first-order-odes">
+<h2><span class="section-number">6.1.2. </span>Coupled First Order ODEs<a class="headerlink" href="#coupled-first-order-odes" title="Link to this heading">#</a></h2>
+</section>
+<section id="second-order-odes">
+<h2><span class="section-number">6.1.3. </span>Second-Order ODEs<a class="headerlink" href="#second-order-odes" title="Link to this heading">#</a></h2>
+<section id="second-order-odes-as-a-coupled-first-order-odes">
+<h3><span class="section-number">6.1.3.1. </span>Second-Order ODEs as a Coupled First-Order ODEs<a class="headerlink" href="#second-order-odes-as-a-coupled-first-order-odes" title="Link to this heading">#</a></h3>
+</section>
+<section id="verlet-method">
+<h3><span class="section-number">6.1.3.2. </span>Verlet Method<a class="headerlink" href="#verlet-method" title="Link to this heading">#</a></h3>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./ode"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="intro.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">6. </span>Ordinary Differential Equations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="boundary_value_problems.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">6.2. </span>Boundary Value Problems</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#first-order-odes">6.1.1. First Order ODEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#euler-method">6.1.1.1. Euler method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#predictor-corrector-method">6.1.1.2. Predictor-Corrector Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nd-order-runge-kutta-method">6.1.1.3. 2nd-Order Runge-Kutta Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#th-order-runge-kutta-method">6.1.1.4. 4th-Order Runge-Kutta Method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#adaptive-step-runge-kutta-fehlberg-method">6.1.1.5. Adaptive Step: Runge-Kutta-Fehlberg Method</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#coupled-first-order-odes">6.1.2. Coupled First Order ODEs</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-odes">6.1.3. Second-Order ODEs</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#second-order-odes-as-a-coupled-first-order-odes">6.1.3.1. Second-Order ODEs as a Coupled First-Order ODEs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#verlet-method">6.1.3.2. Verlet Method</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
