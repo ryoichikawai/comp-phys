@@ -574,8 +574,8 @@ Using this procedure recursively, we obtain the whole sequence from <span class=
 <p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of the Euler method.  <em>Left</em>: The curve in the figure represents the integrand of Eq. (\ref{eq:ode-integral}), which is unknown to us. Knowing <span class="math notranslate nohighlight">\(F_n\)</span> and <span class="math notranslate nohighlight">\(h\)</span>, we approximate the integral by the rectangular rule discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the slope of the curve <span class="math notranslate nohighlight">\(F_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to a straight line within a small step <span class="math notranslate nohighlight">\(h\)</span>. This is equivalent to use the forward finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.</span><a class="headerlink" href="#fig-euler-ode" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="admonition-algorithm-6-2-1-euler-method admonition">
-<p class="admonition-title">Algorithm 6.2.1:  Euler method</p>
+<div class="admonition-algorithm-6-1-1-euler-method admonition">
+<p class="admonition-title">Algorithm 6.1.1:  Euler method</p>
 <ol class="arabic simple">
 <li><p>Set the total period <span class="math notranslate nohighlight">\(T\)</span> and the number of steps <span class="math notranslate nohighlight">\(N\)</span></p></li>
 <li><p>Calculate the step size <span class="math notranslate nohighlight">\(h=\displaystyle\frac{T}{N}\)</span>.</p></li>
@@ -616,8 +616,8 @@ x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F\left(x_n + F(x_n,t_n) h,
 <p><span class="caption-number">Fig. 6.2 </span><span class="caption-text">Illustration of the predictor-corrector method.  <em>Left</em>: The curve in the figure represents the integrand of Eq. (\ref{eq:ode-integral}), which is unknown to us. Knowing <span class="math notranslate nohighlight">\(F_n\)</span> and <span class="math notranslate nohighlight">\(h\)</span>, we approximate the integral by the trapezoidal rule discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the two slopes of the curve <span class="math notranslate nohighlight">\(F_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to a straight line within a small step <span class="math notranslate nohighlight">\(h\)</span>. This is equivalent to use the mean finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.</span><a class="headerlink" href="#fig-predict-correct" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<div class="admonition-algorithm-6-2-2-predictor-corrector-method admonition">
-<p class="admonition-title">Algorithm 6.2.2:  Predictor-corrector method</p>
+<div class="admonition-algorithm-6-1-2-predictor-corrector-method admonition">
+<p class="admonition-title">Algorithm 6.1.2:  Predictor-corrector method</p>
 <ol class="arabic simple">
 <li><p>Set the total period <span class="math notranslate nohighlight">\(T\)</span> and the number of steps <span class="math notranslate nohighlight">\(N\)</span></p></li>
 <li><p>Calculate the step size <span class="math notranslate nohighlight">\(h=\displaystyle\frac{T}{N}\)</span>.</p></li>
