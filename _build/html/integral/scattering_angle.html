@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.3.3. Scattering by the Yukawa potential &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3.4. Scattering by the Yukawa potential &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -63,7 +63,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="5.4. Exercise solutions" href="solutions.html" />
-    <link rel="prev" title="5.3.2. The Period of Classical Oscillation" href="period_of_oscillation.html" />
+    <link rel="prev" title="5.3.3. The Period of Classical Oscillation" href="period_of_oscillation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -242,9 +242,10 @@
 </ul>
 </li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.3. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
@@ -499,17 +500,17 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="scattering-by-the-yukawa-potential">
-<span id="app-scattering-angle"></span><h1><span class="section-number">5.3.3. </span>Scattering by the Yukawa potential<a class="headerlink" href="#scattering-by-the-yukawa-potential" title="Link to this heading">#</a></h1>
+<span id="app-scattering-angle"></span><h1><span class="section-number">5.3.4. </span>Scattering by the Yukawa potential<a class="headerlink" href="#scattering-by-the-yukawa-potential" title="Link to this heading">#</a></h1>
 <p>A particle elastically collides with another particle through a spherical potential <span class="math notranslate nohighlight">\(U(r)\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the distance between the particles.  As we discussed in <a class="reference internal" href="../root-finding/closest_approach.html#app-closet-approach"><span class="std std-numref">Section 4.4.2</span></a>, the scattering angle is given by <span class="math notranslate nohighlight">\(\theta = \pi - 2 \phi\)</span> where</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle1">
-<span class="eqno">(5.14)<a class="headerlink" href="#equation-eq-scattering-angle1" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.16)<a class="headerlink" href="#equation-eq-scattering-angle1" title="Link to this equation">#</a></span>\[
 \phi = \int_{r_0}^{\infty} \frac{b}{r^2} \frac{1}{\sqrt{1 - \displaystyle\frac{b^2}{r^2}-\displaystyle\frac{U(r)}{E}}} dr\, .
 \]</div>
 <p>We already developed a numerical method to find the closest distance <span class="math notranslate nohighlight">\(r_0\)</span> in <a class="reference internal" href="../root-finding/closest_approach.html#app-closet-approach"><span class="std std-numref">Section 4.4.2</span></a>.  However, we are still not quite ready to evaluate the integral because it is doubly improper.  First, the upper integral limit is infinity.  Secondly, the integrand diverges at the closest distance.</p>
 <p>The former issue can be solved by the standard method discussed in <a class="reference internal" href="unbound_interval.html#sec-unbound-interval"><span class="std std-numref">Section 5.2.1</span></a>.
-Introducing a variable <span class="math notranslate nohighlight">\(u = \displaystyle\frac{1}{r}\)</span>. Eq. <a class="reference internal" href="#equation-eq-scattering-angle1">(5.14)</a> is transformed to</p>
+Introducing a variable <span class="math notranslate nohighlight">\(u = \displaystyle\frac{1}{r}\)</span>. Eq. <a class="reference internal" href="#equation-eq-scattering-angle1">(5.16)</a> is transformed to</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle2">
-<span class="eqno">(5.15)<a class="headerlink" href="#equation-eq-scattering-angle2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.17)<a class="headerlink" href="#equation-eq-scattering-angle2" title="Link to this equation">#</a></span>\[
 \phi = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{U(1/u)}{E}}}\;  du
 \]</div>
 <p>where the upper integral limit is <span class="math notranslate nohighlight">\(u_0=1/r_0\)</span>.  You might worry about <span class="math notranslate nohighlight">\(U(1/u)\)</span> at <span class="math notranslate nohighlight">\(u=0\)</span>.  The interaction potential usually vanishes when two particles are separated by the infinite distance.  Hence, <span class="math notranslate nohighlight">\(\displaystyle\lim_{u\rightarrow 0} U(1/u) = 0\)</span>.  There seems no difficulty with respect to the first improperness.</p>
@@ -520,12 +521,12 @@ U(r) = \frac{k}{r} e^{-r/a}
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(k\)</span> and <span class="math notranslate nohighlight">\(a\)</span> are constants indicating the strength  and the range of the interaction, respectively.  The scattering angle for this potential is given by the following integral:</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle-y">
-<span class="eqno">(5.16)<a class="headerlink" href="#equation-eq-scattering-angle-y" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.18)<a class="headerlink" href="#equation-eq-scattering-angle-y" title="Link to this equation">#</a></span>\[
 \phi_Y = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{u k e^{-1/u a}}{E}}}  du
 \]</div>
-<p>To remove the singularity, we must find an analytically solvable integral that has the same singularity as in Eq. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.16)</a>.  That seems difficult but possible.  We recall that In the Rutherford scattering taught in a classical mechanics (or modern physics) course<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>.  It is a scattering by a Coulomb potential <span class="math notranslate nohighlight">\(U_c(r)=C/r\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is a constant to be determined. The scattering angle for the Coulomb potential is given by a similar integral</p>
+<p>To remove the singularity, we must find an analytically solvable integral that has the same singularity as in Eq. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.18)</a>.  That seems difficult but possible.  We recall that In the Rutherford scattering taught in a classical mechanics (or modern physics) course<span id="id1">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span>.  It is a scattering by a Coulomb potential <span class="math notranslate nohighlight">\(U_c(r)=C/r\)</span> where <span class="math notranslate nohighlight">\(C\)</span> is a constant to be determined. The scattering angle for the Coulomb potential is given by a similar integral</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle-c">
-<span class="eqno">(5.17)<a class="headerlink" href="#equation-eq-scattering-angle-c" title="Link to this equation">#</a></span>\[
+<span class="eqno">(5.19)<a class="headerlink" href="#equation-eq-scattering-angle-c" title="Link to this equation">#</a></span>\[
 \phi_C = \int_0^{u_0} \frac{b}{\sqrt{1-b^2 u^2 -\frac{C u}{E}}}  du
 \]</div>
 <p>It turns out that the integration can be done analytically<span id="id2">[<a class="reference internal" href="../references/references.html#id18" title="H. Goldstein. Classical Mechanics. Pearson, 3rd edition, 2001.">13</a>]</span> and the solution is</p>
@@ -533,7 +534,7 @@ U(r) = \frac{k}{r} e^{-r/a}
 \[
 \phi_C= \frac{\pi}{2} - \tan^{-1}\left(\frac{C}{2 b E}\right)
 \]</div>
-<p>Now, we need to make the two integrals Eqs. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.16)</a> and <a class="reference internal" href="#equation-eq-scattering-angle-c">(5.17)</a> have the same singularity,   that is</p>
+<p>Now, we need to make the two integrals Eqs. <a class="reference internal" href="#equation-eq-scattering-angle-y">(5.18)</a> and <a class="reference internal" href="#equation-eq-scattering-angle-c">(5.19)</a> have the same singularity,   that is</p>
 <div class="math notranslate nohighlight">
 \[
 1-b^2 u_0^2 -\frac{u_0 k e^{-1/u_0 a}}{E} = 1-b^2 u_0^2 -\frac{C u_0}{E}
@@ -739,7 +740,7 @@ Decay length of the potential a= 1.00000
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3.2. </span>The Period of Classical Oscillation</p>
+        <p class="prev-next-title"><span class="section-number">5.3.3. </span>The Period of Classical Oscillation</p>
       </div>
     </a>
     <a class="right-next"

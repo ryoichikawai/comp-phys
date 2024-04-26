@@ -63,6 +63,7 @@ parts:
          -  file: integral/integrable_singularities
       -  file: integral/applications
          sections:
+         -  file: integral/charge_on_ring
          -  file: integral/qm_ideal_gas
          -  file: integral/period_of_oscillation
          -  file: integral/scattering_angle

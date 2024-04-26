@@ -242,9 +242,10 @@
 </ul>
 </li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.1. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.2. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.3. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
@@ -528,11 +529,11 @@ document.write(`
 \[
 \dot{\mathbf{x}} = \mathbf{F}(\mathbf{x},t) 
 \]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> is an arbitrary function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.  <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> are often vector but they can bejust a set of scalar quatities or even just a single scalar quantity.  The solution to the ODE is a function of time <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span>.  To solve it, we need to know <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> at some point <span class="math notranslate nohighlight">\(t=t_0\)</span>.  Usually, <span class="math notranslate nohighlight">\(t_0\)</span> is an initial time and we want to know <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> for <span class="math notranslate nohighlight">\(t&gt;t_0\)</span>.  However, <span class="math notranslate nohighlight">\(t_0\)</span> can be any point.  Once <span class="math notranslate nohighlight">\(\mathbf{x}(t_0)\)</span> is given, we can find <span class="math notranslate nohighlight">\(x\)</span> at any point <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> is some given function of <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.  <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{F}\)</span> are often vector but they can be just a set of scalar functions or even just a single scalar function of <span class="math notranslate nohighlight">\(t\)</span>.  The solution to the ODE is a function of time <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span>.  To solve it, we need to know <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> at some point <span class="math notranslate nohighlight">\(t=t_0\)</span>.  Usually, <span class="math notranslate nohighlight">\(t_0\)</span> is an initial time and we want to know <span class="math notranslate nohighlight">\(\mathbf{x}(t)\)</span> for <span class="math notranslate nohighlight">\(t&gt;t_0\)</span>.  However, <span class="math notranslate nohighlight">\(t_0\)</span> can be any point.  Once <span class="math notranslate nohighlight">\(\mathbf{x}(t_0)\)</span> is given, we can find <span class="math notranslate nohighlight">\(x\)</span> at any point <span class="math notranslate nohighlight">\(t\)</span>.</p>
 <p>Second order ODEs</p>
 <div class="math notranslate nohighlight">
 \[
-\ddot{\mathbf{x}} = F(\mathbf{x},\dot{\mathbf{x}},t)
+\ddot{\mathbf{x}} = \mathbf{F}(\mathbf{x},\dot{\mathbf{x}},t)
 \]</div>
 <p>is very important in physics since the Newton’s equation of motion is written in this form.   Two initial conditions, usually <span class="math notranslate nohighlight">\(\mathbf{x}(t_0)\)</span> and <span class="math notranslate nohighlight">\(\dot{\mathbf{x}}(t_0)\)</span>, are required to solve this problem.  The two conditions can be specified at two different points <span class="math notranslate nohighlight">\(\mathbf{x}t_0)\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}(t_1)\)</span>, which will be discussed in <a class="reference internal" href="boundary_value_problems.html#sec-ode-boundary-value-problems"><span class="std std-numref">Section 6.2</span></a>.
 In general, the second order ODEs of this kind can be transformed to a set of first order ODEs. Therefore, numerical methods for the first order ODEs can be used to solve the second order ODEs as well.  However, there are also algorithms specific to the second order ODEs such as the Verlet argorithm, which can be more efficient in certain applications.</p>
@@ -638,7 +639,7 @@ x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F\left(x_n + F(x_n,t_n) h,
 <span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-eom-free-falling" title="Link to this equation">#</a></span>\[
 m \dot{v} = - \gamma v - m g
 \]</div>
-<p>ans its solution is</p>
+<p>and its solution with the initial condition <span class="math notranslate nohighlight">\(v(0)=0\)</span> is given by</p>
 <div class="math notranslate nohighlight">
 \[
 v(t) = \frac{m g}{\gamma} \left ( e^{-\gamma t} -1 \right )\,.
