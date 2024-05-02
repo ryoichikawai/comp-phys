@@ -57,6 +57,7 @@ parts:
    -  file: integral/intro
       sections:
       -  file: integral/piecewise
+      -  file: integral/multi_dim_integrals
       -  file: integral/improper_integrals
          sections:
          -  file: integral/unbound_interval

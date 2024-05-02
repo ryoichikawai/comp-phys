@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.3.4. Scattering by the Yukawa potential &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.4.4. Scattering by the Yukawa potential &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/scattering_angle';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.4. Exercise solutions" href="solutions.html" />
-    <link rel="prev" title="5.3.3. The Period of Classical Oscillation" href="period_of_oscillation.html" />
+    <link rel="next" title="5.5. Exercise solutions" href="solutions.html" />
+    <link rel="prev" title="5.4.3. The Period of Classical Oscillation" href="period_of_oscillation.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -236,19 +236,20 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_dim_integrals.html">5.2. Multi-dimensional Integrals</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.3. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.3.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.3.2. Improper Integrals II:  Integrable Singularities</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.4. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="applications.html">5.4. Applicatins in Physics</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.4.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.4.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.4.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.4.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.5. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -500,14 +501,14 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="scattering-by-the-yukawa-potential">
-<span id="app-scattering-angle"></span><h1><span class="section-number">5.3.4. </span>Scattering by the Yukawa potential<a class="headerlink" href="#scattering-by-the-yukawa-potential" title="Link to this heading">#</a></h1>
+<span id="app-scattering-angle"></span><h1><span class="section-number">5.4.4. </span>Scattering by the Yukawa potential<a class="headerlink" href="#scattering-by-the-yukawa-potential" title="Link to this heading">#</a></h1>
 <p>A particle elastically collides with another particle through a spherical potential <span class="math notranslate nohighlight">\(U(r)\)</span> where <span class="math notranslate nohighlight">\(r\)</span> is the distance between the particles.  As we discussed in <a class="reference internal" href="../root-finding/closest_approach.html#app-closet-approach"><span class="std std-numref">Section 4.4.2</span></a>, the scattering angle is given by <span class="math notranslate nohighlight">\(\theta = \pi - 2 \phi\)</span> where</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle1">
 <span class="eqno">(5.16)<a class="headerlink" href="#equation-eq-scattering-angle1" title="Link to this equation">#</a></span>\[
 \phi = \int_{r_0}^{\infty} \frac{b}{r^2} \frac{1}{\sqrt{1 - \displaystyle\frac{b^2}{r^2}-\displaystyle\frac{U(r)}{E}}} dr\, .
 \]</div>
 <p>We already developed a numerical method to find the closest distance <span class="math notranslate nohighlight">\(r_0\)</span> in <a class="reference internal" href="../root-finding/closest_approach.html#app-closet-approach"><span class="std std-numref">Section 4.4.2</span></a>.  However, we are still not quite ready to evaluate the integral because it is doubly improper.  First, the upper integral limit is infinity.  Secondly, the integrand diverges at the closest distance.</p>
-<p>The former issue can be solved by the standard method discussed in <a class="reference internal" href="unbound_interval.html#sec-unbound-interval"><span class="std std-numref">Section 5.2.1</span></a>.
+<p>The former issue can be solved by the standard method discussed in <a class="reference internal" href="unbound_interval.html#sec-unbound-interval"><span class="std std-numref">Section 5.3.1</span></a>.
 Introducing a variable <span class="math notranslate nohighlight">\(u = \displaystyle\frac{1}{r}\)</span>. Eq. <a class="reference internal" href="#equation-eq-scattering-angle1">(5.16)</a> is transformed to</p>
 <div class="math notranslate nohighlight" id="equation-eq-scattering-angle2">
 <span class="eqno">(5.17)<a class="headerlink" href="#equation-eq-scattering-angle2" title="Link to this equation">#</a></span>\[
@@ -740,7 +741,7 @@ Decay length of the potential a= 1.00000
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.3.3. </span>The Period of Classical Oscillation</p>
+        <p class="prev-next-title"><span class="section-number">5.4.3. </span>The Period of Classical Oscillation</p>
       </div>
     </a>
     <a class="right-next"
@@ -748,7 +749,7 @@ Decay length of the potential a= 1.00000
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.4. </span>Exercise solutions</p>
+        <p class="prev-next-title"><span class="section-number">5.5. </span>Exercise solutions</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

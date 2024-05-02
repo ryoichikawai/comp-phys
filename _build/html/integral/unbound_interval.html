@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>5.2.1. Improper Integrals I: Infinite bound &#8212; Computational Methods for Physics with Python.</title>
+    <title>5.3.1. Improper Integrals I: Infinite bound &#8212; Computational Methods for Physics with Python.</title>
   
   
   
@@ -62,8 +62,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/unbound_interval';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.2.2. Improper Integrals II: Integrable Singularities" href="integrable_singularities.html" />
-    <link rel="prev" title="5.2. Improper Integrals" href="improper_integrals.html" />
+    <link rel="next" title="5.3.2. Improper Integrals II: Integrable Singularities" href="integrable_singularities.html" />
+    <link rel="prev" title="5.3. Improper Integrals" href="improper_integrals.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -236,19 +236,20 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2 current active has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.2.1. Improper Integrals I: Infinite bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multi_dim_integrals.html">5.2. Multi-dimensional Integrals</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="improper_integrals.html">5.3. Improper Integrals</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">5.3.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.3.2. Improper Integrals II:  Integrable Singularities</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.4. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.4. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.4.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.4.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.4.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.4.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.5. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -497,10 +498,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">5.2.1.1. Method of variable transformation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">5.2.1.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">5.2.1.2.1. Gauss-Lagguerre quadrature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">5.2.1.2.2. Gauss-Hermite quadrature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">5.3.1.1. Method of variable transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">5.3.1.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">5.3.1.2.1. Gauss-Lagguerre quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">5.3.1.2.2. Gauss-Hermite quadrature</a></li>
 </ul>
 </li>
 </ul>
@@ -515,7 +516,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="improper-integrals-i-infinite-bound">
-<span id="sec-unbound-interval"></span><h1><span class="section-number">5.2.1. </span>Improper Integrals I: Infinite bound<a class="headerlink" href="#improper-integrals-i-infinite-bound" title="Link to this heading">#</a></h1>
+<span id="sec-unbound-interval"></span><h1><span class="section-number">5.3.1. </span>Improper Integrals I: Infinite bound<a class="headerlink" href="#improper-integrals-i-infinite-bound" title="Link to this heading">#</a></h1>
 <p>When infinity is involved in either the integral interval or the integrand, we have an <a class="reference external" href="https://en.wikipedia.org/wiki/Improper_integral">improper integral</a>.  In this section, we deal with the former and the latter type of improper integral is discussed in the next section.</p>
 <p>If the upper and/or lower limit envolves <span class="math notranslate nohighlight">\(\infty\)</span>,  the methods of peicewise intetration won’t work since infinite segments must be added up.</p>
 <p>For example, consider</p>
@@ -535,7 +536,7 @@ document.write(`
 <p>The output of the above exercise suggests that this approach is feasible for this simple integral. However, if we need a higher accuracy, the accumulation of round-off error may become an issue. Furthermore, if the integrand is more complicated, it is difficult to find an appropriate upper bound.</p>
 <p>There are better strategies.  In the following, two approaches are introduced.</p>
 <section id="method-of-variable-transformation">
-<h2><span class="section-number">5.2.1.1. </span>Method of variable transformation<a class="headerlink" href="#method-of-variable-transformation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3.1.1. </span>Method of variable transformation<a class="headerlink" href="#method-of-variable-transformation" title="Link to this heading">#</a></h2>
 <p>One way to overcome the above problem is to split the integral to two parts</p>
 <div class="math notranslate nohighlight">
 \[
@@ -595,11 +596,11 @@ However, the new form is not necessarily trouble free since the integrand may no
 </div></blockquote>
 </section>
 <section id="gaussian-quadratures">
-<h2><span class="section-number">5.2.1.2. </span>Gaussian Quadratures<a class="headerlink" href="#gaussian-quadratures" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">5.3.1.2. </span>Gaussian Quadratures<a class="headerlink" href="#gaussian-quadratures" title="Link to this heading">#</a></h2>
 <p>There amazing methods, known as <a class="reference external" href="https://en.wikipedia.org/wiki/Gaussian_quadrature">Gaussian quadrature</a>.  Some of them are quite useful for physics as shown in Appication section.  In the following, we introduce two of them <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Laguerre_quadrature">Gauss-Laggeurre quadrature</a> and
 <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Hermite_quadrature">Gauss–Hermite quadrature</a>.</p>
 <section id="gauss-lagguerre-quadrature">
-<h3><span class="section-number">5.2.1.2.1. </span>Gauss-Lagguerre quadrature<a class="headerlink" href="#gauss-lagguerre-quadrature" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1.2.1. </span>Gauss-Lagguerre quadrature<a class="headerlink" href="#gauss-lagguerre-quadrature" title="Link to this heading">#</a></h3>
 <p>the Gaussian-Laguerre Quadrature approximate the following form of integral as a simple weighted sum:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -712,7 +713,7 @@ w_i = \frac{x_i}{(n+1)^2[L_{n+1}(x_i)]^2}
 </div></blockquote>
 </section>
 <section id="gauss-hermite-quadrature">
-<h3><span class="section-number">5.2.1.2.2. </span>Gauss-Hermite quadrature<a class="headerlink" href="#gauss-hermite-quadrature" title="Link to this heading">#</a></h3>
+<h3><span class="section-number">5.3.1.2.2. </span>Gauss-Hermite quadrature<a class="headerlink" href="#gauss-hermite-quadrature" title="Link to this heading">#</a></h3>
 <p>Another popular Gaussian quadrature is <a class="reference external" href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Hermite_quadrature">Gauss-Hermite quadrature</a> which approximates the following improper integral:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -830,7 +831,7 @@ w_i = \frac{2^{n-1} n! \sqrt{\pi}}{n^2[H_{n-1}(x_i)]^2}
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5.2. </span>Improper Integrals</p>
+        <p class="prev-next-title"><span class="section-number">5.3. </span>Improper Integrals</p>
       </div>
     </a>
     <a class="right-next"
@@ -838,7 +839,7 @@ w_i = \frac{2^{n-1} n! \sqrt{\pi}}{n^2[H_{n-1}(x_i)]^2}
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.2.2. </span>Improper Integrals II:  Integrable Singularities</p>
+        <p class="prev-next-title"><span class="section-number">5.3.2. </span>Improper Integrals II:  Integrable Singularities</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -858,10 +859,10 @@ w_i = \frac{2^{n-1} n! \sqrt{\pi}}{n^2[H_{n-1}(x_i)]^2}
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">5.2.1.1. Method of variable transformation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">5.2.1.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">5.2.1.2.1. Gauss-Lagguerre quadrature</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">5.2.1.2.2. Gauss-Hermite quadrature</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#method-of-variable-transformation">5.3.1.1. Method of variable transformation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-quadratures">5.3.1.2. Gaussian Quadratures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-lagguerre-quadrature">5.3.1.2.1. Gauss-Lagguerre quadrature</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gauss-hermite-quadrature">5.3.1.2.2. Gauss-Hermite quadrature</a></li>
 </ul>
 </li>
 </ul>
