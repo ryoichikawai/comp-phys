@@ -42,7 +42,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -62,7 +62,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'integral/piecewise';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5.2. Multi-dimensional Integrals" href="multi_dim_integrals.html" />
+    <link rel="next" title="5.2. Improper Integrals" href="improper_integrals.html" />
     <link rel="prev" title="5. Numerical Integration" href="intro.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -236,20 +236,19 @@
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">5. Numerical Integration</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multi_dim_integrals.html">5.2. Multi-dimensional Integrals</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.3. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.3.1. Improper Integrals I: Infinite bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.3.2. Improper Integrals II:  Integrable Singularities</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.4. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.4.1. Electric Potential by Charge on a Ring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.4.2. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.4.3. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.4.4. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scattering_angle.html">5.3.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -592,7 +591,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f6a39074af0&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f79cbeb68d0&gt;]
 </pre></div>
 </div>
 <img alt="../_images/89f7b2f3404e961f068ebccbd916d435be8ff6c86522788929b3f9d53bf84ad2.png" src="../_images/89f7b2f3404e961f068ebccbd916d435be8ff6c86522788929b3f9d53bf84ad2.png" />
@@ -1071,11 +1070,11 @@ abs. error: 4.7354927655701164e-12
       </div>
     </a>
     <a class="right-next"
-       href="multi_dim_integrals.html"
+       href="improper_integrals.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5.2. </span>Multi-dimensional Integrals</p>
+        <p class="prev-next-title"><span class="section-number">5.2. </span>Improper Integrals</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

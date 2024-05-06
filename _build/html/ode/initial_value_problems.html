@@ -42,7 +42,7 @@
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
@@ -236,20 +236,19 @@
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/multi_dim_integrals.html">5.2. Multi-dimensional Integrals</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/improper_integrals.html">5.3. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../integral/unbound_interval.html">5.3.1. Improper Integrals I: Infinite bound</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/integrable_singularities.html">5.3.2. Improper Integrals II:  Integrable Singularities</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/improper_integrals.html">5.2. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/unbound_interval.html">5.2.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/integrable_singularities.html">5.2.2. Improper Integrals II:  Integrable Singularities</a></li>
 </ul>
 </li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.4. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l3"><a class="reference internal" href="../integral/charge_on_ring.html">5.4.1. Electric Potential by Charge on a Ring</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.4.2. Ideal Fermi/Bose Gases</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.4.3. The Period of Classical Oscillation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.4.4. Scattering by the Yukawa potential</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.3. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/charge_on_ring.html">5.3.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.3.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.3.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.3.4. Scattering by the Yukawa potential</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.5. Exercise solutions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.4. Exercise solutions</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">6. Ordinary Differential Equations</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
@@ -550,32 +549,32 @@ In general, the second order ODEs of this kind can be transformed to a pair of f
 <p>To numerically solve the ODE <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a>, we rewrite the equation.  There are two ways, one based on the numerical derivative (<a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>) and the other on the numerical integration (<a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>).</p>
 <p>Replacing the derivative with the finite difference approximation <span class="math notranslate nohighlight">\(\dot{x} = (x_{n+1}-x_n)/h\)</span>, the Eq. <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a>  can be written as</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-finite-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-ode-finite-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-ode-finite-diff" title="Link to this equation">#</a></span>\[
 x_{n+1} = x_{n} + h F(x(t),t),\quad t_n &lt; t &lt; t_{n+1}
 \]</div>
 <p>Based on the <a class="reference external" href="https://en.wikipedia.org/wiki/Mean_value_theorem">mean value theorem</a>, this expression is still exact.  It looks like a recursive equation.  It is not yet since we don’t know the value of <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x(t)\)</span> inside the function <span class="math notranslate nohighlight">\(F\)</span>.  We need to invent an approximation to estimate <span class="math notranslate nohighlight">\(F(x(t),t)\)</span> without knowing <span class="math notranslate nohighlight">\(x(t)\)</span>.  Various approaches are introduced below.</p>
 <p>We can rewrite the ODE <a class="reference internal" href="#equation-eq-ode-1d">(6.1)</a> in another way by integrating the both sides:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-integral">
-<span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-ode-integral" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.3)<a class="headerlink" href="#equation-eq-ode-integral" title="Link to this equation">#</a></span>\[
 x_{n+1} = x_n + \int_{t_n}^{t_{n+1}} F[x(t),t]\, dt\, .
 \]</div>
 <p>which is an exact relation equivalent to the ODE.  This expression also looks like a recursive equation but the integral involves <span class="math notranslate nohighlight">\(t\)</span> and <span class="math notranslate nohighlight">\(x(t)\)</span> for the interval <span class="math notranslate nohighlight">\([t_n,t_{n+1}]\)</span> which is nothing but the solution we are trying to find.  Hence, we need a method to approximately estimate the integral.</p>
 <p>These two approaches are actually the same since there is <span class="math notranslate nohighlight">\(a&lt;s&lt;b\)</span> such that <span class="math notranslate nohighlight">\(\int_{a}^{b} f(x) dx = (b-a) f(s)\)</span>.  Hence, both approaches reach the same approximation  at the end.  Nevertheless, we use the both to explain the approximation. Looking at the same problem from two different views may help to find a better approximation for high accuracy. In either approach, we construct a recursive equation and we obtain the solution <span class="math notranslate nohighlight">\(x(t_0), x(t_1), x(t_2), \cdots, x(t_N)\)</span> one by one recursively.  To do so, we must find a good estimate of <span class="math notranslate nohighlight">\(x(t)\)</span> for the interval <span class="math notranslate nohighlight">\((t_n,t_{n+1})\)</span>.</p>
 <section id="euler-method">
 <h3><span class="section-number">6.1.1.1. </span>Euler method<a class="headerlink" href="#euler-method" title="Link to this heading">#</a></h3>
-<p>We being with the simplest method which may not be useful in practical applications but gives us some idea of how numerical integration of an ODE works.  If <span class="math notranslate nohighlight">\(h\)</span> is small enough, <span class="math notranslate nohighlight">\(t \approx t_n\)</span> and <span class="math notranslate nohighlight">\(x(t) \approx x_n\)</span> and thus<span class="math notranslate nohighlight">\(F(x(t),t) \approx F(x_n,t_n) \equiv F_n\)</span>.   Then, both Eq. <a class="reference internal" href="#equation-eq-ode-finite-diff">()</a> and <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a> becomes the same equation</p>
+<p>We being with the simplest method which may not be useful in practical applications but gives us some idea of how numerical integration of an ODE works.  If <span class="math notranslate nohighlight">\(h\)</span> is small enough, <span class="math notranslate nohighlight">\(t \approx t_n\)</span> and <span class="math notranslate nohighlight">\(x(t) \approx x_n\)</span> and thus<span class="math notranslate nohighlight">\(F(x(t),t) \approx F(x_n,t_n) \equiv F_n\)</span>.   Then, both Eq. <a class="reference internal" href="#equation-eq-ode-finite-diff">(6.2)</a> and <a class="reference internal" href="#equation-eq-ode-integral">(6.3)</a> becomes the same equation</p>
 <div class="math notranslate nohighlight" id="equation-eq-euler-rule">
 <span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-euler-rule" title="Link to this equation">#</a></span>\[
 x_{n+1} \approx x_n + F_n\, h.
 \]</div>
-<p>In the view of Eq. <a class="reference internal" href="#equation-eq-ode-finite-diff">()</a> this approximation is equivalent to the forward finite difference method of the numerical derivative (<a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>). In <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a>, the integral is approximated by the rectangular rule (<a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>).</p>
+<p>In the view of Eq. <a class="reference internal" href="#equation-eq-ode-finite-diff">(6.2)</a> this approximation is equivalent to the forward finite difference method of the numerical derivative (<a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>). In <a class="reference internal" href="#equation-eq-ode-integral">(6.3)</a>, the integral is approximated by the rectangular rule (<a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>).</p>
 <p>Starting from the initial value, <span class="math notranslate nohighlight">\(x_0\)</span>, we first evaluate <span class="math notranslate nohighlight">\(F_0=F(x_0,t_0)\)</span>.  Then, we obtain <span class="math notranslate nohighlight">\(x_1\)</span> by Eq. <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a>.
 Using this procedure recursively, we obtain the whole sequence from <span class="math notranslate nohighlight">\(x_0\)</span> to <span class="math notranslate nohighlight">\(x_N\)</span>.  This method is known as the Euler method.</p>
 <p>The area omitted in the left panel of {numref}`fig:euler-ode is order of <span class="math notranslate nohighlight">\(h^2\)</span>.  Therefore the local error of the Euler method is the order of <span class="math notranslate nohighlight">\(h^2\)</span>. After <span class="math notranslate nohighlight">\(N\)</span> iteration, the global error becomes <span class="math notranslate nohighlight">\(N \mathcal{O}(h^2) \sim \mathcal{O}(h)\)</span>.  We hope that this is a good approximation with a sufficiently small <span class="math notranslate nohighlight">\(h\)</span>. However, the Euler method is not good enough in practice.  An example is given after the predictor-corrector method is introduced.</p>
 <figure class="align-default" id="fig-euler-ode">
 <img alt="../_images/euler-ode.webp" src="../_images/euler-ode.webp" />
 <figcaption>
-<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of the Euler method.  <em>Left</em>: The blue line represents the integrand of Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a> which is unknown to us. Assuming that <span class="math notranslate nohighlight">\(F_n\)</span> is on the exact curve, we approximate the integral (the shaded area) by the rectangular rule (the area of the blue rectangle) discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the slope of the curve at <span class="math notranslate nohighlight">\(t_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to the straight line (red line). This is equivalent to use the forward finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.  Note that even if <span class="math notranslate nohighlight">\(x_n\)</span> is on the exact curve, <span class="math notranslate nohighlight">\(x_{n+1}\)</span> is not.  The error is clearly visible.</span><a class="headerlink" href="#fig-euler-ode" title="Link to this image">#</a></p>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text">Illustration of the Euler method.  <em>Left</em>: The blue line represents the integrand of Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.3)</a> which is unknown to us. Assuming that <span class="math notranslate nohighlight">\(F_n\)</span> is on the exact curve, we approximate the integral (the shaded area) by the rectangular rule (the area of the blue rectangle) discussed in <a class="reference internal" href="../integral/piecewise.html#sec-piecewise-integral"><span class="std std-numref">Section 5.1</span></a>.  The unaccounted area is proportional to <span class="math notranslate nohighlight">\(h^2\)</span>.  <em>Right</em>: Using the slope of the curve at <span class="math notranslate nohighlight">\(t_n\)</span>,  we extrapolate next point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> assuming the curve is close to the straight line (red line). This is equivalent to use the forward finite difference method of the first order derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.  Note that even if <span class="math notranslate nohighlight">\(x_n\)</span> is on the exact curve, <span class="math notranslate nohighlight">\(x_{n+1}\)</span> is not.  The error is clearly visible.</span><a class="headerlink" href="#fig-euler-ode" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
 <div class="admonition-algorithm-6-1-1-euler-method admonition">
@@ -598,24 +597,24 @@ Using this procedure recursively, we obtain the whole sequence from <span class=
 <h3><span class="section-number">6.1.1.2. </span>Predictor-Corrector Method<a class="headerlink" href="#predictor-corrector-method" title="Link to this heading">#</a></h3>
 <p>The Euler method replaced <span class="math notranslate nohighlight">\(t\)</span> in <span class="math notranslate nohighlight">\(F(x(t),t)\)</span> with the lower bound of interval <span class="math notranslate nohighlight">\((t_n,t_{n+1})\)</span>. The error is large because the evolution during the time period <span class="math notranslate nohighlight">\((t_n,t_{n+1})\)</span> is completely ignored.  We can take into account the contribution from the upper bound by simple average</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-mean-diff">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-ode-mean-diff" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-ode-mean-diff" title="Link to this equation">#</a></span>\[
 F(x(t),t) \approx \frac{1}{2}\left[ F(x_n,t_n) + F(x_{n+1},t_{n+1}) \right]
 \]</div>
 <p>which is equivalent to the mean finite difference method discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>.</p>
 <p>Similarly, we can improve the accuracy of integral by using  the trapezoidal rule instead of the rectangular rule.  Let us try it.</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-trapezoidal">
-<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-ode-trapezoidal" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-ode-trapezoidal" title="Link to this equation">#</a></span>\[
 \int_{t_n}^{t_{n+1}} F[x(t),t] dt \approx \frac{[F(x_n,t_n) + F(x_{n+1},t_{n+1})] h}{2}
 \]</div>
 <p>In either attempt to improve the accuracy, we obtain the same equation:</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-implicit">
-<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-ode-implicit" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-ode-implicit" title="Link to this equation">#</a></span>\[
 x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F(x_{n+1},t_{n+1}) \right] .
 \]</div>
 <p>which is implicit since the both sides contain future point <span class="math notranslate nohighlight">\(x_{n+1}\)</span> (recall that <span class="math notranslate nohighlight">\(F_{n+1}\)</span> depens on <span class="math notranslate nohighlight">\(x_{n+1}\)</span>).  To find <span class="math notranslate nohighlight">\(x_{n+1}\)</span>, we must use a root-finding method,
-which is in principle possible but too time-consuming for practical applications.  A better way is to use an approximate value of <span class="math notranslate nohighlight">\(x_{n+1}\)</span> in the right hand side. We <em>predict</em> <span class="math notranslate nohighlight">\(x_{n+1}\)</span> using the Euler method and then <em>correct</em> it by Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.6)</a>. Substituting Eq. <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a> into <span class="math notranslate nohighlight">\(F(x_{n+1},t_{n+1})\)</span> in Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.6)</a>, we obtain</p>
+which is in principle possible but too time-consuming for practical applications.  A better way is to use an approximate value of <span class="math notranslate nohighlight">\(x_{n+1}\)</span> in the right hand side. We <em>predict</em> <span class="math notranslate nohighlight">\(x_{n+1}\)</span> using the Euler method and then <em>correct</em> it by Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.7)</a>. Substituting Eq. <a class="reference internal" href="#equation-eq-euler-rule">(6.4)</a> into <span class="math notranslate nohighlight">\(F(x_{n+1},t_{n+1})\)</span> in Eq. <a class="reference internal" href="#equation-eq-ode-implicit">(6.7)</a>, we obtain</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-predictor-corrector">
-<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-ode-predictor-corrector" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-ode-predictor-corrector" title="Link to this equation">#</a></span>\[
 x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F\left(x_n + F(x_n,t_n) h, t_{n+1} \right) \right].
 \]</div>
 <p>which is not implicit anymore. This is the “predictor-corrector” method.</p>
@@ -644,7 +643,7 @@ x_{n+1} \approx x_n + \frac{h}{2} \left[ F(x_n,t_n) + F\left(x_n + F(x_n,t_n) h,
 <p><strong>Example</strong> <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.1</span></a></p>
 <p>A particle of mass <span class="math notranslate nohighlight">\(m\)</span> is dropped from rest under a uniform gravity <span class="math notranslate nohighlight">\(g\)</span>.  The drag force due to the presence of air is <span class="math notranslate nohighlight">\(-\gamma v\)</span> where <span class="math notranslate nohighlight">\(v\)</span> is velocity and <span class="math notranslate nohighlight">\(\gamma\)</span> the frictional coefficient. The equation of motion is given by the Newton equation:</p>
 <div class="math notranslate nohighlight" id="equation-eq-eom-free-falling">
-<span class="eqno">(6.8)<a class="headerlink" href="#equation-eq-eom-free-falling" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.9)<a class="headerlink" href="#equation-eq-eom-free-falling" title="Link to this equation">#</a></span>\[
 m \dot{v} = - \gamma v - m g
 \]</div>
 <p>and its solution with the initial condition <span class="math notranslate nohighlight">\(v(0)=0\)</span> is given by</p>
@@ -653,7 +652,7 @@ m \dot{v} = - \gamma v - m g
 v(t) = \frac{m g}{\gamma} \left ( e^{-\gamma t} -1 \right )\,.
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(-m g /\gamma\)</span> is the terminal velocity.</p>
-<p>Let us integrate the Newton equations using Euler and Predictor-Corrector methods and compare the results with the exact solution.  We integrate from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=10\)</span> using the step size <span class="math notranslate nohighlight">\(h=0.01\)</span>.  As usual, we simplify the mathematical expression by normalizing quantities and reduce the number of parameters.  By normalizing the time as <span class="math notranslate nohighlight">\(\tau =\gamma t/m\)</span> and introducing a new constant <span class="math notranslate nohighlight">\(\xi = m  g /gamma\)</span>, Eq. <a class="reference internal" href="#equation-eq-eom-free-falling">(6.8)</a> becomes <span class="math notranslate nohighlight">\(\dot{v} = -v + \xi\)</span> where <span class="math notranslate nohighlight">\(\dot{v} = \frac{dv}{d\tau}\)</span>.   Now, we have only one parameter <span class="math notranslate nohighlight">\(\xi\)</span> and the terminal velocity is given by <span class="math notranslate nohighlight">\(-\xi\)</span>.</p>
+<p>Let us integrate the Newton equations using Euler and Predictor-Corrector methods and compare the results with the exact solution.  We integrate from <span class="math notranslate nohighlight">\(t=0\)</span> to <span class="math notranslate nohighlight">\(t=10\)</span> using the step size <span class="math notranslate nohighlight">\(h=0.01\)</span>.  As usual, we simplify the mathematical expression by normalizing quantities and reduce the number of parameters.  By normalizing the time as <span class="math notranslate nohighlight">\(\tau =\gamma t/m\)</span> and introducing a new constant <span class="math notranslate nohighlight">\(\xi = m  g /gamma\)</span>, Eq. <a class="reference internal" href="#equation-eq-eom-free-falling">(6.9)</a> becomes <span class="math notranslate nohighlight">\(\dot{v} = -v + \xi\)</span> where <span class="math notranslate nohighlight">\(\dot{v} = \frac{dv}{d\tau}\)</span>.   Now, we have only one parameter <span class="math notranslate nohighlight">\(\xi\)</span> and the terminal velocity is given by <span class="math notranslate nohighlight">\(-\xi\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -726,14 +725,14 @@ v(t) = \frac{m g}{\gamma} \left ( e^{-\gamma t} -1 \right )\,.
 </section>
 <section id="runge-kutta-method">
 <h3><span class="section-number">6.1.1.3. </span>Runge-Kutta Method<a class="headerlink" href="#runge-kutta-method" title="Link to this heading">#</a></h3>
-<p>If the value of <span class="math notranslate nohighlight">\(x\)</span> at the mid point between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span> is available, the higher accuracy may be obtained. The integral in Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.2)</a> can be apprixmately evaluated by a single point (see Fig. \ref{fig:runge-kutta-rule}.):</p>
+<p>If the value of <span class="math notranslate nohighlight">\(x\)</span> at the mid point between <span class="math notranslate nohighlight">\(x_n\)</span> and <span class="math notranslate nohighlight">\(x_{n+1}\)</span> is available, the higher accuracy may be obtained. The integral in Eq. <a class="reference internal" href="#equation-eq-ode-integral">(6.3)</a> can be apprixmately evaluated by a single point (see Fig. \ref{fig:runge-kutta-rule}.):</p>
 <div class="math notranslate nohighlight" id="equation-eq-ode-integral-mid">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-ode-integral-mid" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.10)<a class="headerlink" href="#equation-eq-ode-integral-mid" title="Link to this equation">#</a></span>\[
 \int_{t_n}^{t_{n+1}} F(x(t),t) dt =  h F(x_{n+1/2},t_{n+1/2}) + \mathcal{O}(h^3)
 \]</div>
 <p>and the neext point is predicted as</p>
 <div class="math notranslate nohighlight" id="equation-eq-pre-rk2">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-pre-rk2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.11)<a class="headerlink" href="#equation-eq-pre-rk2" title="Link to this equation">#</a></span>\[
 x_{n+1} \approx x_n +  h F(x_{n+1/2},t_{n+1/2}).
 \]</div>
 <p>This approximation is equivalent to use the mean finite difference method of numerical derivative discussed in <a class="reference internal" href="../derivative/derivative1.html#sec-finite-diff"><span class="std std-numref">Section 3.1</span></a>. Expressing the derivative at <span class="math notranslate nohighlight">\(t_{n+1/2}\)</span> as</p>
@@ -746,7 +745,7 @@ x_{n+1} \approx x_n +  h F(x_{n+1/2},t_{n+1/2}).
 \[
 \frac{x_{n+1} - x_n}{h} \approx F(x_{n+1/2},t_{n+1/2})
 \]</div>
-<p>which exactly coincides with Eq. <a class="reference internal" href="#equation-eq-pre-rk2">()</a> after moving <span class="math notranslate nohighlight">\(h\)</span> from the left to the right hand side.</p>
+<p>which exactly coincides with Eq. <a class="reference internal" href="#equation-eq-pre-rk2">(6.11)</a> after moving <span class="math notranslate nohighlight">\(h\)</span> from the left to the right hand side.</p>
 <p>The method works only if we know <span class="math notranslate nohighlight">\(x_{n+1/2}\)</span>.   We estimate it using the Euler method with the half step size <span class="math notranslate nohighlight">\(h/2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -754,7 +753,7 @@ x_{n+1/2} = x_n + \frac{h}{2} F (x_n,t_n)
 \]</div>
 <p>Substitntuting this <span class="math notranslate nohighlight">\(x_{n+1/2}\)</span>, we obtain the 2nd order Runge-Kutta method</p>
 <div class="math notranslate nohighlight" id="equation-eq-rk2">
-<span class="eqno">()<a class="headerlink" href="#equation-eq-rk2" title="Link to this equation">#</a></span>\[
+<span class="eqno">(6.12)<a class="headerlink" href="#equation-eq-rk2" title="Link to this equation">#</a></span>\[
 x_{n+1} \approx x_n +  h F\left(x_n+\frac{h}{2} F (x_n,t_n),t_{n+1/2}\right).
 \]</div>
 <p>The order of error <span class="math notranslate nohighlight">\(h^2\)</span>  indicates that the second order Runge-Kutta method is just as good as the predictor-corrector method and no particular advantage over it.</p>
