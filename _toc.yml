@@ -76,6 +76,9 @@ parts:
       -  file: ode/eigenvalue_problems
    -  file: matrix/intro
    -  file: fft/intro
+      sections:
+      -  file: fft/dft
+      -  file: fft/fft
    -  file: pde/intro
 -  caption: Monte Carlo simulation
    numbered: true
