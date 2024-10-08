@@ -1,0 +1,974 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8.3. Fast Fourier Transform &#8212; Computational Methods for Physics with Python.</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'fft/fft';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. Partial Differential Equations" href="../pde/intro.html" />
+    <link rel="prev" title="8.2. Discrete Fourier Transform" href="dft.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="../cover.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/me-tiny.png" class="logo__image only-light" alt="Computational Methods for Physics with Python. - Home"/>
+    <script>document.write(`<img src="../_static/me-tiny.png" class="logo__image only-dark" alt="Computational Methods for Physics with Python. - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../cover.html">
+                    <no title>
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../aboutme.html">About Author</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../preparation/intro.html">Preparation</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/thisbook.html">About This Book</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/python.html">Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/jupyter.html">JupyterLab</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../preparation/cloud.html">Google Colab</a></li>
+</ul>
+</li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Numerical Analysis</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../numbers/intro.html">1. Numbers and Quantization Errors</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/bits.html">1.1. Bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/ascii.html">1.2. Characters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/integers.html">1.3. Integers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/float.html">1.4. Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/errors.html">1.5. Digitization Errors</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../numbers/applications.html">1.7. Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../numbers/problems.html">1.8. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../functions/intro.html">2. Functions</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../functions/functions.html">2.1. Common Functions in Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../functions/plotting.html">2.2. Plotting functions</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../functions/applications.html">2.3. Applications in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../functions/overdamped.html">2.3.1. An Overdamped Motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/qm_free_falling.html">2.3.2. Quantum Free Falling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../functions/hydrogen_atom.html">2.3.3. Hydrogen Atom</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../derivative/intro.html">3. Numerical Derivative</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative1.html">3.1. Finite Difference Methods</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/step_adaptation.html">3.2. Adaptation of step size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/derivative2.html">3.3. Second order derivative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/laplacian.html">3.4. Laplacian</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../derivative/problems.html">3.5. Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../root-finding/intro.html">4. Root Finding</a><input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-6"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_polynomials.html">4.1. Roots of Polynomials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_bisection.html">4.2. Bisection Method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../root-finding/root_newton.html">4.3. Newton-Raphson method</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../root-finding/applications.html">4.4. Application in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-7" name="toctree-checkbox-7" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-7"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/turning_points.html">4.4.1. Classical Turning Points</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/closest_approach.html">4.4.2. The Closest Approach in a Scattering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/ferromagnet.html">4.4.3. Ferromagnetic Phase Transition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../root-finding/qm_potential_well.html">4.4.4. A Quantum Particle in a Potential Well</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../integral/intro.html">5. Numerical Integration</a><input class="toctree-checkbox" id="toctree-checkbox-8" name="toctree-checkbox-8" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-8"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../integral/piecewise.html">5.1. Piecewise integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/multi_dim_integrals.html">5.2. Milti-dimensional Integrals</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/improper_integrals.html">5.3. Improper Integrals</a><input class="toctree-checkbox" id="toctree-checkbox-9" name="toctree-checkbox-9" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-9"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/unbound_interval.html">5.3.1. Improper Integrals I: Infinite bound</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/integrable_singularities.html">5.3.2. Improper Integrals II:  Integrable Singularities</a></li>
+</ul>
+</li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../integral/applications.html">5.4. Applicatins in Physics</a><input class="toctree-checkbox" id="toctree-checkbox-10" name="toctree-checkbox-10" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-10"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../integral/charge_on_ring.html">5.4.1. Electric Potential by Charge on a Ring</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/qm_ideal_gas.html">5.4.2. Ideal Fermi/Bose Gases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/period_of_oscillation.html">5.4.3. The Period of Classical Oscillation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../integral/scattering_angle.html">5.4.4. Scattering by the Yukawa potential</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../integral/solutions.html">5.5. Exercise solutions</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../ode/intro.html">6. Ordinary Differential Equations</a><input class="toctree-checkbox" id="toctree-checkbox-11" name="toctree-checkbox-11" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-11"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../ode/initial_value_problems.html">6.1. Initial Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ode/boundary_value_problems.html">6.2. Boundary Value Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ode/eigenvalue_problems.html">6.3. Eigenvalue Problems</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="intro.html">8. Fourier Transformation</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../random-number/intro.html">10. Random Number Generators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../random-walk/intro.html">11. Random Walks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../metropolis/intro.html">12. Metropolis Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../langevin/intro.html">13. Langevin Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../optimization/intro.html">14. Optimization</a></li>
+</ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../references/references.html">References</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/ryoichikawai/comp-phys/blob/main/fft/fft.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch onColab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/ryoichikawai/comp-phys/issues/new?title=Issue%20on%20page%20%2Ffft/fft.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/fft/fft.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Fast Fourier Transform</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remarks-on-the-use-of-canned-routines">8.3.1. Remarks on the use of canned routines</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="fast-fourier-transform">
+<span id="sec-fft"></span><h1><span class="section-number">8.3. </span>Fast Fourier Transform<a class="headerlink" href="#fast-fourier-transform" title="Link to this heading">#</a></h1>
+<p>An remarkable algorithm was developed in 19 century but not very popular until modern computers appeared in 1960’s.
+It allows us to perform Fourier transform with only <span class="math notranslate nohighlight">\(N \log_2 N\)</span> operations instead of <span class="math notranslate nohighlight">\(N^2\)</span>.  When <span class="math notranslate nohighlight">\(N=1024\)</span>,
+<span class="math notranslate nohighlight">\(N \log_2 N = 10240\)</span> where as <span class="math notranslate nohighlight">\(N^2 \approx 1 \times 10^{6}\)</span> which is 100 times large. The saving is even bigger for a larger <span class="math notranslate nohighlight">\(N\)</span>.
+The algorithm, known as Fast Fourier Transform (FFT), is very popular and widely used in a variety of applications in science, engineering and beyond.\footnote{FFT is built in many computational environments such as MATLAB.  FFT libraries are available for almost any computer language, among them awaard-winning Fast Fourier Transform in the West (FFTW) is popular and available for a variety of languages including C/C++, Fortran, Python, Java, etc.  See <a class="reference external" href="https://www.fftw.org">www.fftw.org</a>.)</p>
+<p>The FFT utilizes the structure the matrix <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> <a class="reference internal" href="dft.html#equation-eq-dft-matrix">()</a>.  Consider <span class="math notranslate nohighlight">\(N=8\)</span> for example, the matrix is given by</p>
+<div class="math notranslate nohighlight" id="equation-eq-fftmatrix1">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-fftmatrix1" title="Link to this equation">#</a></span>\[\begin{split}
+\mathcal{F} = \frac{T}{8}
+\begin{bmatrix}
+1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 \\
+1 &amp;  e^{i  \pi/4} &amp; e^{i  2\pi/4} &amp; e^{i  3\pi/4} &amp; e^{i  4\pi/4} &amp; e^{i  5\pi/4} &amp; e^{i  6\pi/4} &amp; e^{i  7\pi/4} \\
+1 &amp;  e^{i 2\pi/4} &amp; e^{i  4\pi/4} &amp; e^{i  6\pi/4} &amp; e^{i  8\pi/4} &amp; e^{i 10\pi/4} &amp; e^{i 12\pi/4} &amp; e^{i 14\pi/4} \\
+1 &amp;  e^{i 3\pi/4} &amp; e^{i  6\pi/4} &amp; e^{i  9\pi/4} &amp; e^{i 12\pi/4} &amp; e^{i 15\pi/4} &amp; e^{i 18\pi/4} &amp; e^{i 21\pi/4} \\
+1 &amp;  e^{i 4\pi/4} &amp; e^{i  8\pi/4} &amp; e^{i 12\pi/4} &amp; e^{i 16\pi/4} &amp; e^{i 20\pi/4} &amp; e^{i 24\pi/4} &amp; e^{i 28\pi/4} \\
+1 &amp;  e^{i 5\pi/4} &amp; e^{i 10\pi/4} &amp; e^{i 15\pi/4} &amp; e^{i 20\pi/4} &amp; e^{i 25\pi/4} &amp; e^{i 30\pi/4} &amp; e^{i 35\pi/4} \\
+1 &amp;  e^{i 6\pi/4} &amp; e^{i 12\pi/4} &amp; e^{i 18\pi/4} &amp; e^{i 24\pi/4} &amp; e^{i 30\pi/4} &amp; e^{i 36\pi/4} &amp; e^{i 42\pi/4} \\
+1 &amp;  e^{i 7\pi/4} &amp; e^{i 14\pi/4} &amp; e^{i 21\pi/4} &amp; e^{i 28\pi/4} &amp; e^{i 35\pi/4} &amp; e^{i 42\pi/4} &amp; e^{i 49\pi/4} 
+\end{bmatrix}
+\end{split}\]</div>
+<p>Evaluating the expinential functions, it can be written in an explicite expression</p>
+<div class="math notranslate nohighlight" id="equation-eq-fftmatrix2">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-fftmatrix2" title="Link to this equation">#</a></span>\[\begin{split}
+\begin{bmatrix}
+1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 &amp;               1 \\
+1 &amp; e^{ i  \pi/4} &amp;               i &amp;-e^{-i  \pi/4} &amp;              -1 &amp;-e^{ i  \pi/4} &amp;              -i &amp; e^{-i  \pi/4} \\
+1 &amp;               i &amp;              -1 &amp;              -i &amp;               1 &amp;               i &amp;              -1 &amp;              -i \\
+1 &amp;-e^{-i  \pi/4} &amp;              -i &amp; e^{ i  \pi/4} &amp;              -1 &amp; e^{-i  \pi/4} &amp;               i &amp;-e^{ i  \pi/4} \\
+1 &amp;              -1 &amp;               1 &amp;              -1 &amp;               1 &amp;              -1 &amp;               1 &amp;              -1 \\
+1 &amp;-e^{ i  \pi/4} &amp;               i &amp; e^{-i  \pi/4} &amp;              -1 &amp; e^{ i  \pi/4} &amp;              -i &amp;-e^{-i  \pi/4} \\
+1 &amp;              -i &amp;              -1 &amp;               i &amp;               1 &amp;              -i &amp;              -1 &amp;               i \\
+1 &amp; e^{-i  \pi/4} &amp;              -i &amp;-e^{ i  \pi/4} &amp;              -1 &amp;-e^{-i  \pi/4} &amp;               i &amp; e^{ i  \pi/4} 
+\end{bmatrix}
+\end{split}\]</div>
+<p>where the explixite values <span class="math notranslate nohighlight">\(e^{0}=1\)</span>, <span class="math notranslate nohighlight">\(e^{i \pi}=-1\)</span>, and <span class="math notranslate nohighlight">\(e^{\pm i \pi/2} = \pm i\)</span> are used except for <span class="math notranslate nohighlight">\(e^{\pm \pi/4}\)</span>.</p>
+<p>You can see easily that matrix <a class="reference internal" href="#equation-eq-fftmatrix2">()</a> is much simpler than Matrix <a class="reference internal" href="#equation-eq-fftmatrix1">()</a>. You notice that many matrix elements share the same value. A simple trick reveals the simplicity of the transformation matrix. First, we reorder the elements of the vector in a ``magic’’ order:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{f}^\prime = 
+\begin{bmatrix}
+f_0 \\ f_4 \\ f_2\\ f_6\\ f_1\\ f_5\\ f_3\\ f_7 
+\end{bmatrix}, \qquad \text{and}
+\qquad
+\tilde{\mathbf{f}}^\prime = 
+\begin{bmatrix}
+\tilde{f}_0 \\ \tilde{f}_4 \\ \tilde{f}_2\\ \tilde{f}_6\\ \tilde{f}_1\\ \tilde{f}_5\\ \tilde{f}_3\\ f_7
+\end{bmatrix}
+\end{split}\]</div>
+<p>and reorder the columns and rows of <a class="reference internal" href="#equation-eq-fftmatrix2">()</a> accordingly.  Then, the matrix becomes</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathcal{F}^\prime = \frac{T}{8}
+\begin{bmatrix}
+1 &amp;  1 &amp;               1  &amp;                1 &amp;                1 &amp;                1 &amp;                1 &amp;                1 \\
+1 &amp;  1 &amp;               1  &amp;                1 &amp;               -1 &amp;               -1 &amp;               -1 &amp;               -1 \\
+1 &amp;  1 &amp;              -1  &amp;               -1 &amp;                i &amp;                i &amp;               -i &amp;               -i \\
+1 &amp;  1 &amp;              -1  &amp;               -1 &amp;               -i &amp;               -i &amp;                i &amp;                i \\
+1 &amp; -1 &amp;               i  &amp;               -i &amp;  e^{ i  \pi/4} &amp; -e^{ i  \pi/4} &amp; -e^{-i  \pi/4} &amp;  e^{-i  \pi/4} \\
+1 &amp; -1 &amp;               i  &amp;               -i &amp; -e^{ i  \pi/4} &amp;  e^{ i  \pi/4} &amp;  e^{-i  \pi/4} &amp; -e^{-i  \pi/4} \\
+1 &amp; -1 &amp;              -i  &amp;                i &amp; -e^{-i  \pi/4} &amp;  e^{-i  \pi/4} &amp;  e^{ i  \pi/4} &amp; -e^{ i  \pi/4} \\
+1 &amp; -1 &amp;              -i  &amp;                i &amp;  e^{-i  \pi/4} &amp; -e^{-i  \pi/4} &amp; -e^{ i  \pi/4} &amp;  e^{ i  \pi/4} 
+\end{bmatrix}
+\end{split}\]</div>
+<p>Notice the patterns of the matrix elements.</p>
+<p>Writing  <span class="math notranslate nohighlight">\(\tilde{\mathbf{f}}^\prime=\mathcal{F}^\prime \mathbf{f}^\prime\)</span> explicitly,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\tilde{f}_0 &amp;=&amp; [(f_0+f_4) + (f_2+f_6)] + [(f_1+f_5) + (f_3+f_7)] \\
+\tilde{f}_4 &amp;=&amp; [(f_0+f_4) + (f_2+f_6)] - [(f_1+f_5) + (f_3+f_7)] \\
+\tilde{f}_2 &amp;=&amp; [(f_0+f_4) - (f_2+f_6)] +i[(f_1+f_5) - (f_3+f_7)] \\
+\tilde{f}_6 &amp;=&amp; [(f_0+f_4) - (f_2+f_6)] -i[(f_1+f_5) - (f_3+f_7)] \\
+\tilde{f}_1 &amp;=&amp; [(f_0-f_4) + i(f_2-f_6)] + [e^{ i\pi/4} (f_1-f_5) - e^{-i\pi/4} (f_3-f_7)]\\
+\tilde{f}_5 &amp;=&amp; [(f_0-f_4) + i(f_2-f_6)] - [e^{ i\pi/4} (f_1-f_5) - e^{-i\pi/4} (f_3-f_7)]\\
+\tilde{f}_3 &amp;=&amp; [(f_0-f_4) - i(f_2-f_6)] - [e^{-i\pi/4} (f_1-f_5) - e^{ i\pi/4} (f_3-f_7)]\\
+\tilde{f}_7 &amp;=&amp; [(f_0-f_4) - i(f_2-f_6)] + [e^{-i\pi/4} (f_1-f_5) - e^{ i\pi/4} (f_3-f_7)],
+\end{eqnarray}
+\end{split}\]</div>
+<p>we clearly see the regularity in the matrix.
+Now look at the additions in the regular parentheses <span class="math notranslate nohighlight">\((\cdots)\)</span>.  Many additions are identical.  In fact, there are 32 additions but only 8 different ones. We can reduce the computation by factor 4.  Furthermore, the additions inside the square bracket <span class="math notranslate nohighlight">\([\cdots]\)</span> are duplicated in the following line. Hence, we reduce the  calculation by factor 2.  For a large matrix we can save a lot of computation time.</p>
+<p>The permutation of rows and columns gives us the clear picture of this redundant additions.  How do we determine the permutation?  It turns out to be very simple. Express the element indexes in binary, e.g. <span class="math notranslate nohighlight">\(3=011\)</span>, then reverse the order of the bits, <span class="math notranslate nohighlight">\(011 \rightarrow 110\)</span> which is <span class="math notranslate nohighlight">\(7\)</span>.  Then, we swap column 3 and 7.  Figure \ref{fig:bit_reversed_order} illustrates the bit reversed order.</p>
+<p>The above algorithm of FFT works only when <span class="math notranslate nohighlight">\(N=2^k\)</span>.  In modern FFT libraries other values of <span class="math notranslate nohighlight">\(N\)</span> can be used.  However, the power of 2 gets the best performance.  If we have a data set whose size is not the power of two, we can just add 0 to the data set until the total number of data becomes the power of 2.  This zero padding does not cause a problem since the data outside the bounds is already assumed to be zero.</p>
+<figure class="align-default" id="fig-bit-reversed-order">
+<img alt="../_images/bit_reversed_order.png" src="../_images/bit_reversed_order.png" />
+</figure>
+<section id="remarks-on-the-use-of-canned-routines">
+<h2><span class="section-number">8.3.1. </span>Remarks on the use of canned routines<a class="headerlink" href="#remarks-on-the-use-of-canned-routines" title="Link to this heading">#</a></h2>
+<p>The detail use of the FFT package strongly depends on their implementation.  It is important to read the manual carefully before using it. Numpy package includes FFT package <a class="reference external" href="https://numpy.org/doc/stable/reference/routines.fft.html">numpy.fft</a>, which is based on
+Cooley and Tukey algorithm<span id="id1">[<a class="reference internal" href="../references/references.html#id22" title="Cooley, James W. and John W. Tukey. An algorithm for the machine calculation of complex fourier series. Math Comput, 19:297–301, 1965.">18</a>]</span> (See also Numerical Recipes<span id="id2">[<a class="reference internal" href="../references/references.html#id23" title="William H. Press, Saul A. Teukolsky, William T. Vetterling, and Brian P. Flannery. Numerical Recipes: The Art of Scientific Computing. Cambridge University Press, 3rd edition, 2007.">19</a>]</span>.)</p>
+<p>The most popular FFT package is FFTW<span id="id3">[<a class="reference internal" href="../references/references.html#id21" title="Matteo Frigo and Steven G. Johnson. The fastest Fourier transform in the west. Technical Report MIT-LCS-TR-728, Massachusetts Institute of Technology, September 1997. The source codes and manuals are available at \texttt http://www.fftw.org/.">20</a>]</span> which earned J. H. Wilkinson Prize for Numerical Software in 1999. It is written in C language.  A Python package
+<a class="reference external" href="https://pypi.org/project/pyFFTW/">PyFFTW</a> is a wrapper to FFTW.</p>
+<p>In this lecture, we use <code class="docutils literal notranslate"><span class="pre">numpy.fft</span></code> which have build-in functions <code class="docutils literal notranslate"><span class="pre">fft</span></code> for forward FFT and <code class="docutils literal notranslate"><span class="pre">ifft</span></code> for inverse FFT. However, as we discussed earlier the definition of  “forward” and “inverse” is not unique.  We need to find what they actually compute. In <code class="docutils literal notranslate"><span class="pre">numpy</span></code>   <code class="docutils literal notranslate"><span class="pre">fft</span></code> computes</p>
+<div class="math notranslate nohighlight" id="equation-eq-numpy-fft">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-numpy-fft" title="Link to this equation">#</a></span>\[
+F_m = \sum_{n=0}^{N-1} f_n \exp(-i \frac{2\pi\, m\, n}{N})
+\]</div>
+<p>and <code class="docutils literal notranslate"><span class="pre">ifft</span></code></p>
+<div class="math notranslate nohighlight" id="equation-eq-numpy-ifft">
+<span class="eqno">()<a class="headerlink" href="#equation-eq-numpy-ifft" title="Link to this equation">#</a></span>\[
+f_n = \frac{1}{N} \sum_{m=0}^{N-1} F_m \exp(i \frac{2\pi\, n\, m}{N})
+\]</div>
+<p>Compare these definitions with Eqs <a class="reference internal" href="dft.html#equation-eq-dft">()</a>, <code class="docutils literal notranslate"><span class="pre">fft</span></code> corresponds to our inverse Fourier transform and <code class="docutils literal notranslate"><span class="pre">ifft</span></code> to our forward Fourier transform.  Notice also that neither <code class="docutils literal notranslate"><span class="pre">fft</span></code> or <code class="docutils literal notranslate"><span class="pre">ifft</span></code> has prefactor <span class="math notranslate nohighlight">\(T\)</span> or <span class="math notranslate nohighlight">\(1/T\)</span>.  we must multiply an appropriate prefactor by ourselves.  Furthermore,
+we must prepare the input data set <span class="math notranslate nohighlight">\(\{f_m\}\)</span> suitable for their application and converts output data <span class="math notranslate nohighlight">\(\{F_k\}\)</span> to a suitable form by reordering. Some key points we need to know are given below.</p>
+<p><em>Forward or Backward Transformation</em></p>
+<p>Apart from the factor <span class="math notranslate nohighlight">\(T/N\)</span> and <span class="math notranslate nohighlight">\(1/T\)</span>, the difference between forward and backward transformation is the sign in the exponent. It is just the convention issue.  FFTW, used <span class="math notranslate nohighlight">\(\me^{-i\omega t}\)</span> as forward, which is opposite to ours.    My forward transformation may be your inverse transformation. We just have to use a routine which has a desired sign.   Numpy use the same convention as FFTW.</p>
+<p><em>Prefactor in front of the Summation</em></p>
+<p><code class="docutils literal notranslate"><span class="pre">numpy.fft</span></code> does not multiply <span class="math notranslate nohighlight">\(T\)</span> nor <span class="math notranslate nohighlight">\(1/T\)</span>.  It is up to us to multiply an appropriate prefactor.  Note that the output of the <code class="docutils literal notranslate"><span class="pre">fft</span></code> and <code class="docutils literal notranslate"><span class="pre">ifft</span></code> does satisfy the Fourier theorem sin <span class="math notranslate nohighlight">\(T \times 1/T = 1\)</span>.</p>
+<p><em>Input/Output Format: Bit Reversed or Not</em></p>
+<p>Most FFT routines carry out the bit reversal permutation internally. So, we don’t have to do it by ourselves.  However, the order of output depends on the FFT routines. Some FFT routines return the results in the original order but others in the bit reversed order. Advanced packages allow the users to specify the output order.  Why do we want the result in bit reversed order? In some cases, we repeat FFT many times but we need only the final output.  Therefore, there is no need to change the order back and forth every time.  If the bit-reversed order is kept during the repeated FFT, computing time is significantly saved. By default, ```numpy.fft`` returns the data in the regular order.</p>
+<p><em>Input/Output format: Periodicity</em></p>
+<p>Even when the output is not in the bit reversed order, the order of input/output data is often very confusing.  Recall that we replaced <span class="math notranslate nohighlight">\(\sum_{n=-N/2}^{N/2-1}\)</span> with <span class="math notranslate nohighlight">\(\sum_{n=0}^{N-1}\)</span>.
+FFT assumes that <span class="math notranslate nohighlight">\(t=0, \Delta t, 2\Delta t, \cdots, (N-1)\Delta t\)</span> and that the function values are stored in this order. There is no negative <span class="math notranslate nohighlight">\(t\)</span>!.  Suppose that we have a function data <span class="math notranslate nohighlight">\(f_n\)</span> for <span class="math notranslate nohighlight">\(n=0, \cdots, N-1\)</span> with <span class="math notranslate nohighlight">\(t_n = (n-N/2) \Delta t\)</span>.  Although <span class="math notranslate nohighlight">\(t\)</span> begins with a negative value <span class="math notranslate nohighlight">\(-N/2\)</span>, FFT doesn’t care about it and assume that the first data <span class="math notranslate nohighlight">\(f_0\)</span> is at <span class="math notranslate nohighlight">\(t=0\)</span>. That is obviously wrong.  Therefore, we need to change the order of the input data.  Since the functions in DFT are periodic, we can add the period <span class="math notranslate nohighlight">\(T\)</span> to <span class="math notranslate nohighlight">\(t\)</span> without changing the function value.  For <span class="math notranslate nohighlight">\(t&lt;0\)</span>, use <span class="math notranslate nohighlight">\(\mathbf{f}(t+T)\)</span>. Now the function is evaluated at positive time only.  In summary, the input data must be reordered as follows.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\mathbf{f}^\text{raw data}=
+\begin{bmatrix}
+f_0\\
+\vdots\\
+f_{N/2}\\
+f_{N/2+1}\\
+\vdots\\
+f_{N-1}
+\end{bmatrix} \quad \Longrightarrow \quad
+\mathbf{f}^\text{input} =
+\begin{bmatrix}
+f_{N/2+1} \\
+\vdots \\
+f_{N-1} \\
+f_0\\
+\vdots\\
+f_{N/2}
+\end{bmatrix}
+\end{split}\]</div>
+<p>Similarly, the order of the output data is shifted in the same way as the input order.
+Usually, you want to get a function <span class="math notranslate nohighlight">\(\tilde{f}(\omega)\)</span> from <span class="math notranslate nohighlight">\(-\Omega/2\)</span> to <span class="math notranslate nohighlight">\(\Omega/2\)</span>.  The output from FFT is not like that.  The first half of the data is for <span class="math notranslate nohighlight">\(\omega = 0\)</span> to <span class="math notranslate nohighlight">\(\omega=\Omega/2\)</span> and the latter half begins with <span class="math notranslate nohighlight">\(\omega=-\Omega/2\)</span>   to <span class="math notranslate nohighlight">\(\omega=-\Delta \omega\)</span>.  The user must reordered the output before plotting it as following:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\tilde{\mathbf{f}}^\text{output} = 
+\begin{bmatrix}
+\tilde{f}_0\\
+\vdots\\
+\tilde{f}_{N/2}\\
+\tilde{f}_{N/2+1}\\
+\vdots\\
+\tilde{f}_{N-1}
+\end{bmatrix} \quad \Longrightarrow \quad
+\tilde{\mathbf{f}}^\text{plot} =
+\begin{bmatrix}
+\tilde{f}_{N/2+1}\\
+\vdots\\
+\tilde{f}_{N-1}\\
+\tilde{f}_{0}\\
+\vdots\\
+\tilde{f}_{N/2}
+\end{bmatrix}
+\end{split}\]</div>
+<p><code class="docutils literal notranslate"><span class="pre">Numpy.fft</span></code> provide functions <code class="docutils literal notranslate"><span class="pre">fftshift</span></code> and <code class="docutils literal notranslate"><span class="pre">ifftshift</span></code> to carryout the above transformation.  The following example explains how to prepare the input data and recover the output you need.</p>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-fft"><span class="std std-numref">8.3</span></a>.1    Foureir Transform of a Gaussian Function]</p>
+<p>Let us compute the Fourier transform of a normalized Gaussian function</p>
+<div class="math notranslate nohighlight">
+\[
+f(t) = \frac{1}{\sqrt{\pi}} e^{-t^2}.
+\]</div>
+<p>We shall call <span class="math notranslate nohighlight">\(t\)</span> time. The analytic solution is given by</p>
+<div class="math notranslate nohighlight">
+\[
+\tilde{f}(\omega) = \frac{1}{\sqrt{\pi}} \int_{-\infty}^\infty e^{-t^2} e^{i \omega t} d{t}  = e^{-\omega^2/4}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\omega\)</span> is frequency.</p>
+<p>First, we have to decide the parameter values. <span class="math notranslate nohighlight">\(T=50\)</span> and <span class="math notranslate nohighlight">\(N=1024=2^{10}\)</span> makes time resolution <span class="math notranslate nohighlight">\(\Delta t \approx 0.05\)</span> fine enough. The function value at the bound <span class="math notranslate nohighlight">\(f(\pm T/2) \approx 10^{-272}\)</span> seems unnecessarily too small.  A smaller <span class="math notranslate nohighlight">\(T\)</span> could be used.  However, the resolution of the frequency is <span class="math notranslate nohighlight">\(\Delta \omega = 2\pi/T \approx 0.1\)</span>, barely small enough.  Therefore, we cannot reduce <span class="math notranslate nohighlight">\(T\)</span>.</p>
+<p>A raw data set <span class="math notranslate nohighlight">\(\mathbf{f}\)</span> is created using a domain <span class="math notranslate nohighlight">\(-T/2 &lt; t &lt; T/2\)</span>, which is plotted in Fig \ref{fig:fft_gaussian_order} (top left).  Then, the lower half of the data is shifted by <span class="math notranslate nohighlight">\(T\)</span>.  In the program, we just swap the lower and upper half of the column vector.   The resulting function is plotted in Fig \ref{fig:fft_gaussian_order} (bottom left).  MATLAB’s function \texttt{ifft()} calculate our forward Fourier transform (\ref{eq:DFT_fwd2}).  The raw output is plotted in Fig \ref{fig:fft_gaussian_order} (top right). The frequency domain is bounded by <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(\Omega=2 \pi/T\)</span>, indicated by the dashed line.  It is difficult to see the profile. Therefore, we swap the lower and upper half of the output array to get a normal plot for <span class="math notranslate nohighlight">\(-\Omega/2 &lt; \omega &lt; \Omega/2\)</span>, which is plotted in Fig \ref{fig:fft_gaussian_order} (bottom right).
+It is still difficult to see the detail because the result is nearly zero for the most part.  These zero regions are needed to keep the resolution of <span class="math notranslate nohighlight">\(t\)</span> small enough.  Finally, we zoom into the important region.  In Fig \ref{fig:fft_gaussian}, the final result and exact solution are compared.  The agreement is nearly perfect.</p>
+<p>First, we need to set up  the range of <span class="math notranslate nohighlight">\(t\)</span> and the discrete time.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="c1"># number of discrete time</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1024</span>
+
+<span class="c1"># Setting time domain</span>
+<span class="n">T</span><span class="o">=</span><span class="mf">50.</span>   <span class="c1"># size of time window</span>
+<span class="n">dt</span><span class="o">=</span><span class="n">T</span><span class="o">/</span><span class="n">N</span>  <span class="c1"># time resolution</span>
+<span class="n">tmin</span><span class="o">=-</span><span class="n">T</span><span class="o">/</span><span class="mf">2.</span>  <span class="c1"># smallest time</span>
+<span class="n">tmax</span><span class="o">=</span><span class="n">tmin</span><span class="o">+</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># largest time</span>
+<span class="n">t0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">tmin</span><span class="p">,</span><span class="n">tmax</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>    <span class="c1"># descete time series</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, we constructe discrete frequency.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
+
+<span class="c1"># setting frequency domain</span>
+<span class="n">W</span><span class="o">=</span><span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="n">T</span> <span class="c1"># size of the frequency domain</span>
+<span class="n">dw</span><span class="o">=</span><span class="n">W</span><span class="o">/</span><span class="n">N</span>          <span class="c1"># frequency resolution</span>
+<span class="n">wmin</span><span class="o">=-</span><span class="n">W</span><span class="o">/</span><span class="mf">2.0</span> <span class="c1"># smallest frequency</span>
+<span class="n">wmax</span><span class="o">=</span><span class="n">wmin</span><span class="o">+</span><span class="n">dw</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># largest frequency</span>
+<span class="n">w0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">wmin</span><span class="p">,</span><span class="n">wmax</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>     <span class="c1"># descrete frequency series</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Let us look at the profile of input function.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># continued from the previous code cell</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># original Gaussian function in time domain</span>
+<span class="n">f0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t0</span><span class="p">,</span><span class="n">f0</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;original function&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">T</span><span class="o">/</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="c1">#plt.axis([-T/2*1.05, T*1.05, 0.0, 1.0])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(t)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/8ab51d215f227be62bba4d4c701ac91535a4d55ec85e8f5e49f0acb1dd4fae13.png" src="../_images/8ab51d215f227be62bba4d4c701ac91535a4d55ec85e8f5e49f0acb1dd4fae13.png" />
+</div>
+</div>
+<p>The function plotted above is not a suitable input for <code class="docutils literal notranslate"><span class="pre">numpy.fft</span></code> since time begins with negative value.  Using the periodic propertiy of descrete fourier transform, we copy the left interval <span class="math notranslate nohighlight">\(\[-T/2,0\]\)</span> to the interval <span class="math notranslate nohighlight">\(\[T/2,T\]\)</span>. We can use a function <code class="docutils literal notranslate"><span class="pre">fft.fftishift</span></code> to do it.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># construct shifted time domain</span>
+<span class="n">t1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">dt</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">N</span><span class="p">)</span>
+
+<span class="c1"># shift the function</span>
+<span class="n">f1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">f0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">f1</span><span class="p">,</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;shifted function&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="c1">#plt.axis([-T/2*1.05, T*1.05, 0.0, 1.0])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(t)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/00b8de8a47dc034396aa88e25efbc38e30f42d4eb6a6f2379a2031d1c602c1d1.png" src="../_images/00b8de8a47dc034396aa88e25efbc38e30f42d4eb6a6f2379a2031d1c602c1d1.png" />
+</div>
+</div>
+<p>Now we are ready to compute fourier transform.  Based on our convention, the transformation from the time domain to the frequecy domain corresponds to <code class="docutils literal notranslate"><span class="pre">ifft</span></code> in <code class="docutils literal notranslate"><span class="pre">numpy</span></code>.  We need to multiple prefactor <span class="math notranslate nohighlight">\(T\)</span> to the output of <code class="docutils literal notranslate"><span class="pre">ifft</span></code>.   The output is given in the frequency interval <span class="math notranslate nohighlight">\(\[0,\Omega\]\)</span>.  In general the output is given in complex.  However, in the current example the result should be real.  So, we plot only the real part of the output.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shifted frequency domain</span>
+<span class="n">w1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">dw</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span><span class="n">N</span><span class="p">)</span>  
+
+<span class="c1"># FFT from time to frequency domain</span>
+<span class="n">g1</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span><span class="o">*</span><span class="n">T</span>  <span class="c1"># do not forget to multiply T</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w1</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">g1</span><span class="p">),</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;raw output&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">W</span><span class="p">,</span><span class="n">W</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(t)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/ca8056653c755061c7a388475c3d55c9da7ba3499bb68f87ec3678fdcac21094.png" src="../_images/ca8056653c755061c7a388475c3d55c9da7ba3499bb68f87ec3678fdcac21094.png" />
+</div>
+</div>
+<p>In order to compare the output with the analytic calculation, we need to shift back to the original frequency interval.  That is to shift <span class="math notranslate nohighlight">\(\[\Omega/2,\Omega\][\)</span> to <span class="math notranslate nohighlight">\(\[-\Omega/2,0\]\)</span>, which can be done with <code class="docutils literal notranslate"><span class="pre">fft.ifftshift</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Shift the output to the normal frequency domain</span>
+<span class="n">g0</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifftshift</span><span class="p">(</span><span class="n">g1</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">g0</span><span class="p">),</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s1">&#39;fourie transform&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">W</span><span class="o">/</span><span class="mi">2</span><span class="p">],[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$t$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$f(t)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/21f15bbcf92f653d32a7cf901a65c8bbbca55de3bd4c06815b654266c294f92f.png" src="../_images/21f15bbcf92f653d32a7cf901a65c8bbbca55de3bd4c06815b654266c294f92f.png" />
+</div>
+</div>
+<p>Finally we compare the result with the exact Fourier transform.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># exact Fourier transform</span>
+<span class="n">g2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">w0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="mf">4.0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">g0</span><span class="p">,</span><span class="s1">&#39;-or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;FFT&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">w0</span><span class="p">,</span><span class="n">g2</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.3</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\omega$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;$\tilde</span><span class="si">{f}</span><span class="s1">(\omega)$&#39;</span><span class="p">,</span><span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/matplotlib/cbook.py:1762: ComplexWarning: Casting complex values to real discards the imaginary part
+  return math.isfinite(val)
+/home/kawai/anaconda3/envs/jbook/lib/python3.10/site-packages/matplotlib/cbook.py:1398: ComplexWarning: Casting complex values to real discards the imaginary part
+  return np.asarray(x, float)
+</pre></div>
+</div>
+<img alt="../_images/7ff76817c30fe585f092787fe75830c8cc07e46a02acf3f837e17c1b195547cf.png" src="../_images/7ff76817c30fe585f092787fe75830c8cc07e46a02acf3f837e17c1b195547cf.png" />
+</div>
+</div>
+<p>Tha agreement is pretty good.</p>
+<hr class="docutils" />
+<p>Written on 9/25/2024 by Ryoichi Kawai.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "jbook"
+        },
+        kernelOptions: {
+            name: "jbook",
+            path: "./fft"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'jbook'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="dft.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">8.2. </span>Discrete Fourier Transform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../pde/intro.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>Partial Differential Equations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remarks-on-the-use-of-canned-routines">8.3.1. Remarks on the use of canned routines</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Ryoichi Kawai
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright Ryoichi Kawai 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

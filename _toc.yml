@@ -77,6 +77,7 @@ parts:
    -  file: matrix/intro
    -  file: fft/intro
       sections:
+      -  file: fft/fourie-theorem
       -  file: fft/dft
       -  file: fft/fft
    -  file: pde/intro

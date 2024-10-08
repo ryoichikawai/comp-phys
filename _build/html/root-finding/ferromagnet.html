@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -259,7 +259,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fft.html">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
@@ -556,7 +561,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8e4d093405a66307af3cc003c093c7b63b5f7d5640e80ad55fa4771e3e91be45.png" src="../_images/8e4d093405a66307af3cc003c093c7b63b5f7d5640e80ad55fa4771e3e91be45.png" />
+<img alt="../_images/a1c6ca1186d032c9dc65b7e521bf155ab7f58becb2f6598b2930e9e914604f9d.png" src="../_images/a1c6ca1186d032c9dc65b7e521bf155ab7f58becb2f6598b2930e9e914604f9d.png" />
 </div>
 </div>
 <p>For the high temperature case (<span class="math notranslate nohighlight">\(\beta=0.5\)</span>) , there is only one root at <span class="math notranslate nohighlight">\(x=0\)</span>.  For the low temperature case, (<span class="math notranslate nohighlight">\(\beta=10\)</span>), on the other hand, there are three roots, one at <span class="math notranslate nohighlight">\(x=0\)</span> and the other two appear below and above <span class="math notranslate nohighlight">\(x=0\)</span>.  The existence of non-zero roots suggest that the spontaneous magnetization breaks out.  We want to know how the two roots (magnetization) change as the temperature is varied.  It is not necessary to look for all the roots.  The root at <span class="math notranslate nohighlight">\(x=0\)</span> always exists. Taking into account the odd symmetry, if <span class="math notranslate nohighlight">\(x^*\)</span> is a positive root, then <span class="math notranslate nohighlight">\(-x^*\)</span> is the other root.  Therefore, we look for only the positive root.  The following code attempt to find a positive root if any.  Otherwise, it finds a sole root at <span class="math notranslate nohighlight">\(x=0\)</span>.  There are a few things we must worry.  First of all, we need to avoid zero temperature since ti causes the divided-by-zero error.  Secondly, the initial candidate for the Newton-Raphson method must be chosen carefully since there are multiple roots and it might converge to a wrong one. Based on the above plot, <span class="math notranslate nohighlight">\(x=2\)</span> may be a safe choice.</p>
@@ -615,7 +620,7 @@ f'(\xi) = 1 - \beta \text{sech}^2(\beta\xi)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/62d205396a52acb4b4543e451194087f97aa73828cd71eccb088c5a71fcf439e.png" src="../_images/62d205396a52acb4b4543e451194087f97aa73828cd71eccb088c5a71fcf439e.png" />
+<img alt="../_images/02c334c4ace1b98d8668fbe845717e6544a149304c64682c8ccef3e5cbbc8546.png" src="../_images/02c334c4ace1b98d8668fbe845717e6544a149304c64682c8ccef3e5cbbc8546.png" />
 </div>
 </div>
 <p>The plot shows that the spontaneous magnetization appears below <span class="math notranslate nohighlight">\(\theta=1\)</span> (It can be shown analytically that the critical temperature is 1.)  As temperature is lowered, the magnetization grows to <span class="math notranslate nohighlight">\(\pm 1\)</span>.  Although we were not able to compute for the zero temperature, the trend indicates that the magnetization is exactly <span class="math notranslate nohighlight">\(\pm 1\)</span> at <span class="math notranslate nohighlight">\(\theta=0\)</span>.  This plot agrees with experimental observation.<span id="id2">[<a class="reference internal" href="../references/references.html#id11" title="R. K. Pathria and P. D. Beale. Statistical Mechanics. Academic Press, 4th edition, 2021. ISBN 978-0081026922.">14</a>]</span></p>

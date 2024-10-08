@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -259,7 +259,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fft.html">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
@@ -592,10 +597,10 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7f16c047da20&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x7fb036971120&gt;]
 </pre></div>
 </div>
-<img alt="../_images/297b6f3e7d337fe9e07bd951de6a1399544d0f4afdf5b53ed986cae7d8366d8b.png" src="../_images/297b6f3e7d337fe9e07bd951de6a1399544d0f4afdf5b53ed986cae7d8366d8b.png" />
+<img alt="../_images/12b2c74dbb31168ab02f275eb14dd21541851bfc115278d46975b17dbdcfaa25.png" src="../_images/12b2c74dbb31168ab02f275eb14dd21541851bfc115278d46975b17dbdcfaa25.png" />
 </div>
 </div>
 <p>The curve oscillates and gets steeper as <span class="math notranslate nohighlight">\(x\)</span> increases. In addition, the functiopn value does not vanish at the upper integral limit.  The rectangular rule is not suitabgle for this type of curve.  In the following example code, we evaluate integral using <span class="math notranslate nohighlight">\(N=2^{k+2},\, k=0, \cdots (k_\text{max}-1)\)</span>.  The step size is given by <span class="math notranslate nohighlight">\(h=4\pi/N\)</span>.  We plot the integral and absolute error as a function of <span class="math notranslate nohighlight">\(h\)</span>.</p>
@@ -670,7 +675,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/399056e6d2b52303229dbdac29dc15ab182f87249137eb06d9b67ea14ab5a365.png" src="../_images/399056e6d2b52303229dbdac29dc15ab182f87249137eb06d9b67ea14ab5a365.png" />
+<img alt="../_images/428a319b285339a2e9315d681bc40942cf04e9c581608a0ef280d8c6074ca471.png" src="../_images/428a319b285339a2e9315d681bc40942cf04e9c581608a0ef280d8c6074ca471.png" />
 </div>
 </div>
 <p>From naked eyes (left panel), the integral looks converging well below <span class="math notranslate nohighlight">\(h=10^{-2}\)</span>.  However, the actual error (right panel) shows that the error is still significant.  The error is propotional to <span class="math notranslate nohighlight">\(h\)</span> as the theory predicts.</p>
@@ -786,7 +791,7 @@ order of <span class="math notranslate nohighlight">\(h^2 N = (b-a) h\)</span>. 
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/991695040ac3b713052eda6e327ca401d9a3a2ffa6670c0511fea5a460442ac7.png" src="../_images/991695040ac3b713052eda6e327ca401d9a3a2ffa6670c0511fea5a460442ac7.png" />
+<img alt="../_images/0a53c76263f75cb96fb490aedb87a61d9b225ddd1b9dc5b54c9b4f505483b551.png" src="../_images/0a53c76263f75cb96fb490aedb87a61d9b225ddd1b9dc5b54c9b4f505483b551.png" />
 </div>
 </div>
 <p>The integral seems converging faster than the rectangular rule in Example 3.1.1. The absolute error also shows that indeed the error decreasing much faster.  The arror is in propotion to <span class="math notranslate nohighlight">\(h^2\)</span> as expected from the theory.</p>
@@ -903,7 +908,7 @@ Repeating this formular, we obtain the <a class="reference external" href="https
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/734ae96a607888849973c970b174a7c421bd99d15660be49be48d9a9cdaf6be4.png" src="../_images/734ae96a607888849973c970b174a7c421bd99d15660be49be48d9a9cdaf6be4.png" />
+<img alt="../_images/355aeb1cfdc51fb1d5be6f089ed4ff9c4384f5b44b05e9cc1bb1b842b2779433.png" src="../_images/355aeb1cfdc51fb1d5be6f089ed4ff9c4384f5b44b05e9cc1bb1b842b2779433.png" />
 </div>
 </div>
 <p>The convergency is remarkably faster compared to the two previous methods.  The error is at the order of <span class="math notranslate nohighlight">\(h^4\)</span> as theoretically estimated.  Note also that the round-off error is visible below <span class="math notranslate nohighlight">\(h=10^{-3}\)</span>.</p>
@@ -989,7 +994,7 @@ Repeating this formular, we obtain the <a class="reference external" href="https
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/f1c283faee2888e8975f3aa3802b01dfd1adee3818b1f5724db45a375ac52323.png" src="../_images/f1c283faee2888e8975f3aa3802b01dfd1adee3818b1f5724db45a375ac52323.png" />
+<img alt="../_images/ab33ad7808b1682e5d7af2af529bbfe3aba07a9eb579b854565315198be574c7.png" src="../_images/ab33ad7808b1682e5d7af2af529bbfe3aba07a9eb579b854565315198be574c7.png" />
 </div>
 </div>
 <p>The result is identical to that of Example 3.1.3.</p>

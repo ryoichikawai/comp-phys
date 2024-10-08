@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -259,7 +259,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fft.html">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
@@ -662,7 +667,7 @@ f_{5/2}(z) &amp;=&amp; \frac{4 z}{\sqrt{3\pi}} \int_0^\infty \frac{x\sqrt{x}}{1+
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d705dde5e56240f74fd498a54345f303bcfae18276f62be058f635d4d7f2abd1.png" src="../_images/d705dde5e56240f74fd498a54345f303bcfae18276f62be058f635d4d7f2abd1.png" />
+<img alt="../_images/9685bdeca808842f1bed15f19fafc297c376ff6feb2bc4f3056312ddd6707aea.png" src="../_images/9685bdeca808842f1bed15f19fafc297c376ff6feb2bc4f3056312ddd6707aea.png" />
 </div>
 </div>
 <p>The result agrees well with the two limits, one end for small <span class="math notranslate nohighlight">\(z\)</span> and the other end for large <span class="math notranslate nohighlight">\(z\)</span>.  We expect that the result is accurate also in the mid section. Let us check it more precisely. We check the integral values at <span class="math notranslate nohighlight">\(z=0.05\)</span>, <span class="math notranslate nohighlight">\(z=1\)</span>, and <span class="math notranslate nohighlight">\(z=1000\)</span>. The reults from the polylogarithm function are also included.</p>
@@ -754,7 +759,7 @@ mu=5/2:   Gauss-Lagguerre= 4.23837e+01 asymptotic = 4.26152e+01 polylog = 4.2582
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/585a64d9106205a29a9c1f7a864dad88ee9a6131e0cb060c13261625711cc017.png" src="../_images/585a64d9106205a29a9c1f7a864dad88ee9a6131e0cb060c13261625711cc017.png" />
+<img alt="../_images/5c272539a21b7422de6f971ba699ba43337b571ee0a00d933991d0311f3044cf.png" src="../_images/5c272539a21b7422de6f971ba699ba43337b571ee0a00d933991d0311f3044cf.png" />
 </div>
 </div>
 <p>As <span class="math notranslate nohighlight">\(z\)</span> increases from 0, the equation of state deviates from the classical one.  The deviation becomes quite large as <span class="math notranslate nohighlight">\(z\)</span> increases beyond 10.  This indicates that the ideal fermi gas is almost classical for <span class="math notranslate nohighlight">\(z &lt; 1\)</span> (high temperature) and quantum contribution rapidly increases for <span class="math notranslate nohighlight">\(z&gt;10\)</span> (low temperature).</p>
@@ -856,7 +861,7 @@ f_{1/2}(z) &amp;=&amp; \frac{z}{\sqrt{\pi}} \int_0^\infty \left[\frac{1}{\sqrt{x
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d67c5bdb0570d1d6db2ee4e97f2b25a4e18ceb6580391e1be6c533217d4a6ff4.png" src="../_images/d67c5bdb0570d1d6db2ee4e97f2b25a4e18ceb6580391e1be6c533217d4a6ff4.png" />
+<img alt="../_images/b0495c23048390879e3405866b33611c2b6f5d9840097733d592630cdeeb5a8f.png" src="../_images/b0495c23048390879e3405866b33611c2b6f5d9840097733d592630cdeeb5a8f.png" />
 </div>
 </div>
 <p>From the naked eyes, the agreement looks great.  Let’s check the degree of the accuracy.</p>
@@ -920,7 +925,7 @@ mu=1/2:   Gauss-Lagguerre= 2.9367257008e+00 asymptotic = 2.9401161642e+00
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/408214848f38c36d5cf41f2f5ac284f7e408de3b1c787021314e135210f699e1.png" src="../_images/408214848f38c36d5cf41f2f5ac284f7e408de3b1c787021314e135210f699e1.png" />
+<img alt="../_images/a3b83fb496d3d776a3d1500bf6103cfe80237b16ad02421dd5de4411d5149d7d.png" src="../_images/a3b83fb496d3d776a3d1500bf6103cfe80237b16ad02421dd5de4411d5149d7d.png" />
 </div>
 </div>
 <p>It shows that the heat capacity decreases as <span class="math notranslate nohighlight">\(z\)</span> increases (temperature decreases) due to quantum effects.</p>

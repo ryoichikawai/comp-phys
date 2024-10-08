@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -259,7 +259,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fft.html">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
@@ -579,8 +584,8 @@ x_{n+1} = x_n + \int_{t_n}^{t_{n+1}} F[x(s),s]\, ds\, .
 x(t_n+h) = x(t_n) + \dot{x}(t_n) h + \mathcal{O}(h^2)
 \]</div>
 <p>Using the ODE, we replace <span class="math notranslate nohighlight">\(\dot{x}(t_n)\)</span> with <span class="math notranslate nohighlight">\(F(x(t_n),t_n)\)</span> which leads to a recursive equation</p>
-<div class="math notranslate nohighlight" id="equation-eq-euler-rule">
-<span class="eqno">(6.7)<a class="headerlink" href="#equation-eq-euler-rule" title="Link to this equation">#</a></span>\[
+<div class="math notranslate nohighlight">
+\[
 x_{n+1} = x_n + F_n\, h
 \]</div>
 <p>where <span class="math notranslate nohighlight">\(\mathcal{O}(h^2)\)</span> ignored.  The recursive equation is known as the Euler rule .  The visual interpretation of the Euler method is quite simple.  First we assumes that the curve <span class="math notranslate nohighlight">\(x(t)\)</span> is approximately a straight line between <span class="math notranslate nohighlight">\(t_n\)</span> and <span class="math notranslate nohighlight">\(t_{n+1}\)</span>.  The slope of the curve is unknown except at <span class="math notranslate nohighlight">\(t_n\)</span>.  So, we just use <span class="math notranslate nohighlight">\(\dot{x}(t_n) = F_n\)</span> as the slope. (See the right panel of <a class="reference internal" href="#fig-euler-ode"><span class="std std-numref">Fig. 6.1</span></a>.)
@@ -756,7 +761,7 @@ v(t) = \frac{m g}{\gamma} \left ( e^{-\gamma t} -1 \right )\,.
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/2fe4a2e184c89e691845452912837b4126802292db33c8042264aa3408844415.png" src="../_images/2fe4a2e184c89e691845452912837b4126802292db33c8042264aa3408844415.png" />
+<img alt="../_images/dadf7360ce60a967c17f8c38e322afb28a7f450cafe7187dcaa6a241915f79d2.png" src="../_images/dadf7360ce60a967c17f8c38e322afb28a7f450cafe7187dcaa6a241915f79d2.png" />
 </div>
 </div>
 <p>The left plots show that the trajectories of the two numerical methods agree with the exact trajectory at least in he naked eyes.  The right panel plots the absolute errors.  The predictor-corrector method is significantly better than the Euler method.</p>
@@ -811,7 +816,7 @@ and thus the second order Runge-Kutta method is just as good (bad) as the predic
 </section>
 <section id="th-order-runge-kutta-method">
 <h3><span class="section-number">6.1.1.4. </span>4th-Order Runge-Kutta Method<a class="headerlink" href="#th-order-runge-kutta-method" title="Link to this heading">#</a></h3>
-<p>The Runge-Kutta approach a;;ows us to systematically improve the accuracy.  The second RK method evaluate <span class="math notranslate nohighlight">\(F(x,t)\)</span>, twice per step.  Now consider a RK method that evaluate it four times per step, which is known as the 4th order RK method.  Since the rigorous derivation of this formula is a bit complicated, we resort to a heuristic consideration.</p>
+<p>The Runge-Kutta approach allows us to systematically improve the accuracy.  The second RK method evaluate <span class="math notranslate nohighlight">\(F(x,t)\)</span>, twice per step.  Now consider a RK method that evaluate it four times per step, which is known as the 4th order RK method. The method is highly accurate and widely used in real applications. Since the rigorous derivation of this formula is a bit complicated, we introduce it based on a heuristic consideration.</p>
 <p>In order to further improve the accuracy, we use a better numerical integration method, the Simpson rule:</p>
 <div class="math notranslate nohighlight" id="equation-eq-rk4-simpson">
 <span class="eqno">(6.16)<a class="headerlink" href="#equation-eq-rk4-simpson" title="Link to this equation">#</a></span>\[
@@ -848,10 +853,226 @@ F_{n+1}= F(x_n+ h k_3, t_{n+1})  \equiv k_4
 \[
 x_{n+1} = x_n + \frac{h}{6}\left(k_1 + 2 k_2 + 2 k_3 + k_4\right).
 \]</div>
-<p>This method is accurate enough for most of practical applications.</p>
+<div class="admonition-algorithm-6-1-2-2nd-order-runge-kutta-method admonition">
+<p class="admonition-title">Algorithm 6.1.2:  2nd-order Runge-Kutta method</p>
+<ol class="arabic simple">
+<li><p>Set the total period <span class="math notranslate nohighlight">\(T\)</span> and the number of steps <span class="math notranslate nohighlight">\(N\)</span>.</p></li>
+<li><p>Calculate the step size <span class="math notranslate nohighlight">\(h=\displaystyle\frac{T}{N}\)</span>.</p></li>
+<li><p>Set the initial condition <span class="math notranslate nohighlight">\(x_0\)</span> and <span class="math notranslate nohighlight">\(t_0\)</span>.</p></li>
+<li><p>Reset the counter: <span class="math notranslate nohighlight">\(n=0\)</span>.</p></li>
+<li><p>Repeat the following <span class="math notranslate nohighlight">\(N\)</span> times.</p>
+<ol class="arabic simple">
+<li><p>Increment time: <span class="math notranslate nohighlight">\(t_{n+1}=t_0 + (n+1)h\)</span>.</p></li>
+<li><p>Slope at <span class="math notranslate nohighlight">\(t_n\)</span>: <span class="math notranslate nohighlight">\(k_1 = F(x_n,t_n)\)</span></p></li>
+<li><p>Slope at <span class="math notranslate nohighlight">\(t_{n+1/2}\)</span> (1st try): <span class="math notranslate nohighlight">\(k_2 = F(x_n + \frac{k_1 h}{2}, t_n + \frac{h}{2}  )\)</span>.</p></li>
+<li><p>Slope at <span class="math notranslate nohighlight">\(t_{n+1/2}\)</span> (2nd try): <span class="math notranslate nohighlight">\(k_3 = F(x_n + \frac{k_2 h}{2}, t_n + \frac{h}{2} )\)</span>.</p></li>
+<li><p>Slope at <span class="math notranslate nohighlight">\(t_{n+1}\)</span>: <span class="math notranslate nohighlight">\(k_4  =  F(x_n + k_3 h, t_n + h) \)</span>.</p></li>
+<li><p>4th order Runge-Kutta step: <span class="math notranslate nohighlight">\(x_n +\displaystyle\frac{h}{6} ( k_1 + 2 k_2 + 2 k_3 + k_4 )\)</span>.</p></li>
+<li><p>Increment the step: <span class="math notranslate nohighlight">\(n=n+1\)</span>.</p></li>
+</ol>
+</li>
+</ol>
+</div>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.2</span></a>  In Example <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.1</span></a>, we found that the predictor-corrector method is more accurate than the Euler method.  For cpmparison, we solve the same problem with 2nd and 4th order Runge-Kutta methods.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="c1"># system parameters</span>
+<span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">g</span><span class="o">=</span><span class="mf">9.8</span>
+<span class="n">m</span><span class="o">=</span><span class="mf">1.0</span>
+
+<span class="c1"># integration parameters</span>
+<span class="n">tmax</span><span class="o">=</span><span class="mi">10</span>  <span class="c1"># maximum time</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1000</span>   <span class="c1"># maximum steps</span>
+<span class="n">h</span><span class="o">=</span><span class="n">tmax</span><span class="o">/</span><span class="n">N</span> <span class="c1"># time step</span>
+
+<span class="c1"># set arrays</span>
+<span class="n">v_rk2</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">v_rk4</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">v_ex</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">h</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    
+    <span class="c1"># Runge-Kutta 2nd order</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_rk2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_mid</span> <span class="o">=</span> <span class="n">v_rk2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_mid</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_rk2</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_rk2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">*</span><span class="n">h</span>
+    
+    <span class="c1"># RUnge-Kutta 4th order</span>
+    <span class="n">k1</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_mid</span> <span class="o">=</span> <span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k1</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mf">2.0</span>
+    <span class="n">k2</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_mid</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_mid</span> <span class="o">=</span> <span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k2</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span>
+    <span class="n">k3</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_mid</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_end</span> <span class="o">=</span> <span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">k3</span><span class="o">*</span><span class="n">h</span>    
+    <span class="n">k4</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v_end</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">v_rk4</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="n">k1</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">k2</span><span class="o">+</span><span class="n">k3</span><span class="p">)</span><span class="o">+</span><span class="n">k4</span><span class="p">)</span><span class="o">*</span><span class="n">h</span><span class="o">/</span><span class="mf">6.0</span>
+        
+    <span class="c1"># Exact solution</span>
+    <span class="n">v_ex</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">gamma</span><span class="o">*</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">t</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+    
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="c1"># Plot the solutions</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="o">-</span><span class="n">g</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;0.8&#39;</span><span class="p">,</span> <span class="n">linestyle</span> <span class="o">=</span> <span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_ex</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;Exact&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_rk2</span><span class="p">,</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RK2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_rk4</span><span class="p">,</span><span class="s1">&#39;:r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RK4&#39;</span><span class="p">)</span>
+
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;v(t)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Plot the absolute errors</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v_rk2</span><span class="o">-</span><span class="n">v_ex</span><span class="p">),</span><span class="s1">&#39;-b&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RK2&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v_rk4</span><span class="o">-</span><span class="n">v_ex</span><span class="p">),</span><span class="s1">&#39;-r&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s1">&#39;RK4&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;absolute error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/77131a9cf3f6ab44405983457d385ae35453844191dee938311d1ed12414eafb.png" src="../_images/77131a9cf3f6ab44405983457d385ae35453844191dee938311d1ed12414eafb.png" />
+</div>
+</div>
+<p>The outcomes of both the 2nd and 4th order RK methods agree with the exact solution as the left panel shows.  The right panel shows that while the error of the 2nd order RK method is comparable to that of the predictor corrector method.he absolute errors, the error of the 4th order RK method is far more accurate fi the same step size is used.</p>
 </section>
 <section id="adaptive-step-runge-kutta-fehlberg-method">
 <h3><span class="section-number">6.1.1.5. </span>Adaptive Step: Runge-Kutta-Fehlberg Method<a class="headerlink" href="#adaptive-step-runge-kutta-fehlberg-method" title="Link to this heading">#</a></h3>
+<p>The solution to an ODE can be slowly changing in some parts and rapidly varying in other parts.  If a constant step <span class="math notranslate nohighlight">\(h\)</span> were used, it must be small enough for the rapid change.  However, such a small <span class="math notranslate nohighlight">\(h\)</span> is not necessary in the slowly changing region and thus we waste computer time.  Furthermore, finding an appropriate step size becomes difficult if we don’t know the rapidly changing part prior to the calculation.  It is desired to have an algorithm which automatically adjusts the step size as the solution is computed.  Runge-Kutta-Felberg method which is also known as RK45 finds appropriate step size so that the result is accurate to the given tolerance.</p>
+<p>Like regular Runge-Kutta methods, we try to find solution <span class="math notranslate nohighlight">\(x_{n+1}\)</span> at <span class="math notranslate nohighlight">\(t_{n+1}\)</span> knowing the previous step <span class="math notranslate nohighlight">\(x_n\)</span> at <span class="math notranslate nohighlight">\(t_n\)</span> where <span class="math notranslate nohighlight">\(t_{n+1}= t_{n}+h\)</span>.  Here we show the algorithm without proof.  For a given <span class="math notranslate nohighlight">\(h\)</span>, we evaluate the following six quantities,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+k_1 &amp;=&amp; h F(x_n,t_n) \\
+k_2 &amp;=&amp; h F\left(x_n+\frac{1}{4}k_1,t_n+\frac{1}{4}h\right) \\
+k_3 &amp;=&amp; h F\left(x_n+\frac{3}{32}k_1+\frac{9}{32}k_2,t_n+\frac{3}{8}h\right)\\
+k_4 &amp;=&amp; h F\left(x_n+\frac{1932}{2197} k_1-\frac{7200}{2197}k_2+\frac{7296}{2197}k_3,t_n+\frac{12}{13}h\right)\\
+k_5 &amp;=&amp; h F\left(x_n+\frac{439}{216} k_1 - 8 k_2 + \frac{3680}{513} k_3 - \frac{845}{4104} k_4,t_n+h \right)\\
+k_6 &amp;=&amp; h F\left(x_n -\frac{8}{27} k_1 + 2 k_2 - \frac{3544}{2565} k_3 + \frac{1859}{4104} k_4 - \frac{11}{40} k_5, t_n + \frac{1}{2} h\right)
+\end{eqnarray}
+\end{split}\]</div>
+<p>Using four points (<span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_3\)</span>, <span class="math notranslate nohighlight">\(k_4\)</span>, and <span class="math notranslate nohighlight">\(k_5\)</span>), we make a first prediction:</p>
+<div class="math notranslate nohighlight">
+\[
+x_{n+1} = x_{n} + \frac{25}{216} k_1 + \frac{1408}{2565} k_3 + \frac{2197}{4101} k_4 - \frac{1}{5} k_5
+\]</div>
+<p>The second prediction, which uses more points (<span class="math notranslate nohighlight">\(k_1\)</span>, <span class="math notranslate nohighlight">\(k_3\)</span>, <span class="math notranslate nohighlight">\(k_4\)</span>, <span class="math notranslate nohighlight">\(k_5\)</span>, and <span class="math notranslate nohighlight">\(k6\)</span>), i sgiven by</p>
+<div class="math notranslate nohighlight">
+\[
+x_{n+1}^\prime = x_{n} + \frac{16}{135} k_1 + \frac{6656}{12,825} k_3 + \frac{28,561}{56,430} k_4 - \frac{9}{
+50} k_5 + \frac{2}{55} k_6.
+\]</div>
+<p>The second prediction  is more accurate than the first one.  Now, we estimate the error by</p>
+<div class="math notranslate nohighlight">
+\[
+\delta = \frac{1}{h} |x_{n+1}^\prime - x_{n+1}|.
+\]</div>
+<p>If <span class="math notranslate nohighlight">\(\delta &lt; \text{tol}\)</span> (where tol is a tolerance), then we accept <span class="math notranslate nohighlight">\(x_{n+1}^\prime\)</span> as a good solution and moves to the next step.<br />
+In this case, the current step size <span class="math notranslate nohighlight">\(h\)</span> is clearly small enough. If <span class="math notranslate nohighlight">\(\delta \ll \text{tol}\)</span>,  perhaps, <span class="math notranslate nohighlight">\(h\)</span> is too small. To save computing time, we may want to use a larger step size in the next step,  <span class="math notranslate nohighlight">\(h_\text{new} = \lambda h_\text{old}\)</span> where</p>
+<p>$<span class="math notranslate nohighlight">\(
+\lambda =\left ( \frac{\text{tol}}{2 \delta} \right )^{1/4}.
+\)</span>$(eq:rk45_new_step)</p>
+<p>When the error was much smaller than the tolerance, that is <span class="math notranslate nohighlight">\(\delta \ll \text{tol}\)</span>, <span class="math notranslate nohighlight">\(\lambda \gg 1\)</span> and thus <span class="math notranslate nohighlight">\(h\)</span> increases significantly.
+On the other hand, if the error barely smaller than the tolerance, (<span class="math notranslate nohighlight">\(\delta \approx 1\)</span>), then <span class="math notranslate nohighlight">\(\lambda \approx 0.84\)</span> and thus <span class="math notranslate nohighlight">\(h_\text{new}\)</span> is lightly smaller than <span class="math notranslate nohighlight">\(h_\text{old}\)</span> to improve the accuracy.</p>
+<p>If <span class="math notranslate nohighlight">\(\delta &gt; \text{tol}\)</span>, the prediction is not accurate enough and we need to recalculate the current step with a smaller <span class="math notranslate nohighlight">\(h\)</span>.  In this case, <span class="math notranslate nohighlight">\(\lambda &lt; 0.84\)</span>, <span class="math notranslate nohighlight">\(h_\text{new} &lt; h_\text{old}\)</span> and thus the new prediction should be more accurate. WE repeat this procedure until the error becomes smaller than the tolerance.</p>
+<p>In the following the factor <span class="math notranslate nohighlight">\(\lambda\)</span> is plotted as a function of <span class="math notranslate nohighlight">\(\text{tol}/\delta\)</span>.  Even when the error is large, <span class="math notranslate nohighlight">\(h\)</span> changes only gradually.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">x</span>
+<span class="n">l</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">r</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="mf">1.</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogx</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">l</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;tol/$\delta$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;$\lambda$&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/3b67befa2b93ddb783067c5331b887cf8e045bfe1f7a7cf85dbdaf53f707f94b.png" src="../_images/3b67befa2b93ddb783067c5331b887cf8e045bfe1f7a7cf85dbdaf53f707f94b.png" />
+</div>
+</div>
+<p><strong>Example</strong> <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.3</span></a>  In Example <a class="reference internal" href="#sec-ode-initial-value-problems"><span class="std std-numref">6.1.2</span></a>, we found the 4th order RK was remarkably accurate.  However, the accuracy was unnecessarily high.  We could use a larger step size.  Here , we solve the same free falling problem again using the RK45 method.  The aim of this example is how <span class="math notranslate nohighlight">\(h\)</span> is adjusted to keep the accuracy smaller but also close to the tolerance.  For that purpose, we use a canned routine <code class="docutils literal notranslate"><span class="pre">RK45</span></code> in the <code class="docutils literal notranslate"><span class="pre">scipy</span></code> package.  It is easier to call RK45 through a wrapper function <code class="docutils literal notranslate"><span class="pre">solve_ivp</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">F</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+<span class="c1"># system parameters</span>
+    <span class="n">gamma</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="n">m</span><span class="o">=</span><span class="mf">1.0</span>
+    <span class="n">g</span><span class="o">=</span><span class="mf">9.8</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">v</span><span class="o">/</span><span class="n">m</span> <span class="o">-</span> <span class="n">g</span>
+    <span class="k">return</span> <span class="n">a</span>
+
+<span class="n">t0</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># initial time</span>
+<span class="n">v0</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># initial velocity</span>
+<span class="n">tspan</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">]</span>  <span class="c1"># maximum time</span>
+<span class="n">h0</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">rtol</span><span class="o">=</span><span class="mf">1e-5</span>
+
+<span class="n">sol</span><span class="o">=</span><span class="n">solve_ivp</span><span class="p">(</span><span class="n">F</span><span class="p">,</span><span class="n">tspan</span><span class="p">,</span><span class="n">v0</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;RK45&#39;</span><span class="p">,</span><span class="n">rtol</span><span class="o">=</span><span class="n">rtol</span><span class="p">,</span><span class="n">first_step</span><span class="o">=</span><span class="n">h0</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span>
+<span class="n">v</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="o">.</span><span class="n">flat</span><span class="p">)</span>
+
+    <span class="c1"># exact solution</span>
+<span class="n">v_ex</span><span class="o">=</span><span class="n">m</span><span class="o">*</span><span class="n">g</span><span class="o">/</span><span class="n">gamma</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">gamma</span><span class="o">*</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">n</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="n">h</span><span class="o">=</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">hmin</span><span class="o">=</span><span class="nb">min</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="n">hmax</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">h</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; the smallest h = </span><span class="si">{0:8.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hmin</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot; the largest h  = </span><span class="si">{0:8.5f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">hmax</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">ioff</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> 
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;or&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;RK45&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">v_ex</span><span class="p">,</span><span class="s1">&#39;-k&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Exact&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">t</span><span class="o">*</span><span class="mi">0</span><span class="p">,</span><span class="s1">&#39;ob&#39;</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s2">&quot;Time step&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;velocity&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">semilogy</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="nb">abs</span><span class="p">(</span><span class="n">v</span><span class="o">-</span><span class="n">v_ex</span><span class="p">),</span><span class="s1">&#39;-k&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;absolute error&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span> the smallest h =  0.27858
+ the largest h  =  1.39575
+</pre></div>
+</div>
+<img alt="../_images/372b4841a7d0f18b7f2918389fa532ec2d8c8ac5507798f84f56573e558ddd76.png" src="../_images/372b4841a7d0f18b7f2918389fa532ec2d8c8ac5507798f84f56573e558ddd76.png" />
+</div>
+</div>
+<p>The blue dots in the left panel show the actual time <span class="math notranslate nohighlight">\(t_n\)</span>.  The initial step size is intentionally set to be large <span class="math notranslate nohighlight">\(h=1.0\)</span> but the RK45 automatically reduced it until the tolerance (<span class="math notranslate nohighlight">\(10^{-5}\)</span>) is satisfied. The smallest step length used by RK45 is <span class="math notranslate nohighlight">\(0.27\)</span>. Notice that the gap between <span class="math notranslate nohighlight">\(t_n\)</span> and <span class="math notranslate nohighlight">\(t_{n+1}\)</span> is increasing,  indicating that the step size <span class="math notranslate nohighlight">\(h\)</span> is increasing.  The  velocity changes rapidly at the beginning and thus a small step size is needed.  As the velocity approaches the terminal velocity, the step size increases gradually since the velocity is changing slowly.  The largest step size was <span class="math notranslate nohighlight">\(1.39575\)</span>, about five times larger than the smallest step. The right panel shows that the error remains close to the tolerance.  (The strange behavior at the end is that time is forcibly terminated at <span class="math notranslate nohighlight">\(t=10\)</span>. Hence, the final step size is smaller than the one estimated by RK45.</p>
 </section>
 </section>
 <section id="coupled-first-order-odes">

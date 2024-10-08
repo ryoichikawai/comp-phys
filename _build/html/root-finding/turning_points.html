@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
   
@@ -259,7 +259,12 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../matrix/intro.html">7. Linear Algebrea</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../fft/intro.html">8. Fourier Transformation</a><input class="toctree-checkbox" id="toctree-checkbox-12" name="toctree-checkbox-12" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-12"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fourie-theorem.html">8.1. Fourier Theorem and Fourier Transformation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/dft.html">8.2. Discrete Fourier Transform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../fft/fft.html">8.3. Fast Fourier Transform</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../pde/intro.html">9. Partial Differential Equations</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Monte Carlo simulation</span></p>
@@ -595,7 +600,7 @@ u_\text{hybrid}(x) = \frac{a}{a-6} \left(\frac{6}{a} e^{a(1-x)} - 1/x^6\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/19d2c7fae652f546e7fc79a6a95293b875027fa6aea5b71b278d064489371a3f.png" src="../_images/19d2c7fae652f546e7fc79a6a95293b875027fa6aea5b71b278d064489371a3f.png" />
+<img alt="../_images/7a07e099d3a3a9a17a09d5bc123ece4bde01a2bff80653c78597470cc1dd82c1.png" src="../_images/7a07e099d3a3a9a17a09d5bc123ece4bde01a2bff80653c78597470cc1dd82c1.png" />
 </div>
 </div>
 <p>From the plot, it is clear that one turning point must be between <span class="math notranslate nohighlight">\(-1\)</span> and <span class="math notranslate nohighlight">\(0\)</span>.  The other turning point can be anywhere between <span class="math notranslate nohighlight">\(0\)</span> and <span class="math notranslate nohighlight">\(2\)</span>.  Let us find the turning points for the kinetic energy <span class="math notranslate nohighlight">\(k=1/2\)</span> (the red line in the above plot). we can safely say that the upper turning point is between 1 and 3.  So, we don’t have to use a bracketing program.  We use the bisection and secant methods and compare the results.</p>
@@ -665,7 +670,7 @@ u_\text{hybrid}(x) = \frac{a}{a-6} \left(\frac{6}{a} e^{a(1-x)} - 1/x^6\right)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/6e39a1853c00a60b5279010a8d0953e423937712585f304fa55e930d0ea652b5.png" src="../_images/6e39a1853c00a60b5279010a8d0953e423937712585f304fa55e930d0ea652b5.png" />
+<img alt="../_images/3d038275fe6a9df46c87faf00cb328b8244cafdf7cee6933015a275cb531cda8.png" src="../_images/3d038275fe6a9df46c87faf00cb328b8244cafdf7cee6933015a275cb531cda8.png" />
 </div>
 </div>
 <p>Clearly <span class="math notranslate nohighlight">\(x_1\)</span> is above 0.5 and below 1, and <span class="math notranslate nohighlight">\(x_2\)</span> between 1.0 and 2.0.</p>
