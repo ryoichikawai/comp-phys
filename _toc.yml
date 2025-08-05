@@ -21,10 +21,10 @@ parts:
    -  file: numbers/intro
       sections:
       -  file: numbers/bits
-      -  file: numbers/ascii
       -  file: numbers/integers
       -  file: numbers/float
       -  file: numbers/errors
+      -  file: numbers/ascii
       -  file: numbers/applications
       -  file: numbers/problems
    -  file: functions/intro
